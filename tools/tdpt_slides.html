@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>TDPT — 即時 3D 姿態追蹤</title>
+<style>
+:root{--bg-primary:#1a1f2e;--bg-card:rgba(30,42,60,0.55);--text-primary:#ffffff;--text-secondary:#b8c4d0;--text-dim:#8090a0;--accent-cyan:#4db8d4;--accent-teal:#2dd4a8;--accent-red:#e05555;--accent-gold:#f5a623;--border-subtle:rgba(255,255,255,0.08);--radius-card:16px;--font-family:'Noto Sans TC','Inter',-apple-system,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth}
+body{background:var(--bg-primary);color:var(--text-secondary);font-family:var(--font-family);font-weight:400;overflow-x:hidden}
+body::before{content:'';position:fixed;top:-20%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(45,212,168,0.04) 0%,transparent 70%);pointer-events:none;z-index:0}
+.slide{min-height:100vh;scroll-snap-align:start;display:flex;align-items:center;padding:40px 6% 80px;position:relative;z-index:1}
+.slide-inner{max-width:1200px;width:100%;margin:0 auto}
+h1{font-size:4rem;font-weight:800;color:var(--text-primary);line-height:1.1}
+h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8rem;padding-left:1.2rem;border-left:4px solid;border-image:linear-gradient(180deg,var(--accent-teal),var(--accent-cyan)) 1}
+.desc{color:var(--text-secondary);font-size:1rem;line-height:1.8;margin:.8rem 0;max-width:800px}
+.grad-text{background:linear-gradient(135deg,var(--accent-teal),var(--accent-cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.card{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-card);padding:2.2rem}
+.card-grid{display:grid;gap:1.2rem}
+.cols-2{grid-template-columns:1fr 1fr}
+.cols-3{grid-template-columns:1fr 1fr 1fr}
+.card-title{color:var(--accent-cyan);font-weight:700;font-size:1.6rem;margin-bottom:.5rem}
+.big-num{font-size:3.2rem;font-weight:800;line-height:1}
+.big-label{color:var(--text-dim);font-size:1rem;margin-top:.4rem}
+.tag{display:inline-block;background:rgba(45,212,168,0.1);border:1px solid rgba(45,212,168,0.25);color:var(--accent-teal);border-radius:6px;padding:.2rem .7rem;font-size:.85rem;margin-right:.5rem;margin-bottom:.4rem}
+.list-clean{list-style:none;padding:0}
+.list-clean li{padding:.6rem 0;border-bottom:1px solid var(--border-subtle);font-size:1rem;line-height:1.7}
+.list-clean li:last-child{border:none}
+.list-clean li strong{color:var(--accent-teal)}
+.card-con .list-clean li strong{color:var(--accent-red)}
+.pos{color:var(--accent-teal)}
+.neg{color:var(--accent-red)}
+.video-wrap{position:relative;width:100%;max-width:800px;height:45vh;max-height:45vh;margin:0 auto;border-radius:10px;overflow:hidden}
+.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+.nav-dots{position:fixed;right:24px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:100}
+.nav-dots a{width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,0.2);display:block;transition:.2s}
+.nav-dots a.active{width:14px;height:22px;border-radius:7px;background:var(--accent-teal);box-shadow:0 0 8px var(--accent-teal)}
+.back-link{position:fixed;top:1.5rem;left:1.5rem;color:var(--accent-gold);text-decoration:none;font-size:.85rem;z-index:100;opacity:.7;transition:.2s}
+.back-link:hover{opacity:1}
+.bottom-nav{position:fixed;bottom:1.2rem;left:50%;transform:translateX(-50%);background:rgba(26,31,46,0.85);backdrop-filter:blur(8px);border:1px solid var(--border-subtle);border-radius:10px;padding:.5rem 1.2rem;display:flex;align-items:center;gap:1rem;z-index:100;font-size:.85rem}
+.bottom-nav button{background:none;border:none;color:var(--accent-teal);cursor:pointer;font-size:.85rem;font-family:inherit;padding:.3rem .6rem;border-radius:6px;transition:.2s}
+.bottom-nav button:hover{background:rgba(45,212,168,0.15)}
+.bottom-nav .page-num{color:var(--text-secondary);min-width:3rem;text-align:center}
+@media(max-width:768px){h1{font-size:2.4rem}h2{font-size:1.6rem}.cols-2,.cols-3{grid-template-columns:1fr}.slide{padding:48px 1.2rem 80px}}
+</style>
+</head>
+<body>
+<a href="../index.html" class="back-link">← 返回首頁</a>
+<nav class="nav-dots" id="dots"></nav>
+<div class="bottom-nav"><button id="prev">← 上一頁</button><span class="page-num" id="pageNum">1/10</span><button id="next">下一頁 →</button></div>
+
+<section class="slide" id="s1"><div class="slide-inner">
+<h1><span class="grad-text">TDPT</span></h1>
+<h1>ThreeD Pose Tracker</h1>
+<p class="desc">即時 3D 姿態追蹤工具——僅需一台普通攝影機，即可偵測 24 個身體關鍵點並輸出完整 3D 座標資料。由 Digital Standard 開發，專為即時動作預覽與串流設計。</p>
+<div style="margin-top:1.5rem"><span class="tag">即時追蹤</span><span class="tag">單攝影機</span><span class="tag">VMC Protocol</span><span class="tag">付費軟體</span></div>
+</div></section>
+
+<section class="slide" id="s2"><div class="slide-inner">
+<h2>產品概述</h2>
+<p class="desc">TDPT 是由日本 Digital Standard 公司開發的即時 3D 姿態追蹤軟體。運用深度學習模型從單一 RGB 攝影機畫面中即時估計人體 3D 姿態，並以標準化協定輸出到外部 3D 軟體。</p>
+<p class="desc">核心理念是「低門檻即時動捕」——不需要深度攝影機、不需要標記點、不需要多攝影機校正，只要一台筆電內建鏡頭或網路攝影機就能開始使用。</p>
+</div></section>
+
+<section class="slide" id="s3"><div class="slide-inner">
+<h2>展示影片</h2>
+<div class="video-wrap"><iframe src="https://www.youtube.com/embed/b54D8TC5qsw" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div>
+<p class="desc" style="text-align:center;margin-top:1rem">TDPT 即時追蹤展示——單攝影機即時偵測 24 個身體關鍵點</p>
+</div></section>
+
+<section class="slide" id="s4"><div class="slide-inner">
+<h2>核心技術規格</h2>
+<div class="card-grid cols-3">
+<div class="card"><div class="big-num pos">24</div><div class="big-label">身體關鍵點</div></div>
+<div class="card"><div class="big-num pos">即時</div><div class="big-label">低延遲串流</div></div>
+<div class="card"><div class="big-num pos">1</div><div class="big-label">攝影機需求</div></div>
+</div>
+<p class="desc" style="margin-top:1.5rem">使用單一 RGB 攝影機進行即時骨架偵測，以深度學習模型推斷 3D 空間座標。支援 VMC Protocol 將骨架資料即時串流至 Blender、Unity 等外部軟體。</p>
+</div></section>
+
+<section class="slide" id="s5"><div class="slide-inner">
+<h2>支援平台與輸出</h2>
+<div class="card-grid cols-2">
+<div class="card"><div class="card-title">支援平台</div>
+<ul class="list-clean"><li><strong>Windows</strong> — 完整桌面版本</li><li><strong>macOS</strong> — 原生支援 Apple Silicon</li><li><strong>iOS</strong> — 行動裝置版本，利用 ARKit 增強</li></ul></div>
+<div class="card"><div class="card-title">輸出協定</div>
+<ul class="list-clean"><li><strong>VMC Protocol</strong> — 標準虛擬動捕協定</li><li><strong>OSC</strong> — 開放音控協定傳輸</li><li><strong>Blender / Unity</strong> — 透過 VMC 即時接收</li></ul></div>
+</div>
+</div></section>
+
+<section class="slide" id="s6"><div class="slide-inner">
+<h2>優勢分析</h2>
+<div class="card"><ul class="list-clean">
+<li><strong>即時低延遲</strong> — 適合直播、互動表演、即時預覽等場景</li>
+<li><strong>單攝影機即可</strong> — 不需要額外硬體投資，任何 RGB 攝影機都能使用</li>
+<li><strong>跨平台支援</strong> — Windows / macOS / iOS 全平台覆蓋</li>
+<li><strong>標準輸出協定</strong> — VMC Protocol 被廣泛支援，可接入多種 3D 軟體</li>
+<li><strong>操作簡單</strong> — 安裝即用，無需複雜環境設定或校正流程</li>
+</ul></div>
+</div></section>
+
+<section class="slide" id="s7"><div class="slide-inner">
+<h2>限制與缺點</h2>
+<div class="card card-con"><ul class="list-clean">
+<li><strong>僅 24 個關鍵點</strong> — 不包含手指與臉部細節，無法捕捉精細動作</li>
+<li><strong>無直接 BVH 輸出</strong> — 需要額外工具串接才能轉換為 BVH 格式</li>
+<li><strong>付費軟體</strong> — 非免費方案，需要購買授權</li>
+<li><strong>單人追蹤</strong> — 主要設計為單一使用者即時追蹤</li>
+<li><strong>精度限制</strong> — 單攝影機深度估計精度有限，不適合正式動畫產出</li>
+</ul></div>
+</div></section>
+
+<section class="slide" id="s8"><div class="slide-inner">
+<h2>與 Kimodo 的整合可能</h2>
+<div class="card-grid cols-2">
+<div class="card"><div class="card-title">定位</div><p class="desc">作為即時預覽工具，在動作設計初期快速驗證想法。精度不足作為正式產出，主要用於概念驗證與動作方向確認。</p></div>
+<div class="card"><div class="card-title">整合路徑</div><p class="desc">TDPT → VMC Protocol → Blender 即時預覽 → 確認動作方向後 → 使用 Kimodo 生成正式 BVH 動畫檔案。</p></div>
+</div>
+</div></section>
+
+<section class="slide" id="s9"><div class="slide-inner">
+<h2>適用場景</h2>
+<div class="card-grid cols-3">
+<div class="card"><div class="card-title">VTuber 直播</div><p class="desc">即時驅動虛擬角色，低延遲串流表演。</p></div>
+<div class="card"><div class="card-title">動作預覽</div><p class="desc">快速驗證動作概念，確認方向後再正式製作。</p></div>
+<div class="card"><div class="card-title">互動裝置</div><p class="desc">搭配展覽或互動裝置，即時人體姿態回饋。</p></div>
+</div>
+</div></section>
+
+<section class="slide" id="s10"><div class="slide-inner">
+<h2>總結評估</h2>
+<div class="card"><div class="card-grid cols-2">
+<div><div class="big-num pos">即時預覽</div><div class="big-label">主要定位</div></div>
+<div><div class="big-num" style="color:var(--accent-gold)">輔助工具</div><div class="big-label">Pipeline 中的角色</div></div>
+</div></div>
+<p class="desc" style="margin-top:1.5rem">TDPT 是優秀的即時預覽工具，適合在動作製作早期快速驗證方向。但由於關鍵點數量限制（24 點、無手指臉部）及缺乏直接 BVH 輸出，不適合作為正式動畫產出工具。在 Kimodo Pipeline 中定位為「前期即時預覽」角色。</p>
+</div></section>
+
+<script>
+const d=document.getElementById('dots');const total=10;
+for(let i=1;i<=total;i++){const a=document.createElement('a');a.href='#s'+i;d.appendChild(a)}
+let cur=1;
+const prevBtn=document.getElementById('prev'),nextBtn=document.getElementById('next');
+function updateNav(){document.getElementById('pageNum').textContent=cur+'/'+total;prevBtn.style.visibility=cur===1?'hidden':'visible';nextBtn.style.visibility=cur===total?'hidden':'visible'}
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){cur=parseInt(e.target.id.slice(1));d.querySelectorAll('a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));updateNav()}})},{threshold:.5});
+document.querySelectorAll('.slide').forEach(s=>obs.observe(s));
+updateNav();
+function go(n){const t=Math.max(1,Math.min(total,n));document.getElementById('s'+t).scrollIntoView({behavior:'smooth'})}
+prevBtn.onclick=()=>go(cur-1);nextBtn.onclick=()=>go(cur+1);
+document.addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();go(cur+1)}if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();go(cur-1)}});
+</script>
+</body>
+</html>

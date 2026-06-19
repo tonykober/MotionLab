@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>mimem AI — 多攝影機雲端無標記動捕</title>
+<style>
+:root{--bg-primary:#1a1f2e;--bg-card:rgba(30,42,60,0.55);--text-primary:#ffffff;--text-secondary:#b8c4d0;--text-dim:#8090a0;--accent-cyan:#4db8d4;--accent-teal:#2dd4a8;--accent-red:#e05555;--accent-gold:#f5a623;--border-subtle:rgba(255,255,255,0.08);--radius-card:16px;--font-family:'Noto Sans TC','Inter',-apple-system,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth}
+body{background:var(--bg-primary);color:var(--text-secondary);font-family:var(--font-family);font-weight:400;overflow-x:hidden}
+body::before{content:'';position:fixed;top:-20%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(45,212,168,0.04) 0%,transparent 70%);pointer-events:none;z-index:0}
+.slide{min-height:100vh;scroll-snap-align:start;display:flex;align-items:center;padding:40px 6% 80px;position:relative;z-index:1}
+.slide-inner{max-width:1200px;width:100%;margin:0 auto}
+h1{font-size:4rem;font-weight:800;color:var(--text-primary);line-height:1.1}
+h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8rem;padding-left:1.2rem;border-left:4px solid;border-image:linear-gradient(180deg,var(--accent-teal),var(--accent-cyan)) 1}
+.desc{color:var(--text-secondary);font-size:1rem;line-height:1.8;margin:.8rem 0;max-width:800px}
+.grad-text{background:linear-gradient(135deg,var(--accent-teal),var(--accent-cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.card{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-card);padding:2.2rem}
+.card-grid{display:grid;gap:1.2rem}
+.cols-2{grid-template-columns:1fr 1fr}
+.cols-3{grid-template-columns:1fr 1fr 1fr}
+.card-title{color:var(--accent-cyan);font-weight:700;font-size:1.6rem;margin-bottom:.5rem}
+.big-num{font-size:3.2rem;font-weight:800;line-height:1}
+.big-label{color:var(--text-dim);font-size:1rem;margin-top:.4rem}
+.tag{display:inline-block;background:rgba(45,212,168,0.1);border:1px solid rgba(45,212,168,0.25);color:var(--accent-teal);border-radius:6px;padding:.2rem .7rem;font-size:.85rem;margin-right:.5rem;margin-bottom:.4rem}
+.list-clean{list-style:none;padding:0}
+.list-clean li{padding:.6rem 0;border-bottom:1px solid var(--border-subtle);font-size:1rem;line-height:1.7}
+.list-clean li:last-child{border:none}
+.list-clean li strong{color:var(--accent-teal)}
+.card-con .list-clean li strong{color:var(--accent-red)}
+.pos{color:var(--accent-teal)}
+.neg{color:var(--accent-red)}
+.video-wrap{position:relative;width:100%;max-width:800px;height:45vh;max-height:45vh;margin:0 auto;border-radius:10px;overflow:hidden}
+.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+.nav-dots{position:fixed;right:24px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:100}
+.nav-dots a{width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,0.2);display:block;transition:.2s}
+.nav-dots a.active{width:14px;height:22px;border-radius:7px;background:var(--accent-teal);box-shadow:0 0 8px var(--accent-teal)}
+.back-link{position:fixed;top:1.5rem;left:1.5rem;color:var(--accent-gold);text-decoration:none;font-size:.85rem;z-index:100;opacity:.7;transition:.2s}
+.back-link:hover{opacity:1}
+.bottom-nav{position:fixed;bottom:1.2rem;left:50%;transform:translateX(-50%);background:rgba(26,31,46,0.85);backdrop-filter:blur(8px);border:1px solid var(--border-subtle);border-radius:10px;padding:.5rem 1.2rem;display:flex;align-items:center;gap:1rem;z-index:100;font-size:.85rem}
+.bottom-nav button{background:none;border:none;color:var(--accent-teal);cursor:pointer;font-size:.85rem;font-family:inherit;padding:.3rem .6rem;border-radius:6px;transition:.2s}
+.bottom-nav button:hover{background:rgba(45,212,168,0.15)}
+.bottom-nav .page-num{color:var(--text-secondary);min-width:3rem;text-align:center}
+@media(max-width:768px){h1{font-size:2.4rem}h2{font-size:1.6rem}.cols-2,.cols-3{grid-template-columns:1fr}.slide{padding:48px 1.2rem 80px}}
+</style>
+</head>
+<body>
+<a href="../index.html" class="back-link">← 返回首頁</a>
+<nav class="nav-dots" id="dots"></nav>
+<div class="bottom-nav"><button id="prev">← 上一頁</button><span class="page-num" id="pageNum">1/10</span><button id="next">下一頁 →</button></div>
+
+<section class="slide" id="s1"><div class="slide-inner">
+<h1><span class="grad-text">mimem AI</span></h1>
+<h1>多攝影機雲端無標記動捕</h1>
+<p class="desc">無需校正的多攝影機動捕系統，利用雲端 AI 進行 3D 重建與平滑處理。用現有設備（網路攝影機或手機）即可開始捕捉，FBX/BVH 格式輸出。</p>
+<div style="margin-top:1.5rem"><span class="tag">多攝影機</span><span class="tag">雲端 AI</span><span class="tag">無需校正</span><span class="tag">Early Access</span></div>
+</div></section>
+
+<section class="slide" id="s2"><div class="slide-inner">
+<h2>產品概述</h2>
+<p class="desc">mimem AI 是一個新興的雲端無標記動作捕捉服務。其核心賣點是「No-calibration setup」——不需要繁瑣的攝影機校正流程，只需將多個攝影機（甚至手機）對準拍攝空間，系統就能自動進行多視角 3D 重建。</p>
+<p class="desc">所有運算在雲端完成，本機不需要高階 GPU。拍攝完成後上傳影片，雲端 AI 處理後返回平滑的 3D 動畫資料。目前處於 Early Access 階段，尚未正式公開發佈。</p>
+</div></section>
+
+<section class="slide" id="s3"><div class="slide-inner">
+<h2>展示影片</h2>
+<div class="video-wrap"><iframe src="https://www.youtube.com/embed/sDQzB0IcKQk" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div>
+<p class="desc" style="text-align:center;margin-top:1rem">mimem AI 展示——多攝影機無校正動捕與雲端 AI 重建</p>
+</div></section>
+
+<section class="slide" id="s4"><div class="slide-inner">
+<h2>技術特色</h2>
+<div class="card-grid cols-3">
+<div class="card"><div class="big-num pos">0</div><div class="big-label">校正需求</div></div>
+<div class="card"><div class="big-num pos">雲端</div><div class="big-label">AI 運算</div></div>
+<div class="card"><div class="big-num pos">多機</div><div class="big-label">攝影機同步</div></div>
+</div>
+<p class="desc" style="margin-top:1.5rem">系統自動處理攝影機間的空間關係推斷、多視角融合、3D 骨架重建與動作平滑。使用者只需要放置攝影機並拍攝，其餘全部由雲端 AI 完成。</p>
+</div></section>
+
+<section class="slide" id="s5"><div class="slide-inner">
+<h2>使用方式與設備需求</h2>
+<div class="card-grid cols-2">
+<div class="card"><div class="card-title">支援設備</div>
+<ul class="list-clean"><li><strong>網路攝影機</strong> — 一般 USB 攝影機即可</li><li><strong>手機</strong> — iOS/Android 手機作為攝影機</li><li><strong>GoPro 等</strong> — 運動攝影機亦可使用</li><li><strong>數量</strong> — 支援多個攝影機同時拍攝</li></ul></div>
+<div class="card"><div class="card-title">輸出格式</div>
+<ul class="list-clean"><li><strong>FBX</strong> — 業界標準 3D 動畫交換格式</li><li><strong>BVH</strong> — 動作捕捉標準格式</li><li><strong>平滑處理</strong> — 雲端 AI 自動動作平滑</li><li><strong>3D 軟體相容</strong> — 支援現有所有 3D 工具</li></ul></div>
+</div>
+</div></section>
+
+<section class="slide" id="s6"><div class="slide-inner">
+<h2>優勢分析</h2>
+<div class="card"><ul class="list-clean">
+<li><strong>無需校正</strong> — 省去傳統多攝影機系統最繁瑣的校正步驟</li>
+<li><strong>現有設備即可</strong> — 不需要購買專業攝影機，手機/Webcam 就能用</li>
+<li><strong>雲端運算</strong> — 本機不需要高階 GPU，運算全在雲端完成</li>
+<li><strong>多攝影機高精度</strong> — 多視角融合提供比單攝影機更高的精度</li>
+<li><strong>自動平滑</strong> — 雲端 AI 內建動作平滑處理，減少後製工作</li>
+</ul></div>
+</div></section>
+
+<section class="slide" id="s7"><div class="slide-inner">
+<h2>限制與缺點</h2>
+<div class="card card-con"><ul class="list-clean">
+<li><strong>尚未正式發佈</strong> — 目前為 Early Access，功能與穩定性可能有限</li>
+<li><strong>定價未知</strong> — 商業模式與費用尚未公開</li>
+<li><strong>依賴網路</strong> — 需要上傳影片到雲端，大檔案可能耗時</li>
+<li><strong>非即時</strong> — 雲端處理需要等待時間，不適合即時應用</li>
+<li><strong>隱私顧慮</strong> — 影片上傳至第三方雲端可能有資料隱私疑慮</li>
+</ul></div>
+</div></section>
+
+<section class="slide" id="s8"><div class="slide-inner">
+<h2>與 Kimodo 的整合可能</h2>
+<div class="card-grid cols-2">
+<div class="card"><div class="card-title">互補定位</div><p class="desc">mimem AI 提供高精度的影片動捕能力，可補足 Kimodo text-to-motion 無法覆蓋的場景——當需要精確重現真實人體動作時，使用 mimem 捕捉。</p></div>
+<div class="card"><div class="card-title">工作流程</div><p class="desc">多攝影機拍攝 → mimem AI 雲端處理 → FBX/BVH 輸出 → Kimodo 後處理 pipeline → 動作修改/混合 → 最終產出。</p></div>
+</div>
+</div></section>
+
+<section class="slide" id="s9"><div class="slide-inner">
+<h2>適用場景</h2>
+<div class="card-grid cols-3">
+<div class="card"><div class="card-title">精確動作捕捉</div><p class="desc">需要高精度重現真實動作時，多攝影機提供更好品質。</p></div>
+<div class="card"><div class="card-title">場地靈活</div><p class="desc">不需要專業攝影棚，任何空間都能快速架設。</p></div>
+<div class="card"><div class="card-title">團隊協作</div><p class="desc">雲端處理結果可直接分享給團隊成員使用。</p></div>
+</div>
+</div></section>
+
+<section class="slide" id="s10"><div class="slide-inner">
+<h2>總結評估</h2>
+<div class="card"><div class="card-grid cols-2">
+<div><div class="big-num pos">高精度</div><div class="big-label">多攝影機優勢</div></div>
+<div><div class="big-num" style="color:var(--accent-gold)">待觀察</div><div class="big-label">Early Access 狀態</div></div>
+</div></div>
+<p class="desc" style="margin-top:1.5rem">mimem AI 是極具潛力的多攝影機雲端動捕方案。無需校正、現有設備即可使用的低門檻特性非常吸引人。但目前仍在 Early Access 階段，定價與穩定性待確認。若正式發佈且價格合理，將是 Kimodo Pipeline 中高精度影片動捕的重要補充。</p>
+</div></section>
+
+<script>
+const d=document.getElementById('dots');const total=10;
+for(let i=1;i<=total;i++){const a=document.createElement('a');a.href='#s'+i;d.appendChild(a)}
+let cur=1;
+const prevBtn=document.getElementById('prev'),nextBtn=document.getElementById('next');
+function updateNav(){document.getElementById('pageNum').textContent=cur+'/'+total;prevBtn.style.visibility=cur===1?'hidden':'visible';nextBtn.style.visibility=cur===total?'hidden':'visible'}
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){cur=parseInt(e.target.id.slice(1));d.querySelectorAll('a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));updateNav()}})},{threshold:.5});
+document.querySelectorAll('.slide').forEach(s=>obs.observe(s));
+updateNav();
+function go(n){const t=Math.max(1,Math.min(total,n));document.getElementById('s'+t).scrollIntoView({behavior:'smooth'})}
+prevBtn.onclick=()=>go(cur-1);nextBtn.onclick=()=>go(cur+1);
+document.addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();go(cur+1)}if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();go(cur-1)}});
+</script>
+</body>
+</html>

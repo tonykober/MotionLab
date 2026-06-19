@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ReMoCapp — 即時全身+臉部動捕</title>
+<style>
+:root{--bg-primary:#1a1f2e;--bg-card:rgba(30,42,60,0.55);--text-primary:#ffffff;--text-secondary:#b8c4d0;--text-dim:#8090a0;--accent-cyan:#4db8d4;--accent-teal:#2dd4a8;--accent-red:#e05555;--accent-gold:#f5a623;--border-subtle:rgba(255,255,255,0.08);--radius-card:16px;--font-family:'Noto Sans TC','Inter',-apple-system,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth}
+body{background:var(--bg-primary);color:var(--text-secondary);font-family:var(--font-family);font-weight:400;overflow-x:hidden}
+body::before{content:'';position:fixed;top:-20%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(45,212,168,0.04) 0%,transparent 70%);pointer-events:none;z-index:0}
+.slide{min-height:100vh;scroll-snap-align:start;display:flex;align-items:center;padding:40px 6% 80px;position:relative;z-index:1}
+.slide-inner{max-width:1200px;width:100%;margin:0 auto}
+h1{font-size:4rem;font-weight:800;color:var(--text-primary);line-height:1.1}
+h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8rem;padding-left:1.2rem;border-left:4px solid;border-image:linear-gradient(180deg,var(--accent-teal),var(--accent-cyan)) 1}
+.desc{color:var(--text-secondary);font-size:1rem;line-height:1.8;margin:.8rem 0;max-width:800px}
+.grad-text{background:linear-gradient(135deg,var(--accent-teal),var(--accent-cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.card{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-card);padding:2.2rem}
+.card-grid{display:grid;gap:1.2rem}
+.cols-2{grid-template-columns:1fr 1fr}
+.cols-3{grid-template-columns:1fr 1fr 1fr}
+.card-title{color:var(--accent-cyan);font-weight:700;font-size:1.6rem;margin-bottom:.5rem}
+.big-num{font-size:3.2rem;font-weight:800;line-height:1}
+.big-label{color:var(--text-dim);font-size:1rem;margin-top:.4rem}
+.tag{display:inline-block;background:rgba(45,212,168,0.1);border:1px solid rgba(45,212,168,0.25);color:var(--accent-teal);border-radius:6px;padding:.2rem .7rem;font-size:.85rem;margin-right:.5rem;margin-bottom:.4rem}
+.list-clean{list-style:none;padding:0}
+.list-clean li{padding:.6rem 0;border-bottom:1px solid var(--border-subtle);font-size:1rem;line-height:1.7}
+.list-clean li:last-child{border:none}
+.list-clean li strong{color:var(--accent-teal)}
+.card-con .list-clean li strong{color:var(--accent-red)}
+.pos{color:var(--accent-teal)}
+.neg{color:var(--accent-red)}
+.video-wrap{position:relative;width:100%;max-width:800px;height:45vh;max-height:45vh;margin:0 auto;border-radius:10px;overflow:hidden}
+.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+.nav-dots{position:fixed;right:24px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:100}
+.nav-dots a{width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,0.2);display:block;transition:.2s}
+.nav-dots a.active{width:14px;height:22px;border-radius:7px;background:var(--accent-teal);box-shadow:0 0 8px var(--accent-teal)}
+.back-link{position:fixed;top:1.5rem;left:1.5rem;color:var(--accent-gold);text-decoration:none;font-size:.85rem;z-index:100;opacity:.7;transition:.2s}
+.back-link:hover{opacity:1}
+.bottom-nav{position:fixed;bottom:1.2rem;left:50%;transform:translateX(-50%);background:rgba(26,31,46,0.85);backdrop-filter:blur(8px);border:1px solid var(--border-subtle);border-radius:10px;padding:.5rem 1.2rem;display:flex;align-items:center;gap:1rem;z-index:100;font-size:.85rem}
+.bottom-nav button{background:none;border:none;color:var(--accent-teal);cursor:pointer;font-size:.85rem;font-family:inherit;padding:.3rem .6rem;border-radius:6px;transition:.2s}
+.bottom-nav button:hover{background:rgba(45,212,168,0.15)}
+.bottom-nav .page-num{color:var(--text-secondary);min-width:3rem;text-align:center}
+@media(max-width:768px){h1{font-size:2.4rem}h2{font-size:1.6rem}.cols-2,.cols-3{grid-template-columns:1fr}.slide{padding:48px 1.2rem 80px}}
+</style>
+</head>
+<body>
+<a href="../index.html" class="back-link">← 返回首頁</a>
+<nav class="nav-dots" id="dots"></nav>
+<div class="bottom-nav"><button id="prev">← 上一頁</button><span class="page-num" id="pageNum">1/10</span><button id="next">下一頁 →</button></div>
+
+<section class="slide" id="s1"><div class="slide-inner">
+<h1><span class="grad-text">ReMoCapp</span></h1>
+<h1>即時全身+臉部動捕</h1>
+<p class="desc">AI 即時無標記動捕軟體，使用 2-8 個網路攝影機同時捕捉全身與臉部動作。即時串流至 Blender、Unreal Engine、Unity，BVH/FBX 格式匯出。</p>
+<div style="margin-top:1.5rem"><span class="tag">即時動捕</span><span class="tag">2-8 Webcam</span><span class="tag">全身+臉部</span><span class="tag">付費軟體</span></div>
+</div></section>
+
+<section class="slide" id="s2"><div class="slide-inner">
+<h2>產品概述</h2>
+<p class="desc">ReMoCapp 是一款商業級即時無標記動作捕捉軟體。透過 2 到 8 個網路攝影機的多視角融合，在不需要任何穿戴設備或標記點的情況下，即時捕捉全身動作與臉部表情。</p>
+<p class="desc">其最大特色是「即時串流」——捕捉的動作可以即時傳輸到 Blender、Unreal Engine 或 Unity 中，適合即時表演、虛擬製片、動畫預覽等需要低延遲的應用場景。</p>
+</div></section>
+
+<section class="slide" id="s3"><div class="slide-inner">
+<h2>展示影片</h2>
+<div class="video-wrap"><iframe src="https://www.youtube.com/embed/WciJoRDIfOU" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div>
+<p class="desc" style="text-align:center;margin-top:1rem">ReMoCapp 展示——多 Webcam 即時全身+臉部動捕</p>
+</div></section>
+
+<section class="slide" id="s4"><div class="slide-inner">
+<h2>技術規格</h2>
+<div class="card-grid cols-3">
+<div class="card"><div class="big-num pos">2-8</div><div class="big-label">網路攝影機數量</div></div>
+<div class="card"><div class="big-num pos">即時</div><div class="big-label">低延遲串流</div></div>
+<div class="card"><div class="big-num pos">全身+臉</div><div class="big-label">捕捉範圍</div></div>
+</div>
+<p class="desc" style="margin-top:1.5rem">多攝影機融合提供比單攝影機更高的精度與穩定性。AI 模型即時處理多視角影像，輸出完整的身體骨架與臉部 Blend Shapes 資料。</p>
+</div></section>
+
+<section class="slide" id="s5"><div class="slide-inner">
+<h2>輸出與整合</h2>
+<div class="card-grid cols-2">
+<div class="card"><div class="card-title">輸出格式</div>
+<ul class="list-clean"><li><strong>BVH</strong> — 標準動作捕捉格式匯出</li><li><strong>FBX</strong> — 業界 3D 動畫交換格式</li><li><strong>即時串流</strong> — 低延遲即時傳輸動作資料</li></ul></div>
+<div class="card"><div class="card-title">支援軟體</div>
+<ul class="list-clean"><li><strong>Blender</strong> — 即時接收外掛直連</li><li><strong>Unreal Engine</strong> — Live Link 整合</li><li><strong>Unity</strong> — 即時串流支援</li></ul></div>
+</div>
+</div></section>
+
+<section class="slide" id="s6"><div class="slide-inner">
+<h2>優勢分析</h2>
+<div class="card"><ul class="list-clean">
+<li><strong>即時低延遲</strong> — 適合即時表演、虛擬製片、互動應用等低延遲需求</li>
+<li><strong>多攝影機高精度</strong> — 2-8 個視角融合，精度遠超單攝影機方案</li>
+<li><strong>全身+臉部同時</strong> — 一次捕捉身體與臉部表情，無需分開處理</li>
+<li><strong>Blender/UE 直連</strong> — 原生整合主流 3D 軟體，即時預覽結果</li>
+<li><strong>BVH/FBX 匯出</strong> — 標準格式輸出，相容所有後處理工具</li>
+</ul></div>
+</div></section>
+
+<section class="slide" id="s7"><div class="slide-inner">
+<h2>限制與缺點</h2>
+<div class="card card-con"><ul class="list-clean">
+<li><strong>付費軟體</strong> — 商業授權，需要購買使用</li>
+<li><strong>需多攝影機硬體</strong> — 至少 2 個 Webcam，理想情況 4-8 個</li>
+<li><strong>Windows Only</strong> — 僅支援 Windows 系統</li>
+<li><strong>硬體需求</strong> — 多路攝影機即時處理需要較高 CPU/GPU 資源</li>
+<li><strong>空間架設</strong> — 需要合適的攝影機架設空間與佈局規劃</li>
+</ul></div>
+</div></section>
+
+<section class="slide" id="s8"><div class="slide-inner">
+<h2>與 Kimodo 的整合可能</h2>
+<div class="card-grid cols-2">
+<div class="card"><div class="card-title">直接相容</div><p class="desc">ReMoCapp 輸出 BVH 格式，可直接進入 Kimodo 後處理 pipeline。無需任何格式轉換，BVH 動作資料直接用於動作平滑、retarget、品質檢查等步驟。</p></div>
+<div class="card"><div class="card-title">互補角色</div><p class="desc">ReMoCapp 提供即時高精度動捕，Kimodo 提供 text-to-motion 生成。兩者結合覆蓋「真實動作捕捉」與「AI 動作生成」兩大需求面向。</p></div>
+</div>
+</div></section>
+
+<section class="slide" id="s9"><div class="slide-inner">
+<h2>適用場景</h2>
+<div class="card-grid cols-3">
+<div class="card"><div class="card-title">虛擬製片</div><p class="desc">即時驅動虛擬角色，配合 LED 背景進行虛擬製片。</p></div>
+<div class="card"><div class="card-title">動畫製作</div><p class="desc">快速捕捉真人表演作為動畫基礎，加速製作流程。</p></div>
+<div class="card"><div class="card-title">遊戲開發</div><p class="desc">為遊戲角色快速生成大量動作資料。</p></div>
+</div>
+</div></section>
+
+<section class="slide" id="s10"><div class="slide-inner">
+<h2>總結評估</h2>
+<div class="card"><div class="card-grid cols-2">
+<div><div class="big-num pos">即時高精度</div><div class="big-label">核心優勢</div></div>
+<div><div class="big-num" style="color:var(--accent-gold)">BVH 直出</div><div class="big-label">與 Kimodo 相容性</div></div>
+</div></div>
+<p class="desc" style="margin-top:1.5rem">ReMoCapp 是功能完整的商業級即時動捕方案。多攝影機高精度、全身+臉部同時捕捉、BVH/FBX 輸出，使其成為 Kimodo Pipeline 中「真實動作捕捉」環節的強力選項。BVH 輸出可直接進入後處理 pipeline，整合路徑清晰。主要考量是付費授權與多攝影機硬體投資。</p>
+</div></section>
+
+<script>
+const d=document.getElementById('dots');const total=10;
+for(let i=1;i<=total;i++){const a=document.createElement('a');a.href='#s'+i;d.appendChild(a)}
+let cur=1;
+const prevBtn=document.getElementById('prev'),nextBtn=document.getElementById('next');
+function updateNav(){document.getElementById('pageNum').textContent=cur+'/'+total;prevBtn.style.visibility=cur===1?'hidden':'visible';nextBtn.style.visibility=cur===total?'hidden':'visible'}
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){cur=parseInt(e.target.id.slice(1));d.querySelectorAll('a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));updateNav()}})},{threshold:.5});
+document.querySelectorAll('.slide').forEach(s=>obs.observe(s));
+updateNav();
+function go(n){const t=Math.max(1,Math.min(total,n));document.getElementById('s'+t).scrollIntoView({behavior:'smooth'})}
+prevBtn.onclick=()=>go(cur-1);nextBtn.onclick=()=>go(cur+1);
+document.addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();go(cur+1)}if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();go(cur-1)}});
+</script>
+</body>
+</html>
