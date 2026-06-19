@@ -5,39 +5,43 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>PINOC (Viggle.ai) — AI 動作量產利器</title>
 <style>
-:root{--bg-primary:#1a1f2e;--bg-card:rgba(30,42,60,0.55);--text-primary:#ffffff;--text-secondary:#a0a8b8;--accent-cyan:#4db8d4;--accent-teal:#2dd4a8;--accent-red:#e05555;--accent-link:#e07050;--border-subtle:rgba(255,255,255,0.08);--radius-card:16px;--radius-img:10px;--font-family:'Noto Sans TC','Inter',-apple-system,sans-serif}
+:root{--bg-primary:#1a1f2e;--bg-card:rgba(30,42,60,0.55);--text-primary:#ffffff;--text-secondary:#b8c4d0;--text-dim:#8090a0;--accent-cyan:#4db8d4;--accent-teal:#2dd4a8;--accent-red:#e05555;--accent-gold:#f5a623;--accent-link:#e07050;--border-subtle:rgba(255,255,255,0.08);--radius-card:16px;--radius-img:10px;--font-family:'Noto Sans TC','Inter',-apple-system,sans-serif}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-snap-type:y mandatory;scroll-behavior:smooth}
 body{background:var(--bg-primary);color:var(--text-secondary);font-family:var(--font-family);font-weight:400;overflow-x:hidden}
 body::before{content:'';position:fixed;top:-20%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(45,212,168,0.04) 0%,transparent 70%);pointer-events:none;z-index:0}
-.slide{min-height:100vh;scroll-snap-align:start;display:flex;align-items:center;padding:4rem 6% 80px;position:relative;z-index:1}
+.slide{min-height:100vh;scroll-snap-align:start;display:flex;align-items:flex-start;padding:60px 6% 80px;position:relative;z-index:1}
 .slide-inner{max-width:1200px;width:100%;margin:0 auto}
 h1{font-size:4rem;font-weight:800;color:var(--text-primary);line-height:1.1}
-h2{font-size:2.4rem;font-weight:800;color:var(--text-primary);margin-bottom:.8rem;padding-left:1.2rem;border-left:4px solid;border-image:linear-gradient(180deg,var(--accent-teal),var(--accent-cyan)) 1}
-.desc{color:var(--text-secondary);font-size:.95rem;line-height:1.8;margin:.8rem 0;max-width:800px}
+h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8rem;padding-left:1.2rem;border-left:4px solid;border-image:linear-gradient(180deg,var(--accent-teal),var(--accent-cyan)) 1}
+.desc{color:var(--text-secondary);font-size:1rem;line-height:1.8;margin:.8rem 0;max-width:800px}
 .grad-text{background:linear-gradient(135deg,var(--accent-teal),var(--accent-cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .card{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-card);padding:2.2rem}
 .card-grid{display:grid;gap:1.2rem}
 .cols-2{grid-template-columns:1fr 1fr}
 .cols-3{grid-template-columns:1fr 1fr 1fr}
+.card-title{color:var(--accent-cyan);font-weight:700;font-size:1.3rem;margin-bottom:.5rem}
 .big-num{font-size:3.2rem;font-weight:800;line-height:1}
-.big-label{color:var(--text-secondary);font-size:.85rem;margin-top:.4rem}
-.tag{display:inline-block;background:rgba(45,212,168,0.1);border:1px solid rgba(45,212,168,0.25);color:var(--accent-teal);border-radius:6px;padding:.2rem .7rem;font-size:.8rem;margin-right:.5rem;margin-bottom:.4rem}
+.big-label{color:var(--text-dim);font-size:1rem;margin-top:.4rem}
+.tag{display:inline-block;background:rgba(45,212,168,0.1);border:1px solid rgba(45,212,168,0.25);color:var(--accent-teal);border-radius:6px;padding:.2rem .7rem;font-size:1rem;margin-right:.5rem;margin-bottom:.4rem}
 .list-clean{list-style:none;padding:0}
-.list-clean li{padding:.6rem 0;border-bottom:1px solid var(--border-subtle);font-size:.9rem;line-height:1.7}
+.list-clean li{padding:.6rem 0;border-bottom:1px solid var(--border-subtle);font-size:1rem;line-height:1.7}
 .list-clean li:last-child{border:none}
-.video-wrap{position:relative;padding-bottom:56.25%;height:0;width:100%;max-width:640px;margin:0 auto;border-radius:var(--radius-img);overflow:hidden}
+.tool-name{color:var(--accent-gold)}
+.pos{color:var(--accent-teal)}
+.neg{color:var(--accent-red)}
+.video-wrap{position:relative;padding-bottom:56.25%;height:0;width:100%;max-width:800px;margin:0 auto;border-radius:var(--radius-img);overflow:hidden}
 .video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
-.nav-dots{position:fixed;right:1.5rem;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:.5rem;z-index:100}
-.nav-dots a{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);display:block;transition:.2s}
-.nav-dots a.active{background:var(--accent-teal);box-shadow:0 0 6px var(--accent-teal)}
-.back-link{position:fixed;top:1.5rem;left:1.5rem;color:var(--accent-link);text-decoration:none;font-size:.85rem;z-index:100;opacity:.7;transition:.2s}
+.nav-dots{position:fixed;right:24px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:100}
+.nav-dots a{width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,0.2);display:block;transition:.2s}
+.nav-dots a.active{width:14px;height:22px;border-radius:7px;background:var(--accent-teal);box-shadow:0 0 8px var(--accent-teal)}
+.back-link{position:fixed;top:1.5rem;left:1.5rem;color:var(--accent-link);text-decoration:none;font-size:1rem;z-index:100;opacity:.7;transition:.2s}
 .back-link:hover{opacity:1}
-.bottom-nav{position:fixed;bottom:1.2rem;left:50%;transform:translateX(-50%);background:rgba(26,31,46,0.85);backdrop-filter:blur(8px);border:1px solid var(--border-subtle);border-radius:10px;padding:.5rem 1.2rem;display:flex;align-items:center;gap:1rem;z-index:100;font-size:.85rem}
-.bottom-nav button{background:none;border:none;color:var(--accent-teal);cursor:pointer;font-size:.85rem;font-family:inherit;padding:.3rem .6rem;border-radius:6px;transition:.2s}
+.bottom-nav{position:fixed;bottom:1.2rem;left:50%;transform:translateX(-50%);background:rgba(26,31,46,0.85);backdrop-filter:blur(8px);border:1px solid var(--border-subtle);border-radius:10px;padding:.5rem 1.2rem;display:flex;align-items:center;gap:1rem;z-index:100;font-size:1rem}
+.bottom-nav button{background:none;border:none;color:var(--accent-teal);cursor:pointer;font-size:1rem;font-family:inherit;padding:.3rem .6rem;border-radius:6px;transition:.2s}
 .bottom-nav button:hover{background:rgba(45,212,168,0.15)}
 .bottom-nav .page-num{color:var(--text-secondary);min-width:3rem;text-align:center}
-@media(max-width:768px){h1{font-size:2.4rem}h2{font-size:1.6rem}.cols-2,.cols-3{grid-template-columns:1fr}.slide{padding:2rem 1.2rem 80px}}
+@media(max-width:768px){h1{font-size:2.4rem}h2{font-size:1.6rem}.cols-2,.cols-3{grid-template-columns:1fr}.slide{padding:48px 1.2rem 80px}}
 </style>
 </head>
 <body>
@@ -95,7 +99,7 @@ h2{font-size:2.4rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <div class="video-wrap">
 <iframe src="https://www.youtube.com/embed/xSsEN8FX0oU" allowfullscreen></iframe>
 </div>
-<p style="margin-top:1rem;font-size:.85rem">Viggle AI PINOC — Video to 3D Motion Capture Demo</p>
+<p style="margin-top:1rem;font-size:1rem">Viggle AI PINOC — Video to 3D Motion Capture Demo</p>
 </div>
 </section>
 
@@ -108,23 +112,23 @@ h2{font-size:2.4rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <div class="card" style="text-align:center">
 <div class="big-num grad-text">65</div>
 <div class="big-label">骨骼數量</div>
-<p style="margin-top:.6rem;font-size:.82rem">含手指骨骼，Mixamo 標準命名，全身關節完整覆蓋</p>
+<p style="margin-top:.6rem;font-size:1rem">含手指骨骼，Mixamo 標準命名，全身關節完整覆蓋</p>
 </div>
 <div class="card" style="text-align:center">
 <div class="big-num grad-text">30fps</div>
 <div class="big-label">輸出幀率</div>
-<p style="margin-top:.6rem;font-size:.82rem">GLB 為主要格式，FBX 即將支援，適合遊戲即時播放</p>
+<p style="margin-top:.6rem;font-size:1rem">GLB 為主要格式，FBX 即將支援，適合遊戲即時播放</p>
 </div>
 <div class="card" style="text-align:center">
 <div class="big-num grad-text">5</div>
 <div class="big-label">多人同時追蹤</div>
-<p style="margin-top:.6rem;font-size:.82rem">單影片提取多角色動畫，適合群體場景如格鬥、舞蹈</p>
+<p style="margin-top:.6rem;font-size:1rem">單影片提取多角色動畫，適合群體場景如格鬥、舞蹈</p>
 </div>
 </div>
 <div class="card-grid cols-3" style="margin-top:1.2rem">
-<div class="card"><p style="color:var(--text-primary);font-weight:600">Root Motion</p><p style="margin-top:.4rem;font-size:.85rem">內建位移數據輸出，遊戲角色可由動畫驅動移動</p></div>
-<div class="card"><p style="color:var(--text-primary);font-weight:600">腳部修正</p><p style="margin-top:.4rem;font-size:.85rem">自動 foot contact correction，減少滑步和穿地</p></div>
-<div class="card"><p style="color:var(--text-primary);font-weight:600">速度控制</p><p style="margin-top:.4rem;font-size:.85rem">API 支援加速/減速輸出，調整動作節奏</p></div>
+<div class="card"><p class="card-title">Root Motion</p><p style="margin-top:.4rem;font-size:1rem">內建位移數據輸出，遊戲角色可由動畫驅動移動</p></div>
+<div class="card"><p class="card-title">腳部修正</p><p style="margin-top:.4rem;font-size:1rem">自動 foot contact correction，減少滑步和穿地</p></div>
+<div class="card"><p class="card-title">速度控制</p><p style="margin-top:.4rem;font-size:1rem">API 支援加速/減速輸出，調整動作節奏</p></div>
 </div>
 </div>
 </section>
@@ -135,12 +139,12 @@ h2{font-size:2.4rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <h2>引擎相容性</h2>
 <p class="desc">由於採用 Mixamo 骨架標準 + GLB/glTF 開放格式，PINOC 的輸出幾乎可以「拖入即用」——不需要手動 retarget 或調整骨骼映射。以下是各引擎的具體整合方式：</p>
 <div class="card-grid" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr));margin-top:1.5rem">
-<div class="card" style="text-align:center;padding:1.5rem"><div style="font-size:1.8rem;margin-bottom:.5rem">🎮</div><p style="color:var(--text-primary);font-weight:600">Unity</p><p style="font-size:.8rem;color:var(--accent-teal);margin-top:.3rem">Humanoid 自動偵測</p><p style="font-size:.78rem;margin-top:.4rem">匯入 GLB 後自動識別為 Humanoid Avatar，Mecanim Ready</p></div>
-<div class="card" style="text-align:center;padding:1.5rem"><div style="font-size:1.8rem;margin-bottom:.5rem">🔥</div><p style="color:var(--text-primary);font-weight:600">Unreal 5</p><p style="font-size:.8rem;color:var(--accent-teal);margin-top:.3rem">Retarget Ready</p><p style="font-size:.78rem;margin-top:.4rem">可直接 Retarget 到任何 UE5 骨架</p></div>
-<div class="card" style="text-align:center;padding:1.5rem"><div style="font-size:1.8rem;margin-bottom:.5rem">🤖</div><p style="color:var(--text-primary);font-weight:600">Godot</p><p style="font-size:.8rem;color:var(--accent-teal);margin-top:.3rem">原生 GLB 匯入</p><p style="font-size:.78rem;margin-top:.4rem">Godot 原生支援 glTF 2.0 格式</p></div>
-<div class="card" style="text-align:center;padding:1.5rem"><div style="font-size:1.8rem;margin-bottom:.5rem">🧊</div><p style="color:var(--text-primary);font-weight:600">Blender</p><p style="font-size:.8rem;color:var(--accent-teal);margin-top:.3rem">glTF 直接匯入</p><p style="font-size:.78rem;margin-top:.4rem">可做進一步 retarget 或 clean-up</p></div>
-<div class="card" style="text-align:center;padding:1.5rem"><div style="font-size:1.8rem;margin-bottom:.5rem">🎬</div><p style="color:var(--text-primary);font-weight:600">Maya</p><p style="font-size:.8rem;color:var(--accent-teal);margin-top:.3rem">GLB 匯入</p><p style="font-size:.78rem;margin-top:.4rem">專業動畫師可在 Maya 中精修</p></div>
-<div class="card" style="text-align:center;padding:1.5rem"><div style="font-size:1.8rem;margin-bottom:.5rem">🏃</div><p style="color:var(--text-primary);font-weight:600">Cascadeur</p><p style="font-size:.8rem;color:var(--accent-teal);margin-top:.3rem">支援匯入</p><p style="font-size:.78rem;margin-top:.4rem">配合物理修正進一步提升品質</p></div>
+<div class="card" style="text-align:center;padding:1.5rem"><div style="font-size:1.8rem;margin-bottom:.5rem">🎮</div><p class="card-title">Unity</p><p style="font-size:1rem;color:var(--accent-teal);margin-top:.3rem">Humanoid 自動偵測</p><p style="font-size:1rem;margin-top:.4rem">匯入 GLB 後自動識別為 Humanoid Avatar，Mecanim Ready</p></div>
+<div class="card" style="text-align:center;padding:1.5rem"><div style="font-size:1.8rem;margin-bottom:.5rem">🔥</div><p class="card-title">Unreal 5</p><p style="font-size:1rem;color:var(--accent-teal);margin-top:.3rem">Retarget Ready</p><p style="font-size:1rem;margin-top:.4rem">可直接 Retarget 到任何 UE5 骨架</p></div>
+<div class="card" style="text-align:center;padding:1.5rem"><div style="font-size:1.8rem;margin-bottom:.5rem">🤖</div><p class="card-title">Godot</p><p style="font-size:1rem;color:var(--accent-teal);margin-top:.3rem">原生 GLB 匯入</p><p style="font-size:1rem;margin-top:.4rem">Godot 原生支援 glTF 2.0 格式</p></div>
+<div class="card" style="text-align:center;padding:1.5rem"><div style="font-size:1.8rem;margin-bottom:.5rem">🧊</div><p class="card-title">Blender</p><p style="font-size:1rem;color:var(--accent-teal);margin-top:.3rem">glTF 直接匯入</p><p style="font-size:1rem;margin-top:.4rem">可做進一步 retarget 或 clean-up</p></div>
+<div class="card" style="text-align:center;padding:1.5rem"><div style="font-size:1.8rem;margin-bottom:.5rem">🎬</div><p class="card-title">Maya</p><p style="font-size:1rem;color:var(--accent-teal);margin-top:.3rem">GLB 匯入</p><p style="font-size:1rem;margin-top:.4rem">專業動畫師可在 Maya 中精修</p></div>
+<div class="card" style="text-align:center;padding:1.5rem"><div style="font-size:1.8rem;margin-bottom:.5rem">🏃</div><p class="card-title">Cascadeur</p><p style="font-size:1rem;color:var(--accent-teal);margin-top:.3rem">支援匯入</p><p style="font-size:1rem;margin-top:.4rem">配合物理修正進一步提升品質</p></div>
 </div>
 </div>
 </section>
@@ -152,9 +156,9 @@ h2{font-size:2.4rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <p class="desc" style="margin:0 auto 1rem;text-align:center">PINOC 的定價策略讓動作捕捉從「奢侈品」變成「日用品」。免費方案每天可產出 5 個動畫供評估，PRO 方案適合個人開發者，API 方案專為量產設計。所有生成的動畫均可商用、免版稅、無標注要求。</p>
 <div style="margin:2rem 0"><span class="grad-text" style="font-size:5rem;font-weight:800">$0.03</span><p style="margin-top:.5rem">每個動畫成本（API 按量計費）</p></div>
 <div class="card-grid cols-3" style="margin-top:2rem;text-align:center">
-<div class="card"><p style="color:var(--accent-red);font-size:1.8rem;font-weight:800">$500+</p><p class="big-label">傳統 Mocap / clip</p><p style="font-size:.78rem;margin-top:.5rem">需專業設備、場地、技術人員</p></div>
-<div class="card" style="border-color:var(--accent-teal)"><p class="grad-text" style="font-size:1.8rem;font-weight:800">$0.03</p><p class="big-label">Viggle PINOC / clip</p><p style="font-size:.78rem;margin-top:.5rem">手機影片 + 雲端 AI = 即時產出</p></div>
-<div class="card"><p style="color:#fbbf24;font-size:1.8rem;font-weight:800">4-8hr</p><p class="big-label">手工 K 幀 / clip</p><p style="font-size:.78rem;margin-top:.5rem">資深動畫師人力成本</p></div>
+<div class="card"><p style="color:var(--accent-red);font-size:1.8rem;font-weight:800">$500+</p><p class="big-label">傳統 Mocap / clip</p><p style="font-size:1rem;margin-top:.5rem">需專業設備、場地、技術人員</p></div>
+<div class="card" style="border-color:var(--accent-teal)"><p class="grad-text" style="font-size:1.8rem;font-weight:800">$0.03</p><p class="big-label">Viggle PINOC / clip</p><p style="font-size:1rem;margin-top:.5rem">手機影片 + 雲端 AI = 即時產出</p></div>
+<div class="card"><p style="color:#fbbf24;font-size:1.8rem;font-weight:800">4-8hr</p><p class="big-label">手工 K 幀 / clip</p><p style="font-size:1rem;margin-top:.5rem">資深動畫師人力成本</p></div>
 </div>
 </div>
 </section>
@@ -200,7 +204,7 @@ h2{font-size:2.4rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <div class="card-grid cols-3" style="margin-top:1.5rem">
 <div class="card">
 <p style="color:var(--accent-cyan);font-weight:700;margin-bottom:.6rem">方案 A：影片參考</p>
-<p style="color:var(--text-primary);font-weight:600;margin-bottom:.8rem">有參考影片時使用</p>
+<p class="card-title">有參考影片時使用</p>
 <ul class="list-clean">
 <li>1. 拍攝或蒐集動作參考影片</li>
 <li>2. 上傳至 Viggle API</li>
@@ -211,7 +215,7 @@ h2{font-size:2.4rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 </div>
 <div class="card">
 <p style="color:var(--accent-teal);font-weight:700;margin-bottom:.6rem">方案 B：混合工作流</p>
-<p style="color:var(--text-primary);font-weight:600;margin-bottom:.8rem">依動作複雜度選擇</p>
+<p class="card-title">依動作複雜度選擇</p>
 <ul class="list-clean">
 <li>簡單/通用動作 → Kimodo text prompt 生成 BVH</li>
 <li>複雜/特定動作 → 拍影片 Viggle 提取 GLB</li>
@@ -222,7 +226,7 @@ h2{font-size:2.4rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 </div>
 <div class="card">
 <p style="color:var(--accent-link);font-weight:700;margin-bottom:.6rem">方案 C：批次量產</p>
-<p style="color:var(--text-primary);font-weight:600;margin-bottom:.8rem">建置大規模動作庫</p>
+<p class="card-title">建置大規模動作庫</p>
 <ul class="list-clean">
 <li>1. 蒐集大量動作參考影片來源</li>
 <li>2. Viggle API 批次處理（$0.03/個）</li>
@@ -253,8 +257,8 @@ h2{font-size:2.4rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 &nbsp;&nbsp;Unity / Unreal Engine 5 / Godot → 遊戲產品
 </div>
 <div class="card-grid cols-2" style="margin-top:1.2rem">
-<div class="card"><p style="color:var(--text-primary);font-weight:600;margin-bottom:.5rem">最適合場景</p><p style="font-size:.85rem">NPC idle/walk/combat 動畫、格鬥遊戲動作庫、遊戲預告片快速產出、手遊 casual 休閒動作、動作參考有大量現成影片可用時</p></div>
-<div class="card"><p style="color:var(--text-primary);font-weight:600;margin-bottom:.5rem">相比 Kimodo 的優勢</p><p style="font-size:.85rem">適合有明確視覺參考的動作（「照這個影片做」）、內建 Root Motion + 腳部修正、Mixamo 骨架免 retarget、API 批次量產能力</p></div>
+<div class="card"><p class="card-title">最適合場景</p><p style="font-size:1rem">NPC idle/walk/combat 動畫、格鬥遊戲動作庫、遊戲預告片快速產出、手遊 casual 休閒動作、動作參考有大量現成影片可用時</p></div>
+<div class="card"><p class="card-title">相比 Kimodo 的優勢</p><p style="font-size:1rem">適合有明確視覺參考的動作（「照這個影片做」）、內建 Root Motion + 腳部修正、Mixamo 骨架免 retarget、API 批次量產能力</p></div>
 </div>
 </div>
 </section>
@@ -265,12 +269,12 @@ h2{font-size:2.4rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <h2 style="border:none;padding:0;text-align:center">總結與行動建議</h2>
 <p class="desc" style="margin:0 auto 1.5rem;text-align:center">PINOC 在幾乎所有評估維度上都獲得最高分。作為影片轉動捕的方案，它的成本、品質和自動化能力都已達到可用於正式產品的水準。</p>
 <div class="card-grid" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr));text-align:center">
-<div class="card" style="padding:1.2rem"><p style="font-size:.75rem;margin-bottom:.3rem">目標相關性</p><p style="color:var(--accent-teal)">⭐⭐⭐⭐⭐</p></div>
-<div class="card" style="padding:1.2rem"><p style="font-size:.75rem;margin-bottom:.3rem">技術成熟度</p><p style="color:var(--accent-teal)">⭐⭐⭐⭐</p></div>
-<div class="card" style="padding:1.2rem"><p style="font-size:.75rem;margin-bottom:.3rem">易用性</p><p style="color:var(--accent-teal)">⭐⭐⭐⭐⭐</p></div>
-<div class="card" style="padding:1.2rem"><p style="font-size:.75rem;margin-bottom:.3rem">性價比</p><p style="color:var(--accent-teal)">⭐⭐⭐⭐⭐</p></div>
-<div class="card" style="padding:1.2rem"><p style="font-size:.75rem;margin-bottom:.3rem">Pipeline 整合</p><p style="color:var(--accent-teal)">⭐⭐⭐⭐⭐</p></div>
-<div class="card" style="padding:1.2rem"><p style="font-size:.75rem;margin-bottom:.3rem">量產適合度</p><p style="color:var(--accent-teal)">⭐⭐⭐⭐⭐</p></div>
+<div class="card" style="padding:1.2rem"><p style="font-size:1rem;margin-bottom:.3rem">目標相關性</p><p style="color:var(--accent-teal)">⭐⭐⭐⭐⭐</p></div>
+<div class="card" style="padding:1.2rem"><p style="font-size:1rem;margin-bottom:.3rem">技術成熟度</p><p style="color:var(--accent-teal)">⭐⭐⭐⭐</p></div>
+<div class="card" style="padding:1.2rem"><p style="font-size:1rem;margin-bottom:.3rem">易用性</p><p style="color:var(--accent-teal)">⭐⭐⭐⭐⭐</p></div>
+<div class="card" style="padding:1.2rem"><p style="font-size:1rem;margin-bottom:.3rem">性價比</p><p style="color:var(--accent-teal)">⭐⭐⭐⭐⭐</p></div>
+<div class="card" style="padding:1.2rem"><p style="font-size:1rem;margin-bottom:.3rem">Pipeline 整合</p><p style="color:var(--accent-teal)">⭐⭐⭐⭐⭐</p></div>
+<div class="card" style="padding:1.2rem"><p style="font-size:1rem;margin-bottom:.3rem">量產適合度</p><p style="color:var(--accent-teal)">⭐⭐⭐⭐⭐</p></div>
 </div>
 <div class="card" style="margin-top:1.5rem;border-color:var(--accent-teal);text-align:left">
 <p class="grad-text" style="font-size:1.3rem;font-weight:800;margin-bottom:1rem">🟢 強烈推薦 — 建議行動步驟</p>
@@ -282,7 +286,7 @@ h2{font-size:2.4rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <li><strong>Step 5</strong> — 確認品質後申請 API Key 建立量產 Pipeline</li>
 </ul>
 </div>
-<p style="margin-top:2rem;font-size:.75rem;color:rgba(255,255,255,0.3)">MotionLab Research · 2026-06-19 · viggle.ai</p>
+<p style="margin-top:2rem;font-size:1rem;color:var(--text-dim)">MotionLab Research · 2026-06-19 · viggle.ai</p>
 </div>
 </section>
 
