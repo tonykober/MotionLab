@@ -196,7 +196,7 @@ const d=document.getElementById('dots');const total=10;
 for(let i=1;i<=total;i++){const a=document.createElement('a');a.href='#s'+i;d.appendChild(a)}
 let cur=1;
 function updateNav(){document.getElementById('pageNum').textContent=cur+'/'+total;document.getElementById('prev').style.visibility=cur===1?'hidden':'visible';document.getElementById('next').style.visibility=cur===total?'hidden':'visible'}
-const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){cur=parseInt(e.target.id.slice(1));d.querySelectorAll('a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));updateNav()}}},{threshold:.5});
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){cur=parseInt(e.target.id.slice(1));d.querySelectorAll('a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));updateNav()}})},{threshold:.5});
 document.querySelectorAll('.slide').forEach(s=>obs.observe(s));updateNav();
 function go(n){const t=Math.max(1,Math.min(total,n));document.getElementById('s'+t).scrollIntoView({behavior:'smooth'})}
 document.getElementById('prev').onclick=()=>go(cur-1);document.getElementById('next').onclick=()=>go(cur+1);
