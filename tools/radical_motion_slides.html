@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Radical Motion — 簡報版</title>
+<title>Radical Motion (RADiCAL) — ⚠️ 已被 Autodesk 收購關閉</title>
 <style>
 :root{--bg-primary:#1a1f2e;--bg-card:rgba(30,42,60,0.55);--text-primary:#ffffff;--text-secondary:#b8c4d0;--text-dim:#8090a0;--accent-cyan:#4db8d4;--accent-teal:#2dd4a8;--accent-red:#e05555;--accent-gold:#f5a623;--border-subtle:rgba(255,255,255,0.08);--radius-card:16px;--font-family:'Noto Sans TC','Inter',-apple-system,sans-serif}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -44,80 +44,110 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 .bottom-nav .page-num{color:var(--text-secondary);min-width:3rem;text-align:center}
 @media(max-width:768px){h1{font-size:2.4rem}h2{font-size:1.6rem}.cols-2,.cols-3{grid-template-columns:1fr}.slide{padding:48px 1.2rem 80px}}
 </style>
-
 </head>
 <body>
 <a href="../index.html" class="back-link">← 返回首頁</a>
-<div class="slides" id="slides">
-
+<nav class="nav-dots" id="dots"></nav>
 <div class="bottom-nav"><button id="prev">← 上一頁</button><span class="page-num" id="pageNum">1/10</span><button id="next">下一頁 →</button></div>
-<section class="slide">
-<div style="text-align:center;width:100%">
-<h1>⚡ RADiCAL Motion</h1>
-<span class="badge">⚠️ 已關閉 — 被 Autodesk 收購</span>
-<p style="font-size:1.3rem;color:var(--text2);margin-top:1rem">AI 驅動的無穿戴動作捕捉（已停止服務）</p>
+
+
+<section class="slide" id="s1">
+<div class="slide-inner">
+<p style="color:var(--accent-teal);font-size:.9rem;letter-spacing:2px;margin-bottom:1rem">⚠️ 已停止服務</p>
+<h1>Radical Motion</h1>
+<h1 style="font-size:2rem;font-weight:400;color:var(--text-secondary);margin-top:.5rem">原 AI 影片動捕平台，2023 年被 Autodesk 收購後整合為 Flow Studio</h1>
+<p class="desc" style="margin-top:1.5rem">RADiCAL 曾是領先的 AI 影片轉動畫平台，提供單鏡頭 3D 動作捕捉服務。2023 年被 Autodesk 收購後，技術整合進入 Wonder Studio（現已改名 Flow Studio）。原始平台已停止對外服務。</p>
+<div style="display:flex;gap:.5rem;margin-top:1.5rem;flex-wrap:wrap"><span class="tag">（歷史功能）單鏡頭 AI 動捕</span><span class="tag">BVH/FBX 輸出</span><span class="tag">雲端處理</span><span class="tag">REST API</span></div>
 </div>
 </section>
-
-<section class="slide">
-<h2>曾經的核心能力</h2>
-<p>RADiCAL Motion 是一家紐約 AI 動捕公司，提供雲端和即時的單攝影機 3D 動捕服務。2024 年被 Autodesk 收購後停止獨立營運，技術整合入 Autodesk 產品線。</p>
-<div class="card">
-<ul>
-<li><strong class="g">單攝影機 3D 動捕</strong> — 瀏覽器即時預視</li>
-<li><strong class="g">雲端處理</strong> — 上傳影片即可生成 3D 動畫</li>
-<li><strong class="g">即時模式</strong> — 可在瀏覽器中即時動捕</li>
-<li><strong class="g">FBX/BVH 輸出</strong> — 標準遊戲引擎格式</li>
-<li><strong class="g">Unreal Engine 整合</strong> — Live Link 即時串流</li>
-</ul>
+<section class="slide" id="s2">
+<div class="slide-inner">
+<h2>核心功能</h2>
+<p class="desc">RADiCAL 曾是領先的 AI 影片轉動畫平台，提供單鏡頭 3D 動作捕捉服務。2023 年被 Autodesk 收購後，技術整合進入 Wonder Studio（現已改名 Flow Studio）...</p>
+<div class="card" style="margin-top:1.5rem">
+<ul class="list-clean"><li><strong></strong> — （歷史功能）單鏡頭 AI 動捕</li>
+<li><strong>BVH/FBX 輸出</strong> — BVH/FBX 輸出</li>
+<li><strong>雲端處理</strong> — 雲端處理</li>
+<li><strong>REST API</strong> — REST API</li>
+<li><strong>多人追蹤</strong> — 多人追蹤</li>
+<li><strong>→ 已併入 Autodesk Flow Studio</strong> — → 已併入 Autodesk Flow Studio</li></ul>
+</div>
 </div>
 </section>
-
-<section class="slide">
-<h2>影片展示（歷史資料）</h2>
-<p>以下是 RADiCAL Motion 營運時期的展示影片，展示其 AI 無穿戴動捕技術。</p>
-<div class="video-box">
-<iframe src="https://www.youtube.com/embed/5nURQTpV4N8" allowfullscreen></iframe>
-</div>
-<p style="color:var(--muted);font-size:.85rem">The Future of Suitless AI Motion Capture — Radical Motion</p>
-</section>
-
-<section class="slide">
-<h2>為何關閉 & 後續影響</h2>
-<p>RADiCAL Motion 於 2024 年被 Autodesk 收購。技術團隊和 AI 模型被整合到 Autodesk 的動畫工具鏈（Maya/MotionBuilder）中，原始服務已停止。</p>
-<div class="card">
-<table>
-<tr><th>時間</th><th>事件</th></tr>
-<tr><td>2018</td><td>RADiCAL 成立，推出雲端 AI 動捕</td></tr>
-<tr><td>2021-2023</td><td>推出即時模式 + UE Live Link</td></tr>
-<tr><td>2024</td><td>被 Autodesk 收購，停止獨立服務</td></tr>
-<tr><td>未來</td><td>技術可能出現在 Maya/MotionBuilder 中</td></tr>
-</table>
+<section class="slide" id="s3">
+<div class="slide-inner" style="text-align:center">
+<h2 style="border:none;padding:0;text-align:center">展示影片</h2>
+<p class="desc" style="margin:0 auto 1.5rem;text-align:center">Radical Motion (RADiCAL) — ⚠️ 已被 Autodesk 收購關閉 相關展示與教學。</p>
+<div class="video-wrap"><iframe src="https://www.youtube.com/embed/5nURQTpV4N8" allowfullscreen></iframe></div>
 </div>
 </section>
-
-<section class="slide">
-<h2>對我們的啟示</h2>
-<p>RADiCAL 的關閉提醒我們：依賴雲端 SaaS 動捕服務有供應商風險。本地化工具（如 Kimodo）更可控。</p>
-<div class="card">
-<ul>
-<li><strong class="r">雲端依賴風險</strong> — 服務關閉 = 工具消失</li>
-<li><strong class="g">技術方向正確</strong> — 單攝影機 AI 動捕是趨勢</li>
-<li><strong class="g">替代方案</strong> — Move.AI、DeepMotion、Plask 提供類似服務</li>
-<li><strong class="g">本地優先</strong> — Kimodo/MocapNET 等本地工具更穩定</li>
-</ul>
-<p style="margin-top:1rem;color:var(--muted)"><strong>結論</strong>：不再評估。關注 Autodesk 未來是否將技術整合到 Maya。</p>
+<section class="slide" id="s4">
+<div class="slide-inner">
+<h2>技術規格</h2>
+<div class="card-grid cols-3" style="margin-top:1.5rem"><div class="card" style="text-align:center"><div class="big-num grad-text">⚠️</div><div class="big-label">已關閉</div></div>
+<div class="card" style="text-align:center"><div class="big-num grad-text">2023</div><div class="big-label">被收購年份</div></div>
+<div class="card" style="text-align:center"><div class="big-num grad-text">Flow Studio</div><div class="big-label">後繼產品</div></div>
+</div>
 </div>
 </section>
-
+<section class="slide" id="s5">
+<div class="slide-inner">
+<h2>平台與整合</h2>
+<p class="desc">RADiCAL 曾是領先的 AI 影片轉動畫平台，提供單鏡頭 3D 動作捕捉服務。2023 年被 Autodesk 收購後，技術整合進入 Wonder Studio（現已改名 Flow Studio）。原始平台已停止對外服務。</p>
 </div>
-
-<div class="nav-dots" id="dots"></div>
-<div class="nav-bar">
-<button id="prev" onclick="go(-1)">← 上一頁</button>
-<span class="page" id="pageNum">1 / 5</span>
-<button id="next" onclick="go(1)">下一頁 →</button>
+</section>
+<section class="slide" id="s6">
+<div class="slide-inner" style="text-align:center">
+<h2 style="border:none;padding:0;text-align:center">定價</h2>
+<div class="card" style="margin-top:2rem;text-align:center"><p class="grad-text" style="font-size:2.5rem;font-weight:800">⚠️ 已停止服務（不可購買）</p></div>
 </div>
+</section>
+<section class="slide" id="s7">
+<div class="slide-inner">
+<h2>優缺點</h2>
+<div class="card-grid cols-2" style="margin-top:1.2rem">
+<div class="card"><p class="pos" style="font-weight:700;font-size:1.6rem;margin-bottom:1rem">✅ 優點</p><ul class="list-clean"><li><strong>技術已驗證</strong></li>
+<li><strong>後繼產品 Flow Studio 仍可用</strong></li>
+<li><strong>曾有完整 API</strong></li>
+<li><strong>曾支援 BVH 輸出</strong></li></ul></div>
+<div class="card card-con"><p class="neg" style="font-weight:700;font-size:1.6rem;margin-bottom:1rem">❌ 缺點</p><ul class="list-clean"><li><strong>已停止服務 ❌</strong></li>
+<li><strong>無法新註冊</strong></li>
+<li><strong>技術併入 Flow Studio</strong></li>
+<li><strong>原始 API 不再可用</strong></li>
+<li><strong>需改用 Autodesk 方案</strong></li></ul></div>
+</div>
+</div>
+</section>
+<section class="slide" id="s8">
+<div class="slide-inner">
+<h2>與 Kimodo 整合</h2>
+<div class="card" style="margin-top:1.5rem"><p class="desc" style="max-width:none">不再可用。其技術後繼者是 Autodesk Flow Studio（即 Wonder Dynamics）。如需類似功能，請參考 Wonder Dynamics / Flow Studio 的調研。</p></div>
+</div>
+</section>
+<section class="slide" id="s9">
+<div class="slide-inner">
+<h2>工作流定位</h2>
+<div class="card" style="font-family:monospace;font-size:1rem;line-height:2.2;padding:2.5rem;margin-top:1.5rem">
+<span style="color:var(--text-primary);font-weight:700">[動作輸入源]</span><br>
+&nbsp;&nbsp;├── Text Prompt ──→ Kimodo（離線 BVH）<br>
+&nbsp;&nbsp;├── <span style="color:var(--accent-teal);font-weight:700">本工具定位 ⭐</span><br>
+&nbsp;&nbsp;└── 手動 K 幀 ──→ 傳統 DCC<br><br>
+<span style="color:var(--text-primary);font-weight:700">[Pipeline]</span><br>
+&nbsp;&nbsp;Retarget → Foot Fix → Root Motion → Export
+</div>
+</div>
+</section>
+<section class="slide" id="s10">
+<div class="slide-inner" style="text-align:center">
+<h2 style="border:none;padding:0;text-align:center">總結</h2>
+<p class="desc" style="margin:1rem auto;text-align:center">RADiCAL 曾是領先的 AI 影片轉動畫平台，提供單鏡頭 3D 動作捕捉服務。2023 年被 Autodesk 收購後，技術整合進入 Wonder Studio（現已改名 Flow Studio）。原始平台已停止對外服務。</p>
+<div class="card" style="margin-top:1.5rem;border-color:var(--accent-teal);text-align:center">
+<p class="grad-text" style="font-size:1.3rem;font-weight:800">Radical Motion (RADiCAL) — ⚠️ 已被 Autodesk 收購關閉</p>
+<p style="margin-top:.5rem">不再可用。其技術後繼者是 Autodesk Flow Studio（即 Wonder Dynamics）。如需類似功能，請參考 Wonder Dynamics / Flow Studio 的調研。</p>
+</div>
+<p style="margin-top:2rem;font-size:1rem;color:var(--text-dim)">MotionLab Research · 2026-06-19</p>
+</div>
+</section>
 
 <script>
 const d=document.getElementById('dots');const total=10;
@@ -132,6 +162,5 @@ function go(n){const t=Math.max(1,Math.min(total,n));document.getElementById('s'
 prevBtn.onclick=()=>go(cur-1);nextBtn.onclick=()=>go(cur+1);
 document.addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();go(cur+1)}if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();go(cur-1)}});
 </script>
-
 </body>
 </html>

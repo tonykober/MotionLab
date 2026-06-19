@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>CyanPuppets — 簡報版</title>
+<title>CyanPuppets — 十億參數動捕大模型（208 關鍵點）</title>
 <style>
 :root{--bg-primary:#1a1f2e;--bg-card:rgba(30,42,60,0.55);--text-primary:#ffffff;--text-secondary:#b8c4d0;--text-dim:#8090a0;--accent-cyan:#4db8d4;--accent-teal:#2dd4a8;--accent-red:#e05555;--accent-gold:#f5a623;--border-subtle:rgba(255,255,255,0.08);--radius-card:16px;--font-family:'Noto Sans TC','Inter',-apple-system,sans-serif}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -44,129 +44,112 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 .bottom-nav .page-num{color:var(--text-secondary);min-width:3rem;text-align:center}
 @media(max-width:768px){h1{font-size:2.4rem}h2{font-size:1.6rem}.cols-2,.cols-3{grid-template-columns:1fr}.slide{padding:48px 1.2rem 80px}}
 </style>
-
 </head>
 <body>
 <a href="../index.html" class="back-link">← 返回首頁</a>
-<div class="slides" id="slides">
-
+<nav class="nav-dots" id="dots"></nav>
 <div class="bottom-nav"><button id="prev">← 上一頁</button><span class="page-num" id="pageNum">1/10</span><button id="next">下一頁 →</button></div>
-<section class="slide"><div style="text-align:center;width:100%">
-<h1>🧬 CyanPuppets</h1>
-<p style="font-size:1.3rem;color:var(--text2);margin-top:1rem">AI 即時全身無標記動捕 — 10 億參數模型</p>
-<p style="color:var(--muted);margin-top:2rem">單攝影機 1080P → 全身即時動捕 → Blender / UE5 / Unity 串流</p>
-</div></section>
 
-<section class="slide">
-<h2>核心能力</h2>
-<p>CyanPuppets 使用自研的 10 億參數 AI 模型，從單一 1080P 攝影機即時追蹤全身動作。支援即時串流到 Blender、Unreal Engine 5、Unity，並提供 CyanSDK 嵌入到自有應用。</p>
-<div class="card">
-<table>
-<tr><th>功能</th><th>說明</th></tr>
-<tr><td>全身即時追蹤</td><td>單攝影機 1080P，低延遲</td></tr>
-<tr><td>10 億參數 AI 模型</td><td>自研大型模型，高精度</td></tr>
-<tr><td>Blender 即時連接</td><td>直接串流到 Blender 動畫骨架</td></tr>
-<tr><td>UE5 插件</td><td>CyanSDK 嵌入 UE5 工作流</td></tr>
-<tr><td>手指追蹤</td><td>包含手指動作（精度中等）</td></tr>
-<tr><td>多人追蹤</td><td>支援多人同畫面</td></tr>
-<tr><td>BVH/FBX 匯出</td><td>可錄製存檔</td></tr>
-</table>
+
+<section class="slide" id="s1">
+<div class="slide-inner">
+<p style="color:var(--accent-teal);font-size:.9rem;letter-spacing:2px;margin-bottom:1rem">AI 大模型即時動捕</p>
+<h1>Cyanpuppets</h1>
+<h1 style="font-size:2rem;font-weight:400;color:var(--text-secondary);margin-top:.5rem">十億參數 AI 模型，208 關鍵點全身+手+臉即時追蹤</h1>
+<p class="desc" style="margin-top:1.5rem">CyanPuppets 是一個基於十億參數深度學習模型的動作捕捉系統，能從單一攝影機影片中即時追蹤 208 個關鍵點（含全身、手部、臉部），品質接近專業光學動捕系統。</p>
+<div style="display:flex;gap:.5rem;margin-top:1.5rem;flex-wrap:wrap"><span class="tag">208 關鍵點追蹤</span><span class="tag">十億參數 AI 模型</span><span class="tag">全身+手+臉一體化</span><span class="tag">即時處理</span></div>
+</div>
+</section>
+<section class="slide" id="s2">
+<div class="slide-inner">
+<h2>核心功能</h2>
+<p class="desc">CyanPuppets 是一個基於十億參數深度學習模型的動作捕捉系統，能從單一攝影機影片中即時追蹤 208 個關鍵點（含全身、手部、臉部），品質接近專業光學動捕系統。...</p>
+<div class="card" style="margin-top:1.5rem">
+<ul class="list-clean"><li><strong>208 關鍵點追蹤</strong> — 208 關鍵點追蹤</li>
+<li><strong>十億參數 AI 模型</strong> — 十億參數 AI 模型</li>
+<li><strong>全身+手+臉一體化</strong> — 全身+手+臉一體化</li>
+<li><strong>即時處理</strong> — 即時處理</li>
+<li><strong>FBX/BVH 輸出</strong> — FBX/BVH 輸出</li>
+<li><strong>API 支援</strong> — API 支援</li></ul>
+</div>
+</div>
+</section>
+<section class="slide" id="s3">
+<div class="slide-inner" style="text-align:center">
+<h2 style="border:none;padding:0;text-align:center">展示影片</h2>
+<p class="desc" style="margin:0 auto 1.5rem;text-align:center">CyanPuppets — 十億參數動捕大模型（208 關鍵點） 相關展示與教學。</p>
+<div class="video-wrap"><iframe src="https://www.youtube.com/embed/Y7G56OTK6yM" allowfullscreen></iframe></div>
+</div>
+</section>
+<section class="slide" id="s4">
+<div class="slide-inner">
+<h2>技術規格</h2>
+<div class="card-grid cols-3" style="margin-top:1.5rem"><div class="card" style="text-align:center"><div class="big-num grad-text">208</div><div class="big-label">關鍵點數量</div></div>
+<div class="card" style="text-align:center"><div class="big-num grad-text">1B</div><div class="big-label">模型參數</div></div>
+<div class="card" style="text-align:center"><div class="big-num grad-text">即時</div><div class="big-label">處理速度</div></div>
+</div>
+</div>
+</section>
+<section class="slide" id="s5">
+<div class="slide-inner">
+<h2>平台與整合</h2>
+<p class="desc">CyanPuppets 是一個基於十億參數深度學習模型的動作捕捉系統，能從單一攝影機影片中即時追蹤 208 個關鍵點（含全身、手部、臉部），品質接近專業光學動捕系統。</p>
+</div>
+</section>
+<section class="slide" id="s6">
+<div class="slide-inner" style="text-align:center">
+<h2 style="border:none;padding:0;text-align:center">定價</h2>
+<div class="card" style="margin-top:2rem;text-align:center"><p class="grad-text" style="font-size:2.5rem;font-weight:800">定價待確認（需聯繫）</p></div>
+</div>
+</section>
+<section class="slide" id="s7">
+<div class="slide-inner">
+<h2>優缺點</h2>
+<div class="card-grid cols-2" style="margin-top:1.2rem">
+<div class="card"><p class="pos" style="font-weight:700;font-size:1.6rem;margin-bottom:1rem">✅ 優點</p><ul class="list-clean"><li><strong>208 點超高密度追蹤</strong></li>
+<li><strong>全身+手+臉一體化</strong></li>
+<li><strong>AI 大模型品質高</strong></li>
+<li><strong>即時處理</strong></li>
+<li><strong>有 API 可批次</strong></li></ul></div>
+<div class="card card-con"><p class="neg" style="font-weight:700;font-size:1.6rem;margin-bottom:1rem">❌ 缺點</p><ul class="list-clean"><li><strong>較新產品待驗證</strong></li>
+<li><strong>定價不透明</strong></li>
+<li><strong>雲端依賴</strong></li>
+<li><strong>可能需要 GPU</strong></li>
+<li><strong>生態尚未成熟</strong></li></ul></div>
+</div>
+</div>
+</section>
+<section class="slide" id="s8">
+<div class="slide-inner">
+<h2>與 Kimodo 整合</h2>
+<div class="card" style="margin-top:1.5rem"><p class="desc" style="max-width:none">互補——CyanPuppets 提供高密度影片動捕（208 點含手臉），Kimodo 提供文字生成。CyanPuppets 的 BVH 輸出可直接進入相同 pipeline。</p></div>
+</div>
+</section>
+<section class="slide" id="s9">
+<div class="slide-inner">
+<h2>工作流定位</h2>
+<div class="card" style="font-family:monospace;font-size:1rem;line-height:2.2;padding:2.5rem;margin-top:1.5rem">
+<span style="color:var(--text-primary);font-weight:700">[動作輸入源]</span><br>
+&nbsp;&nbsp;├── Text Prompt ──→ Kimodo（離線 BVH）<br>
+&nbsp;&nbsp;├── <span style="color:var(--accent-teal);font-weight:700">本工具定位 ⭐</span><br>
+&nbsp;&nbsp;└── 手動 K 幀 ──→ 傳統 DCC<br><br>
+<span style="color:var(--text-primary);font-weight:700">[Pipeline]</span><br>
+&nbsp;&nbsp;Retarget → Foot Fix → Root Motion → Export
+</div>
+</div>
+</section>
+<section class="slide" id="s10">
+<div class="slide-inner" style="text-align:center">
+<h2 style="border:none;padding:0;text-align:center">總結</h2>
+<p class="desc" style="margin:1rem auto;text-align:center">CyanPuppets 是一個基於十億參數深度學習模型的動作捕捉系統，能從單一攝影機影片中即時追蹤 208 個關鍵點（含全身、手部、臉部），品質接近專業光學動捕系統。</p>
+<div class="card" style="margin-top:1.5rem;border-color:var(--accent-teal);text-align:center">
+<p class="grad-text" style="font-size:1.3rem;font-weight:800">CyanPuppets — 十億參數動捕大模型（208 關鍵點）</p>
+<p style="margin-top:.5rem">互補——CyanPuppets 提供高密度影片動捕（208 點含手臉），Kimodo 提供文字生成。CyanPuppets 的 BVH 輸出可直接進入相同 pipeline。</p>
+</div>
+<p style="margin-top:2rem;font-size:1rem;color:var(--text-dim)">MotionLab Research · 2026-06-19</p>
 </div>
 </section>
 
-<section class="slide">
-<h2>影片展示</h2>
-<p>CyanPuppets 官方展示：1 分鐘學會使用 CyanSDK 進行無標記動捕。</p>
-<div class="video-box">
-<iframe src="https://www.youtube.com/embed/Y7G56OTK6yM" allowfullscreen></iframe>
-</div>
-<p style="color:var(--muted);font-size:.85rem">Learn markerless motion capture with CyanSDK in 1 minute</p>
-</section>
-
-<section class="slide">
-<h2>技術規格與定價</h2>
-<p>CyanPuppets 提供個人版和企業 SDK 兩種方案。個人版面向 VTuber/獨立開發者，SDK 版面向遊戲工作室。</p>
-<div class="card">
-<table>
-<tr><th>項目</th><th>規格</th></tr>
-<tr><td>AI 模型</td><td>10 億參數自研模型</td></tr>
-<tr><td>輸入</td><td>1080P Webcam（單攝影機）</td></tr>
-<tr><td>輸出</td><td>即時串流 + BVH/FBX 錄製</td></tr>
-<tr><td>串流目標</td><td>Blender / UE5 / Unity / 自訂</td></tr>
-<tr><td>延遲</td><td>低延遲即時（~50ms）</td></tr>
-<tr><td>平台</td><td>Windows / Linux</td></tr>
-</table>
-</div>
-<div class="card">
-<table>
-<tr><th>方案</th><th>價格</th><th>說明</th></tr>
-<tr><td>Individual Edition</td><td>免費/低價</td><td>個人 VTuber 使用</td></tr>
-<tr><td>CyanSDK（企業）</td><td>需洽談</td><td>嵌入 UE5/Unity 專案</td></tr>
-</table>
-</div>
-</section>
-
-<section class="slide">
-<h2>優點</h2>
-<p>CyanPuppets 的核心優勢在於大型 AI 模型帶來的高精度，配合單攝影機的極低硬體門檻。</p>
-<div class="card">
-<ul>
-<li><strong class="g">10 億參數大模型</strong> — 精度優於一般輕量方案</li>
-<li><strong class="g">單攝影機</strong> — 只需 1080P Webcam</li>
-<li><strong class="g">全身+手指</strong> — 不只是上半身</li>
-<li><strong class="g">BVH/FBX 匯出</strong> — 可存檔用於動畫管線</li>
-<li><strong class="g">UE5 SDK</strong> — 直接嵌入遊戲引擎</li>
-<li><strong class="g">即時低延遲</strong> — 適合互動和直播</li>
-</ul>
-</div>
-</section>
-
-<section class="slide">
-<h2>限制</h2>
-<p>作為新進工具，CyanPuppets 的生態和穩定性仍需驗證。</p>
-<div class="card">
-<ul>
-<li><strong class="r">相對較新</strong> — 生態和社群不如 Move.AI 成熟</li>
-<li><strong class="r">SDK 價格不透明</strong> — 企業版需個案洽談</li>
-<li><strong class="r">單攝影機限制</strong> — 遮擋時精度下降</li>
-<li><strong class="r">GPU 需求</strong> — 10 億參數模型需要較好顯卡</li>
-<li><strong class="r">文件較少</strong> — 教學資源有限</li>
-</ul>
-</div>
-</section>
-
-<section class="slide">
-<h2>與我們工作流的整合</h2>
-<p>CyanPuppets 可作為「有演員時」的即時動捕方案，與 Kimodo 的「無演員文字生成」互補。</p>
-<div class="card">
-<table>
-<tr><th>場景</th><th>工具選擇</th></tr>
-<tr><td>有演員 + 即時需求</td><td>CyanPuppets → BVH → ARP → 引擎</td></tr>
-<tr><td>無演員 + 量產</td><td>Kimodo → BVH → ARP → 引擎</td></tr>
-<tr><td>UE5 即時動捕</td><td>CyanSDK 嵌入 UE5</td></tr>
-</table>
-<p style="margin-top:1rem;color:var(--muted)">CyanPuppets 的 BVH 輸出可直接進入 ARP Remap 管線，格式完全相容。</p>
-</div>
-</section>
-
-<section class="slide">
-<h2>總結</h2>
-<p>CyanPuppets 是新一代 AI 動捕方案中的有力競爭者，10 億參數模型的精度值得期待。</p>
-<div class="card">
-<table>
-<tr><th>項目</th><th>評分</th></tr>
-<tr><td>動作品質</td><td>⭐⭐⭐⭐（大模型精度高）</td></tr>
-<tr><td>量產適用性</td><td>⭐⭐⭐（有 BVH 輸出，但需演員）</td></tr>
-<tr><td>性價比</td><td>⭐⭐⭐⭐（個人版低價/免費）</td></tr>
-<tr><td>與 Kimodo 互補</td><td>⭐⭐⭐⭐（即時 vs 離線互補）</td></tr>
-</table>
-<p style="margin-top:1rem;color:var(--muted)"><strong>建議</strong>：列為「有演員即時動捕」首選評估對象。測試 BVH 品質後決定是否採用。</p>
-</div>
-</section>
-
-</div>
-<div class="nav-dots" id="dots"></div>
-<div class="nav-bar"><button id="prev" onclick="go(-1)">← 上一頁</button><span class="page" id="pageNum">1/8</span><button id="next" onclick="go(1)">下一頁 →</button></div>
 <script>
 const d=document.getElementById('dots');const total=10;
 for(let i=1;i<=total;i++){const a=document.createElement('a');a.href='#s'+i;d.appendChild(a)}
@@ -180,6 +163,5 @@ function go(n){const t=Math.max(1,Math.min(total,n));document.getElementById('s'
 prevBtn.onclick=()=>go(cur-1);nextBtn.onclick=()=>go(cur+1);
 document.addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();go(cur+1)}if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();go(cur-1)}});
 </script>
-
 </body>
 </html>

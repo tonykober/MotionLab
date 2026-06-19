@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Kinephy — 簡報版</title>
+<title>Kinephy — 物理驅動 AI 動畫生成</title>
 <style>
 :root{--bg-primary:#1a1f2e;--bg-card:rgba(30,42,60,0.55);--text-primary:#ffffff;--text-secondary:#b8c4d0;--text-dim:#8090a0;--accent-cyan:#4db8d4;--accent-teal:#2dd4a8;--accent-red:#e05555;--accent-gold:#f5a623;--border-subtle:rgba(255,255,255,0.08);--radius-card:16px;--font-family:'Noto Sans TC','Inter',-apple-system,sans-serif}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -44,106 +44,112 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 .bottom-nav .page-num{color:var(--text-secondary);min-width:3rem;text-align:center}
 @media(max-width:768px){h1{font-size:2.4rem}h2{font-size:1.6rem}.cols-2,.cols-3{grid-template-columns:1fr}.slide{padding:48px 1.2rem 80px}}
 </style>
-
 </head>
 <body>
 <a href="../index.html" class="back-link">← 返回首頁</a>
-<div class="slides" id="slides">
-
+<nav class="nav-dots" id="dots"></nav>
 <div class="bottom-nav"><button id="prev">← 上一頁</button><span class="page-num" id="pageNum">1/10</span><button id="next">下一頁 →</button></div>
-<section class="slide"><div style="text-align:center;width:100%">
-<h1>🔬 Kinephy</h1>
-<p style="font-size:1.3rem;color:var(--text2);margin-top:1rem">物理感知 AI 動畫生成平台</p>
-<p style="color:var(--muted);margin-top:2rem">生成式 AI + 物理模擬 = 動作自動遵守重力、慣性和碰撞規則</p>
-</div></section>
 
-<section class="slide">
-<h2>核心理念</h2>
-<p>Kinephy 的獨特之處在於將物理模擬整合進 AI 動畫生成過程，讓產出的動作自動具有物理真實感——不會漂浮、不會穿模、自動考慮重力和慣性。</p>
-<div class="card">
-<ul>
-<li><strong class="g">物理感知生成</strong> — AI 動作考慮重力/慣性/碰撞</li>
-<li><strong class="g">場景互動</strong> — 根據環境生成合適的互動動作</li>
-<li><strong class="g">全身動作</strong> — 完整身體動畫</li>
-<li><strong class="g">雲端處理</strong> — 無需本地 GPU</li>
-<li><strong class="g">可編輯輸出</strong> — 生成後可微調</li>
-</ul>
+
+<section class="slide" id="s1">
+<div class="slide-inner">
+<p style="color:var(--accent-teal);font-size:.9rem;letter-spacing:2px;margin-bottom:1rem">PHYSICS-BASED GENERATIVE AI</p>
+<h1>Kinephy</h1>
+<h1 style="font-size:2rem;font-weight:400;color:var(--text-secondary);margin-top:.5rem">物理感知的 AI 動畫生成，產出有重量感且互動場景感知的動作</h1>
+<p class="desc" style="margin-top:1.5rem">Kinephy 是一個結合物理模擬和生成式 AI 的動畫平台。與純粹的 text-to-motion 或 video-to-mocap 不同，Kinephy 的動畫輸出帶有物理正確性——角色動作有重量感、互動感知、且符合物理定律。</p>
+<div style="display:flex;gap:.5rem;margin-top:1.5rem;flex-wrap:wrap"><span class="tag">物理感知 AI 動畫</span><span class="tag">互動場景感知</span><span class="tag">全身動作生成</span><span class="tag">可編輯輸出</span></div>
 </div>
 </section>
-
-<section class="slide">
-<h2>影片展示</h2>
-<p>以下影片展示物理驅動的 AI 角色動畫概念，展示角色如何基於物理規則自主運動。</p>
-<div class="video-box">
-<iframe src="https://www.youtube.com/embed/8oIQy6fxfCA" allowfullscreen></iframe>
+<section class="slide" id="s2">
+<div class="slide-inner">
+<h2>核心功能</h2>
+<p class="desc">Kinephy 是一個結合物理模擬和生成式 AI 的動畫平台。與純粹的 text-to-motion 或 video-to-mocap 不同，Kinephy 的動畫輸出帶有物理正確性——角色動作有重量...</p>
+<div class="card" style="margin-top:1.5rem">
+<ul class="list-clean"><li><strong>物理感知 AI 動畫</strong> — 物理感知 AI 動畫</li>
+<li><strong>互動場景感知</strong> — 互動場景感知</li>
+<li><strong>全身動作生成</strong> — 全身動作生成</li>
+<li><strong>可編輯輸出</strong> — 可編輯輸出</li>
+<li><strong>風格控制</strong> — 風格控制</li>
+<li><strong>API 支援</strong> — API 支援</li></ul>
 </div>
-<p style="color:var(--muted);font-size:.85rem">AI-Driven, Physics-Based Character Animation</p>
-</section>
-
-<section class="slide">
-<h2>定價與平台狀態</h2>
-<p>Kinephy 目前處於公開 Beta/早期階段，產品成熟度仍在提升中。</p>
-<div class="card">
-<table>
-<tr><th>項目</th><th>內容</th></tr>
-<tr><td>平台</td><td>雲端 Web 應用</td></tr>
-<tr><td>定價</td><td>~$15/月 起（訂閱制）</td></tr>
-<tr><td>輸出格式</td><td>待確認（FBX/BVH 未明確）</td></tr>
-<tr><td>狀態</td><td>公開 Beta / 早期</td></tr>
-<tr><td>商用</td><td>付費即商用（推測）</td></tr>
-</table>
 </div>
 </section>
-
-<section class="slide">
+<section class="slide" id="s3">
+<div class="slide-inner" style="text-align:center">
+<h2 style="border:none;padding:0;text-align:center">展示影片</h2>
+<p class="desc" style="margin:0 auto 1.5rem;text-align:center">Kinephy — 物理驅動 AI 動畫生成 相關展示與教學。</p>
+<div class="video-wrap"><iframe src="https://www.youtube.com/embed/8oIQy6fxfCA" allowfullscreen></iframe></div>
+</div>
+</section>
+<section class="slide" id="s4">
+<div class="slide-inner">
+<h2>技術規格</h2>
+<div class="card-grid cols-3" style="margin-top:1.5rem"><div class="card" style="text-align:center"><div class="big-num grad-text">物理</div><div class="big-label">驅動方式</div></div>
+<div class="card" style="text-align:center"><div class="big-num grad-text">$15</div><div class="big-label">起始月費</div></div>
+<div class="card" style="text-align:center"><div class="big-num grad-text">180s</div><div class="big-label">基礎額度</div></div>
+</div>
+</div>
+</section>
+<section class="slide" id="s5">
+<div class="slide-inner">
+<h2>平台與整合</h2>
+<p class="desc">Kinephy 是一個結合物理模擬和生成式 AI 的動畫平台。與純粹的 text-to-motion 或 video-to-mocap 不同，Kinephy 的動畫輸出帶有物理正確性——角色動作有重量感、互動感知、且符合物理定律。</p>
+</div>
+</section>
+<section class="slide" id="s6">
+<div class="slide-inner" style="text-align:center">
+<h2 style="border:none;padding:0;text-align:center">定價</h2>
+<div class="card" style="margin-top:2rem;text-align:center"><p class="grad-text" style="font-size:2.5rem;font-weight:800">$15/月起（180 秒額度）</p></div>
+</div>
+</section>
+<section class="slide" id="s7">
+<div class="slide-inner">
 <h2>優缺點</h2>
-<p>Kinephy 代表了「物理 + AI」的未來方向，但目前仍在早期階段。</p>
-<div class="card">
-<ul>
-<li><strong class="g">獨特定位</strong> — 唯一物理感知的 AI 動畫生成</li>
-<li><strong class="g">省去後處理</strong> — 不需要 Ragdoll 二次處理</li>
-<li><strong class="g">雲端免硬體</strong> — 任何電腦都能用</li>
-<li><strong class="r">早期階段</strong> — 穩定度和品質未驗證</li>
-<li><strong class="r">輸出格式不明</strong> — BVH 支援待確認</li>
-<li><strong class="r">資訊不透明</strong> — 公開文件很少</li>
-<li><strong class="r">訂閱制持續成本</strong> — 不是一次購買</li>
-</ul>
+<div class="card-grid cols-2" style="margin-top:1.2rem">
+<div class="card"><p class="pos" style="font-weight:700;font-size:1.6rem;margin-bottom:1rem">✅ 優點</p><ul class="list-clean"><li><strong>動作有物理重量感</strong></li>
+<li><strong>互動場景感知</strong></li>
+<li><strong>生成動作自然度高</strong></li>
+<li><strong>可編輯調整</strong></li>
+<li><strong>風格多樣化</strong></li></ul></div>
+<div class="card card-con"><p class="neg" style="font-weight:700;font-size:1.6rem;margin-bottom:1rem">❌ 缺點</p><ul class="list-clean"><li><strong>極新產品</strong></li>
+<li><strong>生態未成熟</strong></li>
+<li><strong>具體輸出格式待驗證</strong></li>
+<li><strong>定價偏高</strong></li>
+<li><strong>無 YouTube 專屬教學</strong></li></ul></div>
+</div>
+</div>
+</section>
+<section class="slide" id="s8">
+<div class="slide-inner">
+<h2>與 Kimodo 整合</h2>
+<div class="card" style="margin-top:1.5rem"><p class="desc" style="max-width:none">互補——Kimodo 是 text-to-motion（無物理），Kinephy 加入物理層。未來可組合：Kimodo 生成基礎動作 → Kinephy 添加物理互動細節。</p></div>
+</div>
+</section>
+<section class="slide" id="s9">
+<div class="slide-inner">
+<h2>工作流定位</h2>
+<div class="card" style="font-family:monospace;font-size:1rem;line-height:2.2;padding:2.5rem;margin-top:1.5rem">
+<span style="color:var(--text-primary);font-weight:700">[動作輸入源]</span><br>
+&nbsp;&nbsp;├── Text Prompt ──→ Kimodo（離線 BVH）<br>
+&nbsp;&nbsp;├── <span style="color:var(--accent-teal);font-weight:700">本工具定位 ⭐</span><br>
+&nbsp;&nbsp;└── 手動 K 幀 ──→ 傳統 DCC<br><br>
+<span style="color:var(--text-primary);font-weight:700">[Pipeline]</span><br>
+&nbsp;&nbsp;Retarget → Foot Fix → Root Motion → Export
+</div>
+</div>
+</section>
+<section class="slide" id="s10">
+<div class="slide-inner" style="text-align:center">
+<h2 style="border:none;padding:0;text-align:center">總結</h2>
+<p class="desc" style="margin:1rem auto;text-align:center">Kinephy 是一個結合物理模擬和生成式 AI 的動畫平台。與純粹的 text-to-motion 或 video-to-mocap 不同，Kinephy 的動畫輸出帶有物理正確性——角色動作有重量感、互動感知、且符合物理定律。</p>
+<div class="card" style="margin-top:1.5rem;border-color:var(--accent-teal);text-align:center">
+<p class="grad-text" style="font-size:1.3rem;font-weight:800">Kinephy — 物理驅動 AI 動畫生成</p>
+<p style="margin-top:.5rem">互補——Kimodo 是 text-to-motion（無物理），Kinephy 加入物理層。未來可組合：Kimodo 生成基礎動作 → Kinephy 添加物理互動細節。</p>
+</div>
+<p style="margin-top:2rem;font-size:1rem;color:var(--text-dim)">MotionLab Research · 2026-06-19</p>
 </div>
 </section>
 
-<section class="slide">
-<h2>與我們工作流的比較</h2>
-<p>Kinephy 目前無法取代我們現有的 Kimodo + Ragdoll 組合，但長期方向值得關注。</p>
-<div class="card">
-<table>
-<tr><th>項目</th><th>Kinephy</th><th>Kimodo + Ragdoll</th></tr>
-<tr><td>物理感</td><td>✅ 內建</td><td>✅ 後處理加入</td></tr>
-<tr><td>成熟度</td><td>❌ 早期</td><td>✅ 可用</td></tr>
-<tr><td>離線使用</td><td>❌ 雲端</td><td>✅ 本地</td></tr>
-<tr><td>BVH 輸出</td><td>❓ 待確認</td><td>✅</td></tr>
-<tr><td>商用</td><td>⚠️ 待確認</td><td>✅</td></tr>
-</table>
-</div>
-</section>
-
-<section class="slide">
-<h2>總結與建議</h2>
-<p>Kinephy 是值得長期觀望的工具，代表 AI 動畫的未來方向，但目前不納入工具鏈。</p>
-<div class="card">
-<table>
-<tr><th>項目</th><th>評分</th></tr>
-<tr><td>技術願景</td><td>⭐⭐⭐⭐⭐</td></tr>
-<tr><td>當前可用性</td><td>⭐⭐</td></tr>
-<tr><td>量產適用性</td><td>⭐</td></tr>
-<tr><td>創新性</td><td>⭐⭐⭐⭐⭐</td></tr>
-</table>
-<p style="margin-top:1rem;color:var(--muted)"><strong>建議</strong>：純觀望。每季度關注一次產品更新，等待 BVH 支援和品質穩定後重新評估。</p>
-</div>
-</section>
-
-</div>
-<div class="nav-dots" id="dots"></div>
-<div class="nav-bar"><button id="prev" onclick="go(-1)">← 上一頁</button><span class="page" id="pageNum">1/7</span><button id="next" onclick="go(1)">下一頁 →</button></div>
 <script>
 const d=document.getElementById('dots');const total=10;
 for(let i=1;i<=total;i++){const a=document.createElement('a');a.href='#s'+i;d.appendChild(a)}
@@ -157,6 +163,5 @@ function go(n){const t=Math.max(1,Math.min(total,n));document.getElementById('s'
 prevBtn.onclick=()=>go(cur-1);nextBtn.onclick=()=>go(cur+1);
 document.addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();go(cur+1)}if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();go(cur-1)}});
 </script>
-
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Webcam Motion Capture — 簡報版</title>
+<title>Webcam Motion Capture — VTuber Webcam 追蹤軟體</title>
 <style>
 :root{--bg-primary:#1a1f2e;--bg-card:rgba(30,42,60,0.55);--text-primary:#ffffff;--text-secondary:#b8c4d0;--text-dim:#8090a0;--accent-cyan:#4db8d4;--accent-teal:#2dd4a8;--accent-red:#e05555;--accent-gold:#f5a623;--border-subtle:rgba(255,255,255,0.08);--radius-card:16px;--font-family:'Noto Sans TC','Inter',-apple-system,sans-serif}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -44,138 +44,111 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 .bottom-nav .page-num{color:var(--text-secondary);min-width:3rem;text-align:center}
 @media(max-width:768px){h1{font-size:2.4rem}h2{font-size:1.6rem}.cols-2,.cols-3{grid-template-columns:1fr}.slide{padding:48px 1.2rem 80px}}
 </style>
-
 </head>
 <body>
 <a href="../index.html" class="back-link">← 返回首頁</a>
-<div class="slides" id="slides">
-
+<nav class="nav-dots" id="dots"></nav>
 <div class="bottom-nav"><button id="prev">← 上一頁</button><span class="page-num" id="pageNum">1/10</span><button id="next">下一頁 →</button></div>
-<section class="slide">
-<div style="text-align:center;width:100%">
-<h1>🎥 Webcam Motion Capture</h1>
-<p style="font-size:1.3rem;color:var(--text2);margin-top:1rem">VTuber 專用 Webcam 即時追蹤軟體</p>
-<p style="color:var(--muted);margin-top:2rem">Webcam → 臉部 + 上半身 + 手指即時追蹤 → 串流到 VTuber 軟體</p>
+
+
+<section class="slide" id="s1">
+<div class="slide-inner">
+<p style="color:var(--accent-teal);font-size:.9rem;letter-spacing:2px;margin-bottom:1rem">VTUBER / WEBCAM 即時追蹤</p>
+<h1>Webcam Motion Capture</h1>
+<h1 style="font-size:2rem;font-weight:400;color:var(--text-secondary);margin-top:.5rem">Chrome 擴充套件，用 Webcam 即時追蹤臉部+手部+身體</h1>
+<p class="desc" style="margin-top:1.5rem">Webcam Motion Capture 是一個瀏覽器擴充套件，讓使用者透過普通 Webcam 即時追蹤面部表情、手部動作和上半身姿態，主要用於 VTuber 直播和簡單動畫製作。基於 MediaPipe 技術，不需要額外硬體。</p>
+<div style="display:flex;gap:.5rem;margin-top:1.5rem;flex-wrap:wrap"><span class="tag">臉部追蹤（52 BlendShapes）</span><span class="tag">手部追蹤</span><span class="tag">上半身姿態</span><span class="tag">Chrome 擴充套件（免安裝）</span></div>
 </div>
 </section>
-
-<section class="slide">
-<h2>核心能力</h2>
-<p>Webcam Motion Capture 使用標準 Webcam 即時追蹤臉部表情（ARKit 52 表情 Perfect Sync）、眼球注視、嘴唇、上半身和手指動作。專為 VTuber 設計，無需 iPhone 或專用硬體。</p>
-<div class="card">
-<table>
-<tr><th>功能</th><th>支援</th><th>說明</th></tr>
-<tr><td>臉部表情</td><td>✅</td><td>ARKit 52 Perfect Sync</td></tr>
-<tr><td>眼球注視</td><td>✅</td><td>精確眼球追蹤</td></tr>
-<tr><td>上半身追蹤</td><td>✅</td><td>肩膀/手臂</td></tr>
-<tr><td>手指追蹤</td><td>✅</td><td>10 指獨立</td></tr>
-<tr><td>全身追蹤</td><td>❌</td><td>僅上半身</td></tr>
-<tr><td>BVH/FBX 匯出</td><td>❌</td><td>僅即時串流</td></tr>
-</table>
+<section class="slide" id="s2">
+<div class="slide-inner">
+<h2>核心功能</h2>
+<p class="desc">Webcam Motion Capture 是一個瀏覽器擴充套件，讓使用者透過普通 Webcam 即時追蹤面部表情、手部動作和上半身姿態，主要用於 VTuber 直播和簡單動畫製作。基於 MediaP...</p>
+<div class="card" style="margin-top:1.5rem">
+<ul class="list-clean"><li><strong>臉部追蹤</strong> — 臉部追蹤（52 BlendShapes）</li>
+<li><strong>手部追蹤</strong> — 手部追蹤</li>
+<li><strong>上半身姿態</strong> — 上半身姿態</li>
+<li><strong>Chrome 擴充套件</strong> — Chrome 擴充套件（免安裝）</li>
+<li><strong>VMC Protocol 輸出</strong> — VMC Protocol 輸出</li>
+<li><strong>VRM 模型即時驅動</strong> — VRM 模型即時驅動</li></ul>
+</div>
 </div>
 </section>
-
-<section class="slide">
-<h2>影片展示</h2>
-<p>以下影片展示如何使用 Webcam 進行 Blender 動捕，概念與 Webcam Motion Capture 類似。</p>
-<div class="video-box">
-<iframe src="https://www.youtube.com/embed/mVLFRoL_ur4" allowfullscreen></iframe>
+<section class="slide" id="s3">
+<div class="slide-inner" style="text-align:center">
+<h2 style="border:none;padding:0;text-align:center">展示影片</h2>
+<p class="desc" style="margin:0 auto 1.5rem;text-align:center">Webcam Motion Capture — VTuber Webcam 追蹤軟體 相關展示與教學。</p>
+<div class="video-wrap"><iframe src="https://www.youtube.com/embed/mVLFRoL_ur4" allowfullscreen></iframe></div>
 </div>
-<p style="color:var(--muted);font-size:.85rem">How To Do Motion Capture in Blender for Free</p>
 </section>
-
-<section class="slide">
+<section class="slide" id="s4">
+<div class="slide-inner">
 <h2>技術規格</h2>
-<p>Webcam Motion Capture 是輕量桌面應用，專注於 VTuber 即時串流場景，不產出離線動畫檔案。</p>
-<div class="card">
-<table>
-<tr><th>項目</th><th>規格</th></tr>
-<tr><td>輸入</td><td>標準 Webcam / iPhone（Perfect Sync）</td></tr>
-<tr><td>輸出</td><td>即時串流（VMC / OSC）</td></tr>
-<tr><td>串流目標</td><td>VSeeFace、VTube Studio、Unity</td></tr>
-<tr><td>平台</td><td>Windows / macOS</td></tr>
-<tr><td>即時性</td><td>低延遲即時</td></tr>
-<tr><td>追蹤點數</td><td>52 ARKit BS + 身體 + 手指</td></tr>
-</table>
+<div class="card-grid cols-3" style="margin-top:1.5rem"><div class="card" style="text-align:center"><div class="big-num grad-text">52</div><div class="big-label">臉部 BlendShapes</div></div>
+<div class="card" style="text-align:center"><div class="big-num grad-text">2</div><div class="big-label">手部追蹤</div></div>
+<div class="card" style="text-align:center"><div class="big-num grad-text">即時</div><div class="big-label">低延遲串流</div></div>
+</div>
 </div>
 </section>
-
-<section class="slide">
-<h2>定價與授權</h2>
-<p>Webcam Motion Capture 為付費桌面軟體，一次購買即可使用。相較於需要 iPhone 的方案（如 iFacialMocap），只需一般 Webcam 即可運作。</p>
-<div class="card">
-<table>
-<tr><th>方案</th><th>價格</th><th>說明</th></tr>
-<tr><td>標準版</td><td>~$20-30 USD</td><td>全功能，一次購買</td></tr>
-<tr><td>Perfect Sync</td><td>含在標準版</td><td>ARKit 52 表情支援</td></tr>
-</table>
-<p style="margin-top:1rem">商用：付費即可商業使用。</p>
+<section class="slide" id="s5">
+<div class="slide-inner">
+<h2>平台與整合</h2>
+<p class="desc">Webcam Motion Capture 是一個瀏覽器擴充套件，讓使用者透過普通 Webcam 即時追蹤面部表情、手部動作和上半身姿態，主要用於 VTuber 直播和簡單動畫製作。基於 MediaPipe 技術，不需要額外硬體。</p>
 </div>
 </section>
-
-<section class="slide">
-<h2>優點</h2>
-<p>對 VTuber 和虛擬角色即時驅動場景而言，Webcam Motion Capture 提供了極低成本的精細臉部追蹤方案。</p>
-<div class="card">
-<ul>
-<li><strong class="g">只需 Webcam</strong> — 無需 iPhone 或專用硬體</li>
-<li><strong class="g">ARKit 52 BS 相容</strong> — Perfect Sync 完整支援</li>
-<li><strong class="g">手指追蹤</strong> — 同時追蹤十指動作</li>
-<li><strong class="g">即時低延遲</strong> — 適合直播和互動</li>
-<li><strong class="g">跨平台</strong> — Windows + macOS</li>
-</ul>
+<section class="slide" id="s6">
+<div class="slide-inner" style="text-align:center">
+<h2 style="border:none;padding:0;text-align:center">定價</h2>
+<div class="card" style="margin-top:2rem;text-align:center"><p class="grad-text" style="font-size:2.5rem;font-weight:800">免費（Chrome 擴充套件）</p></div>
 </div>
 </section>
-
-<section class="slide">
-<h2>限制</h2>
-<p>此工具專為 VTuber 即時串流設計，不適合動畫製作管線中的離線動作資產產出。</p>
-<div class="card">
-<ul>
-<li><strong class="r">無全身追蹤</strong> — 僅上半身，不含下半身/腳步</li>
-<li><strong class="r">無 BVH/FBX 匯出</strong> — 只有即時串流，無法存檔</li>
-<li><strong class="r">VTuber 專用</strong> — 不是通用動捕解決方案</li>
-<li><strong class="r">精度依賴光線</strong> — 環境光影響追蹤品質</li>
-</ul>
+<section class="slide" id="s7">
+<div class="slide-inner">
+<h2>優缺點</h2>
+<div class="card-grid cols-2" style="margin-top:1.2rem">
+<div class="card"><p class="pos" style="font-weight:700;font-size:1.6rem;margin-bottom:1rem">✅ 優點</p><ul class="list-clean"><li><strong>免費使用</strong></li>
+<li><strong>零安裝</strong></li>
+<li><strong>即時低延遲</strong></li>
+<li><strong>支援 VMC Protocol</strong></li>
+<li><strong>VTuber 直播即用</strong></li></ul></div>
+<div class="card card-con"><p class="neg" style="font-weight:700;font-size:1.6rem;margin-bottom:1rem">❌ 缺點</p><ul class="list-clean"><li><strong>僅上半身</strong></li>
+<li><strong>無全身追蹤</strong></li>
+<li><strong>精度有限</strong></li>
+<li><strong>不輸出 BVH/FBX</strong></li>
+<li><strong>Chrome 限定</strong></li></ul></div>
+</div>
 </div>
 </section>
-
-<section class="slide">
-<h2>與我們工作流的整合</h2>
-<p>Webcam Motion Capture 在我們的 AI 動作量產流程中不是核心工具，但可用於快速臉部表情參考錄製。</p>
-<div class="card">
-<table>
-<tr><th>場景</th><th>整合方式</th></tr>
-<tr><td>臉部動捕參考</td><td>WMC 追蹤 → VMC → Blender → FaceIt 映射</td></tr>
-<tr><td>VTuber 即時展示</td><td>直接串流到 VSeeFace 做角色展示</td></tr>
-<tr><td>量產動作</td><td>❌ 不適用（無 BVH 輸出）</td></tr>
-</table>
+<section class="slide" id="s8">
+<div class="slide-inner">
+<h2>與 Kimodo 整合</h2>
+<div class="card" style="margin-top:1.5rem"><p class="desc" style="max-width:none">定位不同——Webcam Motion Capture 偏向 VTuber 即時表演，Kimodo 偏向遊戲動作量產。可作為臉部/手部追蹤的補充方案。</p></div>
 </div>
 </section>
-
-<section class="slide">
-<h2>總結</h2>
-<p>Webcam Motion Capture 是 VTuber 專用工具，不在動作量產核心路線上。若團隊需要低成本臉部追蹤參考（不需精確匯出），可作為輔助工具。</p>
-<div class="card">
-<table>
-<tr><th>項目</th><th>評分</th></tr>
-<tr><td>動作品質</td><td>⭐⭐⭐（臉部精細，身體有限）</td></tr>
-<tr><td>量產適用性</td><td>⭐（無離線輸出）</td></tr>
-<tr><td>性價比</td><td>⭐⭐⭐⭐（$20-30 即可）</td></tr>
-<tr><td>與 Kimodo 互補</td><td>⭐⭐（臉部補充身體）</td></tr>
-</table>
-<p style="margin-top:1rem;color:var(--muted)"><strong>建議</strong>：列為「VTuber/展示用」工具，非量產工具鏈成員。</p>
+<section class="slide" id="s9">
+<div class="slide-inner">
+<h2>工作流定位</h2>
+<div class="card" style="font-family:monospace;font-size:1rem;line-height:2.2;padding:2.5rem;margin-top:1.5rem">
+<span style="color:var(--text-primary);font-weight:700">[動作輸入源]</span><br>
+&nbsp;&nbsp;├── Text Prompt ──→ Kimodo（離線 BVH）<br>
+&nbsp;&nbsp;├── <span style="color:var(--accent-teal);font-weight:700">本工具定位 ⭐</span><br>
+&nbsp;&nbsp;└── 手動 K 幀 ──→ 傳統 DCC<br><br>
+<span style="color:var(--text-primary);font-weight:700">[Pipeline]</span><br>
+&nbsp;&nbsp;Retarget → Foot Fix → Root Motion → Export
+</div>
 </div>
 </section>
-
+<section class="slide" id="s10">
+<div class="slide-inner" style="text-align:center">
+<h2 style="border:none;padding:0;text-align:center">總結</h2>
+<p class="desc" style="margin:1rem auto;text-align:center">Webcam Motion Capture 是一個瀏覽器擴充套件，讓使用者透過普通 Webcam 即時追蹤面部表情、手部動作和上半身姿態，主要用於 VTuber 直播和簡單動畫製作。基於 MediaPipe 技術，不需要額外硬體。</p>
+<div class="card" style="margin-top:1.5rem;border-color:var(--accent-teal);text-align:center">
+<p class="grad-text" style="font-size:1.3rem;font-weight:800">Webcam Motion Capture — VTuber Webcam 追蹤軟體</p>
+<p style="margin-top:.5rem">定位不同——Webcam Motion Capture 偏向 VTuber 即時表演，Kimodo 偏向遊戲動作量產。可作為臉部/手部追蹤的補充方案。</p>
 </div>
-
-<div class="nav-dots" id="dots"></div>
-<div class="nav-bar">
-<button id="prev" onclick="go(-1)">← 上一頁</button>
-<span class="page" id="pageNum">1 / 9</span>
-<button id="next" onclick="go(1)">下一頁 →</button>
+<p style="margin-top:2rem;font-size:1rem;color:var(--text-dim)">MotionLab Research · 2026-06-19</p>
 </div>
+</section>
 
 <script>
 const d=document.getElementById('dots');const total=10;
@@ -190,6 +163,5 @@ function go(n){const t=Math.max(1,Math.min(total,n));document.getElementById('s'
 prevBtn.onclick=()=>go(cur-1);nextBtn.onclick=()=>go(cur+1);
 document.addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();go(cur+1)}if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();go(cur-1)}});
 </script>
-
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Kinetix — 簡報版</title>
+<title>Kinetix — 遊戲內 UGC 動畫 SDK（B2B）</title>
 <style>
 :root{--bg-primary:#1a1f2e;--bg-card:rgba(30,42,60,0.55);--text-primary:#ffffff;--text-secondary:#b8c4d0;--text-dim:#8090a0;--accent-cyan:#4db8d4;--accent-teal:#2dd4a8;--accent-red:#e05555;--accent-gold:#f5a623;--border-subtle:rgba(255,255,255,0.08);--radius-card:16px;--font-family:'Noto Sans TC','Inter',-apple-system,sans-serif}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -44,114 +44,112 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 .bottom-nav .page-num{color:var(--text-secondary);min-width:3rem;text-align:center}
 @media(max-width:768px){h1{font-size:2.4rem}h2{font-size:1.6rem}.cols-2,.cols-3{grid-template-columns:1fr}.slide{padding:48px 1.2rem 80px}}
 </style>
-
 </head>
 <body>
 <a href="../index.html" class="back-link">← 返回首頁</a>
-<div class="slides" id="slides">
-
+<nav class="nav-dots" id="dots"></nav>
 <div class="bottom-nav"><button id="prev">← 上一頁</button><span class="page-num" id="pageNum">1/10</span><button id="next">下一頁 →</button></div>
-<section class="slide"><div style="text-align:center;width:100%">
-<h1>🎮 Kinetix</h1>
-<p style="font-size:1.3rem;color:var(--text2);margin-top:1rem">遊戲內 AI 動畫生成 SDK 平台</p>
-<p style="color:var(--muted);margin-top:2rem">B2B SDK — 讓玩家在遊戲內用影片/文字即時生成自訂動畫（emotes）</p>
-</div></section>
 
-<section class="slide">
-<h2>核心能力</h2>
-<p>Kinetix 是一家法國 AI 動畫公司，提供遊戲開發者嵌入式 SDK。玩家可在遊戲中直接上傳影片或輸入文字描述，AI 即時生成自訂 3D emote 動作。定位為 B2B 平台，非個人動畫工具。</p>
-<div class="card">
-<table>
-<tr><th>功能</th><th>說明</th></tr>
-<tr><td>Video-to-Animation</td><td>玩家上傳影片 → 3D 動作</td></tr>
-<tr><td>Text-to-Animation</td><td>文字描述 → 3D 動畫</td></tr>
-<tr><td>Unity/Unreal SDK</td><td>原生引擎嵌入</td></tr>
-<tr><td>UGC 市場</td><td>玩家可交易自訂動畫</td></tr>
-<tr><td>Kamo-1 影片模型</td><td>3D 條件化 AI 影片生成</td></tr>
-<tr><td>即時預覽</td><td>遊戲內即時看到效果</td></tr>
-</table>
+
+<section class="slide" id="s1">
+<div class="slide-inner">
+<p style="color:var(--accent-teal);font-size:.9rem;letter-spacing:2px;margin-bottom:1rem">PLAYER-GENERATED EMOTES SDK</p>
+<h1>Kinetix</h1>
+<h1 style="font-size:2rem;font-weight:400;color:var(--text-secondary);margin-top:.5rem">讓玩家在遊戲內用影片創建自訂 3D 表情動作，B2B SDK 平台</h1>
+<p class="desc" style="margin-top:1.5rem">Kinetix 是法國 AI 動畫公司，提供 SDK 讓遊戲開發者將「玩家自製動畫」功能嵌入遊戲中。玩家可以上傳影片自動轉換為 3D 表情動作（emotes），並在遊戲中使用。這是 UGC（User Generated Content）動畫的專業解決方案。</p>
+<div style="display:flex;gap:.5rem;margin-top:1.5rem;flex-wrap:wrap"><span class="tag">遊戲內嵌入 SDK</span><span class="tag">玩家影片轉 Emote</span><span class="tag">Text-to-Animation</span><span class="tag">跨遊戲動畫格式</span></div>
 </div>
 </section>
-
-<section class="slide">
-<h2>影片展示</h2>
-<p>Kinetix SDK 官方展示：在遊戲中透過 AI 為角色生成 Emote 動畫。</p>
-<div class="video-box">
-<iframe src="https://www.youtube.com/embed/dNXc5Z_kvlY" allowfullscreen></iframe>
+<section class="slide" id="s2">
+<div class="slide-inner">
+<h2>核心功能</h2>
+<p class="desc">Kinetix 是法國 AI 動畫公司，提供 SDK 讓遊戲開發者將「玩家自製動畫」功能嵌入遊戲中。玩家可以上傳影片自動轉換為 3D 表情動作（emotes），並在遊戲中使用。這是 UGC（User ...</p>
+<div class="card" style="margin-top:1.5rem">
+<ul class="list-clean"><li><strong>遊戲內嵌入 SDK</strong> — 遊戲內嵌入 SDK</li>
+<li><strong>玩家影片轉 Emote</strong> — 玩家影片轉 Emote</li>
+<li><strong>Text-to-Animation</strong> — Text-to-Animation</li>
+<li><strong>跨遊戲動畫格式</strong> — 跨遊戲動畫格式</li>
+<li><strong>Unity/Unreal SDK</strong> — Unity/Unreal SDK</li>
+<li><strong>內容審核機制</strong> — 內容審核機制</li></ul>
 </div>
-<p style="color:var(--muted);font-size:.85rem">Animate Characters With Emotes — Kinetix AI SDK</p>
-</section>
-
-<section class="slide">
-<h2>定位與商業模式</h2>
-<p>Kinetix 是 B2B 平台，不是動畫師的日常工具。它服務的是「遊戲上線後」的玩家 UGC 需求。</p>
-<div class="card">
-<table>
-<tr><th>項目</th><th>內容</th></tr>
-<tr><td>目標客戶</td><td>遊戲開發工作室</td></tr>
-<tr><td>商業模式</td><td>SaaS API 按呼叫量計費</td></tr>
-<tr><td>引擎支援</td><td>Unity / Unreal / Web</td></tr>
-<tr><td>Free Tier</td><td>有（有限 API 呼叫）</td></tr>
-<tr><td>Enterprise</td><td>客製報價</td></tr>
-</table>
-</div>
-<div class="card">
-<p><strong>關鍵區分</strong>：</p>
-<ul>
-<li>開發期動作量產 → <strong class="g">Kimodo</strong>（我們用）</li>
-<li>營運期玩家 UGC → <strong class="g">Kinetix</strong>（給玩家用）</li>
-</ul>
 </div>
 </section>
-
-<section class="slide">
+<section class="slide" id="s3">
+<div class="slide-inner" style="text-align:center">
+<h2 style="border:none;padding:0;text-align:center">展示影片</h2>
+<p class="desc" style="margin:0 auto 1.5rem;text-align:center">Kinetix — 遊戲內 UGC 動畫 SDK（B2B） 相關展示與教學。</p>
+<div class="video-wrap"><iframe src="https://www.youtube.com/embed/dNXc5Z_kvlY" allowfullscreen></iframe></div>
+</div>
+</section>
+<section class="slide" id="s4">
+<div class="slide-inner">
+<h2>技術規格</h2>
+<div class="card-grid cols-3" style="margin-top:1.5rem"><div class="card" style="text-align:center"><div class="big-num grad-text">SDK</div><div class="big-label">交付方式</div></div>
+<div class="card" style="text-align:center"><div class="big-num grad-text">B2B</div><div class="big-label">商業模式</div></div>
+<div class="card" style="text-align:center"><div class="big-num grad-text">Unity+UE</div><div class="big-label">引擎支援</div></div>
+</div>
+</div>
+</section>
+<section class="slide" id="s5">
+<div class="slide-inner">
+<h2>平台與整合</h2>
+<p class="desc">Kinetix 是法國 AI 動畫公司，提供 SDK 讓遊戲開發者將「玩家自製動畫」功能嵌入遊戲中。玩家可以上傳影片自動轉換為 3D 表情動作（emotes），並在遊戲中使用。這是 UGC（User Generated Content）動畫的專業解決方案。</p>
+</div>
+</section>
+<section class="slide" id="s6">
+<div class="slide-inner" style="text-align:center">
+<h2 style="border:none;padding:0;text-align:center">定價</h2>
+<div class="card" style="margin-top:2rem;text-align:center"><p class="grad-text" style="font-size:2.5rem;font-weight:800">B2B 企業授權（需聯繫）</p></div>
+</div>
+</section>
+<section class="slide" id="s7">
+<div class="slide-inner">
 <h2>優缺點</h2>
-<p>Kinetix 在遊戲內 AI UGC 動畫領域處於領先地位，但不是我們動作設計的日常工具。</p>
-<div class="card">
-<ul>
-<li><strong class="g">遊戲內原生整合</strong> — 玩家無需離開遊戲</li>
-<li><strong class="g">Text-to-Animation</strong> — 降低創作門檻</li>
-<li><strong class="g">多引擎支援</strong> — Unity + Unreal + Web</li>
-<li><strong class="g">UGC 生態</strong> — 增加遊戲黏性和營收</li>
-<li><strong class="r">B2B Only</strong> — 個人無法直接使用</li>
-<li><strong class="r">品質不確定</strong> — 玩家生成品質參差</li>
-<li><strong class="r">價格不透明</strong> — 需個案洽談</li>
-<li><strong class="r">雲端依賴</strong> — 無離線模式</li>
-</ul>
+<div class="card-grid cols-2" style="margin-top:1.2rem">
+<div class="card"><p class="pos" style="font-weight:700;font-size:1.6rem;margin-bottom:1rem">✅ 優點</p><ul class="list-clean"><li><strong>玩家 UGC 動畫生態</strong></li>
+<li><strong>跨遊戲/平台動畫共用</strong></li>
+<li><strong>有 Unity SDK</strong></li>
+<li><strong>Text-to-Animation</strong></li>
+<li><strong>AWS 基礎設施</strong></li></ul></div>
+<div class="card card-con"><p class="neg" style="font-weight:700;font-size:1.6rem;margin-bottom:1rem">❌ 缺點</p><ul class="list-clean"><li><strong>B2B 模式</strong></li>
+<li><strong>需整合 SDK 才能使用</strong></li>
+<li><strong>定價不透明</strong></li>
+<li><strong>面向終端玩家非開發者</strong></li>
+<li><strong>與我們的量產需求不完全對齊</strong></li></ul></div>
+</div>
+</div>
+</section>
+<section class="slide" id="s8">
+<div class="slide-inner">
+<h2>與 Kimodo 整合</h2>
+<div class="card" style="margin-top:1.5rem"><p class="desc" style="max-width:none">定位不同——Kinetix 面向終端玩家 UGC，Kimodo 面向開發者量產。兩者可共存：Kimodo 做基礎動作庫，Kinetix 做玩家自製層。</p></div>
+</div>
+</section>
+<section class="slide" id="s9">
+<div class="slide-inner">
+<h2>工作流定位</h2>
+<div class="card" style="font-family:monospace;font-size:1rem;line-height:2.2;padding:2.5rem;margin-top:1.5rem">
+<span style="color:var(--text-primary);font-weight:700">[動作輸入源]</span><br>
+&nbsp;&nbsp;├── Text Prompt ──→ Kimodo（離線 BVH）<br>
+&nbsp;&nbsp;├── <span style="color:var(--accent-teal);font-weight:700">本工具定位 ⭐</span><br>
+&nbsp;&nbsp;└── 手動 K 幀 ──→ 傳統 DCC<br><br>
+<span style="color:var(--text-primary);font-weight:700">[Pipeline]</span><br>
+&nbsp;&nbsp;Retarget → Foot Fix → Root Motion → Export
+</div>
+</div>
+</section>
+<section class="slide" id="s10">
+<div class="slide-inner" style="text-align:center">
+<h2 style="border:none;padding:0;text-align:center">總結</h2>
+<p class="desc" style="margin:1rem auto;text-align:center">Kinetix 是法國 AI 動畫公司，提供 SDK 讓遊戲開發者將「玩家自製動畫」功能嵌入遊戲中。玩家可以上傳影片自動轉換為 3D 表情動作（emotes），並在遊戲中使用。這是 UGC（User Generated Content）動畫</p>
+<div class="card" style="margin-top:1.5rem;border-color:var(--accent-teal);text-align:center">
+<p class="grad-text" style="font-size:1.3rem;font-weight:800">Kinetix — 遊戲內 UGC 動畫 SDK（B2B）</p>
+<p style="margin-top:.5rem">定位不同——Kinetix 面向終端玩家 UGC，Kimodo 面向開發者量產。兩者可共存：Kimodo 做基礎動作庫，Kinetix 做玩家自製層。</p>
+</div>
+<p style="margin-top:2rem;font-size:1rem;color:var(--text-dim)">MotionLab Research · 2026-06-19</p>
 </div>
 </section>
 
-<section class="slide">
-<h2>與我們工作流的關係</h2>
-<p>Kinetix 和我們的 Kimodo 工作流是「不同階段」的工具——一個用於開發，一個用於營運。</p>
-<div class="card">
-<table>
-<tr><th>階段</th><th>工具</th><th>用途</th></tr>
-<tr><td>開發期</td><td>Kimodo + ARP</td><td>製作角色預設動作庫</td></tr>
-<tr><td>營運期</td><td>Kinetix SDK</td><td>玩家自訂 UGC 動畫</td></tr>
-</table>
-<p style="margin-top:1rem">兩者可在同一遊戲中共存：Kimodo 做基礎，Kinetix 做擴展。</p>
-</div>
-</section>
-
-<section class="slide">
-<h2>總結與建議</h2>
-<p>Kinetix 不在動作設計師的日常工具鏈中，但值得推薦給遊戲企劃/製作人了解。</p>
-<div class="card">
-<table>
-<tr><th>項目</th><th>評分</th></tr>
-<tr><td>技術能力</td><td>⭐⭐⭐⭐</td></tr>
-<tr><td>對我們適用性</td><td>⭐⭐（營運工具，非製作工具）</td></tr>
-<tr><td>創新性</td><td>⭐⭐⭐⭐⭐</td></tr>
-<tr><td>量產適用性</td><td>⭐（不是量產工具）</td></tr>
-</table>
-<p style="margin-top:1rem;color:var(--muted)"><strong>建議</strong>：列為「營運期工具參考」，轉知企劃/製作人評估。不納入動作設計日常工具鏈。</p>
-</div>
-</section>
-
-</div>
-<div class="nav-dots" id="dots"></div>
-<div class="nav-bar"><button id="prev" onclick="go(-1)">← 上一頁</button><span class="page" id="pageNum">1/7</span><button id="next" onclick="go(1)">下一頁 →</button></div>
 <script>
 const d=document.getElementById('dots');const total=10;
 for(let i=1;i<=total;i++){const a=document.createElement('a');a.href='#s'+i;d.appendChild(a)}
@@ -165,6 +163,5 @@ function go(n){const t=Math.max(1,Math.min(total,n));document.getElementById('s'
 prevBtn.onclick=()=>go(cur-1);nextBtn.onclick=()=>go(cur+1);
 document.addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();go(cur+1)}if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();go(cur-1)}});
 </script>
-
 </body>
 </html>
