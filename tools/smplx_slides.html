@@ -57,11 +57,28 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <div style="margin-top:1.5rem"><span class="tag">學術標準</span><span class="tag">身體+手+臉</span><span class="tag">Max Planck</span><span class="tag">免費學術使用</span></div>
 </div></section>
 
-<section class="slide" id="s2"><div class="slide-inner">
-<h2>模型概述</h2>
-<p class="desc">SMPL-X（SMPL eXpressive）是 SMPL 模型家族的最新版本，由德國 Max Planck Institute for Intelligent Systems 開發。它在原始 SMPL（身體）基礎上加入了手部關節與臉部表情參數，實現「一個模型涵蓋全身」的目標。</p>
-<p class="desc">作為學術界的事實標準，幾乎所有 2020 年後的人體姿態估計、動作生成、人體重建研究都基於 SMPL/SMPL-X 格式。理解此模型是整合各種研究工具的基礎。</p>
-</div></section>
+<section class="slide" id="s2">
+<div class="slide-inner">
+<h2>核心能力</h2>
+<p class="desc">SMPL-X 是學術界統一的 3D 人體表示標準，涵蓋身體姿態+手部動作+臉部表情。理解它有助於整合各種基於 SMPL-X 的研究工具到我們的 pipeline。</p>
+<div class="card-grid cols-2" style="margin-top:1.5rem">
+<div class="card card-con">
+<p class="neg" style="font-weight:700;font-size:1.6rem;margin-bottom:1rem">⚠️ 為什麼要了解 SMPL-X</p>
+<ul class="list-clean"><li><strong>格式碎片化</strong> — 不同 AI 工具輸出不同格式，難以統一</li>
+<li><strong>轉換困難</strong> — 各工具間的骨架/參數互轉需要深入理解</li>
+<li><strong>學術論文</strong> — 大量新技術基於 SMPL-X，不懂就無法使用</li>
+<li><strong>底層依賴</strong> — 4D-Humans/WHAM/SMPLer-X 都基於此模型</li></ul>
+</div>
+<div class="card">
+<p class="pos" style="font-weight:700;font-size:1.6rem;margin-bottom:1rem">✅ SMPL-X 的價值</p>
+<ul class="list-clean"><li><strong>統一標準</strong> — 學術界人體表示的通用語言</li>
+<li><strong>身+手+臉</strong> — 一個模型涵蓋全部，不需分開處理</li>
+<li><strong>工具鏈豐富</strong> — SMPLify-X/SMPLer-X/ExPose 等大量工具</li>
+<li><strong>轉換明確</strong> — SMPL-X → BVH/FBX 有成熟轉換方案</li></ul>
+</div>
+</div>
+</div>
+</section>
 
 <section class="slide" id="s3"><div class="slide-inner">
 <h2>展示影片</h2>

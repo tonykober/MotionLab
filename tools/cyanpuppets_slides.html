@@ -62,15 +62,23 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 </section>
 <section class="slide" id="s2">
 <div class="slide-inner">
-<h2>核心功能</h2>
-<p class="desc">CyanPuppets 是一個基於十億參數深度學習模型的動作捕捉系統，能從單一攝影機影片中即時追蹤 208 個關鍵點（含全身、手部、臉部），品質接近專業光學動捕系統。...</p>
-<div class="card" style="margin-top:1.5rem">
-<ul class="list-clean"><li><strong>208 關鍵點追蹤</strong> — 208 關鍵點追蹤</li>
-<li><strong>十億參數 AI 模型</strong> — 十億參數 AI 模型</li>
-<li><strong>全身+手+臉一體化</strong> — 全身+手+臉一體化</li>
-<li><strong>即時處理</strong> — 即時處理</li>
-<li><strong>FBX/BVH 輸出</strong> — FBX/BVH 輸出</li>
-<li><strong>API 支援</strong> — API 支援</li></ul>
+<h2>核心能力</h2>
+<p class="desc">一般 AI 動捕工具追蹤 17-33 個關鍵點，CyanPuppets 用十億參數大模型追蹤 208 個點，涵蓋全身、手指、臉部微表情，品質接近專業光學系統。</p>
+<div class="card-grid cols-2" style="margin-top:1.5rem">
+<div class="card card-con">
+<p class="neg" style="font-weight:700;font-size:1.6rem;margin-bottom:1rem">⚠️ 一般 AI 動捕</p>
+<ul class="list-clean"><li><strong>關鍵點不足</strong> — 多數工具只有 17-33 點，無法捕捉手指和臉部細節</li>
+<li><strong>品質差距大</strong> — AI 動捕與光學系統品質差距明顯</li>
+<li><strong>分開處理</strong> — 全身/手部/臉部需分別用不同工具再合成</li>
+<li><strong>模型較小</strong> — 小型模型在複雜動作和遮擋時容易失準</li></ul>
+</div>
+<div class="card">
+<p class="pos" style="font-weight:700;font-size:1.6rem;margin-bottom:1rem">✅ CyanPuppets 方案</p>
+<ul class="list-clean"><li><strong>208 關鍵點</strong> — 業界最高密度追蹤，含手指每個關節和臉部 70+ 表情點</li>
+<li><strong>十億參數模型</strong> — 大模型帶來更高精度和更好的遮擋處理能力</li>
+<li><strong>全身+手+臉一體</strong> — 單一模型同時追蹤所有部位，無需後期合成</li>
+<li><strong>即時處理</strong> — 大模型經優化後仍可即時運行</li></ul>
+</div>
 </div>
 </div>
 </section>

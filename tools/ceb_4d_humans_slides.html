@@ -57,11 +57,28 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <div style="margin-top:1.5rem"><span class="tag">Blender 外掛</span><span class="tag">免費開源</span><span class="tag">影片轉動畫</span><span class="tag">學術整合</span></div>
 </div></section>
 
-<section class="slide" id="s2"><div class="slide-inner">
-<h2>產品概述</h2>
-<p class="desc">CEB 4D Humans 是一個 Blender Add-on，將多個學術界最新的人體重建研究（4D-Humans、WHAM、SLAHMR）打包成易用的外掛介面。使用者只需在 Blender 中匯入影片，即可一鍵生成對應的 3D 人體動畫。</p>
-<p class="desc">開發者 Carlos Eduardo Barreto 在 GitHub 上開源了基本版本，同時在 Gumroad 上提供進階付費版本，包含更多後處理功能與技術支援。</p>
-</div></section>
+<section class="slide" id="s2">
+<div class="slide-inner">
+<h2>核心能力</h2>
+<p class="desc">CEB 4D Humans 將學術界最新的 4D-Humans 論文實作整合進 Blender，讓使用者在 Blender 內直接將影片轉為 3D 骨架動畫。免費開源但需要技術背景設置。</p>
+<div class="card-grid cols-2" style="margin-top:1.5rem">
+<div class="card card-con">
+<p class="neg" style="font-weight:700;font-size:1.6rem;margin-bottom:1rem">⚠️ 學術工具使用門檻</p>
+<ul class="list-clean"><li><strong>環境複雜</strong> — 需安裝 CUDA/PyTorch/特定 Python 版本</li>
+<li><strong>命令列操作</strong> — 學術工具多為 CLI，不友善</li>
+<li><strong>結果需轉換</strong> — SMPL 格式需額外轉為骨架動畫</li>
+<li><strong>無 GUI 預覽</strong> — 處理完才能看到結果</li></ul>
+</div>
+<div class="card">
+<p class="pos" style="font-weight:700;font-size:1.6rem;margin-bottom:1rem">✅ CEB 4D Humans 方案</p>
+<ul class="list-clean"><li><strong>Blender 內操作</strong> — 圖形介面直接在 Blender 中完成所有步驟</li>
+<li><strong>自動轉換</strong> — SMPL → Blender 骨架自動處理</li>
+<li><strong>SmoothNet 平滑</strong> — 內建動畫平滑濾鏡提升品質</li>
+<li><strong>即時預覽</strong> — 處理結果直接在 Blender 視窗中預覽</li></ul>
+</div>
+</div>
+</div>
+</section>
 
 <section class="slide" id="s3"><div class="slide-inner">
 <h2>展示影片</h2>

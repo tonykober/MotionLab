@@ -57,11 +57,28 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <div style="margin-top:1.5rem"><span class="tag">直接輸出 BVH</span><span class="tag">免費開源</span><span class="tag">即時推斷</span><span class="tag">IK 精修</span></div>
 </div></section>
 
-<section class="slide" id="s2"><div class="slide-inner">
-<h2>產品概述</h2>
-<p class="desc">MocapNET 是由希臘 Foundation for Research and Technology - Hellas（FORTH）開發的即時 3D 人體姿態估計系統。它使用 2D 姿態估計（如 OpenPose）的輸出作為輸入，透過神經網路推斷完整的 3D 關節角度。</p>
-<p class="desc">最關鍵的特色是：它直接輸出標準 BVH 格式的動作檔案。這意味著不需要任何格式轉換，即可直接用於動畫製作軟體或進入 Kimodo 後處理 pipeline。</p>
-</div></section>
+<section class="slide" id="s2">
+<div class="slide-inner">
+<h2>核心能力</h2>
+<p class="desc">MocapNET 是學術研究院開發的即時 3D 姿態估計系統，最大特色是直接輸出 BVH 格式——這讓它與 Kimodo 的 BVH 輸出完美共用同一套後處理 pipeline。</p>
+<div class="card-grid cols-2" style="margin-top:1.5rem">
+<div class="card card-con">
+<p class="neg" style="font-weight:700;font-size:1.6rem;margin-bottom:1rem">⚠️ 一般 AI 動捕的格式問題</p>
+<ul class="list-clean"><li><strong>格式不直接</strong> — 多數工具輸出 JSON/NPZ 等中間格式需轉換</li>
+<li><strong>需額外步驟</strong> — SMPL → BVH 的轉換需要額外腳本</li>
+<li><strong>精度損失</strong> — 格式轉換過程可能損失精度</li>
+<li><strong>Pipeline 複雜</strong> — 多了轉換步驟就多了出錯的環節</li></ul>
+</div>
+<div class="card">
+<p class="pos" style="font-weight:700;font-size:1.6rem;margin-bottom:1rem">✅ MocapNET 方案</p>
+<ul class="list-clean"><li><strong>直接 BVH 輸出</strong> — 原生輸出 BVH，零轉換直接可用</li>
+<li><strong>與 Kimodo 共用</strong> — 同是 BVH 格式，共用 Retarget/Foot Fix pipeline</li>
+<li><strong>即時處理</strong> — 可即時從攝影機提取 3D 動作</li>
+<li><strong>IK 精修</strong> — 內建 Inverse Kinematics 求解器修正比例</li></ul>
+</div>
+</div>
+</div>
+</section>
 
 <section class="slide" id="s3"><div class="slide-inner">
 <h2>展示影片</h2>
