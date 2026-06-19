@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>FreeMoCap — 免費開源無標記動捕</title>
+<style>
+:root{--bg-primary:#1a1f2e;--bg-card:rgba(30,42,60,0.55);--text-primary:#ffffff;--text-secondary:#b8c4d0;--text-dim:#8090a0;--accent-cyan:#4db8d4;--accent-teal:#2dd4a8;--accent-red:#e05555;--accent-gold:#f5a623;--accent-link:#e07050;--border-subtle:rgba(255,255,255,0.08);--radius-card:16px;--radius-img:10px;--font-family:'Noto Sans TC','Inter',-apple-system,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth}
+body{background:var(--bg-primary);color:var(--text-secondary);font-family:var(--font-family);overflow-x:hidden}
+body::before{content:'';position:fixed;top:-20%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(45,212,168,0.04) 0%,transparent 70%);pointer-events:none;z-index:0}
+.slide{min-height:100vh;scroll-snap-align:start;display:flex;align-items:center;padding:40px 6% 80px;position:relative;z-index:1}
+.slide-inner{max-width:1200px;width:100%;margin:0 auto}
+h1{font-size:4rem;font-weight:800;color:var(--text-primary);line-height:1.1}
+h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8rem;padding-left:1.2rem;border-left:4px solid;border-image:linear-gradient(180deg,var(--accent-teal),var(--accent-cyan)) 1}
+.desc{color:var(--text-secondary);font-size:1rem;line-height:1.8;margin:.8rem 0;max-width:800px}
+.card{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-card);padding:2.2rem}
+.card-grid{display:grid;gap:1.2rem}
+.cols-2{grid-template-columns:1fr 1fr}
+.cols-3{grid-template-columns:1fr 1fr 1fr}
+.tag{display:inline-block;background:rgba(45,212,168,0.1);border:1px solid rgba(45,212,168,0.25);color:var(--accent-teal);border-radius:6px;padding:.2rem .7rem;font-size:1rem;margin-right:.5rem;margin-bottom:.4rem}
+.list-clean{list-style:none;padding:0}
+.list-clean li{padding:.6rem 0;border-bottom:1px solid var(--border-subtle);font-size:1rem;line-height:1.7}
+.list-clean li:last-child{border:none}
+.list-clean li strong{color:var(--accent-teal)}
+.pos{color:var(--accent-teal)}
+.neg{color:var(--accent-red)}
+.video-wrap{position:relative;width:100%;max-width:800px;height:45vh;max-height:45vh;margin:0 auto;border-radius:var(--radius-img);overflow:hidden}
+.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+.nav-dots{position:fixed;right:24px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:100}
+.nav-dots a{width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,0.2);display:block;transition:.2s}
+.nav-dots a.active{width:14px;height:22px;border-radius:7px;background:var(--accent-teal);box-shadow:0 0 8px var(--accent-teal)}
+.back-link{position:fixed;top:1.5rem;left:1.5rem;color:var(--accent-link);text-decoration:none;font-size:1rem;z-index:100;opacity:.7;transition:.2s}
+.back-link:hover{opacity:1}
+.bottom-nav{position:fixed;bottom:1.2rem;left:50%;transform:translateX(-50%);background:rgba(26,31,46,0.85);backdrop-filter:blur(8px);border:1px solid var(--border-subtle);border-radius:10px;padding:.5rem 1.2rem;display:flex;align-items:center;gap:1rem;z-index:100;font-size:1rem}
+.bottom-nav button{background:none;border:none;color:var(--accent-teal);cursor:pointer;font-size:1rem;font-family:inherit;padding:.3rem .6rem;border-radius:6px;transition:.2s}
+.bottom-nav button:hover{background:rgba(45,212,168,0.15)}
+.bottom-nav .page-num{color:var(--text-secondary);min-width:3rem;text-align:center}
+@media(max-width:768px){h1{font-size:2.4rem}h2{font-size:1.6rem}.cols-2,.cols-3{grid-template-columns:1fr}.slide{padding:48px 1.2rem 80px}}
+</style>
+</head>
+<body>
+<a href="../index.html" class="back-link">← 返回首頁</a>
+<nav class="nav-dots" id="dots"></nav>
+<div class="bottom-nav"><button id="prev">← 上一頁</button><span class="page-num" id="pageNum">1/10</span><button id="next">下一頁 →</button></div>
+
+<!-- 1: Cover -->
+<section class="slide" id="s1">
+<div class="slide-inner">
+<p style="color:var(--accent-teal);font-size:.9rem;letter-spacing:2px;margin-bottom:1rem">FREEMOCAP.ORG · OPEN SOURCE</p>
+<h1>FreeMoCap</h1>
+<h1 style="font-size:2rem;font-weight:400;color:var(--text-secondary);margin-top:.5rem">多 Webcam + MediaPipe → 3D 骨架重建</h1>
+<p class="desc" style="margin-top:1.5rem">由神經科學家發起的免費開源動捕系統。用 3+ 台 USB webcam + Google MediaPipe 實現真正的 3D 三角測量重建。~9,200 GitHub stars，活躍社群。不需 GPU。</p>
+<div style="display:flex;gap:.5rem;margin-top:1.5rem;flex-wrap:wrap">
+<span class="tag">完全免費</span><span class="tag">開源 AGPL</span><span class="tag">多攝影機 3D</span><span class="tag">MediaPipe</span><span class="tag">Blender 整合</span><span class="tag">9.2K Stars</span>
+</div>
+</div>
+</section>
+
+<!-- 2: Problem -->
+<section class="slide" id="s2">
+<div class="slide-inner">
+<h2>解決什麼問題？</h2>
+<p class="desc">商業 Mocap 系統 $10K-$50K+，學術研究者和獨立開發者難以負擔。FreeMoCap 讓動捕免費化。</p>
+<div class="card-grid cols-2" style="margin-top:1.5rem">
+<div class="card">
+<p class="neg" style="font-weight:700;font-size:1.6rem;margin-bottom:1rem">❌ 傳統方式</p>
+<ul class="list-clean">
+<li><strong>$50K+ 成本</strong> — Vicon/OptiTrack 系統昂貴</li><li><strong>專用場地</strong> — 需要動捕棚</li><li><strong>閉源限制</strong> — 商業軟體不透明</li>
+</ul>
+</div>
+<div class="card">
+<p class="pos" style="font-weight:700;font-size:1.6rem;margin-bottom:1rem">✅ FreeMoCap 方案</p>
+<ul class="list-clean">
+<li><strong>$0 成本</strong> — 只需 3 台 USB webcam</li><li><strong>任何空間</strong> — 家裡/辦公室即可</li><li><strong>開源透明</strong> — MIT/AGPL 可審查修改</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 3: Video -->
+<section class="slide" id="s3">
+<div class="slide-inner" style="text-align:center">
+<h2 style="border:none;padding:0;text-align:center">展示影片</h2>
+<p class="desc" style="margin:0 auto 1.5rem;text-align:center">使用 FreeMoCap 和 AI 工具在 Blender 中製作免費動畫的完整教學。</p>
+<div class="video-wrap">
+<iframe src="https://www.youtube.com/embed/mifGsXHitvs" allowfullscreen></iframe>
+</div>
+<p style="margin-top:1rem;font-size:1rem">How to Animate in Blender - FREE Mocap Ai Tools!</p>
+</div>
+</section>
+
+<!-- 4: Features -->
+<section class="slide" id="s4">
+<div class="slide-inner">
+<h2>核心功能</h2>
+<p class="desc">FreeMoCap 的核心是多攝影機 3D 三角測量 — 比單鏡頭 AI 估算更準確。</p>
+<div class="card-grid cols-3" style="margin-top:1.5rem">
+<div class="card" style="padding:1.5rem"><p style="font-size:2rem;margin-bottom:.5rem">📷×3</p><p style="color:var(--accent-teal);font-weight:700;margin-bottom:.3rem">多攝影機</p><p style="font-size:.9rem">3+ webcam 真正 3D 重建</p></div><div class="card" style="padding:1.5rem"><p style="font-size:2rem;margin-bottom:.5rem">🧠</p><p style="color:var(--accent-teal);font-weight:700;margin-bottom:.3rem">MediaPipe</p><p style="font-size:.9rem">Google AI 33 身體關鍵點</p></div><div class="card" style="padding:1.5rem"><p style="font-size:2rem;margin-bottom:.5rem">🖐️</p><p style="color:var(--accent-teal);font-weight:700;margin-bottom:.3rem">手部+臉部</p><p style="font-size:.9rem">MediaPipe 全支援</p></div><div class="card" style="padding:1.5rem"><p style="font-size:2rem;margin-bottom:.5rem">⚡</p><p style="color:var(--accent-teal);font-weight:700;margin-bottom:.3rem">不需 GPU</p><p style="font-size:.9rem">CPU 即可運行</p></div><div class="card" style="padding:1.5rem"><p style="font-size:2rem;margin-bottom:.5rem">🎨</p><p style="color:var(--accent-teal);font-weight:700;margin-bottom:.3rem">Blender 整合</p><p style="font-size:.9rem">自動生成 .blend 場景</p></div><div class="card" style="padding:1.5rem"><p style="font-size:2rem;margin-bottom:.5rem">🐍</p><p style="color:var(--accent-teal);font-weight:700;margin-bottom:.3rem">pip install</p><p style="font-size:.9rem">一行安裝</p></div>
+</div>
+</div>
+</section>
+
+<!-- 5: Tech Specs -->
+<section class="slide" id="s5">
+<div class="slide-inner">
+<h2>技術規格</h2>
+<p class="desc">FreeMoCap 的技術能力和限制。</p>
+<div class="card" style="margin-top:1.5rem">
+<ul class="list-clean">
+<li><strong>輸出</strong> — CSV, NumPy, Blender .blend, BVH(via addon)</li><li><strong>精度</strong> — 公分級（1-3cm）</li><li><strong>需求</strong> — 3+ USB webcam, Python 3.10-3.12</li><li><strong>平台</strong> — Windows / macOS / Linux</li><li><strong>授權</strong> — AGPL-3.0（商用需洽談）</li><li><strong>社群</strong> — ~9,200 stars, 活躍 Discord</li>
+</ul>
+</div>
+</div>
+</section>
+
+<!-- 6: Pricing -->
+<section class="slide" id="s6">
+<div class="slide-inner">
+<h2>定價方案</h2>
+<p class="desc">FreeMoCap 完全免費，但需要自備硬體（3 台 webcam ~$50-$150）。</p>
+<div class="card-grid cols-3" style="margin-top:1.5rem">
+<div class="card" style="text-align:center"><p style="color:var(--accent-teal);font-weight:700;font-size:1.2rem;margin-bottom:.5rem">軟體</p><p style="font-size:2.5rem;font-weight:800;color:var(--text-primary)">$0</p><p style="margin-top:.5rem;font-size:.9rem">完全免費</p></div><div class="card" style="text-align:center"><p style="color:var(--accent-teal);font-weight:700;font-size:1.2rem;margin-bottom:.5rem">硬體</p><p style="font-size:2.5rem;font-weight:800;color:var(--text-primary)">~$100</p><p style="margin-top:.5rem;font-size:.9rem">3 台 USB webcam</p></div><div class="card" style="text-align:center"><p style="color:var(--accent-teal);font-weight:700;font-size:1.2rem;margin-bottom:.5rem">總計</p><p style="font-size:2.5rem;font-weight:800;color:var(--text-primary)">~$100</p><p style="margin-top:.5rem;font-size:.9rem">一次性投資</p></div>
+</div>
+</div>
+</section>
+
+<!-- 7: Pros & Cons -->
+<section class="slide" id="s7">
+<div class="slide-inner">
+<h2>優缺點分析</h2>
+<p class="desc">基於實際調研的綜合評估。</p>
+<div class="card-grid cols-2" style="margin-top:1.5rem">
+<div class="card">
+<p class="pos" style="font-weight:700;font-size:1.4rem;margin-bottom:1rem">✅ 優點</p>
+<ul class="list-clean">
+<li>完全免費零軟體成本</li><li>真正 3D 重建（非單鏡頭估算）</li><li>不需 GPU</li><li>Blender 原生整合</li><li>BVH 可匯出（via addon）</li><li>活躍開源社群</li>
+</ul>
+</div>
+<div class="card card-con">
+<p class="neg" style="font-weight:700;font-size:1.4rem;margin-bottom:1rem">❌ 缺點</p>
+<ul class="list-clean">
+<li>精度有限（公分級）</li><li>多攝影機校準學習曲線</li><li>非即時（後處理）</li><li>FBX 需手動 Blender 中介</li><li>AGPL 商用限制</li><li>Retarget 到 UE/Unity 不完善</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 8: Integration -->
+<section class="slide" id="s8">
+<div class="slide-inner">
+<h2>與 Kimodo 的整合方式</h2>
+<p class="desc">FreeMoCap 適合作為團隊內部零成本動作參考拍攝工具。</p>
+<div class="card" style="margin-top:1.5rem">
+<ul class="list-clean">
+<li><strong>格式</strong> — BVH 可匯出（透過 Blender addon）</li><li><strong>互補</strong> — FreeMoCap = 本地多鏡頭 3D；Kimodo = text-to-motion</li><li><strong>成本</strong> — 兩者都免費/極低</li><li><strong>適合</strong> — 團隊內部自拍參考動作</li>
+</ul>
+</div>
+</div>
+</section>
+
+<!-- 9: Workflow -->
+<section class="slide" id="s9">
+<div class="slide-inner">
+<h2>量產工作流定位</h2>
+<p class="desc">FreeMoCap 是「零成本本地端 Mocap 基礎設施」。</p>
+<div class="card" style="margin-top:1.5rem;font-family:monospace;font-size:.95rem;line-height:1.8;white-space:pre-wrap">團隊辦公室拍攝 → FreeMoCap 3D 重建 → BVH
+文字描述 → Kimodo → BVH
+量產需求 → Viggle API（更快更方便）
+
+適合：初期原型/概念驗證
+正式量產：切換到 Viggle/Move.AI</div>
+</div>
+</section>
+
+<!-- 10: Verdict -->
+<section class="slide" id="s10">
+<div class="slide-inner">
+<h2>總結評分與行動建議</h2>
+<p class="desc">綜合評估與下一步建議。</p>
+<div class="card-grid cols-3" style="margin-top:1.5rem">
+<div class="card" style="padding:1.2rem"><p style="font-size:1rem;margin-bottom:.3rem">相關性</p><p style="color:var(--accent-teal)">⭐⭐</p></div><div class="card" style="padding:1.2rem"><p style="font-size:1rem;margin-bottom:.3rem">成熟度</p><p style="color:var(--accent-teal)">⭐⭐⭐</p></div><div class="card" style="padding:1.2rem"><p style="font-size:1rem;margin-bottom:.3rem">易用性</p><p style="color:var(--accent-teal)">⭐⭐⭐</p></div><div class="card" style="padding:1.2rem"><p style="font-size:1rem;margin-bottom:.3rem">性價比</p><p style="color:var(--accent-teal)">⭐⭐⭐⭐⭐</p></div><div class="card" style="padding:1.2rem"><p style="font-size:1rem;margin-bottom:.3rem">整合潛力</p><p style="color:var(--accent-teal)">⭐⭐</p></div><div class="card" style="padding:1.2rem"><p style="font-size:1rem;margin-bottom:.3rem">量產適合度</p><p style="color:var(--accent-teal)">⭐</p></div>
+</div>
+<div class="card" style="margin-top:1.5rem;border-color:var(--accent-teal)">
+<p class="pos" style="font-size:1.3rem;font-weight:800;margin-bottom:1rem">🔵 低優先級備選 — 免費但量產場景商業方案更方便</p>
+<ul class="list-clean">
+<li><strong>Step 1</strong> — pip install freemocap 體驗基本流程</li><li><strong>Step 2</strong> — 如有 3 台 webcam 可測試品質</li><li><strong>Step 3</strong> — 與 Viggle($0.03/clip) 比較便利性</li><li><strong>Step 4</strong> — 不列為正式 Pipeline 工具</li>
+</ul>
+</div>
+<p style="margin-top:2rem;font-size:1rem;color:var(--text-dim)">MotionLab Research · 2026-06-19 · freemocap.org</p>
+</div>
+</section>
+
+<script>
+const d=document.getElementById('dots');const total=10;
+for(let i=1;i<=total;i++){const a=document.createElement('a');a.href='#s'+i;d.appendChild(a)}
+let cur=1;
+function updateNav(){document.getElementById('pageNum').textContent=cur+'/'+total;document.getElementById('prev').style.visibility=cur===1?'hidden':'visible';document.getElementById('next').style.visibility=cur===total?'hidden':'visible'}
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){cur=parseInt(e.target.id.slice(1));d.querySelectorAll('a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));updateNav()}}},{threshold:.5});
+document.querySelectorAll('.slide').forEach(s=>obs.observe(s));updateNav();
+function go(n){const t=Math.max(1,Math.min(total,n));document.getElementById('s'+t).scrollIntoView({behavior:'smooth'})}
+document.getElementById('prev').onclick=()=>go(cur-1);document.getElementById('next').onclick=()=>go(cur+1);
+document.addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();go(cur+1)}if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();go(cur-1)}});
+</script>
+</body>
+</html>

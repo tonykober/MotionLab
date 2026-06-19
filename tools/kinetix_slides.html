@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Kinetix — 簡報版</title>
+<style>
+:root{--bg:#1a1f2e;--card:rgba(30,42,60,0.55);--card-border:rgba(77,184,212,0.15);--cyan:#2dd4a8;--blue:#4db8d4;--red:#ff6b6b;--text:#fff;--text2:#b8c4d0;--muted:#7a8a9e;--font:-apple-system,'Noto Sans TC',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}body{background:var(--bg);color:var(--text2);font-family:var(--font);overflow:hidden}
+body::before{content:'';position:fixed;top:0;right:0;width:60%;height:60%;background:radial-gradient(ellipse at 85% 15%,rgba(45,212,168,0.08) 0%,transparent 55%);pointer-events:none}
+.slides{height:100vh;overflow-y:scroll;scroll-snap-type:y mandatory;scroll-behavior:smooth}
+.slide{min-height:100vh;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:center;padding:40px 48px 80px}
+h1{font-size:2.6rem;font-weight:800;color:var(--text);margin-bottom:1rem}
+h2{font-size:1.5rem;font-weight:700;color:var(--blue);border-left:4px solid;border-image:linear-gradient(180deg,#2dd4a8,#4db8d4) 1;padding-left:16px;margin-bottom:1rem}
+p{margin:.6rem 0;line-height:1.7}.card{background:var(--card);border:1px solid var(--card-border);border-radius:16px;padding:28px;margin:1rem 0;backdrop-filter:blur(8px)}
+table{border-collapse:collapse;margin:1rem 0;width:100%}th,td{border:1px solid #333;padding:8px 12px;text-align:left;font-size:1rem}th{background:#2a2a3e;color:var(--blue)}
+ul{margin:.5rem 0 .5rem 1.5rem}li{margin:.4rem 0;line-height:1.6}strong.g{color:var(--cyan)}strong.r{color:var(--red)}
+.video-box{width:100%;max-width:720px;max-height:45vh;aspect-ratio:16/9;border-radius:12px;overflow:hidden;margin:1rem 0}.video-box iframe{width:100%;height:100%;border:none}
+.nav-dots{position:fixed;right:24px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:100}
+.nav-dots span{width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,0.25);cursor:pointer;transition:all .3s}
+.nav-dots span.active{height:32px;border-radius:7px;background:var(--cyan);box-shadow:0 0 12px rgba(45,212,168,0.5)}
+.nav-bar{position:fixed;bottom:0;left:0;right:0;height:56px;display:flex;align-items:center;justify-content:center;gap:24px;background:rgba(26,31,46,0.92);backdrop-filter:blur(8px);border-top:1px solid rgba(77,184,212,0.1);z-index:100}
+.nav-bar button{background:none;border:1px solid var(--blue);color:var(--blue);padding:8px 20px;border-radius:8px;cursor:pointer;font-size:1rem}.nav-bar button:hover{background:var(--blue);color:#000}
+.nav-bar .page{color:var(--muted);font-size:.9rem}
+</style>
+</head>
+<body>
+<div class="slides" id="slides">
+
+<section class="slide"><div style="text-align:center;width:100%">
+<h1>🎮 Kinetix</h1>
+<p style="font-size:1.3rem;color:var(--text2);margin-top:1rem">遊戲內 AI 動畫生成 SDK 平台</p>
+<p style="color:var(--muted);margin-top:2rem">B2B SDK — 讓玩家在遊戲內用影片/文字即時生成自訂動畫（emotes）</p>
+</div></section>
+
+<section class="slide">
+<h2>核心能力</h2>
+<p>Kinetix 是一家法國 AI 動畫公司，提供遊戲開發者嵌入式 SDK。玩家可在遊戲中直接上傳影片或輸入文字描述，AI 即時生成自訂 3D emote 動作。定位為 B2B 平台，非個人動畫工具。</p>
+<div class="card">
+<table>
+<tr><th>功能</th><th>說明</th></tr>
+<tr><td>Video-to-Animation</td><td>玩家上傳影片 → 3D 動作</td></tr>
+<tr><td>Text-to-Animation</td><td>文字描述 → 3D 動畫</td></tr>
+<tr><td>Unity/Unreal SDK</td><td>原生引擎嵌入</td></tr>
+<tr><td>UGC 市場</td><td>玩家可交易自訂動畫</td></tr>
+<tr><td>Kamo-1 影片模型</td><td>3D 條件化 AI 影片生成</td></tr>
+<tr><td>即時預覽</td><td>遊戲內即時看到效果</td></tr>
+</table>
+</div>
+</section>
+
+<section class="slide">
+<h2>影片展示</h2>
+<p>Kinetix SDK 官方展示：在遊戲中透過 AI 為角色生成 Emote 動畫。</p>
+<div class="video-box">
+<iframe src="https://www.youtube.com/embed/dNXc5Z_kvlY" allowfullscreen></iframe>
+</div>
+<p style="color:var(--muted);font-size:.85rem">Animate Characters With Emotes — Kinetix AI SDK</p>
+</section>
+
+<section class="slide">
+<h2>定位與商業模式</h2>
+<p>Kinetix 是 B2B 平台，不是動畫師的日常工具。它服務的是「遊戲上線後」的玩家 UGC 需求。</p>
+<div class="card">
+<table>
+<tr><th>項目</th><th>內容</th></tr>
+<tr><td>目標客戶</td><td>遊戲開發工作室</td></tr>
+<tr><td>商業模式</td><td>SaaS API 按呼叫量計費</td></tr>
+<tr><td>引擎支援</td><td>Unity / Unreal / Web</td></tr>
+<tr><td>Free Tier</td><td>有（有限 API 呼叫）</td></tr>
+<tr><td>Enterprise</td><td>客製報價</td></tr>
+</table>
+</div>
+<div class="card">
+<p><strong>關鍵區分</strong>：</p>
+<ul>
+<li>開發期動作量產 → <strong class="g">Kimodo</strong>（我們用）</li>
+<li>營運期玩家 UGC → <strong class="g">Kinetix</strong>（給玩家用）</li>
+</ul>
+</div>
+</section>
+
+<section class="slide">
+<h2>優缺點</h2>
+<p>Kinetix 在遊戲內 AI UGC 動畫領域處於領先地位，但不是我們動作設計的日常工具。</p>
+<div class="card">
+<ul>
+<li><strong class="g">遊戲內原生整合</strong> — 玩家無需離開遊戲</li>
+<li><strong class="g">Text-to-Animation</strong> — 降低創作門檻</li>
+<li><strong class="g">多引擎支援</strong> — Unity + Unreal + Web</li>
+<li><strong class="g">UGC 生態</strong> — 增加遊戲黏性和營收</li>
+<li><strong class="r">B2B Only</strong> — 個人無法直接使用</li>
+<li><strong class="r">品質不確定</strong> — 玩家生成品質參差</li>
+<li><strong class="r">價格不透明</strong> — 需個案洽談</li>
+<li><strong class="r">雲端依賴</strong> — 無離線模式</li>
+</ul>
+</div>
+</section>
+
+<section class="slide">
+<h2>與我們工作流的關係</h2>
+<p>Kinetix 和我們的 Kimodo 工作流是「不同階段」的工具——一個用於開發，一個用於營運。</p>
+<div class="card">
+<table>
+<tr><th>階段</th><th>工具</th><th>用途</th></tr>
+<tr><td>開發期</td><td>Kimodo + ARP</td><td>製作角色預設動作庫</td></tr>
+<tr><td>營運期</td><td>Kinetix SDK</td><td>玩家自訂 UGC 動畫</td></tr>
+</table>
+<p style="margin-top:1rem">兩者可在同一遊戲中共存：Kimodo 做基礎，Kinetix 做擴展。</p>
+</div>
+</section>
+
+<section class="slide">
+<h2>總結與建議</h2>
+<p>Kinetix 不在動作設計師的日常工具鏈中，但值得推薦給遊戲企劃/製作人了解。</p>
+<div class="card">
+<table>
+<tr><th>項目</th><th>評分</th></tr>
+<tr><td>技術能力</td><td>⭐⭐⭐⭐</td></tr>
+<tr><td>對我們適用性</td><td>⭐⭐（營運工具，非製作工具）</td></tr>
+<tr><td>創新性</td><td>⭐⭐⭐⭐⭐</td></tr>
+<tr><td>量產適用性</td><td>⭐（不是量產工具）</td></tr>
+</table>
+<p style="margin-top:1rem;color:var(--muted)"><strong>建議</strong>：列為「營運期工具參考」，轉知企劃/製作人評估。不納入動作設計日常工具鏈。</p>
+</div>
+</section>
+
+</div>
+<div class="nav-dots" id="dots"></div>
+<div class="nav-bar"><button id="prev" onclick="go(-1)">← 上一頁</button><span class="page" id="pageNum">1/7</span><button id="next" onclick="go(1)">下一頁 →</button></div>
+<script>
+const slides=document.querySelectorAll('.slide'),dots=document.getElementById('dots'),container=document.getElementById('slides');
+let cur=0;const total=slides.length;
+slides.forEach((_,i)=>{const d=document.createElement('span');d.onclick=()=>{cur=i;update()};dots.appendChild(d)});
+function update(){slides[cur].scrollIntoView({behavior:'smooth'});document.querySelectorAll('.nav-dots span').forEach((d,i)=>d.classList.toggle('active',i===cur));document.getElementById('pageNum').textContent=(cur+1)+' / '+total;document.getElementById('prev').style.visibility=cur===0?'hidden':'visible';document.getElementById('next').style.visibility=cur===total-1?'hidden':'visible'}
+function go(d){cur=Math.max(0,Math.min(total-1,cur+d));update()}
+container.addEventListener('scroll',()=>{const i=Math.round(container.scrollTop/window.innerHeight);if(i!==cur){cur=i;update()}});
+document.addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='ArrowRight')go(1);if(e.key==='ArrowUp'||e.key==='ArrowLeft')go(-1)});
+update();
+</script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Radical Motion — 簡報版</title>
+<style>
+:root{--bg:#1a1f2e;--card:rgba(30,42,60,0.55);--card-border:rgba(77,184,212,0.15);--cyan:#2dd4a8;--blue:#4db8d4;--red:#ff6b6b;--text:#fff;--text2:#b8c4d0;--muted:#7a8a9e;--font:-apple-system,'Noto Sans TC',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text2);font-family:var(--font);overflow:hidden}
+body::before{content:'';position:fixed;top:0;right:0;width:60%;height:60%;background:radial-gradient(ellipse at 85% 15%,rgba(45,212,168,0.08) 0%,transparent 55%);pointer-events:none}
+.slides{height:100vh;overflow-y:scroll;scroll-snap-type:y mandatory;scroll-behavior:smooth}
+.slide{min-height:100vh;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:center;padding:40px 48px 80px}
+h1{font-size:2.6rem;font-weight:800;color:var(--text);margin-bottom:1rem}
+h2{font-size:1.5rem;font-weight:700;color:var(--blue);border-left:4px solid;border-image:linear-gradient(180deg,#2dd4a8,#4db8d4) 1;padding-left:16px;margin-bottom:1rem}
+p{margin:.6rem 0;line-height:1.7}
+.card{background:var(--card);border:1px solid var(--card-border);border-radius:16px;padding:28px;margin:1rem 0;backdrop-filter:blur(8px)}
+table{border-collapse:collapse;margin:1rem 0;width:100%}
+th,td{border:1px solid #333;padding:8px 12px;text-align:left;font-size:1rem}
+th{background:#2a2a3e;color:var(--blue)}
+ul{margin:.5rem 0 .5rem 1.5rem}
+li{margin:.4rem 0;line-height:1.6}
+strong.g{color:var(--cyan)}
+strong.r{color:var(--red)}
+.video-box{width:100%;max-width:720px;max-height:45vh;aspect-ratio:16/9;border-radius:12px;overflow:hidden;margin:1rem 0}
+.video-box iframe{width:100%;height:100%;border:none}
+.badge{display:inline-block;background:var(--red);color:#fff;padding:4px 12px;border-radius:6px;font-size:.9rem;font-weight:700;margin:.5rem 0}
+.nav-dots{position:fixed;right:24px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:100}
+.nav-dots span{width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,0.25);cursor:pointer;transition:all .3s}
+.nav-dots span.active{height:32px;border-radius:7px;background:var(--cyan);box-shadow:0 0 12px rgba(45,212,168,0.5)}
+.nav-bar{position:fixed;bottom:0;left:0;right:0;height:56px;display:flex;align-items:center;justify-content:center;gap:24px;background:rgba(26,31,46,0.92);backdrop-filter:blur(8px);border-top:1px solid rgba(77,184,212,0.1);z-index:100}
+.nav-bar button{background:none;border:1px solid var(--blue);color:var(--blue);padding:8px 20px;border-radius:8px;cursor:pointer;font-size:1rem}
+.nav-bar button:hover{background:var(--blue);color:#000}
+.nav-bar .page{color:var(--muted);font-size:.9rem}
+</style>
+</head>
+<body>
+<div class="slides" id="slides">
+
+<section class="slide">
+<div style="text-align:center;width:100%">
+<h1>⚡ RADiCAL Motion</h1>
+<span class="badge">⚠️ 已關閉 — 被 Autodesk 收購</span>
+<p style="font-size:1.3rem;color:var(--text2);margin-top:1rem">AI 驅動的無穿戴動作捕捉（已停止服務）</p>
+</div>
+</section>
+
+<section class="slide">
+<h2>曾經的核心能力</h2>
+<p>RADiCAL Motion 是一家紐約 AI 動捕公司，提供雲端和即時的單攝影機 3D 動捕服務。2024 年被 Autodesk 收購後停止獨立營運，技術整合入 Autodesk 產品線。</p>
+<div class="card">
+<ul>
+<li><strong class="g">單攝影機 3D 動捕</strong> — 瀏覽器即時預視</li>
+<li><strong class="g">雲端處理</strong> — 上傳影片即可生成 3D 動畫</li>
+<li><strong class="g">即時模式</strong> — 可在瀏覽器中即時動捕</li>
+<li><strong class="g">FBX/BVH 輸出</strong> — 標準遊戲引擎格式</li>
+<li><strong class="g">Unreal Engine 整合</strong> — Live Link 即時串流</li>
+</ul>
+</div>
+</section>
+
+<section class="slide">
+<h2>影片展示（歷史資料）</h2>
+<p>以下是 RADiCAL Motion 營運時期的展示影片，展示其 AI 無穿戴動捕技術。</p>
+<div class="video-box">
+<iframe src="https://www.youtube.com/embed/5nURQTpV4N8" allowfullscreen></iframe>
+</div>
+<p style="color:var(--muted);font-size:.85rem">The Future of Suitless AI Motion Capture — Radical Motion</p>
+</section>
+
+<section class="slide">
+<h2>為何關閉 & 後續影響</h2>
+<p>RADiCAL Motion 於 2024 年被 Autodesk 收購。技術團隊和 AI 模型被整合到 Autodesk 的動畫工具鏈（Maya/MotionBuilder）中，原始服務已停止。</p>
+<div class="card">
+<table>
+<tr><th>時間</th><th>事件</th></tr>
+<tr><td>2018</td><td>RADiCAL 成立，推出雲端 AI 動捕</td></tr>
+<tr><td>2021-2023</td><td>推出即時模式 + UE Live Link</td></tr>
+<tr><td>2024</td><td>被 Autodesk 收購，停止獨立服務</td></tr>
+<tr><td>未來</td><td>技術可能出現在 Maya/MotionBuilder 中</td></tr>
+</table>
+</div>
+</section>
+
+<section class="slide">
+<h2>對我們的啟示</h2>
+<p>RADiCAL 的關閉提醒我們：依賴雲端 SaaS 動捕服務有供應商風險。本地化工具（如 Kimodo）更可控。</p>
+<div class="card">
+<ul>
+<li><strong class="r">雲端依賴風險</strong> — 服務關閉 = 工具消失</li>
+<li><strong class="g">技術方向正確</strong> — 單攝影機 AI 動捕是趨勢</li>
+<li><strong class="g">替代方案</strong> — Move.AI、DeepMotion、Plask 提供類似服務</li>
+<li><strong class="g">本地優先</strong> — Kimodo/MocapNET 等本地工具更穩定</li>
+</ul>
+<p style="margin-top:1rem;color:var(--muted)"><strong>結論</strong>：不再評估。關注 Autodesk 未來是否將技術整合到 Maya。</p>
+</div>
+</section>
+
+</div>
+
+<div class="nav-dots" id="dots"></div>
+<div class="nav-bar">
+<button id="prev" onclick="go(-1)">← 上一頁</button>
+<span class="page" id="pageNum">1 / 5</span>
+<button id="next" onclick="go(1)">下一頁 →</button>
+</div>
+
+<script>
+const slides=document.querySelectorAll('.slide'),dots=document.getElementById('dots'),container=document.getElementById('slides');
+let cur=0;const total=slides.length;
+slides.forEach((_,i)=>{const d=document.createElement('span');d.onclick=()=>{cur=i;update()};dots.appendChild(d)});
+function update(){slides[cur].scrollIntoView({behavior:'smooth'});document.querySelectorAll('.nav-dots span').forEach((d,i)=>d.classList.toggle('active',i===cur));document.getElementById('pageNum').textContent=(cur+1)+' / '+total;document.getElementById('prev').style.visibility=cur===0?'hidden':'visible';document.getElementById('next').style.visibility=cur===total-1?'hidden':'visible'}
+function go(d){cur=Math.max(0,Math.min(total-1,cur+d));update()}
+container.addEventListener('scroll',()=>{const i=Math.round(container.scrollTop/window.innerHeight);if(i!==cur){cur=i;update()}});
+document.addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='ArrowRight')go(1);if(e.key==='ArrowUp'||e.key==='ArrowLeft')go(-1)});
+update();
+</script>
+</body>
+</html>

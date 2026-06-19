@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>CyanPuppets — 簡報版</title>
+<style>
+:root{--bg:#1a1f2e;--card:rgba(30,42,60,0.55);--card-border:rgba(77,184,212,0.15);--cyan:#2dd4a8;--blue:#4db8d4;--red:#ff6b6b;--text:#fff;--text2:#b8c4d0;--muted:#7a8a9e;--font:-apple-system,'Noto Sans TC',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}body{background:var(--bg);color:var(--text2);font-family:var(--font);overflow:hidden}
+body::before{content:'';position:fixed;top:0;right:0;width:60%;height:60%;background:radial-gradient(ellipse at 85% 15%,rgba(45,212,168,0.08) 0%,transparent 55%);pointer-events:none}
+.slides{height:100vh;overflow-y:scroll;scroll-snap-type:y mandatory;scroll-behavior:smooth}
+.slide{min-height:100vh;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:center;padding:40px 48px 80px}
+h1{font-size:2.6rem;font-weight:800;color:var(--text);margin-bottom:1rem}
+h2{font-size:1.5rem;font-weight:700;color:var(--blue);border-left:4px solid;border-image:linear-gradient(180deg,#2dd4a8,#4db8d4) 1;padding-left:16px;margin-bottom:1rem}
+p{margin:.6rem 0;line-height:1.7}.card{background:var(--card);border:1px solid var(--card-border);border-radius:16px;padding:28px;margin:1rem 0;backdrop-filter:blur(8px)}
+table{border-collapse:collapse;margin:1rem 0;width:100%}th,td{border:1px solid #333;padding:8px 12px;text-align:left;font-size:1rem}th{background:#2a2a3e;color:var(--blue)}
+ul{margin:.5rem 0 .5rem 1.5rem}li{margin:.4rem 0;line-height:1.6}strong.g{color:var(--cyan)}strong.r{color:var(--red)}
+.video-box{width:100%;max-width:720px;max-height:45vh;aspect-ratio:16/9;border-radius:12px;overflow:hidden;margin:1rem 0}.video-box iframe{width:100%;height:100%;border:none}
+.nav-dots{position:fixed;right:24px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:100}
+.nav-dots span{width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,0.25);cursor:pointer;transition:all .3s}
+.nav-dots span.active{height:32px;border-radius:7px;background:var(--cyan);box-shadow:0 0 12px rgba(45,212,168,0.5)}
+.nav-bar{position:fixed;bottom:0;left:0;right:0;height:56px;display:flex;align-items:center;justify-content:center;gap:24px;background:rgba(26,31,46,0.92);backdrop-filter:blur(8px);border-top:1px solid rgba(77,184,212,0.1);z-index:100}
+.nav-bar button{background:none;border:1px solid var(--blue);color:var(--blue);padding:8px 20px;border-radius:8px;cursor:pointer;font-size:1rem}.nav-bar button:hover{background:var(--blue);color:#000}
+.nav-bar .page{color:var(--muted);font-size:.9rem}
+</style>
+</head>
+<body>
+<div class="slides" id="slides">
+
+<section class="slide"><div style="text-align:center;width:100%">
+<h1>🧬 CyanPuppets</h1>
+<p style="font-size:1.3rem;color:var(--text2);margin-top:1rem">AI 即時全身無標記動捕 — 10 億參數模型</p>
+<p style="color:var(--muted);margin-top:2rem">單攝影機 1080P → 全身即時動捕 → Blender / UE5 / Unity 串流</p>
+</div></section>
+
+<section class="slide">
+<h2>核心能力</h2>
+<p>CyanPuppets 使用自研的 10 億參數 AI 模型，從單一 1080P 攝影機即時追蹤全身動作。支援即時串流到 Blender、Unreal Engine 5、Unity，並提供 CyanSDK 嵌入到自有應用。</p>
+<div class="card">
+<table>
+<tr><th>功能</th><th>說明</th></tr>
+<tr><td>全身即時追蹤</td><td>單攝影機 1080P，低延遲</td></tr>
+<tr><td>10 億參數 AI 模型</td><td>自研大型模型，高精度</td></tr>
+<tr><td>Blender 即時連接</td><td>直接串流到 Blender 動畫骨架</td></tr>
+<tr><td>UE5 插件</td><td>CyanSDK 嵌入 UE5 工作流</td></tr>
+<tr><td>手指追蹤</td><td>包含手指動作（精度中等）</td></tr>
+<tr><td>多人追蹤</td><td>支援多人同畫面</td></tr>
+<tr><td>BVH/FBX 匯出</td><td>可錄製存檔</td></tr>
+</table>
+</div>
+</section>
+
+<section class="slide">
+<h2>影片展示</h2>
+<p>CyanPuppets 官方展示：1 分鐘學會使用 CyanSDK 進行無標記動捕。</p>
+<div class="video-box">
+<iframe src="https://www.youtube.com/embed/Y7G56OTK6yM" allowfullscreen></iframe>
+</div>
+<p style="color:var(--muted);font-size:.85rem">Learn markerless motion capture with CyanSDK in 1 minute</p>
+</section>
+
+<section class="slide">
+<h2>技術規格與定價</h2>
+<p>CyanPuppets 提供個人版和企業 SDK 兩種方案。個人版面向 VTuber/獨立開發者，SDK 版面向遊戲工作室。</p>
+<div class="card">
+<table>
+<tr><th>項目</th><th>規格</th></tr>
+<tr><td>AI 模型</td><td>10 億參數自研模型</td></tr>
+<tr><td>輸入</td><td>1080P Webcam（單攝影機）</td></tr>
+<tr><td>輸出</td><td>即時串流 + BVH/FBX 錄製</td></tr>
+<tr><td>串流目標</td><td>Blender / UE5 / Unity / 自訂</td></tr>
+<tr><td>延遲</td><td>低延遲即時（~50ms）</td></tr>
+<tr><td>平台</td><td>Windows / Linux</td></tr>
+</table>
+</div>
+<div class="card">
+<table>
+<tr><th>方案</th><th>價格</th><th>說明</th></tr>
+<tr><td>Individual Edition</td><td>免費/低價</td><td>個人 VTuber 使用</td></tr>
+<tr><td>CyanSDK（企業）</td><td>需洽談</td><td>嵌入 UE5/Unity 專案</td></tr>
+</table>
+</div>
+</section>
+
+<section class="slide">
+<h2>優點</h2>
+<p>CyanPuppets 的核心優勢在於大型 AI 模型帶來的高精度，配合單攝影機的極低硬體門檻。</p>
+<div class="card">
+<ul>
+<li><strong class="g">10 億參數大模型</strong> — 精度優於一般輕量方案</li>
+<li><strong class="g">單攝影機</strong> — 只需 1080P Webcam</li>
+<li><strong class="g">全身+手指</strong> — 不只是上半身</li>
+<li><strong class="g">BVH/FBX 匯出</strong> — 可存檔用於動畫管線</li>
+<li><strong class="g">UE5 SDK</strong> — 直接嵌入遊戲引擎</li>
+<li><strong class="g">即時低延遲</strong> — 適合互動和直播</li>
+</ul>
+</div>
+</section>
+
+<section class="slide">
+<h2>限制</h2>
+<p>作為新進工具，CyanPuppets 的生態和穩定性仍需驗證。</p>
+<div class="card">
+<ul>
+<li><strong class="r">相對較新</strong> — 生態和社群不如 Move.AI 成熟</li>
+<li><strong class="r">SDK 價格不透明</strong> — 企業版需個案洽談</li>
+<li><strong class="r">單攝影機限制</strong> — 遮擋時精度下降</li>
+<li><strong class="r">GPU 需求</strong> — 10 億參數模型需要較好顯卡</li>
+<li><strong class="r">文件較少</strong> — 教學資源有限</li>
+</ul>
+</div>
+</section>
+
+<section class="slide">
+<h2>與我們工作流的整合</h2>
+<p>CyanPuppets 可作為「有演員時」的即時動捕方案，與 Kimodo 的「無演員文字生成」互補。</p>
+<div class="card">
+<table>
+<tr><th>場景</th><th>工具選擇</th></tr>
+<tr><td>有演員 + 即時需求</td><td>CyanPuppets → BVH → ARP → 引擎</td></tr>
+<tr><td>無演員 + 量產</td><td>Kimodo → BVH → ARP → 引擎</td></tr>
+<tr><td>UE5 即時動捕</td><td>CyanSDK 嵌入 UE5</td></tr>
+</table>
+<p style="margin-top:1rem;color:var(--muted)">CyanPuppets 的 BVH 輸出可直接進入 ARP Remap 管線，格式完全相容。</p>
+</div>
+</section>
+
+<section class="slide">
+<h2>總結</h2>
+<p>CyanPuppets 是新一代 AI 動捕方案中的有力競爭者，10 億參數模型的精度值得期待。</p>
+<div class="card">
+<table>
+<tr><th>項目</th><th>評分</th></tr>
+<tr><td>動作品質</td><td>⭐⭐⭐⭐（大模型精度高）</td></tr>
+<tr><td>量產適用性</td><td>⭐⭐⭐（有 BVH 輸出，但需演員）</td></tr>
+<tr><td>性價比</td><td>⭐⭐⭐⭐（個人版低價/免費）</td></tr>
+<tr><td>與 Kimodo 互補</td><td>⭐⭐⭐⭐（即時 vs 離線互補）</td></tr>
+</table>
+<p style="margin-top:1rem;color:var(--muted)"><strong>建議</strong>：列為「有演員即時動捕」首選評估對象。測試 BVH 品質後決定是否採用。</p>
+</div>
+</section>
+
+</div>
+<div class="nav-dots" id="dots"></div>
+<div class="nav-bar"><button id="prev" onclick="go(-1)">← 上一頁</button><span class="page" id="pageNum">1/8</span><button id="next" onclick="go(1)">下一頁 →</button></div>
+<script>
+const slides=document.querySelectorAll('.slide'),dots=document.getElementById('dots'),container=document.getElementById('slides');
+let cur=0;const total=slides.length;
+slides.forEach((_,i)=>{const d=document.createElement('span');d.onclick=()=>{cur=i;update()};dots.appendChild(d)});
+function update(){slides[cur].scrollIntoView({behavior:'smooth'});document.querySelectorAll('.nav-dots span').forEach((d,i)=>d.classList.toggle('active',i===cur));document.getElementById('pageNum').textContent=(cur+1)+' / '+total;document.getElementById('prev').style.visibility=cur===0?'hidden':'visible';document.getElementById('next').style.visibility=cur===total-1?'hidden':'visible'}
+function go(d){cur=Math.max(0,Math.min(total-1,cur+d));update()}
+container.addEventListener('scroll',()=>{const i=Math.round(container.scrollTop/window.innerHeight);if(i!==cur){cur=i;update()}});
+document.addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='ArrowRight')go(1);if(e.key==='ArrowUp'||e.key==='ArrowLeft')go(-1)});
+update();
+</script>
+</body>
+</html>

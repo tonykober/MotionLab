@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Plask Motion — AI 影片轉 3D 動畫</title>
+<style>
+:root{--bg-primary:#1a1f2e;--bg-card:rgba(30,42,60,0.55);--text-primary:#ffffff;--text-secondary:#b8c4d0;--text-dim:#8090a0;--accent-cyan:#4db8d4;--accent-teal:#2dd4a8;--accent-red:#e05555;--accent-gold:#f5a623;--accent-link:#e07050;--border-subtle:rgba(255,255,255,0.08);--radius-card:16px;--radius-img:10px;--font-family:'Noto Sans TC','Inter',-apple-system,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth}
+body{background:var(--bg-primary);color:var(--text-secondary);font-family:var(--font-family);overflow-x:hidden}
+body::before{content:'';position:fixed;top:-20%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(45,212,168,0.04) 0%,transparent 70%);pointer-events:none;z-index:0}
+.slide{min-height:100vh;scroll-snap-align:start;display:flex;align-items:center;padding:40px 6% 80px;position:relative;z-index:1}
+.slide-inner{max-width:1200px;width:100%;margin:0 auto}
+h1{font-size:4rem;font-weight:800;color:var(--text-primary);line-height:1.1}
+h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8rem;padding-left:1.2rem;border-left:4px solid;border-image:linear-gradient(180deg,var(--accent-teal),var(--accent-cyan)) 1}
+.desc{color:var(--text-secondary);font-size:1rem;line-height:1.8;margin:.8rem 0;max-width:800px}
+.card{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-card);padding:2.2rem}
+.card-grid{display:grid;gap:1.2rem}
+.cols-2{grid-template-columns:1fr 1fr}
+.cols-3{grid-template-columns:1fr 1fr 1fr}
+.tag{display:inline-block;background:rgba(45,212,168,0.1);border:1px solid rgba(45,212,168,0.25);color:var(--accent-teal);border-radius:6px;padding:.2rem .7rem;font-size:1rem;margin-right:.5rem;margin-bottom:.4rem}
+.list-clean{list-style:none;padding:0}
+.list-clean li{padding:.6rem 0;border-bottom:1px solid var(--border-subtle);font-size:1rem;line-height:1.7}
+.list-clean li:last-child{border:none}
+.list-clean li strong{color:var(--accent-teal)}
+.pos{color:var(--accent-teal)}
+.neg{color:var(--accent-red)}
+.video-wrap{position:relative;width:100%;max-width:800px;height:45vh;max-height:45vh;margin:0 auto;border-radius:var(--radius-img);overflow:hidden}
+.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+.nav-dots{position:fixed;right:24px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:100}
+.nav-dots a{width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,0.2);display:block;transition:.2s}
+.nav-dots a.active{width:14px;height:22px;border-radius:7px;background:var(--accent-teal);box-shadow:0 0 8px var(--accent-teal)}
+.back-link{position:fixed;top:1.5rem;left:1.5rem;color:var(--accent-link);text-decoration:none;font-size:1rem;z-index:100;opacity:.7;transition:.2s}
+.back-link:hover{opacity:1}
+.bottom-nav{position:fixed;bottom:1.2rem;left:50%;transform:translateX(-50%);background:rgba(26,31,46,0.85);backdrop-filter:blur(8px);border:1px solid var(--border-subtle);border-radius:10px;padding:.5rem 1.2rem;display:flex;align-items:center;gap:1rem;z-index:100;font-size:1rem}
+.bottom-nav button{background:none;border:none;color:var(--accent-teal);cursor:pointer;font-size:1rem;font-family:inherit;padding:.3rem .6rem;border-radius:6px;transition:.2s}
+.bottom-nav button:hover{background:rgba(45,212,168,0.15)}
+.bottom-nav .page-num{color:var(--text-secondary);min-width:3rem;text-align:center}
+@media(max-width:768px){h1{font-size:2.4rem}h2{font-size:1.6rem}.cols-2,.cols-3{grid-template-columns:1fr}.slide{padding:48px 1.2rem 80px}}
+</style>
+</head>
+<body>
+<a href="../index.html" class="back-link">← 返回首頁</a>
+<nav class="nav-dots" id="dots"></nav>
+<div class="bottom-nav"><button id="prev">← 上一頁</button><span class="page-num" id="pageNum">1/10</span><button id="next">下一頁 →</button></div>
+
+<!-- 1: Cover -->
+<section class="slide" id="s1">
+<div class="slide-inner">
+<p style="color:var(--accent-teal);font-size:.9rem;letter-spacing:2px;margin-bottom:1rem">PLASK.AI · AI MOCAP</p>
+<h1>Plask Motion</h1>
+<h1 style="font-size:2rem;font-weight:400;color:var(--text-secondary);margin-top:.5rem">影片 → AI 動捕 → 角色 → 渲染 → 匯出</h1>
+<p class="desc" style="margin-top:1.5rem">韓國團隊開發的一站式 AI 動捕+3D 動畫平台。從影片上傳到 AI 動捕、角色套用、打光渲染、匯出全在瀏覽器完成。支援 BVH 直接匯出，含手指追蹤。</p>
+<div style="display:flex;gap:.5rem;margin-top:1.5rem;flex-wrap:wrap">
+<span class="tag">BVH 直出</span><span class="tag">手指追蹤</span><span class="tag">多人追蹤</span><span class="tag">Foot Correction</span><span class="tag">瀏覽器端</span><span class="tag">AI 攝影</span>
+</div>
+</div>
+</section>
+
+<!-- 2: Problem -->
+<section class="slide" id="s2">
+<div class="slide-inner">
+<h2>解決什麼問題？</h2>
+<p class="desc">動畫製作需要多個工具切換（動捕→DCC→渲染→匯出），Plask 把全部整合在一個瀏覽器平台。</p>
+<div class="card-grid cols-2" style="margin-top:1.5rem">
+<div class="card">
+<p class="neg" style="font-weight:700;font-size:1.6rem;margin-bottom:1rem">❌ 傳統方式</p>
+<ul class="list-clean">
+<li><strong>多工具切換</strong> — 動捕→DCC→渲染各用不同軟體</li><li><strong>設備昂貴</strong> — 傳統 Mocap 需要專用設備</li><li><strong>流程複雜</strong> — 從影片到成品動畫步驟多</li>
+</ul>
+</div>
+<div class="card">
+<p class="pos" style="font-weight:700;font-size:1.6rem;margin-bottom:1rem">✅ Plask Motion 方案</p>
+<ul class="list-clean">
+<li><strong>一站式</strong> — 動捕→角色→打光→渲染全在瀏覽器</li><li><strong>BVH 直出</strong> — 直接匯出 BVH/FBX/GLB</li><li><strong>AI 攝影</strong> — 自動打光+攝影機控制</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 3: Video -->
+<section class="slide" id="s3">
+<div class="slide-inner" style="text-align:center">
+<h2 style="border:none;padding:0;text-align:center">展示影片</h2>
+<p class="desc" style="margin:0 auto 1.5rem;text-align:center">Plask Motion 完整教學 — 從影片上傳、AI 動捕、到編輯和協作的全流程展示。</p>
+<div class="video-wrap">
+<iframe src="https://www.youtube.com/embed/9FGAF-ZJhbw" allowfullscreen></iframe>
+</div>
+<p style="margin-top:1rem;font-size:1rem">Plask Motion Tutorial: From AI MoCap to Editing and Collaboration</p>
+</div>
+</section>
+
+<!-- 4: Features -->
+<section class="slide" id="s4">
+<div class="slide-inner">
+<h2>核心功能</h2>
+<p class="desc">Plask 主打一站式和 BVH 直出，含手指追蹤和 V2 引擎的腳部修正。</p>
+<div class="card-grid cols-3" style="margin-top:1.5rem">
+<div class="card" style="padding:1.5rem"><p style="font-size:2rem;margin-bottom:.5rem">🦴</p><p style="color:var(--accent-teal);font-weight:700;margin-bottom:.3rem">BVH/FBX/GLB</p><p style="font-size:.9rem">三種格式直接匯出</p></div><div class="card" style="padding:1.5rem"><p style="font-size:2rem;margin-bottom:.5rem">🖐️</p><p style="color:var(--accent-teal);font-weight:700;margin-bottom:.3rem">手指追蹤</p><p style="font-size:.9rem">精細手部動捕</p></div><div class="card" style="padding:1.5rem"><p style="font-size:2rem;margin-bottom:.5rem">👥</p><p style="color:var(--accent-teal);font-weight:700;margin-bottom:.3rem">多人追蹤</p><p style="font-size:.9rem">單影片多人</p></div><div class="card" style="padding:1.5rem"><p style="font-size:2rem;margin-bottom:.5rem">🦶</p><p style="color:var(--accent-teal);font-weight:700;margin-bottom:.3rem">V2 Foot Fix</p><p style="font-size:.9rem">腳部接觸修正</p></div><div class="card" style="padding:1.5rem"><p style="font-size:2rem;margin-bottom:.5rem">📷</p><p style="color:var(--accent-teal);font-weight:700;margin-bottom:.3rem">AI 攝影</p><p style="font-size:.9rem">自動打光+運鏡</p></div><div class="card" style="padding:1.5rem"><p style="font-size:2rem;margin-bottom:.5rem">🎬</p><p style="color:var(--accent-teal);font-weight:700;margin-bottom:.3rem">影片渲染</p><p style="font-size:.9rem">平台內直出成品</p></div>
+</div>
+</div>
+</section>
+
+<!-- 5: Tech Specs -->
+<section class="slide" id="s5">
+<div class="slide-inner">
+<h2>技術規格</h2>
+<p class="desc">Plask 的技術規格與匯出能力。</p>
+<div class="card" style="margin-top:1.5rem">
+<ul class="list-clean">
+<li><strong>匯出格式</strong> — FBX, GLB, BVH（三種都支援）</li><li><strong>引擎</strong> — V1(流暢+手部) / V2(穩定+腳部修正)</li><li><strong>多人</strong> — 支援多人追蹤</li><li><strong>手指</strong> — 支援手指追蹤</li><li><strong>平台</strong> — 瀏覽器端，跨平台</li><li><strong>MMD/VRM</strong> — 眨眼+物理支援</li>
+</ul>
+</div>
+</div>
+</section>
+
+<!-- 6: Pricing -->
+<section class="slide" id="s6">
+<div class="slide-inner">
+<h2>定價方案</h2>
+<p class="desc">Plask 有免費方案（每日 15 秒），付費解鎖更多時間。</p>
+<div class="card-grid cols-3" style="margin-top:1.5rem">
+<div class="card" style="text-align:center"><p style="color:var(--accent-teal);font-weight:700;font-size:1.2rem;margin-bottom:.5rem">Free</p><p style="font-size:2.5rem;font-weight:800;color:var(--text-primary)">$0</p><p style="margin-top:.5rem;font-size:.9rem">15秒/天</p></div><div class="card" style="text-align:center"><p style="color:var(--accent-teal);font-weight:700;font-size:1.2rem;margin-bottom:.5rem">Standard</p><p style="font-size:2.5rem;font-weight:800;color:var(--text-primary)">$18/月</p><p style="margin-top:.5rem;font-size:.9rem">10分鐘/月</p></div><div class="card" style="text-align:center"><p style="color:var(--accent-teal);font-weight:700;font-size:1.2rem;margin-bottom:.5rem">Pro</p><p style="font-size:2.5rem;font-weight:800;color:var(--text-primary)">$50/月</p><p style="margin-top:.5rem;font-size:.9rem">1小時/月</p></div>
+</div>
+</div>
+</section>
+
+<!-- 7: Pros & Cons -->
+<section class="slide" id="s7">
+<div class="slide-inner">
+<h2>優缺點分析</h2>
+<p class="desc">基於實際調研的綜合評估。</p>
+<div class="card-grid cols-2" style="margin-top:1.5rem">
+<div class="card">
+<p class="pos" style="font-weight:700;font-size:1.4rem;margin-bottom:1rem">✅ 優點</p>
+<ul class="list-clean">
+<li>BVH 直接匯出（與 Kimodo 同格式）</li><li>一站式平台</li><li>手指追蹤</li><li>V2 腳部修正</li><li>免費方案可試</li><li>AI 攝影自動打光</li>
+</ul>
+</div>
+<div class="card card-con">
+<p class="neg" style="font-weight:700;font-size:1.4rem;margin-bottom:1rem">❌ 缺點</p>
+<ul class="list-clean">
+<li>免費額度極少（15秒/天）</li><li>Pro $50/月只有1小時</li><li>無 API/批次</li><li>精度評價中等</li><li>量產不如 Viggle 經濟</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 8: Integration -->
+<section class="slide" id="s8">
+<div class="slide-inner">
+<h2>與 Kimodo 的整合方式</h2>
+<p class="desc">Plask 的 BVH 直出與 Kimodo 格式完全相容，適合精細動作+快速視覺驗證。</p>
+<div class="card" style="margin-top:1.5rem">
+<ul class="list-clean">
+<li><strong>格式</strong> — ⭐⭐⭐⭐⭐ BVH 直出！與 Kimodo 完全同格式</li><li><strong>手指</strong> — Plask 補充 Kimodo 沒有的手指動捕</li><li><strong>視覺化</strong> — 平台內直接渲染影片快速驗證</li><li><strong>量產</strong> — 無 API + 額度有限，不適合大規模</li>
+</ul>
+</div>
+</div>
+</section>
+
+<!-- 9: Workflow -->
+<section class="slide" id="s9">
+<div class="slide-inner">
+<h2>量產工作流定位</h2>
+<p class="desc">Plask 適合「精細手指動作+快速視覺驗證」的補充角色。</p>
+<div class="card" style="margin-top:1.5rem;font-family:monospace;font-size:.95rem;line-height:1.8;white-space:pre-wrap">精細手指表演 → Plask（含手指 BVH）
+一般動作 → Kimodo / Viggle
+視覺驗證 → Plask 平台內渲染預覽
+統一 → Blender retarget → 遊戲引擎</div>
+</div>
+</section>
+
+<!-- 10: Verdict -->
+<section class="slide" id="s10">
+<div class="slide-inner">
+<h2>總結評分與行動建議</h2>
+<p class="desc">綜合評估與下一步建議。</p>
+<div class="card-grid cols-3" style="margin-top:1.5rem">
+<div class="card" style="padding:1.2rem"><p style="font-size:1rem;margin-bottom:.3rem">相關性</p><p style="color:var(--accent-teal)">⭐⭐⭐</p></div><div class="card" style="padding:1.2rem"><p style="font-size:1rem;margin-bottom:.3rem">成熟度</p><p style="color:var(--accent-teal)">⭐⭐⭐⭐</p></div><div class="card" style="padding:1.2rem"><p style="font-size:1rem;margin-bottom:.3rem">易用性</p><p style="color:var(--accent-teal)">⭐⭐⭐⭐⭐</p></div><div class="card" style="padding:1.2rem"><p style="font-size:1rem;margin-bottom:.3rem">性價比</p><p style="color:var(--accent-teal)">⭐⭐⭐</p></div><div class="card" style="padding:1.2rem"><p style="font-size:1rem;margin-bottom:.3rem">整合潛力</p><p style="color:var(--accent-teal)">⭐⭐⭐</p></div><div class="card" style="padding:1.2rem"><p style="font-size:1rem;margin-bottom:.3rem">量產適合度</p><p style="color:var(--accent-teal)">⭐⭐</p></div>
+</div>
+<div class="card" style="margin-top:1.5rem;border-color:var(--accent-teal)">
+<p class="pos" style="font-size:1.3rem;font-weight:800;margin-bottom:1rem">🟡 備選工具 — BVH 直出是亮點，適合精細動作</p>
+<ul class="list-clean">
+<li><strong>Step 1</strong> — Free 方案試用（15秒/天評估品質）</li><li><strong>Step 2</strong> — 測試 V2 腳部修正效果</li><li><strong>Step 3</strong> — 比較手指追蹤品質 vs CyanPuppets</li><li><strong>Step 4</strong> — 量產場景用 Viggle 更經濟</li>
+</ul>
+</div>
+<p style="margin-top:2rem;font-size:1rem;color:var(--text-dim)">MotionLab Research · 2026-06-19 · plask.ai</p>
+</div>
+</section>
+
+<script>
+const d=document.getElementById('dots');const total=10;
+for(let i=1;i<=total;i++){const a=document.createElement('a');a.href='#s'+i;d.appendChild(a)}
+let cur=1;
+function updateNav(){document.getElementById('pageNum').textContent=cur+'/'+total;document.getElementById('prev').style.visibility=cur===1?'hidden':'visible';document.getElementById('next').style.visibility=cur===total?'hidden':'visible'}
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){cur=parseInt(e.target.id.slice(1));d.querySelectorAll('a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));updateNav()}}},{threshold:.5});
+document.querySelectorAll('.slide').forEach(s=>obs.observe(s));updateNav();
+function go(n){const t=Math.max(1,Math.min(total,n));document.getElementById('s'+t).scrollIntoView({behavior:'smooth'})}
+document.getElementById('prev').onclick=()=>go(cur-1);document.getElementById('next').onclick=()=>go(cur+1);
+document.addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();go(cur+1)}if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();go(cur-1)}});
+</script>
+</body>
+</html>
