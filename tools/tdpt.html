@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TDPT (ThreeD Pose Tracker) — 動捕工具調研</title>
+<style>
+body{background:#1a1f2e;color:#b8c4d0;font-family:'Noto Sans TC',-apple-system,sans-serif;margin:0;padding:2rem;line-height:1.7}
+.container{max-width:900px;margin:0 auto}
+h1,h2,h3{color:#fff}
+a{color:#4db8d4;text-decoration:none}
+a:hover{text-decoration:underline}
+table{border-collapse:collapse;width:100%;margin:1rem 0}
+th,td{border:1px solid #333;padding:0.6rem 1rem;text-align:left}
+th{background:#2a2a3e;color:#fff}
+code{background:#0d0d1a;padding:0.2rem 0.5rem;border-radius:4px}
+pre{background:#0d0d1a;padding:1rem;border-radius:8px;overflow-x:auto}
+.back-link{margin-bottom:2rem;display:inline-block}
+ul,ol{padding-left:1.5rem}
+</style>
+</head>
+<body>
+<div class="container">
+<a href="../index.html" class="back-link">← 返回首頁</a>
+<h1>TDPT (ThreeD Pose Tracker)</h1>
+
+<div style="margin:1.5rem 0;text-align:center">
+<img src="../images/tdpt.png" alt="tdpt" style="max-width:100%;border-radius:8px;border:1px solid #333;margin-bottom:1rem">
+</div>
+<div style="margin:1.5rem 0;padding:1.5rem;background:rgba(30,42,60,0.55);border-radius:12px;border:1px solid rgba(255,255,255,0.08)">
+<h3 style="color:#4db8d4;margin-bottom:1rem">📺 影片展示</h3>
+<div style="position:relative;padding-bottom:56.25%;height:0;max-width:720px;margin-bottom:1rem"><iframe src="https://www.youtube.com/embed/BlMd-LQGVyI" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:8px" allowfullscreen></iframe></div>
+</div>
+
+
+<p>Digital Standard 開發的即時 3D 姿態追蹤系統，用普通攝影機即時偵測 24 個身體關鍵點並輸出 3D 座標。</p>
+
+<h2>基本資訊</h2>
+<table>
+<tr><th>開發者</th><td>Digital Standard（日本）</td></tr>
+<tr><th>平台</th><td>Windows / iOS / macOS</td></tr>
+<tr><th>價格</th><td>付費軟體（各平台分開販售）</td></tr>
+<tr><th>官網</th><td><a href="https://digital-standard.com/tdpt/">digital-standard.com/tdpt</a></td></tr>
+<tr><th>GitHub</th><td><a href="https://github.com/digital-standard/ThreeDPoseTracker">ThreeDPoseTracker</a></td></tr>
+</table>
+
+<h2>功能特色</h2>
+<ul>
+<li>即時 3D 姿態追蹤（單攝影機）</li>
+<li>24 個身體關鍵點偵測</li>
+<li>深度學習 AI 引擎</li>
+<li>VMC Protocol 即時串流輸出</li>
+<li>可串流至 Blender / Unity 等 DCC 軟體</li>
+</ul>
+
+<h2>輸出格式</h2>
+<p>3D 座標即時串流，透過 VMC Protocol 傳送。不直接輸出 BVH，需中介轉換。</p>
+
+<h2>優缺點</h2>
+<table>
+<tr><th>優點</th><th>缺點</th></tr>
+<tr><td>即時、低延遲</td><td>僅 24 點（無手指）</td></tr>
+<tr><td>單攝影機即可</td><td>需另外串接才能輸出 BVH</td></tr>
+<tr><td>可串流到多種 DCC</td><td>付費軟體</td></tr>
+<tr><td>跨平台支援</td><td>精度不如專業方案</td></tr>
+</table>
+
+<h2>與 Kimodo 整合</h2>
+<p>可作為即時預覽工具，快速測試動作構想。但因不直接輸出 BVH，需透過 VMC → Blender → BVH 的轉換路徑。適合創意階段，不建議作為量產主力。</p>
+
+<h2>量產工作流定位</h2>
+<p><strong>即時預覽與快速原型工具</strong>——加速創意迭代，確認方向後再用高精度方案重做。</p>
+</div>
+</body>
+</html>

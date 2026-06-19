@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMPL-X — 動捕工具調研</title>
+<style>
+body{background:#1a1f2e;color:#b8c4d0;font-family:'Noto Sans TC',-apple-system,sans-serif;margin:0;padding:2rem;line-height:1.7}
+.container{max-width:900px;margin:0 auto}
+h1,h2,h3{color:#fff}
+a{color:#4db8d4;text-decoration:none}
+a:hover{text-decoration:underline}
+table{border-collapse:collapse;width:100%;margin:1rem 0}
+th,td{border:1px solid #333;padding:0.6rem 1rem;text-align:left}
+th{background:#2a2a3e;color:#fff}
+code{background:#0d0d1a;padding:0.2rem 0.5rem;border-radius:4px}
+pre{background:#0d0d1a;padding:1rem;border-radius:8px;overflow-x:auto}
+.back-link{margin-bottom:2rem;display:inline-block}
+ul,ol{padding-left:1.5rem}
+</style>
+</head>
+<body>
+<div class="container">
+<a href="../index.html" class="back-link">← 返回首頁</a>
+<h1>SMPL-X (Expressive Body Model)</h1>
+
+<div style="margin:1.5rem 0;text-align:center">
+<img src="../images/smplx.png" alt="smplx" style="max-width:100%;border-radius:8px;border:1px solid #333;margin-bottom:1rem">
+</div>
+<div style="margin:1.5rem 0;padding:1.5rem;background:rgba(30,42,60,0.55);border-radius:12px;border:1px solid rgba(255,255,255,0.08)">
+<h3 style="color:#4db8d4;margin-bottom:1rem">📺 影片展示</h3>
+<div style="position:relative;padding-bottom:56.25%;height:0;max-width:720px;margin-bottom:1rem"><iframe src="https://www.youtube.com/embed/3LBQax0ou20" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:8px" allowfullscreen></iframe></div>
+</div>
+
+
+<p>Max Planck Institute 開發的統一 3D 人體模型，涵蓋身體+手部+臉部表情，學術界標準的人體表示格式。</p>
+
+<h2>基本資訊</h2>
+<table>
+<tr><th>開發者</th><td>Max Planck Institute for Intelligent Systems</td></tr>
+<tr><th>類型</th><td>人體模型格式 / 學術標準</td></tr>
+<tr><th>價格</th><td>免費學術使用（需註冊）；商用需洽談</td></tr>
+<tr><th>官網</th><td><a href="https://smpl-x.is.tue.mpg.de/">smpl-x.is.tue.mpg.de</a></td></tr>
+</table>
+
+<h2>功能特色</h2>
+<ul>
+<li>身體 + 手部 + 臉部表情統一模型</li>
+<li>參數化表示（pose / shape / expression）</li>
+<li>學術界公認標準，大量研究基於此格式</li>
+<li>SMPLer-X 等推理框架支援</li>
+<li>可轉換為傳統骨架動畫</li>
+</ul>
+
+<h2>輸出格式</h2>
+<p>SMPL-X 參數（pose/shape/expression），需透過轉換工具（如 smplx2bvh）轉為 BVH 骨架動畫。</p>
+
+<h2>優缺點</h2>
+<table>
+<tr><th>優點</th><th>缺點</th></tr>
+<tr><td>學術標準，工具鏈豐富</td><td>商業授權需洽談</td></tr>
+<tr><td>身體+手+臉完整</td><td>輸出需額外轉換</td></tr>
+<tr><td>參數化便於編輯</td><td>學術導向非產品化</td></tr>
+<tr><td>持續有新研究發展</td><td>模型精度受訓練資料限制</td></tr>
+</table>
+
+<h2>與 Kimodo 整合</h2>
+<p>SMPL-X 是很多 AI mocap 工具的底層格式。整合路徑：SMPL-X 參數 → 關節旋轉 → BVH。已有開源工具支援轉換。理解 SMPL-X 有助於整合各種研究工具輸出。</p>
+
+<h2>量產工作流定位</h2>
+<p><strong>基礎設施層的人體表示標準</strong>——掌握 SMPL-X 轉換是整合各種 AI 動作研究工具的關鍵。</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kinephy — 動捕工具調研</title>
+<style>
+body{background:#1a1f2e;color:#b8c4d0;font-family:'Noto Sans TC',-apple-system,sans-serif;margin:0;padding:2rem;line-height:1.7}
+.container{max-width:900px;margin:0 auto}
+h1,h2,h3{color:#fff}
+a{color:#4db8d4;text-decoration:none}
+a:hover{text-decoration:underline}
+table{border-collapse:collapse;width:100%;margin:1rem 0}
+th,td{border:1px solid #333;padding:0.6rem 1rem;text-align:left}
+th{background:#2a2a3e;color:#fff}
+code{background:#0d0d1a;padding:0.2rem 0.5rem;border-radius:4px}
+pre{background:#0d0d1a;padding:1rem;border-radius:8px;overflow-x:auto}
+.back-link{margin-bottom:2rem;display:inline-block}
+ul,ol{padding-left:1.5rem}
+</style>
+</head>
+<body>
+<div class="container">
+<a href="../index.html" class="back-link">← 返回首頁</a>
+<h1>Kinephy</h1>
+
+<div style="margin:1.5rem 0;text-align:center">
+<img src="../images/kinephy.png" alt="kinephy" style="max-width:100%;border-radius:8px;border:1px solid #333;margin-bottom:1rem">
+</div>
+<div style="margin:1.5rem 0;padding:1.5rem;background:rgba(30,42,60,0.55);border-radius:12px;border:1px solid rgba(255,255,255,0.08)">
+<h3 style="color:#4db8d4;margin-bottom:1rem">📺 影片展示</h3>
+<div style="position:relative;padding-bottom:56.25%;height:0;max-width:720px;margin-bottom:1rem"><iframe src="https://www.youtube.com/embed/8oIQy6fxfCA" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:8px" allowfullscreen></iframe></div>
+</div>
+
+
+<p>AI 物理驅動的動畫生成平台，用 generative AI + 物理模擬產生互動感知的全身動作。</p>
+
+<h2>基本資訊</h2>
+<table>
+<tr><th>開發者</th><td>Kinephy</td></tr>
+<tr><th>類型</th><td>雲端 AI 動畫生成平台</td></tr>
+<tr><th>價格</th><td>$15/月起（180 秒額度）</td></tr>
+<tr><th>官網</th><td><a href="https://kinephy.ai/">kinephy.ai</a></td></tr>
+</table>
+
+<h2>功能特色</h2>
+<ul>
+<li>物理感知 AI 動畫（重力、慣性、碰撞）</li>
+<li>互動場景感知</li>
+<li>全身動作生成</li>
+<li>可編輯輸出</li>
+<li>雲端處理</li>
+</ul>
+
+<h2>輸出格式</h2>
+<p>動畫檔案（具體格式待確認），需實際測試平台後確認是否支援 BVH/FBX。</p>
+
+<h2>優缺點</h2>
+<table>
+<tr><th>優點</th><th>缺點</th></tr>
+<tr><td>物理感知（有重量感）</td><td>較新，生態未成熟</td></tr>
+<tr><td>互動場景支援</td><td>輸出格式待驗證</td></tr>
+<tr><td>可編輯輸出</td><td>雲端依賴</td></tr>
+<tr><td>無需本地 GPU</td><td>額度受方案限制</td></tr>
+</table>
+
+<h2>與 Kimodo 整合</h2>
+<p>互補定位——Kimodo 是 text-to-motion 基礎動作，Kinephy 加入物理互動層（坐下、攀爬、碰撞反應等）。具體整合路徑需待確認輸出格式。</p>
+
+<h2>量產工作流定位</h2>
+<p><strong>物理互動動畫的補充來源</strong>——基礎動作用 Kimodo，需要環境互動的場景用 Kinephy。</p>
+</div>
+</body>
+</html>

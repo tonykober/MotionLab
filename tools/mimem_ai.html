@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mimem AI — 動捕工具調研</title>
+<style>
+body{background:#1a1f2e;color:#b8c4d0;font-family:'Noto Sans TC',-apple-system,sans-serif;margin:0;padding:2rem;line-height:1.7}
+.container{max-width:900px;margin:0 auto}
+h1,h2,h3{color:#fff}
+a{color:#4db8d4;text-decoration:none}
+a:hover{text-decoration:underline}
+table{border-collapse:collapse;width:100%;margin:1rem 0}
+th,td{border:1px solid #333;padding:0.6rem 1rem;text-align:left}
+th{background:#2a2a3e;color:#fff}
+code{background:#0d0d1a;padding:0.2rem 0.5rem;border-radius:4px}
+pre{background:#0d0d1a;padding:1rem;border-radius:8px;overflow-x:auto}
+.back-link{margin-bottom:2rem;display:inline-block}
+ul,ol{padding-left:1.5rem}
+</style>
+</head>
+<body>
+<div class="container">
+<a href="../index.html" class="back-link">← 返回首頁</a>
+<h1>mimem AI</h1>
+
+<div style="margin:1.5rem 0;text-align:center">
+<img src="../images/mimem_ai.png" alt="mimem_ai" style="max-width:100%;border-radius:8px;border:1px solid #333;margin-bottom:1rem">
+</div>
+<div style="margin:1.5rem 0;padding:1.5rem;background:rgba(30,42,60,0.55);border-radius:12px;border:1px solid rgba(255,255,255,0.08)">
+<h3 style="color:#4db8d4;margin-bottom:1rem">📺 影片展示</h3>
+<div style="position:relative;padding-bottom:56.25%;height:0;max-width:720px;margin-bottom:1rem"><iframe src="https://www.youtube.com/embed/6R4FTLNTwzs" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:8px" allowfullscreen></iframe></div>
+</div>
+
+
+<p>雲端無標記多攝影機動捕平台，強調無需校準、用現有設備即可使用。</p>
+
+<h2>基本資訊</h2>
+<table>
+<tr><th>開發者</th><td>mimem</td></tr>
+<tr><th>類型</th><td>雲端多攝影機動捕平台</td></tr>
+<tr><th>價格</th><td>尚未公開（early access）</td></tr>
+<tr><th>官網</th><td><a href="https://www.mimem.ai/">mimem.ai</a></td></tr>
+</table>
+
+<h2>功能特色</h2>
+<ul>
+<li>多攝影機同步</li>
+<li><strong>無需校準</strong>（巨大賣點）</li>
+<li>雲端 AI 重建 + 平滑</li>
+<li>支援現有設備（無需專用硬體）</li>
+<li>輸出標準格式（FBX / BVH）</li>
+</ul>
+
+<h2>輸出格式</h2>
+<p>FBX / BVH 等標準格式，可直接用於主流 3D 軟體。</p>
+
+<h2>優缺點</h2>
+<table>
+<tr><th>優點</th><th>缺點</th></tr>
+<tr><td>無需校準設置</td><td>尚未正式發佈</td></tr>
+<tr><td>多攝影機精度高</td><td>雲端依賴</td></tr>
+<tr><td>雲端免本地算力</td><td>定價未知</td></tr>
+<tr><td>支援現有設備</td><td>成熟度待驗證</td></tr>
+</table>
+
+<h2>與 Kimodo 整合</h2>
+<p>可作為高精度影片動捕方案。輸出 BVH 可直接進入 Kimodo 後處理 pipeline，補足 text-to-motion 無法覆蓋的複雜動作場景。</p>
+
+<h2>量產工作流定位</h2>
+<p><strong>高精度影片動捕來源</strong>——無校準設計讓小團隊也能進行專業動捕，待正式發佈後評估納入 pipeline。</p>
+</div>
+</body>
+</html>

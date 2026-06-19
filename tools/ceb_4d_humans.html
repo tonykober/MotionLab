@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CEB 4D Humans — 動捕工具調研</title>
+<style>
+body{background:#1a1f2e;color:#b8c4d0;font-family:'Noto Sans TC',-apple-system,sans-serif;margin:0;padding:2rem;line-height:1.7}
+.container{max-width:900px;margin:0 auto}
+h1,h2,h3{color:#fff}
+a{color:#4db8d4;text-decoration:none}
+a:hover{text-decoration:underline}
+table{border-collapse:collapse;width:100%;margin:1rem 0}
+th,td{border:1px solid #333;padding:0.6rem 1rem;text-align:left}
+th{background:#2a2a3e;color:#fff}
+code{background:#0d0d1a;padding:0.2rem 0.5rem;border-radius:4px}
+pre{background:#0d0d1a;padding:1rem;border-radius:8px;overflow-x:auto}
+.back-link{margin-bottom:2rem;display:inline-block}
+ul,ol{padding-left:1.5rem}
+</style>
+</head>
+<body>
+<div class="container">
+<a href="../index.html" class="back-link">← 返回首頁</a>
+<h1>CEB 4D Humans</h1>
+
+<div style="margin:1.5rem 0;text-align:center">
+<img src="../images/ceb_4d_humans.png" alt="ceb_4d_humans" style="max-width:100%;border-radius:8px;border:1px solid #333;margin-bottom:1rem">
+</div>
+<div style="margin:1.5rem 0;padding:1.5rem;background:rgba(30,42,60,0.55);border-radius:12px;border:1px solid rgba(255,255,255,0.08)">
+<h3 style="color:#4db8d4;margin-bottom:1rem">📺 影片展示</h3>
+<div style="position:relative;padding-bottom:56.25%;height:0;max-width:720px;margin-bottom:1rem"><iframe src="https://www.youtube.com/embed/jti3634GeX4" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:8px" allowfullscreen></iframe></div>
+</div>
+
+
+<p>Carlos Eduardo Barreto 開發的 Blender 外掛，整合 4D-Humans / WHAM / SLAHMR 學術項目，在 Blender 中直接將影片轉為 3D 動畫。</p>
+
+<h2>基本資訊</h2>
+<table>
+<tr><th>開發者</th><td>Carlos Eduardo Barreto</td></tr>
+<tr><th>平台</th><td>Blender 外掛（需 NVIDIA GPU）</td></tr>
+<tr><th>價格</th><td>免費開源（GitHub）+ Gumroad 付費支持版</td></tr>
+<tr><th>GitHub</th><td><a href="https://github.com/carlosedubarreto/CEB_4d_Humans">CEB_4d_Humans</a></td></tr>
+</table>
+
+<h2>功能特色</h2>
+<ul>
+<li>影片直接轉 3D 骨架動畫</li>
+<li>整合多種學術推理後端（4D-Humans、WHAM、SLAHMR）</li>
+<li>SmoothNet 後處理平滑</li>
+<li>Blender 原生整合</li>
+<li>GPU 加速推理（CUDA）</li>
+</ul>
+
+<h2>輸出格式</h2>
+<p>Blender 骨架動畫，可透過 Blender 內建功能匯出為 BVH / FBX。</p>
+
+<h2>優缺點</h2>
+<table>
+<tr><th>優點</th><th>缺點</th></tr>
+<tr><td>免費開源</td><td>需要 NVIDIA GPU</td></tr>
+<tr><td>基於頂級學術研究</td><td>安裝配置複雜</td></tr>
+<tr><td>Blender 原生整合</td><td>學術項目穩定性有限</td></tr>
+<tr><td>SmoothNet 平滑</td><td>非即時處理</td></tr>
+</table>
+
+<h2>與 Kimodo 整合</h2>
+<p>可作為免費的影片轉動畫替代方案。在 Blender 中生成骨架動畫後，直接匯出 BVH 進入 Kimodo 後處理 pipeline。retarget 流程在 Blender 內可一併完成。</p>
+
+<h2>量產工作流定位</h2>
+<p><strong>免費影片轉動畫方案</strong>——影片參考用 CEB 4D Humans，文字描述用 Kimodo，互補使用。</p>
+</div>
+</body>
+</html>

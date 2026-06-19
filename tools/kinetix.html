@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kinetix — 動捕工具調研</title>
+<style>
+body{background:#1a1f2e;color:#b8c4d0;font-family:'Noto Sans TC',-apple-system,sans-serif;margin:0;padding:2rem;line-height:1.7}
+.container{max-width:900px;margin:0 auto}
+h1,h2,h3{color:#fff}
+a{color:#4db8d4;text-decoration:none}
+a:hover{text-decoration:underline}
+table{border-collapse:collapse;width:100%;margin:1rem 0}
+th,td{border:1px solid #333;padding:0.6rem 1rem;text-align:left}
+th{background:#2a2a3e;color:#fff}
+code{background:#0d0d1a;padding:0.2rem 0.5rem;border-radius:4px}
+pre{background:#0d0d1a;padding:1rem;border-radius:8px;overflow-x:auto}
+.back-link{margin-bottom:2rem;display:inline-block}
+ul,ol{padding-left:1.5rem}
+</style>
+</head>
+<body>
+<div class="container">
+<a href="../index.html" class="back-link">← 返回首頁</a>
+<h1>Kinetix</h1>
+
+<div style="margin:1.5rem 0;text-align:center">
+<img src="../images/kinetix.png" alt="kinetix" style="max-width:100%;border-radius:8px;border:1px solid #333;margin-bottom:1rem">
+</div>
+<div style="margin:1.5rem 0;padding:1.5rem;background:rgba(30,42,60,0.55);border-radius:12px;border:1px solid rgba(255,255,255,0.08)">
+<h3 style="color:#4db8d4;margin-bottom:1rem">📺 影片展示</h3>
+<div style="position:relative;padding-bottom:56.25%;height:0;max-width:720px;margin-bottom:1rem"><iframe src="https://www.youtube.com/embed/dNXc5Z_kvlY" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:8px" allowfullscreen></iframe></div>
+</div>
+
+
+<p>法國 AI 動畫公司，提供 SDK 讓玩家在遊戲內用影片生成自訂 3D 表情動作（emotes），B2B 遊戲開發平台。</p>
+
+<h2>基本資訊</h2>
+<table>
+<tr><th>開發者</th><td>Kinetix（法國）</td></tr>
+<tr><th>類型</th><td>B2B 遊戲 SDK</td></tr>
+<tr><th>價格</th><td>企業授權（定價不透明）</td></tr>
+<tr><th>官網</th><td><a href="https://kinetix.tech/">kinetix.tech</a></td></tr>
+</table>
+
+<h2>功能特色</h2>
+<ul>
+<li>遊戲內嵌入 SDK（Unity / Unreal）</li>
+<li>玩家 UGC 動畫生成</li>
+<li>影片轉動畫</li>
+<li>Text-to-Animation</li>
+<li>跨遊戲動畫格式</li>
+</ul>
+
+<h2>輸出格式</h2>
+<p>3D 動畫透過 SDK 直接在 Unity/Unreal 中使用。非獨立檔案匯出工具。</p>
+
+<h2>優缺點</h2>
+<table>
+<tr><th>優點</th><th>缺點</th></tr>
+<tr><td>遊戲內 UGC 生態</td><td>B2B 模式，非直接可用</td></tr>
+<tr><td>跨平台 SDK</td><td>需完整 SDK 整合</td></tr>
+<tr><td>AI text-to-animation</td><td>定價不透明</td></tr>
+<tr><td>完整玩家體驗設計</td><td>依賴雲端 API</td></tr>
+</table>
+
+<h2>與 Kimodo 整合</h2>
+<p>定位不同——Kinetix 面向終端玩家 UGC，Kimodo 面向開發者量產。直接整合可能性低，但可作為品質 benchmark 與市場參考。</p>
+
+<h2>量產工作流定位</h2>
+<p><strong>競品觀察與市場參考</strong>——研究業界 AI 動畫產品化方向，不直接進入量產 pipeline。</p>
+</div>
+</body>
+</html>
