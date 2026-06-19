@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rhubarb Lipsync — 深度調研報告</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#1a1a2e;color:#e0d6c8;font-family:-apple-system,'Noto Sans TC',sans-serif;max-width:900px;margin:0 auto;padding:2rem;line-height:1.7}
+h1{color:#f5a623;margin:1.5rem 0 1rem}
+h2{color:#fff;margin:1.5rem 0 .8rem}
+h3{color:#e0d6c8;margin:1.2rem 0 .6rem}
+a{color:#f5a623}
+strong{color:#f5a623}
+ul,ol{margin:.5rem 0 .5rem 1.5rem}
+li{margin:.3rem 0}
+table{border-collapse:collapse;margin:1rem 0;max-width:100%;overflow-x:auto;display:block}
+th,td{border:1px solid #333;padding:8px 12px;text-align:left}
+th{background:#2a2a3e}
+pre{background:#0d0d1a;padding:1rem;border-radius:8px;overflow-x:auto;margin:1rem 0}
+code{background:#0d0d1a;padding:2px 6px;border-radius:4px;font-size:.9em}
+pre code{padding:0;background:none}
+hr{border:none;border-top:1px solid #333;margin:1.5rem 0}
+p{margin:.6rem 0}
+img{max-width:100%}
+.back{display:inline-block;margin-bottom:1.5rem;text-decoration:none}
+</style>
+</head>
+<body>
+<a href="../index.html" class="back">← 返回首頁</a>
+<h1>Rhubarb Lipsync — 深度調研報告</h1>
+
+<h2>工具概述</h2>
+
+<p>Rhubarb Lip Sync 是一個<strong>開源命令列工具</strong>，由 Daniel S. Wolf 開發，能從語音錄音自動產生 2D 嘴型動畫資料。它分析音訊檔案、辨識語音內容，並自動生成 lip sync 時間軸，標示每個時間點應顯示哪種嘴型。可用於遊戲角色對話、動畫卡通等任何需要口型同步的專案。</p>
+
+<p><strong>解決的問題：</strong></p>
+<ul>
+<li>手動對嘴型（lip sync）極度耗時</li>
+<li>需要自動化的語音→嘴型映射</li>
+<li>需要跨平台（Windows/macOS/Linux）且可整合到自動化流程的工具</li>
+<li>需要支援多種輸出格式以整合不同軟體</li>
+</ul>
+
+<hr>
+
+<h2>功能詳細說明</h2>
+
+<h3>嘴型系統</h3>
+
+<p>6 個基礎嘴型（Hanna-Barbera 經典標準）+ 3 個擴展嘴型：</p>
+
+<table>
+<tr><th>嘴型</th><th>用途</th></tr>
+<tr><td>Ⓐ</td><td>閉嘴（P、B、M 音）</td></tr>
+<tr><td>Ⓑ</td><td>微開齒關（大多數子音 + EE 音）</td></tr>
+<tr><td>Ⓒ</td><td>開口（EH、AE 音 + 部分子音）</td></tr>
+<tr><td>Ⓓ</td><td>大開口（AA 音，如 father）</td></tr>
+<tr><td>Ⓔ</td><td>微圓口（AO、ER 音）</td></tr>
+<tr><td>Ⓕ</td><td>嘟嘴（UW、OW、W 音）</td></tr>
+<tr><td>Ⓖ（擴展）</td><td>上齒咬下唇（F、V 音）</td></tr>
+<tr><td>Ⓗ（擴展）</td><td>舌頭上抬（長 L 音）</td></tr>
+<tr><td>Ⓧ（擴展）</td><td>靜止位置（說話間暫停）</td></tr>
+</table>
+
+<h3>語音辨識引擎</h3>
+
+<table>
+<tr><th>引擎</th><th>適用</th></tr>
+<tr><td><strong>PocketSphinx</strong></td><td>英語錄音（預設，品質較好）</td></tr>
+<tr><td><strong>Phonetic</strong></td><td>非英語錄音（語言無關，品質稍差）</td></tr>
+</table>
+
+<h3>輸出格式</h3>
+
+<table>
+<tr><th>格式</th><th>說明</th></tr>
+<tr><td>TSV</td><td>最簡潔，時間戳 + 嘴型代碼</td></tr>
+<tr><td>XML</td><td>含 metadata（檔案路徑、時長）</td></tr>
+<tr><td>JSON</td><td>結構化，易程式解析</td></tr>
+<tr><td>DAT</td><td>Moho/OpenToonz 專用</td></tr>
+</table>
+
+<h3>整合支援</h3>
+
+<ul>
+<li>Adobe After Effects</li>
+<li>Moho / OpenToonz</li>
+<li>Spine by Esoteric Software</li>
+<li>Vegas Pro by Magix</li>
+<li>Visionaire Studio</li>
+<li><strong>Blender</strong>（透過社群外掛）</li>
+</ul>
+
+<h3>Blender 整合外掛</h3>
+
+<table>
+<tr><th>外掛</th><th>說明</th><th>連結</th></tr>
+<tr><td>blender-rhubarb-lipsync（Les Fées Spéciales）</td><td>從 Pose Library 生成嘴型 keyframes</td><td><a href="https://github.com/LesFeesSpeciales/blender-rhubarb-lipsync" target="_blank">https://github.com/LesFeesSpeciales/blender-rhubarb-lipsync</a></td></tr>
+<tr><td>Rhubarb Lipsync NG（Blender Market）</td><td>改良版，Blender Market 販售</td><td><a href="https://blendermarket.com/products/rhubarb-lipsync-ng" target="_blank">https://blendermarket.com/products/rhubarb-lipsync-ng</a></td></tr>
+<tr><td>blender-rhubarb-2d-lipsync</td><td>2D 嘴型動畫（Integer Properties）</td><td><a href="https://github.com/NickTiny/blender-rhubarb-2d-lipsync" target="_blank">https://github.com/NickTiny/blender-rhubarb-2d-lipsync</a></td></tr>
+<tr><td>blender-rhubarb-lipsync-update</td><td>更新版本，支援最新 Pose Asset</td><td><a href="https://github.com/AidanCaruso/blender-rhubarb-lipsync-update" target="_blank">https://github.com/AidanCaruso/blender-rhubarb-lipsync-update</a></td></tr>
+</table>
+
+<h3>進階功能</h3>
+<ul>
+<li><strong>對白文本輔助</strong>：提供文字稿可提升辨識精確度</li>
+<li><strong>Machine Readable 輸出</strong>：JSON 格式狀態訊息，方便自動化整合</li>
+<li><strong>多執行緒</strong>：自動利用多核 CPU 加速</li>
+<li><strong>SemVer 版本控制</strong>：輸出格式穩定、向後相容</li>
+</ul>
+
+<hr>
+
+<h2>官方影片教學連結</h2>
+
+<table>
+<tr><th>主題</th><th>連結</th></tr>
+<tr><td>官方 Demo 影片</td><td><a href="https://www.youtube.com/watch?v=zzdPSFJRlEo" target="_blank">https://www.youtube.com/watch?v=zzdPSFJRlEo</a></td></tr>
+<tr><td>GitHub 主頁（含完整文件）</td><td><a href="https://github.com/DanielSWolf/rhubarb-lip-sync" target="_blank">https://github.com/DanielSWolf/rhubarb-lip-sync</a></td></tr>
+<tr><td>下載頁面</td><td><a href="https://github.com/DanielSWolf/rhubarb-lip-sync/releases" target="_blank">https://github.com/DanielSWolf/rhubarb-lip-sync/releases</a></td></tr>
+</table>
+
+<hr>
+
+<h2>安裝/使用流程</h2>
+
+<h3>安裝（核心工具）</h3>
+<ol>
+<li>從 GitHub Releases 下載對應平台的二進位檔（Windows/macOS/Linux）</li>
+<li>解壓到任意位置</li>
+<li>命令列即可使用</li>
+</ol>
+
+<h3>安裝（Blender 整合）</h3>
+<ol>
+<li>下載 Blender 外掛 zip（最新版已內建 Rhubarb 執行檔）</li>
+<li>Blender → Preferences → Add-ons → Install</li>
+<li>設定 Rhubarb 執行檔路徑（若未內建）</li>
+</ol>
+
+<h3>使用流程</h3>
+<pre><code>
+# 基本用法
+rhubarb -o output.json my-recording.wav
+
+# 帶文字稿（提升精確度）
+rhubarb -d script.txt -o output.json my-recording.wav
+
+# 非英語（使用 phonetic 辨識器）
+rhubarb -r phonetic -o output.json my-recording.wav
+
+# 指定輸出格式
+rhubarb -f json -o output.json my-recording.wav
+</code></pre>
+
+<h3>Blender 工作流</h3>
+<pre><code>
+1. 為角色建立 Pose Library（含 A-X 嘴型 Poses）
+2. 匯入音訊到 Blender
+3. 執行 Rhubarb 外掛 → 選擇音訊檔
+4. 自動在時間軸上生成嘴型 Keyframes
+5. 微調結果
+</code></pre>
+
+<hr>
+
+<h2>定價與授權</h2>
+
+<table>
+<tr><th>項目</th><th>價格</th></tr>
+<tr><td>Rhubarb Lip Sync（核心工具）</td><td><strong>免費開源</strong>（MIT License）</td></tr>
+<tr><td>Rhubarb Lipsync NG（Blender Market 外掛）</td><td>~$15-25 USD</td></tr>
+<tr><td>其他社群外掛</td><td>免費</td></tr>
+</table>
+
+<p><strong>開源授權：</strong> MIT License — 可自由使用、修改、商業用途</p>
+
+<hr>
+
+<h2>優缺點分析</h2>
+
+<h3>優點</h3>
+<ul>
+<li>✅ <strong>完全免費開源</strong>：MIT 授權，商業可用</li>
+<li>✅ <strong>跨平台</strong>：Windows / macOS / Linux</li>
+<li>✅ <strong>命令列介面</strong>：完美適合自動化批次處理</li>
+<li>✅ <strong>業界標準嘴型</strong>：Hanna-Barbera 6 嘴型系統 = 動畫業界標準</li>
+<li>✅ <strong>多輸出格式</strong>：TSV / XML / JSON / DAT</li>
+<li>✅ <strong>對白文本輔助</strong>：提供文字稿可大幅提升品質</li>
+<li>✅ <strong>Machine Readable</strong>：自動化整合友好</li>
+<li>✅ <strong>多軟體整合</strong>：After Effects / Spine / Moho / Blender 等</li>
+<li>✅ <strong>GitHub 2.5k+ Stars</strong>：成熟穩定</li>
+</ul>
+
+<h3>缺點</h3>
+<ul>
+<li>❌ <strong>僅英語最佳</strong>：PocketSphinx 僅支援英語，其他語言用 Phonetic 精度下降</li>
+<li>❌ <strong>非中文友好</strong>：中文語音辨識品質未知/可能很差</li>
+<li>❌ <strong>命令列操作</strong>：需技術基礎，非 GUI 友好</li>
+<li>❌ <strong>2D 嘴型思維</strong>：原始設計為 2D 動畫，3D 角色需額外映射</li>
+<li>❌ <strong>不處理 3D Shape Keys 映射</strong>：需透過 Blender 外掛橋接</li>
+<li>❌ <strong>最後更新 2021</strong>：核心工具開發較不活躍</li>
+</ul>
+
+<hr>
+
+<h2>與現有工具的整合可能性</h2>
+
+<h3>與 Kimodo 的整合</h3>
+
+<table>
+<tr><th>環節</th><th>整合方式</th></tr>
+<tr><td>身體 + 口型</td><td>Kimodo 生成身體動作，Rhubarb 處理口型同步</td></tr>
+<tr><td>自動化流程</td><td>兩者都是命令列工具，可寫腳本串接批次處理</td></tr>
+</table>
+
+<h3>與 FaceIt 的互補</h3>
+
+<table>
+<tr><th>FaceIt</th><th>Rhubarb</th></tr>
+<tr><td>提供 Shape Keys（含 Visemes）</td><td>產生時間軸資料（哪個嘴型在哪個時間）</td></tr>
+<tr><td>建立嘴型資產</td><td>驅動嘴型動畫</td></tr>
+</table>
+
+<h3>建議整合流程</h3>
+<pre><code>
+語音錄音 → Rhubarb 分析 → 嘴型時間軸（JSON）
+→ Blender 外掛映射到 FaceIt 的 Shape Keys
+→ 合併 Kimodo 身體動作 → ARP 匯出 → 遊戲引擎
+</code></pre>
+
+<hr>
+
+<h2>對「AI 動作量產工作流」的貢獻定位</h2>
+
+<h3>定位：<strong>語音→嘴型的自動化橋樑</strong></h3>
+
+<pre><code>
+[TTS/錄音] → [Rhubarb Lip Sync] → [嘴型時間軸] → [Blender 映射] → [完整臉部動畫]
+                                                        ↑
+                                               FaceIt Shape Keys
+</code></pre>
+
+<p><strong>具體貢獻：</strong></p>
+<ol>
+<li><strong>語音資產批次處理</strong>：遊戲有數百條對話，Rhubarb 可全自動化處理</li>
+<li><strong>TTS 整合</strong>：AI 生成語音（TTS）→ Rhubarb 自動口型 = 完全自動化</li>
+<li><strong>免費且可嵌入</strong>：MIT 授權可嵌入任何工具鏈</li>
+<li><strong>命令列 = 可腳本化</strong>：完美適合量產管線</li>
+</ol>
+
+<p><strong>限制：</strong></p>
+<ul>
+<li>中文支援不佳（僅 Phonetic 模式）</li>
+<li>精度不如手動對口型</li>
+<li>需要 FaceIt 或類似工具提供 Shape Keys 資產</li>
+</ul>
+
+<hr>
+
+<h2>參考資料</h2>
+
+<ul>
+<li>GitHub：<a href="https://github.com/DanielSWolf/rhubarb-lip-sync" target="_blank">https://github.com/DanielSWolf/rhubarb-lip-sync</a></li>
+<li>Releases：<a href="https://github.com/DanielSWolf/rhubarb-lip-sync/releases" target="_blank">https://github.com/DanielSWolf/rhubarb-lip-sync/releases</a></li>
+<li>Demo 影片：<a href="https://www.youtube.com/watch?v=zzdPSFJRlEo" target="_blank">https://www.youtube.com/watch?v=zzdPSFJRlEo</a></li>
+<li>Blender 整合（Les Fées）：<a href="https://github.com/LesFeesSpeciales/blender-rhubarb-lipsync" target="_blank">https://github.com/LesFeesSpeciales/blender-rhubarb-lipsync</a></li>
+<li>Blender Market 版（NG）：<a href="https://blendermarket.com/products/rhubarb-lipsync-ng" target="_blank">https://blendermarket.com/products/rhubarb-lipsync-ng</a></li>
+<li>Blender Extensions Lip Sync：<a href="https://extensions.blender.org/add-ons/iocgpoly-lip-sync/" target="_blank">https://extensions.blender.org/add-ons/iocgpoly-lip-sync/</a></li>
+</ul>
+
+</body>
+</html>

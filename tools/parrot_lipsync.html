@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parrot Lipsync — 深度調研報告</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#1a1a2e;color:#e0d6c8;font-family:-apple-system,'Noto Sans TC',sans-serif;max-width:900px;margin:0 auto;padding:2rem;line-height:1.7}
+h1{color:#f5a623;margin:1.5rem 0 1rem}
+h2{color:#fff;margin:1.5rem 0 .8rem}
+h3{color:#e0d6c8;margin:1.2rem 0 .6rem}
+a{color:#f5a623}
+strong{color:#f5a623}
+ul,ol{margin:.5rem 0 .5rem 1.5rem}
+li{margin:.3rem 0}
+table{border-collapse:collapse;margin:1rem 0;max-width:100%;overflow-x:auto;display:block}
+th,td{border:1px solid #333;padding:8px 12px;text-align:left}
+th{background:#2a2a3e}
+pre{background:#0d0d1a;padding:1rem;border-radius:8px;overflow-x:auto;margin:1rem 0}
+code{background:#0d0d1a;padding:2px 6px;border-radius:4px;font-size:.9em}
+pre code{padding:0;background:none}
+hr{border:none;border-top:1px solid #333;margin:1.5rem 0}
+p{margin:.6rem 0}
+img{max-width:100%}
+.back{display:inline-block;margin-bottom:1.5rem;text-decoration:none}
+</style>
+</head>
+<body>
+<a href="../index.html" class="back">← 返回首頁</a>
+<h1>Parrot Lipsync — 深度調研報告</h1>
+
+<h2>工具概述</h2>
+
+<p>Parrot Lipsync 是一個 Blender 外掛，由 blackears 開發，能從音訊檔案自動產生 lip sync 動畫。它使用 <strong>Allosaurus</strong> 語音辨識庫來解析語音音軌，為每個音節創建關鍵幀，支援 2D 和 3D 動畫。</p>
+
+<p><strong>解決的問題：</strong></p>
+<ul>
+<li>手動對嘴型極度耗時</li>
+<li>需要在 Blender 內部完成 lip sync（不用外部命令列工具）</li>
+<li>需要支援多語言的語音辨識（Allosaurus 支援 2000+ 語言）</li>
+<li>需要同時支援 2D 和 3D 角色的嘴型動畫</li>
+</ul>
+
+<hr>
+
+<h2>功能詳細說明</h2>
+
+<h3>核心技術</h3>
+
+<ul>
+<li><strong>Allosaurus</strong>：多語言電話辨識（phoneme recognition）引擎</li>
+<li>支援 2000+ 語言（含中文等亞洲語言）</li>
+<li>不依賴特定語言的詞彙庫</li>
+<li>基於深度學習的音素辨識</li>
+</ul>
+
+<h3>主要功能</h3>
+
+<table>
+<tr><th>功能</th><th>說明</th></tr>
+<tr><td>自動音素辨識</td><td>分析音訊，辨識每個音素的時間點</td></tr>
+<tr><td>Shape Key 驅動</td><td>自動映射音素到 Shape Keys / Blend Shapes</td></tr>
+<tr><td>2D 支援</td><td>支援 2D 動畫（Grease Pencil 等）</td></tr>
+<tr><td>3D 支援</td><td>支援 3D 角色的 Shape Keys 動畫</td></tr>
+<tr><td>Blender 整合</td><td>完全在 Blender UI 內操作</td></tr>
+</table>
+
+<h3>與 Rhubarb 的差異</h3>
+
+<table>
+<tr><th>項目</th><th>Rhubarb</th><th>Parrot</th></tr>
+<tr><td>架構</td><td>外部命令列工具 + Blender 外掛</td><td>純 Blender 外掛（一體化）</td></tr>
+<tr><td>語音辨識</td><td>PocketSphinx（英語）/ Phonetic</td><td>Allosaurus（2000+ 語言）</td></tr>
+<tr><td>多語言</td><td>英語最佳，其他語言用 Phonetic</td><td><strong>多語言原生支援</strong>（含中文）</td></tr>
+<tr><td>嘴型系統</td><td>6+3 Hanna-Barbera 嘴型</td><td>直接映射到 Shape Keys</td></tr>
+<tr><td>授權</td><td>免費開源 MIT</td><td>免費（GitHub）/ 付費（Blender Market）</td></tr>
+</table>
+
+<hr>
+
+<h2>官方影片教學連結</h2>
+
+<table>
+<tr><th>主題</th><th>連結</th></tr>
+<tr><td>GitHub 主頁</td><td><a href="https://github.com/blackears/parrotLipsync" target="_blank">https://github.com/blackears/parrotLipsync</a></td></tr>
+<tr><td>Gumroad 頁面</td><td><a href="https://blackears.gumroad.com/l/dhwsxw" target="_blank">https://blackears.gumroad.com/l/dhwsxw</a></td></tr>
+<tr><td>Superhive（Blender Market）</td><td><a href="https://superhivemarket.com/products/parrot-lipsync" target="_blank">https://superhivemarket.com/products/parrot-lipsync</a></td></tr>
+</table>
+
+<hr>
+
+<h2>安裝/使用流程</h2>
+
+<h3>安裝</h3>
+<ol>
+<li>從 GitHub / Gumroad / Blender Market 下載</li>
+<li>Blender → Edit → Preferences → Add-ons → Install → 選擇 zip</li>
+<li>啟用 Parrot Lipsync</li>
+<li>首次使用會自動下載 Allosaurus 依賴（需要 Python pip）</li>
+</ol>
+
+<h3>使用流程</h3>
+<pre><code>
+1. 準備角色（需有嘴型 Shape Keys 或 2D 嘴型圖層）
+2. 匯入音訊檔到 Blender
+3. 在 Parrot 面板中選擇音訊
+4. 設定 Shape Keys 映射（哪個音素對應哪個 Shape Key）
+5. 點擊 Generate → 自動分析音訊並生成 Keyframes
+6. 微調結果
+</code></pre>
+
+<hr>
+
+<h2>定價與授權</h2>
+
+<table>
+<tr><th>版本</th><th>價格</th></tr>
+<tr><td>GitHub 版（免費）</td><td>免費</td></tr>
+<tr><td>Gumroad 版</td><td>自由定價（建議 $10+）</td></tr>
+<tr><td>Blender Market 版</td><td>~$15-20 USD</td></tr>
+</table>
+
+<ul>
+<li>開源（GitHub），但也提供付費版支持開發</li>
+</ul>
+
+<hr>
+
+<h2>優缺點分析</h2>
+
+<h3>優點</h3>
+<ul>
+<li>✅ <strong>多語言支援</strong>：Allosaurus 支援 2000+ 語言，<strong>包含中文</strong></li>
+<li>✅ <strong>Blender 原生整合</strong>：不需外部命令列工具</li>
+<li>✅ <strong>一體化操作</strong>：在 Blender UI 內完成全部流程</li>
+<li>✅ <strong>2D + 3D</strong>：同時支援兩種動畫方式</li>
+<li>✅ <strong>免費可用</strong>：GitHub 有免費版本</li>
+<li>✅ <strong>深度學習辨識</strong>：Allosaurus 比傳統 Phonetic 更精確</li>
+</ul>
+
+<h3>缺點</h3>
+<ul>
+<li>❌ <strong>依賴 Python 環境</strong>：Allosaurus 安裝需要 pip，可能有相容性問題</li>
+<li>❌ <strong>安裝較複雜</strong>：Python 依賴可能在某些環境中失敗</li>
+<li>❌ <strong>更新頻率中等</strong>：最後 release 2024 年 2 月</li>
+<li>❌ <strong>文件較少</strong>：主要靠 GitHub README 和產品頁說明</li>
+<li>❌ <strong>辨識精度</strong>：多語言通用型引擎可能不如專門引擎精確</li>
+<li>❌ <strong>效能</strong>：深度學習推理需要一定計算資源</li>
+</ul>
+
+<hr>
+
+<h2>與現有工具的整合可能性</h2>
+
+<h3>與 Kimodo 的整合</h3>
+<ul>
+<li>Kimodo 生成身體動作 + Parrot 處理嘴型 = 完整角色動畫</li>
+<li>兩者都在 Blender 內操作，流程無縫</li>
+</ul>
+
+<h3>與 FaceIt 的互補</h3>
+<ul>
+<li>FaceIt 提供 Shape Keys 資產（嘴型）</li>
+<li>Parrot 驅動這些 Shape Keys 的動畫時間</li>
+</ul>
+
+<h3>中文語音支援</h3>
+<ul>
+<li><strong>關鍵優勢</strong>：如果工作流涉及中文語音（如中文遊戲配音），Parrot 比 Rhubarb 更適合</li>
+</ul>
+
+<hr>
+
+<h2>對「AI 動作量產工作流」的貢獻定位</h2>
+
+<h3>定位：<strong>多語言 Lip Sync 自動化（特別是中文）</strong></h3>
+
+<pre><code>
+[中文配音/TTS] → [Parrot Lipsync] → [Shape Key 動畫] → [完整角色動畫]
+                  (Allosaurus 辨識)    (自動 Keyframes)
+</code></pre>
+
+<p><strong>具體貢獻：</strong></p>
+<ol>
+<li><strong>中文 Lip Sync</strong>：如果遊戲需要中文配音，Parrot 是比 Rhubarb 更好的選擇</li>
+<li><strong>Blender 內一體化</strong>：減少工具切換成本</li>
+<li><strong>批次處理</strong>：多個音訊檔可逐一處理</li>
+</ol>
+
+<p><strong>與 Rhubarb 的選擇建議：</strong></p>
+<ul>
+<li>英語為主 → Rhubarb（PocketSphinx 精度高 + 成熟穩定）</li>
+<li>中文/多語言 → Parrot（Allosaurus 多語言支援）</li>
+<li>需要命令列自動化 → Rhubarb</li>
+<li>需要 Blender UI 操作 → Parrot</li>
+</ul>
+
+<hr>
+
+<h2>參考資料</h2>
+
+<ul>
+<li>GitHub：<a href="https://github.com/blackears/parrotLipsync" target="_blank">https://github.com/blackears/parrotLipsync</a></li>
+<li>Releases：<a href="https://github.com/blackears/parrotLipsync/releases" target="_blank">https://github.com/blackears/parrotLipsync/releases</a></li>
+<li>Gumroad：<a href="https://blackears.gumroad.com/l/dhwsxw" target="_blank">https://blackears.gumroad.com/l/dhwsxw</a></li>
+<li>Blender Market：<a href="https://superhivemarket.com/products/parrot-lipsync" target="_blank">https://superhivemarket.com/products/parrot-lipsync</a></li>
+<li>Allosaurus：<a href="https://github.com/xinjli/allosaurus" target="_blank">https://github.com/xinjli/allosaurus</a></li>
+</ul>
+
+</body>
+</html>

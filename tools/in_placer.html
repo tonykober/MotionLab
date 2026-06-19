@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>In Placer — 深度調研報告</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#1a1a2e;color:#e0d6c8;font-family:-apple-system,'Noto Sans TC',sans-serif;max-width:900px;margin:0 auto;padding:2rem;line-height:1.7}
+h1{color:#f5a623;margin:1.5rem 0 1rem}
+h2{color:#fff;margin:1.5rem 0 .8rem}
+h3{color:#e0d6c8;margin:1.2rem 0 .6rem}
+a{color:#f5a623}
+strong{color:#f5a623}
+ul,ol{margin:.5rem 0 .5rem 1.5rem}
+li{margin:.3rem 0}
+table{border-collapse:collapse;margin:1rem 0;max-width:100%;overflow-x:auto;display:block}
+th,td{border:1px solid #333;padding:8px 12px;text-align:left}
+th{background:#2a2a3e}
+pre{background:#0d0d1a;padding:1rem;border-radius:8px;overflow-x:auto;margin:1rem 0}
+code{background:#0d0d1a;padding:2px 6px;border-radius:4px;font-size:.9em}
+pre code{padding:0;background:none}
+hr{border:none;border-top:1px solid #333;margin:1.5rem 0}
+p{margin:.6rem 0}
+img{max-width:100%}
+.back{display:inline-block;margin-bottom:1.5rem;text-decoration:none}
+</style>
+</head>
+<body>
+<a href="../index.html" class="back">← 返回首頁</a>
+<h1>In Placer — 深度調研報告</h1>
+
+<h2>工具概述</h2>
+
+<p><strong>In Placer</strong> 是一款免費的 Blender 外掛，由開發者 Fatih Pehlevan 開發（與 Foot Locker 同作者）。其唯一功能是將帶有位移的動畫轉換為「原地動畫」（In-Place Animation），這是遊戲引擎中角色移動系統的標準需求。</p>
+
+<p><strong>解決的問題：</strong></p>
+<ul>
+<li>遊戲引擎中角色移動由程式控制（capsule component），動畫本身需要是原地播放</li>
+<li>Mixamo / AI 生成的動畫通常帶有前進/側移位移，需要移除</li>
+<li>手動在 Graph Editor 清除 Root 骨骼位移是重複性工作</li>
+<li>一鍵自動化移除前進/側移位移</li>
+</ul>
+
+<hr>
+
+<h2>功能詳細說明</h2>
+
+<h3>核心功能</h3>
+
+<table>
+<tr><th>功能</th><th>說明</th></tr>
+<tr><td><strong>Make it in place</strong></td><td>一鍵移除前進+側向移動，保留垂直（跳躍）</td></tr>
+<tr><td><strong>One Direction Only</strong></td><td>只移除單一方向的移動（前進 OR 側向）</td></tr>
+<tr><td><strong>Mixamo 支援</strong></td><td>自動識別 mixamorig:Hips 骨骼</td></tr>
+<tr><td><strong>Unreal 格式支援</strong></td><td>識別 "root" 命名的骨架</td></tr>
+<tr><td><strong>UI 位置可選</strong></td><td>可選擇顯示在 N-Panel 或 Armature Properties</td></tr>
+<tr><td><strong>自訂面板名稱</strong></td><td>Addon Preferences 可修改面板標題</td></tr>
+</table>
+
+<h3>工作原理</h3>
+
+<ol>
+<li>偵測角色的 root/hips 骨骼</li>
+<li>分析該骨骼在動畫中的水平位移 (X/Y 軸)</li>
+<li>從動畫曲線中移除水平位移分量</li>
+<li>保留垂直位移（跳躍/蹲下等需要的 Z 軸）</li>
+</ol>
+
+<h3>為什麼需要原地動畫？</h3>
+
+<p>在遊戲引擎中：</p>
+<ul>
+<li>角色位移由程式碼控制（Capsule Component / Character Controller）</li>
+<li>動畫本身只負責「看起來在走/跑」</li>
+<li>如果動畫帶有位移，角色會產生雙重移動（程式+動畫）導致滑動</li>
+</ul>
+
+<p><strong>有位移的動畫在遊戲中的問題：</strong></p>
+<p>→ 角色位移和動畫位移疊加 → 看起來在「溜冰」或「飄移」</p>
+
+<hr>
+
+<h2>官方影片教學連結</h2>
+
+<table>
+<tr><th>#</th><th>資源</th><th>連結</th></tr>
+<tr><td>1</td><td>CGDive 工具頁</td><td><a href="https://addons.cgdive.com/tools/in-placer" target="_blank">https://addons.cgdive.com/tools/in-placer</a></td></tr>
+<tr><td>2</td><td>Gumroad 頁面（含說明）</td><td><a href="https://fatihpehlevan.gumroad.com/l/InPlacer" target="_blank">https://fatihpehlevan.gumroad.com/l/InPlacer</a></td></tr>
+<tr><td>3</td><td>BlenderArtists 發佈帖（含 GIF 展示）</td><td><a href="https://blenderartists.org/t/in-placer-make-your-animations-in-place-easily/1337494" target="_blank">https://blenderartists.org/t/in-placer-make-your-animations-in-place-easily/1337494</a></td></tr>
+<tr><td>4</td><td>Unreal Engine Forum 介紹</td><td><a href="https://forums.unrealengine.com/t/in-placer-blender-addon-to-make-your-animation-in-place-easily/259636" target="_blank">https://forums.unrealengine.com/t/in-placer-blender-addon-to-make-your-animation-in-place-easily/259636</a></td></tr>
+</table>
+
+<p>&gt; 注意：輕量工具，操作簡單，無需專門影片教學。BlenderArtists 帖有動態 GIF 展示效果。</p>
+
+<hr>
+
+<h2>安裝/使用流程</h2>
+
+<h3>安裝</h3>
+
+<ol>
+<li>從 Gumroad 免費下載：<a href="https://fatihpehlevan.gumroad.com/l/InPlacer" target="_blank">https://fatihpehlevan.gumroad.com/l/InPlacer</a></li>
+<li>Blender → Edit → Preferences → Add-ons → Install → 選取 zip</li>
+<li>啟用 In Placer</li>
+</ol>
+
+<h3>使用流程</h3>
+
+<ol>
+<li>確保在 <strong>Object Mode</strong></li>
+<li>選取含有動畫的 <strong>Armature</strong> 物件</li>
+<li>N-Panel → In Placer（或 Armature Data Properties）</li>
+<li>點擊 <strong>「Make it in place」</strong> → 完成</li>
+</ol>
+
+<h3>注意事項</h3>
+
+<ul>
+<li>Mixamo rig：Root 骨骼名稱必須是 <code>mixamorig:Hips</code></li>
+<li>Unreal 格式：Armature 物件名稱必須是 <code>root</code></li>
+<li>場景中不能有同名的 armature（如 root.001 會報錯）</li>
+<li>只支援 Mixamo 和 Unreal 格式的骨架命名</li>
+</ul>
+
+<hr>
+
+<h2>定價與授權</h2>
+
+<table>
+<tr><th>項目</th><th>內容</th></tr>
+<tr><td><strong>價格</strong></td><td>免費（Gumroad $0）</td></tr>
+<tr><td><strong>授權</strong></td><td>免費使用</td></tr>
+<tr><td><strong>平台</strong></td><td>Blender 2.8+</td></tr>
+<tr><td><strong>開發者</strong></td><td>Fatih Pehlevan</td></tr>
+<tr><td><strong>相關工具</strong></td><td>Foot Locker（腳步鎖定）、Animazing（動畫工具包，含旋轉原地化）</td></tr>
+</table>
+
+<hr>
+
+<h2>優缺點分析</h2>
+
+<h3>✅ 優點</h3>
+
+<ol>
+<li><strong>完全免費</strong> — 零成本</li>
+<li><strong>一鍵操作</strong> — 學習成本為零，按一個鍵就完成</li>
+<li><strong>節省重複工作</strong> — 大量 Mixamo 動畫不用每次手動清 graph editor</li>
+<li><strong>遊戲開發必備</strong> — 原地動畫是遊戲引擎的基本需求</li>
+<li><strong>保留垂直移動</strong> — 不會破壞跳躍/蹲下等動作</li>
+<li><strong>UI 可自訂</strong> — 可隱藏在 N-Panel 或放在 Properties</li>
+</ol>
+
+<h3>❌ 缺點</h3>
+
+<ol>
+<li><strong>只支援 Mixamo/Unreal 骨架</strong> — 不支援任意骨架命名</li>
+<li><strong>不處理旋轉</strong> — 原始版本不移除旋轉位移（需 Animazing 處理）</li>
+<li><strong>無批次處理</strong> — 一次只處理一個動畫</li>
+<li><strong>場景命名限制</strong> — 同名 armature 會報錯</li>
+<li><strong>無 Root Motion 提取</strong> — 只移除位移，不另存為 Root Motion 曲線</li>
+<li><strong>功能極度簡單</strong> — 就只有「移除水平位移」這一件事</li>
+</ol>
+
+<hr>
+
+<h2>與 Kimodo BVH 輸出的整合可能性</h2>
+
+<h3>整合評估：⭐⭐⭐（中等適合，需額外映射步驟）</h3>
+
+<table>
+<tr><th>面向</th><th>評估</th></tr>
+<tr><td><strong>需求對應</strong></td><td>✅ Kimodo 生成的 BVH 帶有位移，遊戲引擎需要原地版</td></tr>
+<tr><td><strong>骨架相容</strong></td><td>⚠️ 不直接識別 Kimodo 骨架命名，需先 retarget 到 Mixamo/Unreal 骨架</td></tr>
+<tr><td><strong>工作流</strong></td><td>✅ retarget 後一鍵原地化</td></tr>
+<tr><td><strong>替代方案</strong></td><td>ARP Remap 的 In Place 選項已內建此功能</td></tr>
+</table>
+
+<h3>建議使用場景</h3>
+
+<p>適合 retarget 後（已轉為 Mixamo/Unreal 骨架命名）的原地化：</p>
+
+<pre><code>
+Kimodo BVH → Retarget to Mixamo/Unreal 骨架
+    → In Placer（一鍵原地化）← 本工具
+    → Export to Game Engine
+</code></pre>
+
+<h3>替代方案比較</h3>
+
+<table>
+<tr><th></th><th>In Placer</th><th>ARP In Place</th><th>Mixamo In Place</th><th>Foot-Work</th></tr>
+<tr><td>價格</td><td>免費</td><td>含在 $40</td><td>免費（線上）</td><td>付費</td></tr>
+<tr><td>旋轉處理</td><td>❌</td><td>✅</td><td>✅</td><td>✅</td></tr>
+<tr><td>批次</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td>骨架限制</td><td>Mixamo/Unreal</td><td>任意</td><td>Mixamo</td><td>Rigify</td></tr>
+<tr><td>Root Motion 提取</td><td>❌</td><td>❌</td><td>❌</td><td>✅</td></tr>
+</table>
+
+<hr>
+
+<h2>對「AI 動作量產工作流」的貢獻定位</h2>
+
+<h3>定位：<strong>快速原地化的簡易工具（非核心）</strong></h3>
+
+<pre><code>
+[Kimodo AI 生成 BVH]
+        ↓
+[Retarget to Mixamo/Unreal 骨架]
+        ↓
+[In Placer] ← 本工具定位（或用 ARP In Place 代替）
+  - 移除水平位移
+  - 保留垂直動態
+        ↓
+[Foot Fix + Export]
+        ↓
+[遊戲引擎]
+</code></pre>
+
+<p><strong>核心價值：</strong></p>
+<ul>
+<li>零成本、一鍵操作的原地化</li>
+<li>適合已經是 Mixamo 骨架的情況</li>
+</ul>
+
+<p><strong>限制：</strong></p>
+<ul>
+<li>如果已用 ARP Remap，其內建 In Place 功能更強（含旋轉+批次）</li>
+<li>Kimodo 骨架需先 retarget 才能用</li>
+<li>不處理旋轉（轉圈走路會有問題）</li>
+</ul>
+
+<p><strong>結論：</strong></p>
+<p>如果工作流已包含 Auto-Rig Pro，In Placer 的價值被 ARP In Place 取代。</p>
+<p>如果用免費工具鏈（BVH Retargeter → Mixamo 骨架），In Placer 是最簡單的原地化方案。</p>
+
+<hr>
+
+<h2>參考來源</h2>
+
+<ul>
+<li>Gumroad: <a href="https://fatihpehlevan.gumroad.com/l/InPlacer" target="_blank">https://fatihpehlevan.gumroad.com/l/InPlacer</a></li>
+<li>CGDive 工具頁: <a href="https://addons.cgdive.com/tools/in-placer" target="_blank">https://addons.cgdive.com/tools/in-placer</a></li>
+<li>BlenderArtists 發佈帖: <a href="https://blenderartists.org/t/in-placer-make-your-animations-in-place-easily/1337494" target="_blank">https://blenderartists.org/t/in-placer-make-your-animations-in-place-easily/1337494</a></li>
+<li>Unreal Engine Forum: <a href="https://forums.unrealengine.com/t/in-placer-blender-addon-to-make-your-animation-in-place-easily/259636" target="_blank">https://forums.unrealengine.com/t/in-placer-blender-addon-to-make-your-animation-in-place-easily/259636</a></li>
+<li>同開發者 Animazing（含旋轉支援）: <a href="https://fatihpehlevan.gumroad.com/l/animazing" target="_blank">https://fatihpehlevan.gumroad.com/l/animazing</a></li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Third Person Kit — 深度調研報告</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#1a1a2e;color:#e0d6c8;font-family:-apple-system,'Noto Sans TC',sans-serif;max-width:900px;margin:0 auto;padding:2rem;line-height:1.7}
+h1{color:#f5a623;margin:1.5rem 0 1rem}
+h2{color:#fff;margin:1.5rem 0 .8rem}
+h3{color:#e0d6c8;margin:1.2rem 0 .6rem}
+a{color:#f5a623}
+strong{color:#f5a623}
+ul,ol{margin:.5rem 0 .5rem 1.5rem}
+li{margin:.3rem 0}
+table{border-collapse:collapse;margin:1rem 0;max-width:100%;overflow-x:auto;display:block}
+th,td{border:1px solid #333;padding:8px 12px;text-align:left}
+th{background:#2a2a3e}
+pre{background:#0d0d1a;padding:1rem;border-radius:8px;overflow-x:auto;margin:1rem 0}
+code{background:#0d0d1a;padding:2px 6px;border-radius:4px;font-size:.9em}
+pre code{padding:0;background:none}
+hr{border:none;border-top:1px solid #333;margin:1.5rem 0}
+p{margin:.6rem 0}
+img{max-width:100%}
+.back{display:inline-block;margin-bottom:1.5rem;text-decoration:none}
+</style>
+</head>
+<body>
+<a href="../index.html" class="back">← 返回首頁</a>
+<h1>Third Person Kit — 深度調研報告</h1>
+
+<h2>工具概述</h2>
+
+<p>Third Person Kit 是 Blender 外掛，由 rileyb3d 開發，能讓使用者在 Blender 場景中<strong>像玩第三人稱遊戲一樣控制角色</strong>。透過鍵盤（WASD）操控角色行走、奔跑、蹲下、跳躍，並即時錄製移動軌跡為 Blender 關鍵幀動畫。</p>
+
+<p><strong>解決的問題：</strong></p>
+<ul>
+<li>角色移動動畫（locomotion）手動 K 幀耗時</li>
+<li>動畫預視（previs）/故事版（animatics）需要快速產出角色移動路徑</li>
+<li>從 Mixamo 等來源匯入動畫後，缺乏在場景中「操控」角色的方式</li>
+<li>遊戲開發前期需要快速驗證角色移動手感</li>
+</ul>
+
+<hr>
+
+<h2>功能詳細說明</h2>
+
+<h3>核心功能</h3>
+
+<table>
+<tr><th>功能</th><th>說明</th></tr>
+<tr><td><strong>可操控控制</strong></td><td>Walk、Sprint、Crouch、Jump、Idle + 自訂動作（如 Interact）</td></tr>
+<tr><td><strong>Plug-and-Play 動畫</strong></td><td>使用自訂動畫或直接從 Mixamo 匯入</td></tr>
+<tr><td><strong>攝影機系統</strong></td><td>第三人稱跟隨攝影機（肩後視角）+ 碰撞 + 縮放 + Free Look</td></tr>
+<tr><td><strong>動作錄製</strong></td><td>即時錄製角色移動為 Blender Keyframe Action（含攝影機運動）</td></tr>
+<tr><td><strong>碰撞系統</strong></td><td>內建碰撞偵測，可停用特定 Collection</td></tr>
+<tr><td><strong>Gamepad 支援</strong></td><td>v2.1.0 新增遊戲手把支援</td></tr>
+<tr><td><strong>全螢幕模式</strong></td><td>控制器全螢幕切換</td></tr>
+</table>
+
+<h3>工作流</h3>
+
+<pre><code>
+角色 FBX（含 Rig）+ 動畫（Idle/Walk/Run/Crouch/Jump）
+→ Third Person Kit 設定
+→ 按 Play 進入「遊戲模式」
+→ WASD 控制角色在場景中移動
+→ 退出後動作存為標準 Blender Action
+→ 可在 NLA Editor 中編輯/組合
+</code></pre>
+
+<h3>Mixamo 快速工作流</h3>
+<ol>
+<li>從 Blender 匯出角色 FBX</li>
+<li>到 Mixamo 取得基礎動作（walk/run/crouch/jump）</li>
+<li>匯回 Blender</li>
+<li>設定 Third Person Kit</li>
+<li>開始操控</li>
+</ol>
+
+<hr>
+
+<h2>官方影片教學連結</h2>
+
+<table>
+<tr><th>主題</th><th>連結</th></tr>
+<tr><td>開發者教學影片</td><td>Superhive 產品頁內嵌（見商品頁）</td></tr>
+<tr><td>CGDive 介紹</td><td><a href="https://addons.cgdive.com/tools/third-person-kit" target="_blank">https://addons.cgdive.com/tools/third-person-kit</a></td></tr>
+<tr><td>Superhive 產品頁</td><td><a href="https://superhivemarket.com/products/third-person-kit" target="_blank">https://superhivemarket.com/products/third-person-kit</a></td></tr>
+</table>
+
+<hr>
+
+<h2>安裝/使用流程</h2>
+
+<h3>安裝</h3>
+<ol>
+<li>從 Superhive 購買（$24 USD）</li>
+<li>Blender → Edit → Preferences → Add-ons → Install</li>
+<li>啟用 Third Person Kit</li>
+<li>支援 Blender 4.2 - 5.0（v2.1.0）</li>
+</ol>
+
+<h3>使用流程</h3>
+<pre><code>
+1. 匯入帶 Rig 的角色 FBX
+2. 匯入動畫（Walk/Run/Crouch/Jump/Idle）
+3. 在 Third Person Kit 面板中設定：
+   - 綁定角色
+   - 指定各動作 Action
+4. 設定場景碰撞（地面、牆壁）
+5. 按 Play → 進入控制模式
+6. 使用鍵盤/手把操控角色
+7. 退出 → 動畫自動存為 Action
+8. 在 NLA Editor 中使用/編輯
+</code></pre>
+
+<hr>
+
+<h2>定價與授權</h2>
+
+<table>
+<tr><th>項目</th><th>價格</th></tr>
+<tr><td>Third Person Kit</td><td><strong>$24 USD</strong></td></tr>
+</table>
+
+<ul>
+<li>平台：Superhive（原 Blender Market）</li>
+<li>一次購買包含所有未來版本</li>
+<li>授權：GPL</li>
+<li>銷量：70+</li>
+<li>Blender Extension 相容</li>
+</ul>
+
+<hr>
+
+<h2>優缺點分析</h2>
+
+<h3>優點</h3>
+<ul>
+<li>✅ <strong>即時操控動畫</strong>：像玩遊戲一樣製作移動動畫</li>
+<li>✅ <strong>極快速 Previs</strong>：數分鐘內完成角色場景移動</li>
+<li>✅ <strong>Mixamo 整合</strong>：快速工作流</li>
+<li>✅ <strong>攝影機系統</strong>：含碰撞/縮放/Free Look，適合過場動畫</li>
+<li>✅ <strong>錄製為標準 Action</strong>：可在 NLA 中組合、編輯</li>
+<li>✅ <strong>Gamepad 支援</strong>：手把操控更直觀</li>
+<li>✅ <strong>價格合理</strong>：$24，功能完整</li>
+<li>✅ <strong>碰撞系統</strong>：角色不會穿牆</li>
+</ul>
+
+<h3>缺點</h3>
+<ul>
+<li>❌ <strong>不是精細動畫工具</strong>：不能取代專業動畫師的細膩動作</li>
+<li>❌ <strong>依賴預製動畫</strong>：需要先有 walk/run/jump 等動畫</li>
+<li>❌ <strong>Blender 5.0 相容問題</strong>：Action Slot 系統變更導致部分問題</li>
+<li>❌ <strong>僅限移動動畫</strong>：不處理上半身/手部/臉部動畫</li>
+<li>❌ <strong>角色 Rig 需一致</strong>：所有 FBX 的骨架需統一</li>
+</ul>
+
+<hr>
+
+<h2>與現有工具的整合可能性</h2>
+
+<h3>與 Kimodo 的整合</h3>
+
+<table>
+<tr><th>環節</th><th>整合方式</th></tr>
+<tr><td>Kimodo 作為動畫來源</td><td>Kimodo 生成 walk/run/idle/jump → 作為 Third Person Kit 的動作庫</td></tr>
+<tr><td>AI + 即時操控</td><td>AI 生成基礎動作 + 即時操控決定路線和時機</td></tr>
+<tr><td>量產場景動畫</td><td>用 TPK 快速走場，配合 AI 動作，大幅縮短 previs 時間</td></tr>
+</table>
+
+<h3>與 Blender → UE/Unity Pipeline 的整合</h3>
+
+<table>
+<tr><th>流程</th><th>說明</th></tr>
+<tr><td>TPK 錄製 → ARP 匯出</td><td>錄製的 Action 可直接用 ARP Game Export 匯出</td></tr>
+<tr><td>Previs → 引擎實作</td><td>在 Blender 中用 TPK 驗證動畫流程，確認後在引擎中實作</td></tr>
+<tr><td>攝影機動畫</td><td>TPK 的攝影機動畫可匯出作為過場動畫參考</td></tr>
+</table>
+
+<h3>建議整合流程</h3>
+<pre><code>
+Kimodo 生成基礎動作（walk/run/idle/jump）
+→ Third Person Kit 設定
+→ 即時操控角色在場景中走位
+→ 錄製路徑和時機為 Action
+→ NLA 組合 + 細節微調
+→ ARP Game Export → 遊戲引擎
+</code></pre>
+
+<hr>
+
+<h2>對「AI 動作量產工作流」的貢獻定位</h2>
+
+<h3>定位：<strong>AI 動作的即時編排器 + 場景走位工具</strong></h3>
+
+<pre><code>
+[AI 動作庫] → [Third Person Kit] → [場景走位動畫] → [完整過場/遊戲動畫]
+ (Kimodo)      (即時操控決定       (何時走、何時跑    
+                路線和時機)          何時跳、何時停)
+</code></pre>
+
+<p><strong>具體貢獻：</strong></p>
+<ol>
+<li><strong>動作→場景的橋樑</strong>：AI 生成的是「動作本身」，TPK 負責「何時在哪裡用」</li>
+<li><strong>極速 Previs</strong>：遊戲過場動畫的快速原型驗證</li>
+<li><strong>非動畫師也能用</strong>：設計師/企劃可自己操控角色走位，減少溝通成本</li>
+<li><strong>攝影機同時錄製</strong>：動作+運鏡一次完成</li>
+</ol>
+
+<p><strong>適用場景：</strong></p>
+<ul>
+<li>遊戲過場動畫 previs</li>
+<li>場景走位規劃</li>
+<li>角色移動動畫快速產出</li>
+<li>動畫 Reference 錄製</li>
+</ul>
+
+<hr>
+
+<h2>參考資料</h2>
+
+<ul>
+<li>Superhive 產品頁：<a href="https://superhivemarket.com/products/third-person-kit" target="_blank">https://superhivemarket.com/products/third-person-kit</a></li>
+<li>CGDive 介紹：<a href="https://addons.cgdive.com/tools/third-person-kit" target="_blank">https://addons.cgdive.com/tools/third-person-kit</a></li>
+<li>開發者：rileyb3d</li>
+</ul>
+
+</body>
+</html>

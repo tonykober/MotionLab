@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foot Flow — 深度調研報告</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#1a1a2e;color:#e0d6c8;font-family:-apple-system,'Noto Sans TC',sans-serif;max-width:900px;margin:0 auto;padding:2rem;line-height:1.7}
+h1{color:#f5a623;margin:1.5rem 0 1rem}
+h2{color:#fff;margin:1.5rem 0 .8rem}
+h3{color:#e0d6c8;margin:1.2rem 0 .6rem}
+a{color:#f5a623}
+strong{color:#f5a623}
+ul,ol{margin:.5rem 0 .5rem 1.5rem}
+li{margin:.3rem 0}
+table{border-collapse:collapse;margin:1rem 0;max-width:100%;overflow-x:auto;display:block}
+th,td{border:1px solid #333;padding:8px 12px;text-align:left}
+th{background:#2a2a3e}
+pre{background:#0d0d1a;padding:1rem;border-radius:8px;overflow-x:auto;margin:1rem 0}
+code{background:#0d0d1a;padding:2px 6px;border-radius:4px;font-size:.9em}
+pre code{padding:0;background:none}
+hr{border:none;border-top:1px solid #333;margin:1.5rem 0}
+p{margin:.6rem 0}
+img{max-width:100%}
+.back{display:inline-block;margin-bottom:1.5rem;text-decoration:none}
+</style>
+</head>
+<body>
+<a href="../index.html" class="back">← 返回首頁</a>
+<h1>Foot Flow — 深度調研報告</h1>
+
+<h2>工具概述</h2>
+
+<p><strong>Foot Flow</strong> 是一款付費的 Blender 外掛，透過 Superhive Market (原 Blender Market) 販售。專門用於清理和穩定 Mocap 動畫中的腳步滑動及其他常見腳部問題。相比免費的 Foot Locker（簡單閾值鎖定），Foot Flow 提供更專業、更自動化的腳步修正方案。</p>
+
+<p><strong>解決的問題：</strong></p>
+<ul>
+<li>Mocap / AI 生成動畫中的腳步滑動（foot sliding）</li>
+<li>腳部不穩定/抖動</li>
+<li>接地問題（腳部穿透地面或浮空）</li>
+<li>其他常見的腳部動畫瑕疵</li>
+</ul>
+
+<hr>
+
+<h2>功能詳細說明</h2>
+
+<h3>核心功能</h3>
+
+<table>
+<tr><th>功能</th><th>說明</th></tr>
+<tr><td><strong>Foot Sliding Fix</strong></td><td>自動偵測並修正腳步滑動</td></tr>
+<tr><td><strong>Ground Contact Stabilization</strong></td><td>穩定接地狀態的腳部</td></tr>
+<tr><td><strong>Foot Issues Clean-up</strong></td><td>處理各種常見腳部動畫瑕疵</td></tr>
+<tr><td><strong>Mocap 專用</strong></td><td>專為 Motion Capture 數據清理設計</td></tr>
+</table>
+
+<h3>與 Foot Locker 的區別</h3>
+
+<table>
+<tr><th>面向</th><th>Foot Locker（免費）</th><th>Foot Flow（付費）</th></tr>
+<tr><td>原理</td><td>簡單閾值鎖定</td><td>智慧偵測+修正</td></tr>
+<tr><td>自動化</td><td>手動指定幀範圍</td><td>更自動化的處理</td></tr>
+<tr><td>功能範圍</td><td>只有位移鎖定</td><td>滑動+穩定+接地</td></tr>
+<tr><td>適合場景</td><td>偶爾快速修復</td><td>大量 mocap 清理</td></tr>
+</table>
+
+<h3>分類定位</h3>
+
+<p>在 CGDive (addons.cgdive.com) 分類中，Foot Flow 被歸類為：</p>
+<ul>
+<li><strong>Motion Capture Clean-up</strong> — 專業 Mocap 清理工具</li>
+</ul>
+
+<hr>
+
+<h2>官方影片教學連結</h2>
+
+<table>
+<tr><th>#</th><th>資源</th><th>連結</th></tr>
+<tr><td>1</td><td>Superhive Market 產品頁</td><td><a href="https://superhivemarket.com/products/foot-flow" target="_blank">https://superhivemarket.com/products/foot-flow</a></td></tr>
+<tr><td>2</td><td>CGDive 工具頁</td><td><a href="https://addons.cgdive.com/tools/foot-flow" target="_blank">https://addons.cgdive.com/tools/foot-flow</a></td></tr>
+</table>
+
+<p>&gt; 注意：付費工具，詳細教學通常在購買後提供。</p>
+
+<hr>
+
+<h2>安裝/使用流程</h2>
+
+<h3>安裝</h3>
+
+<ol>
+<li>從 Superhive Market 購買並下載</li>
+<li>Blender → Edit → Preferences → Add-ons → Install → 選取 zip</li>
+<li>啟用 Foot Flow</li>
+</ol>
+
+<h3>使用流程（推測基於功能描述）</h3>
+
+<ol>
+<li>選取帶有動畫的角色骨架</li>
+<li>指定腳部骨骼</li>
+<li>設定接地參數</li>
+<li>執行腳步修正</li>
+<li>預覽結果並微調</li>
+</ol>
+
+<hr>
+
+<h2>定價與授權</h2>
+
+<table>
+<tr><th>項目</th><th>內容</th></tr>
+<tr><td><strong>價格</strong></td><td>付費（Superhive Market，確切價格需查看產品頁）</td></tr>
+<tr><td><strong>授權</strong></td><td>商業授權（Blender Market 標準）</td></tr>
+<tr><td><strong>平台</strong></td><td>Blender</td></tr>
+<tr><td><strong>販售平台</strong></td><td>Superhive Market (原 Blender Market)</td></tr>
+<tr><td><strong>開發者</strong></td><td>未公開確認（需查看產品頁）</td></tr>
+</table>
+
+<hr>
+
+<h2>優缺點分析</h2>
+
+<h3>✅ 優點</h3>
+
+<ol>
+<li><strong>專業 Mocap 清理</strong> — 專為 motion capture 數據設計</li>
+<li><strong>比 Foot Locker 更智慧</strong> — 不是簡單閾值，有更進階的偵測邏輯</li>
+<li><strong>多種腳部問題處理</strong> — 滑動+穩定+接地，不只是鎖定</li>
+<li><strong>Blender Market 品質</strong> — 通過市場審核的付費工具</li>
+<li><strong>適合量產</strong> — 比手動方案效率高</li>
+</ol>
+
+<h3>❌ 缺點</h3>
+
+<ol>
+<li><strong>付費</strong> — 需要購買，增加成本</li>
+<li><strong>公開資訊有限</strong> — 付費工具詳細功能文件不在公開可見範圍</li>
+<li><strong>社群反饋少</strong> — 相比 ARP 等老牌工具，使用者反饋較少</li>
+<li><strong>可能不如 ARP IK</strong> — ARP 的 IK retarget 從源頭解決滑步，Foot Flow 是後期修復</li>
+<li><strong>依賴骨架結構</strong> — 可能對骨架命名/結構有特定要求</li>
+</ol>
+
+<hr>
+
+<h2>與 Kimodo BVH 輸出的整合可能性</h2>
+
+<h3>整合評估：⭐⭐⭐⭐（適合，定位為後處理修正）</h3>
+
+<table>
+<tr><th>面向</th><th>評估</th></tr>
+<tr><td><strong>問題對應</strong></td><td>✅ Kimodo 動作的腳步滑動是主要痛點</td></tr>
+<tr><td><strong>工作流位置</strong></td><td>✅ retarget 後的清理環節</td></tr>
+<tr><td><strong>自動化</strong></td><td>⚠️ 比 Foot Locker 好但可能仍需手動操作</td></tr>
+<tr><td><strong>品質</strong></td><td>✅ 專業工具，品質應優於簡單閾值方案</td></tr>
+</table>
+
+<h3>建議整合流程</h3>
+
+<pre><code>
+Kimodo BVH → Retarget（BVH Retargeter / ARP FK mode）
+    → Foot Flow ← 本工具定位
+      - 自動偵測接地幀
+      - 修正滑動
+      - 穩定腳部
+    → Export
+</code></pre>
+
+<hr>
+
+<h2>對「AI 動作量產工作流」的貢獻定位</h2>
+
+<h3>定位：<strong>專業級 Mocap 腳步清理（retarget 後修正）</strong></h3>
+
+<pre><code>
+[Kimodo AI 生成 BVH]
+        ↓
+[Retarget]
+        ↓
+[Foot Flow] ← 本工具定位
+  - 專業腳步滑動修正
+  - 接地穩定
+  - 腳部瑕疵清理
+        ↓
+[Root Motion Transfer]
+        ↓
+[遊戲引擎]
+</code></pre>
+
+<p><strong>核心價值：</strong></p>
+<ul>
+<li>當 ARP IK retarget 不可用或不足時（如用免費工具鏈 FK retarget）</li>
+<li>提供後處理階段的專業腳步修正</li>
+<li>比 Foot Locker 更適合量產工作流</li>
+</ul>
+
+<p><strong>與其他腳步工具的定位區分：</strong></p>
+
+<table>
+<tr><th>工具</th><th>定位</th><th>時機</th></tr>
+<tr><td>ARP IK Retarget</td><td>retarget 時直接解決</td><td>最前端</td></tr>
+<tr><td>Foot Flow</td><td>retarget 後專業修正</td><td>中間</td></tr>
+<tr><td>Foot Locker</td><td>最後手動微調</td><td>最末端</td></tr>
+</table>
+
+<p><strong>購買建議：</strong></p>
+<ul>
+<li>如果已有 Auto-Rig Pro（含 IK retarget），Foot Flow 的必要性降低</li>
+<li>如果使用免費工具鏈（BVH Retargeter FK），Foot Flow 是重要的品質補充</li>
+<li>需要確認 Foot Flow 是否支援批次處理，這對量產工作流至關重要</li>
+</ul>
+
+<hr>
+
+<h2>參考來源</h2>
+
+<ul>
+<li>CGDive 工具頁: <a href="https://addons.cgdive.com/tools/foot-flow" target="_blank">https://addons.cgdive.com/tools/foot-flow</a></li>
+<li>Superhive Market: <a href="https://superhivemarket.com/products/foot-flow" target="_blank">https://superhivemarket.com/products/foot-flow</a></li>
+<li>CGDive Mocap Clean-up 分類: <a href="https://addons.cgdive.com/sub-categories/blender-mocap-clean-up" target="_blank">https://addons.cgdive.com/sub-categories/blender-mocap-clean-up</a></li>
+</ul>
+
+</body>
+</html>

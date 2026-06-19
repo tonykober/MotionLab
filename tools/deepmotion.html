@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeepMotion — AI 動作捕捉 + 文字生成動畫平台</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#1a1a2e;color:#e0d6c8;font-family:-apple-system,'Noto Sans TC',sans-serif;max-width:900px;margin:0 auto;padding:2rem;line-height:1.7}
+h1{color:#f5a623;margin:1.5rem 0 1rem}
+h2{color:#fff;margin:1.5rem 0 .8rem}
+h3{color:#e0d6c8;margin:1.2rem 0 .6rem}
+a{color:#f5a623}
+strong{color:#f5a623}
+ul,ol{margin:.5rem 0 .5rem 1.5rem}
+li{margin:.3rem 0}
+table{border-collapse:collapse;margin:1rem 0;max-width:100%;overflow-x:auto;display:block}
+th,td{border:1px solid #333;padding:8px 12px;text-align:left}
+th{background:#2a2a3e}
+pre{background:#0d0d1a;padding:1rem;border-radius:8px;overflow-x:auto;margin:1rem 0}
+code{background:#0d0d1a;padding:2px 6px;border-radius:4px;font-size:.9em}
+pre code{padding:0;background:none}
+hr{border:none;border-top:1px solid #333;margin:1.5rem 0}
+p{margin:.6rem 0}
+img{max-width:100%}
+.back{display:inline-block;margin-bottom:1.5rem;text-decoration:none}
+</style>
+</head>
+<body>
+<a href="../index.html" class="back">← 返回首頁</a>
+<h1>DeepMotion — AI 動作捕捉 + 文字生成動畫平台</h1>
+
+<p>&gt; 調研日期：2026-06-19</p>
+<p>&gt; 官網：<a href="https://www.deepmotion.com" target="_blank">https://www.deepmotion.com</a></p>
+<p>&gt; 平台：<a href="https://portal.deepmotion.com" target="_blank">https://portal.deepmotion.com</a></p>
+<p>&gt; API：<a href="https://github.com/DeepMotion" target="_blank">https://github.com/DeepMotion</a></p>
+
+<hr>
+
+<h2>一、工具概述</h2>
+
+<p><strong>DeepMotion</strong> 是美國加州 San Mateo 的 AI 動畫平台，定位為「最大的 AI 生成 3D 動畫平台」。提供兩大產品線：<strong>Animate 3D</strong>（影片→動畫）和 <strong>SayMotion</strong>（文字→動畫），涵蓋了 video-to-motion 和 text-to-motion 雙賽道。</p>
+
+<p><strong>解決的問題</strong>：</p>
+<ul>
+<li>影片轉動作需要昂貴設備</li>
+<li>文字描述生成動作的需求</li>
+<li>多人動作捕捉的複雜性</li>
+<li>角色 retarget 的繁瑣流程</li>
+</ul>
+
+<hr>
+
+<h2>二、功能詳細說明</h2>
+
+<h3>Animate 3D（Video → 3D Animation）</h3>
+
+<table>
+<tr><th>功能</th><th>說明</th></tr>
+<tr><td>全身 AI 動捕</td><td>單鏡頭影片，無需設備</td></tr>
+<tr><td>臉部追蹤</td><td>Face Tracking</td></tr>
+<tr><td>手部追蹤</td><td>Hand Tracking</td></tr>
+<tr><td>多人追蹤</td><td>最多 2-8 人（依方案）</td></tr>
+<tr><td>物理模擬濾鏡</td><td>防止不自然關節運動</td></tr>
+<tr><td>腳部鎖定</td><td>Foot Locking 防滑步</td></tr>
+<tr><td>動作平滑</td><td>Motion Smoothing</td></tr>
+<tr><td>自動重定向</td><td>Auto Retargeting 到自訂角色</td></tr>
+<tr><td>Rotoscope Pose Editor</td><td>專利技術，逐幀校正動作</td></tr>
+<tr><td>角色上傳</td><td>FBX/GLB/VRM + Ready Player Me + Avaturn</td></tr>
+</table>
+
+<h3>SayMotion（Text → 3D Animation）</h3>
+
+<table>
+<tr><th>功能</th><th>說明</th></tr>
+<tr><td>文字轉 3D 動畫</td><td>自然語言描述→生成動作</td></tr>
+<tr><td>AI Inpainting</td><td>在既有動畫中插入/延展/混合新動作</td></tr>
+<tr><td>多變體生成</td><td>每次最多 8 個變體</td></tr>
+<tr><td>角色上傳</td><td>支援自訂角色</td></tr>
+</table>
+
+<h3>匯出格式</h3>
+
+<table>
+<tr><th>格式</th><th>支援</th></tr>
+<tr><td><strong>FBX</strong></td><td>✅ 主要格式</td></tr>
+<tr><td><strong>BVH</strong></td><td>✅ 支援</td></tr>
+<tr><td><strong>GLB</strong></td><td>✅ 支援</td></tr>
+<tr><td><strong>MP4</strong></td><td>✅ 影片預覽</td></tr>
+</table>
+
+<h3>相容引擎/工具</h3>
+
+<ul>
+<li>Unity — <a href="https://www.deepmotion.com/companion-tools/unity" target="_blank">https://www.deepmotion.com/companion-tools/unity</a></li>
+<li>Unreal Engine 5 — <a href="https://www.deepmotion.com/companion-tools/unreal-engine" target="_blank">https://www.deepmotion.com/companion-tools/unreal-engine</a></li>
+<li>Blender — <a href="https://www.deepmotion.com/companion-tools/blender" target="_blank">https://www.deepmotion.com/companion-tools/blender</a></li>
+<li>Maya — <a href="https://www.deepmotion.com/companion-tools/maya" target="_blank">https://www.deepmotion.com/companion-tools/maya</a></li>
+<li>iClone — <a href="https://www.deepmotion.com/companion-tools/iclone" target="_blank">https://www.deepmotion.com/companion-tools/iclone</a></li>
+<li>MetaHuman Creator</li>
+<li>Ready Player Me / Avaturn</li>
+<li>Roblox</li>
+</ul>
+
+<hr>
+
+<h2>三、官方影片 / 教學連結</h2>
+
+<table>
+<tr><th>資源</th><th>連結</th></tr>
+<tr><td>官方文件</td><td><a href="https://www.deepmotion.com/documentation" target="_blank">https://www.deepmotion.com/documentation</a></td></tr>
+<tr><td>Animate 3D 文件</td><td><a href="https://www.deepmotion.com/doc/animate-3d" target="_blank">https://www.deepmotion.com/doc/animate-3d</a></td></tr>
+<tr><td>SayMotion 文件</td><td><a href="https://www.deepmotion.com/doc/saymotion" target="_blank">https://www.deepmotion.com/doc/saymotion</a></td></tr>
+<tr><td>YouTube 頻道</td><td><a href="https://www.youtube.com/@DeepMotionInc" target="_blank">https://www.youtube.com/@DeepMotionInc</a></td></tr>
+<tr><td>Discord 社群</td><td><a href="https://bit.ly/DM_Discord" target="_blank">https://bit.ly/DM_Discord</a></td></tr>
+<tr><td>GitHub (API)</td><td><a href="https://github.com/deepmotion" target="_blank">https://github.com/deepmotion</a></td></tr>
+<tr><td>Blog</td><td><a href="https://www.deepmotion.com/blog" target="_blank">https://www.deepmotion.com/blog</a></td></tr>
+<tr><td>Animate 3D API</td><td><a href="https://github.com/DeepMotion/Animate-3D-REST-API" target="_blank">https://github.com/DeepMotion/Animate-3D-REST-API</a></td></tr>
+<tr><td>SayMotion API</td><td><a href="https://github.com/DeepMotion/SayMotion-REST-API" target="_blank">https://github.com/DeepMotion/SayMotion-REST-API</a></td></tr>
+</table>
+
+<hr>
+
+<h2>四、使用流程</h2>
+
+<ol>
+<li><strong>註冊</strong>：<a href="https://portal.deepmotion.com" target="_blank">https://portal.deepmotion.com</a></li>
+<li><strong>Animate 3D</strong>：上傳影片 → 選擇追蹤選項（body/face/hand）→ 處理 → 下載 FBX/BVH</li>
+<li><strong>SayMotion</strong>：輸入文字描述 → 生成多變體 → 選擇最佳 → 下載</li>
+<li><strong>匯入角色</strong>：上傳自訂 FBX/GLB/VRM 角色 → 自動 retarget</li>
+<li><strong>匯出</strong>：FBX/BVH/GLB 匯入遊戲引擎</li>
+</ol>
+
+<hr>
+
+<h2>五、定價與授權</h2>
+
+<p><strong>信用制</strong>：1 credit = 1 秒動畫（臉/手各 +0.5 credit/秒）</p>
+
+<table>
+<tr><th>方案</th><th>月繳</th><th>年繳(月均)</th><th>Credits/月</th><th>特色</th></tr>
+<tr><td><strong>Freemium</strong></td><td>$0</td><td>$0</td><td>60</td><td>非商業、2人追蹤、20秒影片</td></tr>
+<tr><td><strong>Starter</strong></td><td>$15</td><td>$9</td><td>180</td><td>商業授權、3人追蹤</td></tr>
+<tr><td><strong>Innovator</strong></td><td>$48</td><td>$17</td><td>480</td><td>4人追蹤、60FPS、慢動作</td></tr>
+<tr><td><strong>Professional</strong></td><td>$117</td><td>$39</td><td>1,500</td><td>6人追蹤、120FPS、4K</td></tr>
+<tr><td><strong>Studio</strong></td><td>$300</td><td>$83</td><td>無限制</td><td>8人追蹤、240FPS、8K</td></tr>
+</table>
+
+<hr>
+
+<h2>六、優缺點分析</h2>
+
+<h3>✅ 優點</h3>
+
+<ol>
+<li><strong>雙模態</strong>：Video-to-Motion + Text-to-Motion 雙賽道都有</li>
+<li><strong>BVH 直接匯出</strong>：與 Kimodo 格式完全相容</li>
+<li><strong>有 REST API</strong>：支援批次自動化處理</li>
+<li><strong>臉部+手部追蹤</strong>：功能全面</li>
+<li><strong>多人追蹤</strong>：最多 8 人</li>
+<li><strong>物理模擬濾鏡</strong>：自動修正不自然動作</li>
+<li><strong>Rotoscope 編輯器</strong>：可逐幀手動校正</li>
+<li><strong>入門方案便宜</strong>：年繳 Starter $9/月</li>
+<li><strong>AI Inpainting</strong>：可在既有動畫中插入新段落</li>
+<li><strong>引擎整合完整</strong>：UE5/Unity/Blender/Maya 全有文件</li>
+</ol>
+
+<h3>❌ 缺點</h3>
+
+<ol>
+<li><strong>Freemium 非商業授權</strong>：免費版不能商用</li>
+<li><strong>Credit 按秒計費</strong>：長影片消耗快</li>
+<li><strong>SayMotion API 需申請</strong>：限 verified partners</li>
+<li><strong>SayMotion 無手部/臉部</strong>：文字生成目前僅 body</li>
+<li><strong>AI 精度不如專業光學系統</strong>：遮擋/寬鬆衣物仍有問題</li>
+<li><strong>Credits 不累積</strong>：每月重置</li>
+</ol>
+
+<hr>
+
+<h2>七、與 Kimodo BVH 工作流的整合可能性</h2>
+
+<table>
+<tr><th>面向</th><th>評估</th></tr>
+<tr><td><strong>格式相容</strong></td><td>⭐⭐⭐⭐⭐ BVH 直出，與 Kimodo 完全同格式</td></tr>
+<tr><td><strong>SayMotion vs Kimodo</strong></td><td>直接競品！兩者都是 text-to-motion，需對比品質</td></tr>
+<tr><td><strong>Video Mocap</strong></td><td>Animate 3D 補充 Kimodo 沒有的 video-to-motion 能力</td></tr>
+<tr><td><strong>API 批次處理</strong></td><td>Animate 3D API 可批次處理影片 → 建立動作庫</td></tr>
+<tr><td><strong>臉部/手部</strong></td><td>DeepMotion 可補充 Kimodo 缺乏的臉部和手指動捕</td></tr>
+</table>
+
+<hr>
+
+<h2>八、對「AI 動作量產工作流」的貢獻定位</h2>
+
+<pre><code>
+DeepMotion 在工作流中的角色：
+• Text-to-Motion 備選方案（與 Kimodo 對比）
+• 影片→動捕的 API 批次處理
+• 臉部+手指動捕的補充工具
+• Rotoscope 校正用於品質不佳的動作修正
+</code></pre>
+
+<hr>
+
+<h2>九、總結評分</h2>
+
+<table>
+<tr><th>項目</th><th>評分 (1-5)</th></tr>
+<tr><td>與我們目標的相關性</td><td>⭐⭐⭐⭐</td></tr>
+<tr><td>技術成熟度</td><td>⭐⭐⭐⭐</td></tr>
+<tr><td>易用性</td><td>⭐⭐⭐⭐</td></tr>
+<tr><td>性價比</td><td>⭐⭐⭐⭐</td></tr>
+<tr><td>Pipeline 整合潛力</td><td>⭐⭐⭐⭐</td></tr>
+<tr><td>量產化適合度</td><td>⭐⭐⭐⭐</td></tr>
+</table>
+
+<p><strong>推薦等級</strong>：🟡 <strong>值得評測</strong> — 與 Kimodo 直接可比的 text-to-motion + 額外的 video-to-motion 能力。建議做 SayMotion vs Kimodo 的品質對比測試。</p>
+
+</body>
+</html>

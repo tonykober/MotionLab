@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Retargeting Automation System — 深度調研報告</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#1a1a2e;color:#e0d6c8;font-family:-apple-system,'Noto Sans TC',sans-serif;max-width:900px;margin:0 auto;padding:2rem;line-height:1.7}
+h1{color:#f5a623;margin:1.5rem 0 1rem}
+h2{color:#fff;margin:1.5rem 0 .8rem}
+h3{color:#e0d6c8;margin:1.2rem 0 .6rem}
+a{color:#f5a623}
+strong{color:#f5a623}
+ul,ol{margin:.5rem 0 .5rem 1.5rem}
+li{margin:.3rem 0}
+table{border-collapse:collapse;margin:1rem 0;max-width:100%;overflow-x:auto;display:block}
+th,td{border:1px solid #333;padding:8px 12px;text-align:left}
+th{background:#2a2a3e}
+pre{background:#0d0d1a;padding:1rem;border-radius:8px;overflow-x:auto;margin:1rem 0}
+code{background:#0d0d1a;padding:2px 6px;border-radius:4px;font-size:.9em}
+pre code{padding:0;background:none}
+hr{border:none;border-top:1px solid #333;margin:1.5rem 0}
+p{margin:.6rem 0}
+img{max-width:100%}
+.back{display:inline-block;margin-bottom:1.5rem;text-decoration:none}
+</style>
+</head>
+<body>
+<a href="../index.html" class="back">← 返回首頁</a>
+<h1>Retargeting Automation System — 深度調研報告</h1>
+
+<h2>工具概述</h2>
+
+<p><strong>Retargeting Automation System</strong> 是一款付費的 Blender 外掛，透過 Superhive Market (原 Blender Market) 販售。定位為自動化的 Mocap Retargeting 方案，旨在簡化並自動化 motion capture 動畫的 retarget 流程。</p>
+
+<p>根據 80.lv 近期報導（2026年6月），由 Pro Constantinou ("Good Good") 開發的 retargeting 工具強調了一個核心理念：<strong>更好的 retarget 品質來自於在 retarget 前先匹配來源/目標骨架的 hip 位置和肢體比例</strong>。</p>
+
+<p><strong>解決的問題：</strong></p>
+<ul>
+<li>傳統 retarget 流程繁瑣且需大量手動調整</li>
+<li>來源/目標骨架比例差異導致的腳步滑動和彈跳</li>
+<li>需要自動化的批次 retarget pipeline</li>
+<li>Hip 位置和肢體比例不匹配造成的品質問題</li>
+</ul>
+
+<hr>
+
+<h2>功能詳細說明</h2>
+
+<h3>核心功能（基於公開資訊推測）</h3>
+
+<table>
+<tr><th>功能</th><th>說明</th></tr>
+<tr><td><strong>自動化 Retarget</strong></td><td>減少手動設定步驟的自動化 retarget 流程</td></tr>
+<tr><td><strong>Hip Alignment</strong></td><td>自動對齊來源/目標骨架的 hip 位置</td></tr>
+<tr><td><strong>Limb Proportion Matching</strong></td><td>匹配肢體比例以減少滑動和彈跳</td></tr>
+<tr><td><strong>Foot Sliding Reduction</strong></td><td>透過骨架比例匹配從源頭減少腳步滑動</td></tr>
+<tr><td><strong>Ground Contact</strong></td><td>改善接地效果</td></tr>
+<tr><td><strong>Batch Processing</strong></td><td>自動化批次處理（推測）</td></tr>
+</table>
+
+<h3>核心理念（來自開發者說明）</h3>
+
+<p>開發者 Pro Constantinou 的方法論：</p>
+
+<p>&gt; 「更好 mocap retarget 的關鍵是在匹配其餘姿勢之前，先將目標骨架的 hip 位置和肢體比例與來源匹配。Hip 與腿/脊椎之間最微小的相對位置差異都會造成嚴重的肢體滑動或彈跳，讓角色無法感覺腳踏實地。」</p>
+
+<p><strong>方法論步驟：</strong></p>
+<ol>
+<li>縮放來源骨架匹配目標角色 → 但這只能到一定程度</li>
+<li>對齊 Hip 骨骼 → 性價比最高的調整</li>
+<li>縮放肢體匹配關節位置 → 犧牲些許拉伸/壓縮換取更好的關節對齊</li>
+<li>最終達到更精確的 retarget 結果</li>
+</ol>
+
+<h3>與傳統 Retarget 的區別</h3>
+
+<table>
+<tr><th></th><th>傳統 Retarget</th><th>本工具方法</th></tr>
+<tr><td>流程</td><td>直接映射骨骼旋轉</td><td>先匹配比例再映射</td></tr>
+<tr><td>Hip 處理</td><td>忽略比例差異</td><td>主動對齊 Hip</td></tr>
+<tr><td>肢體</td><td>直接旋轉拷貝</td><td>縮放匹配+旋轉</td></tr>
+<tr><td>滑步處理</td><td>事後修正</td><td>源頭預防</td></tr>
+</table>
+
+<hr>
+
+<h2>官方影片教學連結</h2>
+
+<table>
+<tr><th>#</th><th>資源</th><th>連結</th></tr>
+<tr><td>1</td><td>80.lv 報導（含介紹影片）</td><td><a href="https://80.lv/articles/try-this-new-mocap-retargeting-tool-for-blender" target="_blank">https://80.lv/articles/try-this-new-mocap-retargeting-tool-for-blender</a></td></tr>
+<tr><td>2</td><td>CGDive 工具頁</td><td><a href="https://addons.cgdive.com/tools/retargeting-automation-system" target="_blank">https://addons.cgdive.com/tools/retargeting-automation-system</a></td></tr>
+<tr><td>3</td><td>Superhive Market 產品頁</td><td><a href="https://superhivemarket.com/products/retargeting-automation-system" target="_blank">https://superhivemarket.com/products/retargeting-automation-system</a></td></tr>
+</table>
+
+<hr>
+
+<h2>安裝/使用流程</h2>
+
+<h3>安裝</h3>
+
+<ol>
+<li>從 Superhive Market 購買並下載</li>
+<li>Blender → Edit → Preferences → Add-ons → Install → 選取 zip</li>
+<li>啟用外掛</li>
+</ol>
+
+<h3>使用流程（推測）</h3>
+
+<ol>
+<li>匯入來源動畫（BVH/FBX）</li>
+<li>指定目標角色骨架</li>
+<li>工具自動分析比例差異</li>
+<li>自動對齊 Hip + 肢體比例</li>
+<li>執行 Retarget</li>
+<li>結果直接具有更好的接地品質</li>
+</ol>
+
+<hr>
+
+<h2>定價與授權</h2>
+
+<table>
+<tr><th>項目</th><th>內容</th></tr>
+<tr><td><strong>價格</strong></td><td>付費（Superhive Market，確切價格需查看產品頁）</td></tr>
+<tr><td><strong>授權</strong></td><td>商業授權</td></tr>
+<tr><td><strong>平台</strong></td><td>Blender</td></tr>
+<tr><td><strong>販售平台</strong></td><td>Superhive Market (原 Blender Market)</td></tr>
+<tr><td><strong>開發者</strong></td><td>Pro Constantinou ("Good Good")</td></tr>
+<tr><td><strong>發佈時間</strong></td><td>2026 年（較新）</td></tr>
+</table>
+
+<hr>
+
+<h2>優缺點分析</h2>
+
+<h3>✅ 優點</h3>
+
+<ol>
+<li><strong>源頭解決滑步</strong> — 不是事後修補，而是從比例匹配入手預防滑動</li>
+<li><strong>自動化流程</strong> — 減少手動設定步驟</li>
+<li><strong>理念先進</strong> — Hip alignment + limb scaling 是有根據的方法</li>
+<li><strong>接地品質好</strong> — 開發者特別強調 ground contact 效果</li>
+<li><strong>新開發</strong> — 融合最新技術理解</li>
+<li><strong>80.lv 報導</strong> — 有業界媒體認可</li>
+</ol>
+
+<h3>❌ 缺點</h3>
+
+<ol>
+<li><strong>付費</strong> — 增加成本</li>
+<li><strong>較新</strong> — 2026 年發佈，社群驗證不多</li>
+<li><strong>公開資訊有限</strong> — 付費工具，詳細功能需購買後才知</li>
+<li><strong>可能的肢體拉伸</strong> — 縮放肢體匹配會導致些許 stretching/squashing</li>
+<li><strong>未知批次能力</strong> — 不確定是否支援大量動畫的自動化批次處理</li>
+<li><strong>不確定 BVH 直接支援</strong> — 可能需要先匯入 FBX</li>
+</ol>
+
+<hr>
+
+<h2>與 Kimodo BVH 輸出的整合可能性</h2>
+
+<h3>整合評估：⭐⭐⭐⭐（潛力高，但需驗證）</h3>
+
+<table>
+<tr><th>面向</th><th>評估</th></tr>
+<tr><td><strong>問題對應</strong></td><td>✅ Kimodo 動作最大痛點就是腳步滑動，本工具從源頭解決</td></tr>
+<tr><td><strong>方法論</strong></td><td>✅ Hip alignment 對 AI 生成動畫特別有效（AI 骨架比例可能不精確）</td></tr>
+<tr><td><strong>品質</strong></td><td>✅ 理論上比純旋轉映射品質更高</td></tr>
+<tr><td><strong>批次</strong></td><td>⚠️ 未確認批次處理能力</td></tr>
+<tr><td><strong>驗證</strong></td><td>⚠️ 較新工具，需實際測試</td></tr>
+</table>
+
+<h3>建議整合流程</h3>
+
+<pre><code>
+Kimodo BVH → Blender Import
+    → Retargeting Automation System ← 本工具
+      - 自動分析 Kimodo 骨架 vs 目標角色比例差異
+      - Hip alignment
+      - Limb proportion matching
+      - Retarget（已含接地優化）
+    → Export FBX
+    → 遊戲引擎
+</code></pre>
+
+<hr>
+
+<h2>對「AI 動作量產工作流」的貢獻定位</h2>
+
+<h3>定位：<strong>智慧型比例匹配 Retarget（品質優先方案）</strong></h3>
+
+<pre><code>
+[Kimodo AI 生成 BVH]
+        ↓
+方案 A（品質優先）：
+  [Retargeting Automation System] ← 本工具
+    - 比例匹配 + 自動 retarget
+    - 內建接地優化
+    - 減少後處理需求
+        ↓
+  [少量手動修正]
+        ↓
+  [Export]
+
+方案 B（速度優先/免費方案）：
+  [BVH Retargeter] → [Foot Locker] → [Export]
+</code></pre>
+
+<p><strong>核心價值：</strong></p>
+<ul>
+<li>從 retarget 方法論上提升品質（非事後修補）</li>
+<li>可能減少腳步後處理工具的需求</li>
+<li>適合追求高品質的正式產出</li>
+</ul>
+
+<p><strong>不確定因素：</strong></p>
+<ul>
+<li>批次處理能力（量產關鍵）</li>
+<li>BVH 直接支援程度</li>
+<li>與自訂骨架的相容性</li>
+<li>實際品質是否如理論預期</li>
+</ul>
+
+<p><strong>建議：</strong></p>
+<ul>
+<li>購買一份試用，以 Kimodo 輸出的 BVH 實際測試品質</li>
+<li>與 ARP IK Retarget 做 A/B 比較</li>
+<li>確認批次處理能力後再決定是否納入正式 pipeline</li>
+</ul>
+
+<hr>
+
+<h2>參考來源</h2>
+
+<ul>
+<li>CGDive 工具頁: <a href="https://addons.cgdive.com/tools/retargeting-automation-system" target="_blank">https://addons.cgdive.com/tools/retargeting-automation-system</a></li>
+<li>Superhive Market: <a href="https://superhivemarket.com/products/retargeting-automation-system" target="_blank">https://superhivemarket.com/products/retargeting-automation-system</a></li>
+<li>80.lv 報導: <a href="https://80.lv/articles/try-this-new-mocap-retargeting-tool-for-blender" target="_blank">https://80.lv/articles/try-this-new-mocap-retargeting-tool-for-blender</a></li>
+<li>開發者: Pro Constantinou ("Good Good")</li>
+</ul>
+
+</body>
+</html>

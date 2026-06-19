@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ragdoll Dynamics — 深度調研報告</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#1a1a2e;color:#e0d6c8;font-family:-apple-system,'Noto Sans TC',sans-serif;max-width:900px;margin:0 auto;padding:2rem;line-height:1.7}
+h1{color:#f5a623;margin:1.5rem 0 1rem}
+h2{color:#fff;margin:1.5rem 0 .8rem}
+h3{color:#e0d6c8;margin:1.2rem 0 .6rem}
+a{color:#f5a623}
+strong{color:#f5a623}
+ul,ol{margin:.5rem 0 .5rem 1.5rem}
+li{margin:.3rem 0}
+table{border-collapse:collapse;margin:1rem 0;max-width:100%;overflow-x:auto;display:block}
+th,td{border:1px solid #333;padding:8px 12px;text-align:left}
+th{background:#2a2a3e}
+pre{background:#0d0d1a;padding:1rem;border-radius:8px;overflow-x:auto;margin:1rem 0}
+code{background:#0d0d1a;padding:2px 6px;border-radius:4px;font-size:.9em}
+pre code{padding:0;background:none}
+hr{border:none;border-top:1px solid #333;margin:1.5rem 0}
+p{margin:.6rem 0}
+img{max-width:100%}
+.back{display:inline-block;margin-bottom:1.5rem;text-decoration:none}
+</style>
+</head>
+<body>
+<a href="../index.html" class="back">← 返回首頁</a>
+<h1>Ragdoll Dynamics — 深度調研報告</h1>
+
+<h2>工具概述</h2>
+
+<p>Ragdoll Dynamics 是由 Imbalance Ltd.（倫敦）開發的<strong>即時物理模擬器</strong>，專為動畫師設計。它作用於 transforms（位移/旋轉/縮放）而非頂點，因此能直接整合到現有的動畫控制器上，無需額外設定物理系統。最初為 Maya 開發，現已支援 Blender，並正在開發獨立版本（Ragdoll 4.0）。</p>
+
+<p><strong>解決的問題：</strong></p>
+<ul>
+<li>角色次級動態（頭髮、衣物、尾巴）的手動 K 幀工作量巨大</li>
+<li>傳統物理模擬器（nCloth/nHair）基於頂點，難以與動畫控制器整合</li>
+<li>需要「物理感覺」的動畫（跌倒、碰撞、被擊飛）手工製作極耗時</li>
+<li>動畫疊加（overlapping motion）需要大量經驗和時間</li>
+</ul>
+
+<hr>
+
+<h2>功能詳細說明</h2>
+
+<h3>核心概念：Markers</h3>
+
+<p>Ragdoll 的核心是「Marker」系統——將物理屬性標記到骨骼/控制器上，讓物理引擎在現有動畫基礎上疊加模擬結果。</p>
+
+<h3>主要功能模組</h3>
+
+<table>
+<tr><th>功能</th><th>說明</th></tr>
+<tr><td><strong>Markers</strong></td><td>將物理屬性賦予骨骼，定義質量、形狀、摩擦力等</td></tr>
+<tr><td><strong>Groups</strong></td><td>將多個 Marker 分組管理（如「手臂」「腿」「尾巴」）</td></tr>
+<tr><td><strong>Solver</strong></td><td>物理求解器，控制 substeps、重力、品質參數</td></tr>
+<tr><td><strong>Environment</strong></td><td>定義碰撞平面、障礙物</td></tr>
+<tr><td><strong>Manipulator</strong></td><td>即時互動操控角色姿態</td></tr>
+<tr><td><strong>Live Mode</strong></td><td>即時預覽物理效果，不需播放時間軸</td></tr>
+<tr><td><strong>Locomotion</strong></td><td>自動行走/移動模擬</td></tr>
+<tr><td><strong>Constraints</strong></td><td>物理約束（鏈接、距離、固定等）</td></tr>
+<tr><td><strong>Fields</strong></td><td>力場（風、重力調整等）</td></tr>
+<tr><td><strong>Record Simulation</strong></td><td>將模擬結果烘焙為關鍵幀</td></tr>
+<tr><td><strong>Snap to Simulation</strong></td><td>將控制器吸附到模擬位置</td></tr>
+<tr><td><strong>Retargeting</strong></td><td>模擬結果重定向到不同骨架</td></tr>
+<tr><td><strong>Level of Detail</strong></td><td>距離/性能相關的簡化</td></tr>
+<tr><td><strong>Cache</strong></td><td>快取模擬結果</td></tr>
+<tr><td><strong>Import Physics</strong></td><td>匯入/分享物理設定</td></tr>
+<tr><td><strong>Cloth Emulation</strong></td><td>模擬布料效果（用 transform 模擬而非真正布料）</td></tr>
+</table>
+
+<h3>Ragdoll 4.0 路線圖（2026 年發佈）</h3>
+
+<table>
+<tr><th>部件</th><th>內容</th><th>狀態</th></tr>
+<tr><td>1. Maya</td><td>熟悉的 plug-in，用於影視和遊戲製作</td><td>✅ 已發佈</td></tr>
+<tr><td>2. Posing</td><td>獨立桌面/Web 版，供插畫家使用</td><td>開發中</td></tr>
+<tr><td>3. Keyframing</td><td>Pose-to-pose 和定格動畫</td><td>開發中</td></tr>
+<tr><td>4. Recording</td><td>MIDI 風格的動畫工作流</td><td>開發中</td></tr>
+<tr><td>5. Modeling</td><td>快速 3D 角色建模</td><td>開發中</td></tr>
+<tr><td>6. Rigging</td><td>直接在 Ragdoll 內綁定模型</td><td>開發中</td></tr>
+<tr><td>7. Puppeteering</td><td>硬體即時操偶（VR/多點觸控）</td><td>開發中</td></tr>
+<tr><td>8. Blender</td><td>重大效能提升的新整合</td><td>開發中</td></tr>
+<tr><td>9. Motion Builder</td><td>全新支援</td><td>開發中</td></tr>
+</table>
+
+<h3>SDK</h3>
+
+<p>Ragdoll 提供 SDK，可序列化物理場景並在自定軟體中使用。支援 C++ 和 Python API。</p>
+
+<hr>
+
+<h2>官方影片教學連結</h2>
+
+<table>
+<tr><th>主題</th><th>連結</th></tr>
+<tr><td>官方教學影片總覽</td><td><a href="https://learn.ragdolldynamics.com/tutorials/videos" target="_blank">https://learn.ragdolldynamics.com/tutorials/videos</a></td></tr>
+<tr><td>Manikin 基礎教學</td><td><a href="https://learn.ragdolldynamics.com/tutorials/manikin/" target="_blank">https://learn.ragdolldynamics.com/tutorials/manikin/</a></td></tr>
+<tr><td>Full Ragdoll（完整人偶）</td><td><a href="https://learn.ragdolldynamics.com/tutorials/manikin_ragdoll/" target="_blank">https://learn.ragdolldynamics.com/tutorials/manikin_ragdoll/</a></td></tr>
+<tr><td>IK 模擬</td><td><a href="https://learn.ragdolldynamics.com/tutorials/manikin_ik/" target="_blank">https://learn.ragdolldynamics.com/tutorials/manikin_ik/</a></td></tr>
+<tr><td>Mocap Chap（動捕整合）</td><td><a href="https://learn.ragdolldynamics.com/tutorials/mocap_chap/" target="_blank">https://learn.ragdolldynamics.com/tutorials/mocap_chap/</a></td></tr>
+<tr><td>Ragdog（四足動物）</td><td><a href="https://learn.ragdolldynamics.com/tutorials/ragdog/" target="_blank">https://learn.ragdolldynamics.com/tutorials/ragdog/</a></td></tr>
+<tr><td>Cloth Emulation（布料）</td><td><a href="https://learn.ragdolldynamics.com/tutorials/cloth_emulation/" target="_blank">https://learn.ragdolldynamics.com/tutorials/cloth_emulation/</a></td></tr>
+<tr><td>Self Walking（自動行走）</td><td><a href="https://learn.ragdolldynamics.com/tutorials/self_walking/" target="_blank">https://learn.ragdolldynamics.com/tutorials/self_walking/</a></td></tr>
+<tr><td>Blender - Manikin</td><td><a href="https://learn.ragdolldynamics.com/blender/tutorials/manikin/" target="_blank">https://learn.ragdolldynamics.com/blender/tutorials/manikin/</a></td></tr>
+<tr><td>Blender - Advanced Setup</td><td><a href="https://learn.ragdolldynamics.com/blender/tutorials/advanced_setup/" target="_blank">https://learn.ragdolldynamics.com/blender/tutorials/advanced_setup/</a></td></tr>
+<tr><td>Blender - Slap'n'Sass</td><td><a href="https://learn.ragdolldynamics.com/blender/tutorials/slapsass1/" target="_blank">https://learn.ragdolldynamics.com/blender/tutorials/slapsass1/</a></td></tr>
+<tr><td>Masterclass 系列</td><td><a href="https://learn.ragdolldynamics.com/tutorials/masterclass/" target="_blank">https://learn.ragdolldynamics.com/tutorials/masterclass/</a></td></tr>
+<tr><td>YouTube - From Gravity to Ragdoll</td><td><a href="https://www.youtube.com/watch?v=-FMotTefo00" target="_blank">https://www.youtube.com/watch?v=-FMotTefo00</a></td></tr>
+</table>
+
+<hr>
+
+<h2>安裝/使用流程</h2>
+
+<h3>Blender 版安裝</h3>
+<ol>
+<li>下載 Ragdoll for Blender（RagdollBlender.zip）：<a href="https://learn.ragdolldynamics.com/blender/download/" target="_blank">https://learn.ragdolldynamics.com/blender/download/</a></li>
+<li>下載 Ragdoll Core（物理引擎核心）</li>
+<li>Blender → Edit → Preferences → Add-ons → Install → 選擇 zip</li>
+<li>搜尋 "Ragdoll" 並啟用</li>
+<li>安裝 Ragdoll Core 到指定位置</li>
+<li>首次啟動自動開始 30 天試用</li>
+</ol>
+
+<h3>Maya 版安裝</h3>
+<ul>
+<li>以 Maya Module 形式安裝，支援 Windows/Linux/MacOS</li>
+<li>下載：<a href="https://learn.ragdolldynamics.com/maya/download" target="_blank">https://learn.ragdolldynamics.com/maya/download</a></li>
+</ul>
+
+<h3>基本使用流程</h3>
+<pre><code>
+1. 選擇骨骼/控制器 → Assign Marker（賦予物理屬性）
+2. 設定 Group（質量、碰撞形狀）
+3. 調整 Solver 參數（substeps、品質）
+4. 播放時間軸 → 即時預覽物理效果
+5. 滿意後 → Record Simulation（烘焙為關鍵幀）
+6. 微調結果 → 匯出動畫
+</code></pre>
+
+<hr>
+
+<h2>定價與授權</h2>
+
+<table>
+<tr><th>方案</th><th>價格</th><th>說明</th></tr>
+<tr><td><strong>Trial</strong></td><td>免費</td><td>30 天完整功能試用</td></tr>
+<tr><td><strong>Individual（Personal/非商業）</strong></td><td>From $99</td><td>終身授權 + 終身免費升級，全功能</td></tr>
+<tr><td><strong>Individual（Commercial/商業）</strong></td><td>From $99</td><td>可用於接案/商業工作</td></tr>
+<tr><td><strong>Studio</strong></td><td>From $79/seat</td><td>公司/組織使用，量大優惠</td></tr>
+<tr><td><strong>Annual Upgrade Plan</strong></td><td>另計</td><td>續約一年更新</td></tr>
+</table>
+
+<p><strong>授權特色：</strong></p>
+<ul>
+<li>終身授權（非訂閱制）</li>
+<li>按同時使用數授權（2 台機器同時使用需 2 個 seat）</li>
+<li>不支援離線啟動、虛擬機、雲端硬體</li>
+<li>Steam 也有販售（Maya 版）</li>
+</ul>
+
+<hr>
+
+<h2>優缺點分析</h2>
+
+<h3>優點</h3>
+<ul>
+<li>✅ <strong>即時物理</strong>：播放即見效果，調參數即時回饋</li>
+<li>✅ <strong>直接作用於控制器</strong>：不需要額外的物理骨架或代理系統</li>
+<li>✅ <strong>Record to Keyframes</strong>：模擬結果可烘焙為標準動畫曲線，完全可編輯</li>
+<li>✅ <strong>非破壞性</strong>：在現有動畫上疊加物理，不影響原始 K 幀</li>
+<li>✅ <strong>SDK 可序列化</strong>：物理場景可匯出，用於其他應用程式</li>
+<li>✅ <strong>Ragdoll 4.0 願景宏大</strong>：獨立於 DCC 的架構，支援即時操偶、硬體整合</li>
+<li>✅ <strong>教學豐富</strong>：文件完善，社群活躍（Discord + Forums）</li>
+<li>✅ <strong>影視級品質</strong>：已用於《In The Lost Lands》等影片製作</li>
+</ul>
+
+<h3>缺點</h3>
+<ul>
+<li>❌ <strong>Blender 版效能較差</strong>：官方說是 Maya 版的 1/10 效能（早期版本）</li>
+<li>❌ <strong>Blender 版功能不完整</strong>：約 80% 的 Maya 功能</li>
+<li>❌ <strong>非免費</strong>：商業使用需付費</li>
+<li>❌ <strong>不支援離線啟動</strong>：需要網路驗證</li>
+<li>❌ <strong>學習曲線</strong>：物理參數調整需要經驗</li>
+<li>❌ <strong>不直接匯出到引擎</strong>：模擬結果需先烘焙為關鍵幀，再透過其他工具匯出</li>
+</ul>
+
+<hr>
+
+<h2>與現有工具的整合可能性</h2>
+
+<h3>與 Kimodo 的整合</h3>
+
+<table>
+<tr><th>環節</th><th>整合方式</th></tr>
+<tr><td>Kimodo BVH → Ragdoll</td><td>將 Kimodo 產出的 BVH 匯入後，用 Ragdoll 疊加次級動態（頭髮、衣物、尾巴）</td></tr>
+<tr><td>物理後處理</td><td>AI 生成的動作可能缺乏物理真實感，Ragdoll 可修正「漂浮感」和「滑步」</td></tr>
+<tr><td>碰撞反應</td><td>AI 動作無法處理碰撞（如撞牆、絆倒），Ragdoll 可後處理加入</td></tr>
+</table>
+
+<h3>與 Blender → UE/Unity Pipeline 的整合</h3>
+
+<table>
+<tr><th>流程</th><th>說明</th></tr>
+<tr><td>Blender 中模擬 → 烘焙 → ARP 匯出</td><td>Ragdoll 在 Blender 中完成模擬後，結果為標準關鍵幀，可直接用 ARP 匯出</td></tr>
+<tr><td>SDK 匯出</td><td>Ragdoll 4.0 SDK 可序列化物理場景，未來可能直接在引擎中重播</td></tr>
+<tr><td>群眾角色次級動態</td><td>大量角色的次級動態可用 Ragdoll 批次處理</td></tr>
+</table>
+
+<h3>建議整合流程</h3>
+<pre><code>
+Kimodo 生成基礎動作 → Blender 匯入 → Ragdoll 疊加次級動態（頭髮/衣物/碰撞）
+→ Record Simulation 烘焙 → ARP Game Export → 遊戲引擎
+</code></pre>
+
+<hr>
+
+<h2>對「AI 動作量產工作流」的貢獻定位</h2>
+
+<h3>定位：<strong>AI 動作的物理後處理層 + 次級動態自動化</strong></h3>
+
+<pre><code>
+[AI 動作生成] → [基礎動作] → [Ragdoll 物理疊加] → [高品質最終動作]
+  (Kimodo)                     ↑ 次級動態           ↑ 碰撞反應
+                               ↑ 物理修正           ↑ Overlapping motion
+</code></pre>
+
+<p><strong>具體貢獻：</strong></p>
+
+<ol>
+<li><strong>AI 動作品質提升</strong>：Kimodo 等工具產出的動作常有「漂浮感」，Ragdoll 可加入重力和碰撞反饋</li>
+<li><strong>次級動態批次處理</strong>：頭髮、尾巴、斗篷、裙擺等——AI 無法生成這些，Ragdoll 自動疊加</li>
+<li><strong>碰撞互動</strong>：AI 生成的動作不知道環境，Ragdoll 可讓角色正確與地面/物件互動</li>
+<li><strong>即時操偶（4.0）</strong>：未來可能取代部分手動動畫和 AI 生成，直接用物理操偶即時表演</li>
+<li><strong>量產效率</strong>：設定好物理參數後，套用到同類型的多個動畫上只需 Record Simulation</li>
+</ol>
+
+<p><strong>限制：</strong></p>
+<ul>
+<li>Ragdoll 不生成動作，它是「後處理」和「增強」工具</li>
+<li>大量動作的批次處理仍需腳本化（Python API 支援）</li>
+<li>Blender 版效能可能成為瓶頸（等待 4.0 改善）</li>
+</ul>
+
+<hr>
+
+<h2>參考資料</h2>
+
+<ul>
+<li>官方網站：<a href="https://ragdolldynamics.com/" target="_blank">https://ragdolldynamics.com/</a></li>
+<li>學習文件：<a href="https://learn.ragdolldynamics.com/overview/" target="_blank">https://learn.ragdolldynamics.com/overview/</a></li>
+<li>Blender 版：<a href="https://learn.ragdolldynamics.com/blender/home/" target="_blank">https://learn.ragdolldynamics.com/blender/home/</a></li>
+<li>定價頁面：<a href="https://ragdolldynamics.com/pricing/" target="_blank">https://ragdolldynamics.com/pricing/</a></li>
+<li>Ragdoll 4.0 公告：<a href="https://learn.ragdolldynamics.com/blog/20260130_ragdoll4/" target="_blank">https://learn.ragdolldynamics.com/blog/20260130_ragdoll4/</a></li>
+<li>SDK：<a href="https://learn.ragdolldynamics.com/sdk/home/" target="_blank">https://learn.ragdolldynamics.com/sdk/home/</a></li>
+<li>社群論壇：<a href="https://forums.ragdolldynamics.com" target="_blank">https://forums.ragdolldynamics.com</a></li>
+<li>Discord：<a href="https://discord.gg/JCHydekJqX" target="_blank">https://discord.gg/JCHydekJqX</a></li>
+<li>CGChannel 報導：<a href="https://www.cgchannel.com/2024/03/imbalance-releases-ragdoll-for-blender-1-0/" target="_blank">https://www.cgchannel.com/2024/03/imbalance-releases-ragdoll-for-blender-1-0/</a></li>
+</ul>
+
+</body>
+</html>

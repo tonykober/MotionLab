@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MotionLab — AI 動作工具調研</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #1a1a2e; color: #e0d6c8; font-family: -apple-system, 'Noto Sans TC', sans-serif; line-height: 1.6; padding: 2rem; }
+.container { max-width: 1100px; margin: 0 auto; }
+h1 { color: #f5a623; font-size: 2.2rem; text-align: center; margin-bottom: 0.5rem; }
+.subtitle { text-align: center; color: #999; margin-bottom: 2.5rem; font-size: 0.95rem; }
+.category { margin-bottom: 2.5rem; background: #16213e; border-radius: 12px; padding: 1.5rem 2rem; border: 1px solid #2a2a3e; }
+.category h2 { color: #f5a623; font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 1px solid #2a2a3e; padding-bottom: 0.5rem; }
+.tool-list { list-style: none; }
+.tool-list li { padding: 0.5rem 0; border-bottom: 1px solid #1a1a2e; display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap; }
+.tool-list li:last-child { border-bottom: none; }
+.tool-list a { color: #f5a623; text-decoration: none; font-weight: 600; white-space: nowrap; }
+.tool-list a:hover { text-decoration: underline; }
+.desc { color: #aaa; font-size: 0.88rem; }
+.badge { font-size: 0.85rem; }
+.workflow { margin-top: 2rem; background: #0d0d1a; border-radius: 12px; padding: 2rem; border: 1px solid #2a2a3e; }
+.workflow h2 { color: #f5a623; font-size: 1.3rem; margin-bottom: 1rem; }
+.flow-diagram { font-family: monospace; color: #e0d6c8; font-size: 0.9rem; line-height: 2; white-space: pre-wrap; background: #1a1a2e; padding: 1.2rem; border-radius: 8px; margin-top: 0.8rem; }
+.flow-diagram strong { color: #f5a623; }
+footer { text-align: center; margin-top: 3rem; color: #555; font-size: 0.8rem; }
+@media (max-width: 600px) { body { padding: 1rem; } .category { padding: 1rem; } h1 { font-size: 1.6rem; } }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>🎬 MotionLab — AI 動作工具調研</h1>
+<p class="subtitle">Kimodo AI 動作量產工作流 — 工具鏈完整調研 (23 tools)</p>
+
+<!-- Category 1: AI Mocap / 動作生成 -->
+<div class="category">
+<h2>🤖 AI Mocap / 動作生成</h2>
+<ul class="tool-list">
+<li><span class="badge">🟢</span><a href="tools/pinoc_viggle.html">PINOC (Viggle.ai)</a><span class="desc">— AI 影片轉動捕/遊戲動畫，BVH 輸出</span></li>
+<li><span class="badge">🟢</span><a href="tools/deepmotion.html">DeepMotion</a><span class="desc">— AI 動作捕捉 + 文字生成動畫平台</span></li>
+<li><span class="badge">🟢</span><a href="tools/plask_motion.html">Plask Motion</a><span class="desc">— AI 影片轉 3D 動畫平台，瀏覽器操作</span></li>
+<li><span class="badge">🟡</span><a href="tools/rokoko_vision.html">Rokoko Vision</a><span class="desc">— AI 影片動捕（Rokoko 生態系整合）</span></li>
+<li><span class="badge">🟡</span><a href="tools/freemocap.html">FreeMoCap</a><span class="desc">— 免費開源無標記動捕系統</span></li>
+<li><span class="badge">🟡</span><a href="tools/move_ai.html">Move.AI</a><span class="desc">— 企業級無標記動作捕捉系統</span></li>
+<li><span class="badge">🟢</span><a href="tools/motorica_ai.html">Motorica AI</a><span class="desc">— AI 角色動畫引擎（Locomotion 專精）</span></li>
+<li><span class="badge">🟢</span><a href="tools/cartwheel.html">Cartwheel</a><span class="desc">— AI 3D 動畫生成平台（文字→動畫）</span></li>
+</ul>
+</div>
+
+<!-- Category 2: Retargeting / Clean-up -->
+<div class="category">
+<h2>🔄 Retargeting / Mocap Clean-up</h2>
+<ul class="tool-list">
+<li><span class="badge">🟢</span><a href="tools/bvh_retargeter.html">BVH Retargeter</a><span class="desc">— 免費 BVH 重定向，Pipeline 第一環</span></li>
+<li><span class="badge">🟢</span><a href="tools/auto_rig_pro.html">Auto-Rig Pro (Remap)</a><span class="desc">— 業界最穩 IK Retarget + 遊戲引擎匯出（$40）</span></li>
+<li><span class="badge">🟡</span><a href="tools/expy_kit.html">Expy-Kit</a><span class="desc">— 批次骨架轉換橋樑（Rigify↔Mixamo↔Unreal）</span></li>
+<li><span class="badge">🟡</span><a href="tools/retargeting_automation_system.html">Retargeting Automation System</a><span class="desc">— 智慧比例匹配 Retarget（付費/新工具）</span></li>
+<li><span class="badge">🟢</span><a href="tools/foot_locker.html">Foot Locker</a><span class="desc">— 免費腳步鎖定（輕量手動修復）</span></li>
+<li><span class="badge">🟡</span><a href="tools/foot_flow.html">Foot Flow</a><span class="desc">— 專業 Mocap 腳步清理（付費半自動）</span></li>
+<li><span class="badge">🟢</span><a href="tools/in_placer.html">In Placer</a><span class="desc">— 免費一鍵原地化動畫</span></li>
+<li><span class="badge">🟢</span><a href="tools/root_motion_batch_transfer.html">Root Motion Batch Transfer</a><span class="desc">— 免費批次 Root Motion 轉移到遊戲骨架</span></li>
+</ul>
+</div>
+
+<!-- Category 3: Rigging / 引擎整合 / 臉部 -->
+<div class="category">
+<h2>🎭 Rigging / 引擎整合 / 臉部 / 其他</h2>
+<ul class="tool-list">
+<li><span class="badge">🟢</span><a href="tools/ragdoll_dynamics.html">Ragdoll Dynamics</a><span class="desc">— 物理驅動動畫系統（Maya/Blender）</span></li>
+<li><span class="badge">🟡</span><a href="tools/third_person_kit.html">Third Person Kit</a><span class="desc">— 第三人稱角色控制器系統</span></li>
+<li><span class="badge">🟢</span><a href="tools/faceit.html">FaceIt</a><span class="desc">— Blender 面部表情捕捉 + ARKit 整合</span></li>
+<li><span class="badge">🟡</span><a href="tools/rhubarb_lipsync.html">Rhubarb Lipsync</a><span class="desc">— 免費開源音訊→口型動畫</span></li>
+<li><span class="badge">🔵</span><a href="tools/parrot_lipsync.html">Parrot Lipsync</a><span class="desc">— Blender 嘴型同步外掛</span></li>
+<li><span class="badge">🟡</span><a href="tools/crowdsim3d.html">CrowdSim3D</a><span class="desc">— Blender 群眾模擬系統</span></li>
+<li><span class="badge">🔵</span><a href="tools/agents_crowd_sim.html">Agents (Crowd Sim)</a><span class="desc">— 複雜群眾行為模擬</span></li>
+</ul>
+</div>
+
+<!-- Workflow -->
+<div class="workflow">
+<h2>🔧 推薦工作流架構</h2>
+<p style="color:#aaa; margin-bottom:0.8rem;">Kimodo AI 動作量產 → 遊戲引擎的完整處理鏈路：</p>
+<div class="flow-diagram"><strong>[1. 動作生成]</strong>
+  Kimodo / Viggle / Cartwheel / DeepMotion
+  → 輸出 BVH / FBX 原始動畫
+        ↓
+<strong>[2. Retarget 重定向]</strong>
+  BVH Retargeter（免費快速原型）
+  Auto-Rig Pro Remap（IK 品質 + 遊戲匯出）
+  → 映射到統一遊戲骨架
+        ↓
+<strong>[3. Foot 修正]</strong>
+  Foot Flow / Foot Locker（接地修正）
+  In Placer（原地化）
+  → 消除滑步、穿地
+        ↓
+<strong>[4. Root Motion]</strong>
+  Root Motion Batch Transfer
+  → Hips 位移轉到 Root Bone
+        ↓
+<strong>[5. 遊戲引擎匯出]</strong>
+  ARP Game Export / FBX
+  → Unity / Unreal Engine / Godot</div>
+</div>
+
+<footer>
+<p>MotionLab Research — 遊戲動作研發組 © 2026</p>
+<p style="margin-top:0.3rem;">推薦等級：🟢 強烈推薦 🟡 值得關注 🔵 特殊用途</p>
+</footer>
+</div>
+</body>
+</html>

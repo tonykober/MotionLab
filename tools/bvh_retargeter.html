@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BVH Retargeter — 深度調研報告</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#1a1a2e;color:#e0d6c8;font-family:-apple-system,'Noto Sans TC',sans-serif;max-width:900px;margin:0 auto;padding:2rem;line-height:1.7}
+h1{color:#f5a623;margin:1.5rem 0 1rem}
+h2{color:#fff;margin:1.5rem 0 .8rem}
+h3{color:#e0d6c8;margin:1.2rem 0 .6rem}
+a{color:#f5a623}
+strong{color:#f5a623}
+ul,ol{margin:.5rem 0 .5rem 1.5rem}
+li{margin:.3rem 0}
+table{border-collapse:collapse;margin:1rem 0;max-width:100%;overflow-x:auto;display:block}
+th,td{border:1px solid #333;padding:8px 12px;text-align:left}
+th{background:#2a2a3e}
+pre{background:#0d0d1a;padding:1rem;border-radius:8px;overflow-x:auto;margin:1rem 0}
+code{background:#0d0d1a;padding:2px 6px;border-radius:4px;font-size:.9em}
+pre code{padding:0;background:none}
+hr{border:none;border-top:1px solid #333;margin:1.5rem 0}
+p{margin:.6rem 0}
+img{max-width:100%}
+.back{display:inline-block;margin-bottom:1.5rem;text-decoration:none}
+</style>
+</head>
+<body>
+<a href="../index.html" class="back">← 返回首頁</a>
+<h1>BVH Retargeter — 深度調研報告</h1>
+
+<h2>工具概述</h2>
+
+<p><strong>BVH Retargeter</strong> 是一款免費的 Blender 外掛，前身為 MakeHuman 團隊的 MakeWalk 外掛，由開發者 Thomas Larsson (Diffeomorphic) 重新開發為獨立插件。其核心用途為：將 BVH（及 FBX）動畫檔案的動作重新定向（retarget）到目標骨架上，並提供多種動畫編輯與清理功能。</p>
+
+<p><strong>解決的問題：</strong></p>
+<ul>
+<li>將 Mocap / AI 生成的 BVH 動作快速套用到不同骨架結構的角色上</li>
+<li>不同骨架命名/結構間的骨骼映射（bone mapping）</li>
+<li>載入後的動畫編輯（循環、簡化、地板修正等）</li>
+</ul>
+
+<hr>
+
+<h2>功能詳細說明</h2>
+
+<h3>核心功能</h3>
+
+<table>
+<tr><th>功能</th><th>說明</th></tr>
+<tr><td><strong>Load And Retarget</strong></td><td>一鍵載入 BVH/FBX 檔案並重定向到目標骨架</td></tr>
+<tr><td><strong>骨骼映射（Bone Mapping）</strong></td><td>支援自定義 JSON 映射檔，內建多種已知骨架預設（Mixamo、Rigify、DAZ、Auto-Rig Pro、VRoid、MMD、Unreal 等）</td></tr>
+<tr><td><strong>FBX 支援</strong></td><td>透過 Blender 內建 FBX Importer 中轉，支援 Mixamo FBX 動畫匯入</td></tr>
+<tr><td><strong>Animation Layers</strong></td><td>使用 NLA 動畫層做非破壞性動畫編輯（2025 年新增）</td></tr>
+<tr><td><strong>Loop Animation</strong></td><td>將動畫轉換為可循環的動作片段</td></tr>
+<tr><td><strong>Simplify FCurves</strong></td><td>簡化動畫曲線，減少關鍵幀數量</td></tr>
+<tr><td><strong>Action 管理</strong></td><td>載入多個動作、切換、重命名</td></tr>
+<tr><td><strong>T-Pose 設定</strong></td><td>自訂源/目標骨架的 T-Pose 參考</td></tr>
+<tr><td><strong>Mute/Unmute 骨骼</strong></td><td>選擇性靜音特定骨骼的動畫</td></tr>
+<tr><td><strong>FACS 表情匯入</strong></td><td>配合 DAZ Importer 匯入面部動畫</td></tr>
+</table>
+
+<h3>檔案結構（GitHub repo）</h3>
+
+<pre><code>
+retarget_bvh/
+├── data/            # 內建資料
+├── known_rigs/      # 已知骨架預設 JSON
+├── t_poses/         # T-Pose 參考
+├── action.py        # Action 管理
+├── alayers.py       # Animation Layers
+├── load.py          # BVH/FBX 載入核心
+├── loop.py          # 循環動畫
+├── mute.py          # 骨骼靜音
+├── retarget.py      # Retarget 核心邏輯
+├── simplify.py      # FCurve 簡化
+├── source.py        # 來源骨架處理
+├── target.py        # 目標骨架處理
+└── ...
+</code></pre>
+
+<h3>使用流程（三步驟）</h3>
+
+<ol>
+<li>選取目標骨架（Armature）</li>
+<li>按下 「Load And Retarget」按鈕</li>
+<li>在檔案選擇器中選取 BVH/FBX 檔案 → 動畫自動載入完成</li>
+</ol>
+
+<hr>
+
+<h2>官方影片教學連結</h2>
+
+<table>
+<tr><th>#</th><th>影片</th><th>連結</th></tr>
+<tr><td>1</td><td>BVH Retargeter 基礎教學</td><td><a href="https://www.youtube.com/watch?v=77DS8ssbtPE" target="_blank">https://www.youtube.com/watch?v=77DS8ssbtPE</a></td></tr>
+<tr><td>2</td><td>進階用法教學</td><td><a href="https://www.youtube.com/watch?v=mABqszOo5eE" target="_blank">https://www.youtube.com/watch?v=mABqszOo5eE</a></td></tr>
+<tr><td>3</td><td>Retarget 工作流展示</td><td><a href="https://www.youtube.com/watch?v=qBTwfHmvyYE" target="_blank">https://www.youtube.com/watch?v=qBTwfHmvyYE</a></td></tr>
+<tr><td>4</td><td>教學影片四</td><td><a href="https://www.youtube.com/watch?v=DtAqAzIDyjU" target="_blank">https://www.youtube.com/watch?v=DtAqAzIDyjU</a></td></tr>
+<tr><td>5</td><td>教學影片五</td><td><a href="https://www.youtube.com/watch?v=kPYbdnPwHuQ" target="_blank">https://www.youtube.com/watch?v=kPYbdnPwHuQ</a></td></tr>
+</table>
+
+<p>（來源：addons.cgdive.com 工具頁面收錄）</p>
+
+<hr>
+
+<h2>安裝/使用流程</h2>
+
+<h3>安裝方式</h3>
+
+<p><strong>方法一：Blender Extensions（4.2+）</strong></p>
+<ul>
+<li>Blender Extensions 平台搜尋 「Retarget」或從 GitHub 下載 zip</li>
+<li>Edit → Preferences → Add-ons → Install → 選取 zip</li>
+</ul>
+
+<p><strong>方法二：手動安裝</strong></p>
+<ol>
+<li>從 Bitbucket/GitHub 下載最新 zip：</li>
+</ol>
+<ul>
+<li>GitHub: <a href="https://github.com/Diffeomorphic/retarget_bvh" target="_blank">https://github.com/Diffeomorphic/retarget_bvh</a></li>
+<li>Bitbucket: <a href="https://bitbucket.org/Diffeomorphic/retarget_bvh/downloads/" target="_blank">https://bitbucket.org/Diffeomorphic/retarget_bvh/downloads/</a></li>
+</ul>
+<ol>
+<li>Blender → Edit → Preferences → Add-ons → Install → 選取 zip</li>
+<li>啟用外掛</li>
+</ol>
+
+<h3>使用流程</h3>
+
+<ol>
+<li><strong>準備目標角色</strong>：確保角色有正確的骨架（Rigify、DAZ、自訂皆可）</li>
+<li><strong>選取骨架</strong>：在 3D Viewport 中選取目標 Armature</li>
+<li><strong>開啟側邊欄</strong>：N 面板 → BVH Retargeter tab</li>
+<li><strong>設定 Source rig</strong>：選擇源骨架類型（Mixamo / CMU / 自訂 JSON）</li>
+<li><strong>Load And Retarget</strong>：選取 BVH/FBX 檔案</li>
+<li><strong>後處理（可選）</strong>：Loop、Simplify、Animation Layers 編輯</li>
+</ol>
+
+<hr>
+
+<h2>定價與授權</h2>
+
+<table>
+<tr><th>項目</th><th>內容</th></tr>
+<tr><td><strong>價格</strong></td><td>完全免費</td></tr>
+<tr><td><strong>授權</strong></td><td>GPL（開源）</td></tr>
+<tr><td><strong>平台</strong></td><td>Blender 2.80+（含 4.x）</td></tr>
+<tr><td><strong>開發者</strong></td><td>Thomas Larsson (Diffeomorphic)</td></tr>
+<tr><td><strong>維護狀態</strong></td><td>活躍開發中（2025 年仍有更新，加入 Animation Layers）</td></tr>
+</table>
+
+<hr>
+
+<h2>優缺點分析</h2>
+
+<h3>✅ 優點</h3>
+
+<ol>
+<li><strong>完全免費開源</strong> — 無任何費用門檻</li>
+<li><strong>BVH 原生支援</strong> — 專門針對 BVH 格式設計，與我們的 Kimodo BVH 輸出完美契合</li>
+<li><strong>內建多骨架預設</strong> — Mixamo、Rigify、DAZ、ARP、VRoid、MMD、Unreal 等常見骨架開箱即用</li>
+<li><strong>FBX 額外支援</strong> — 可匯入 Mixamo FBX 格式動畫</li>
+<li><strong>動畫編輯工具整合</strong> — Loop、Simplify、Animation Layers 提供基本的 Mocap clean-up</li>
+<li><strong>可程式化/批次操作</strong> — 支援 Python scripting，可自動化批次 retarget</li>
+<li><strong>長期維護</strong> — 從 MakeWalk 時代持續更新超過 10 年</li>
+<li><strong>DAZ Importer 生態整合</strong> — 與同作者的 DAZ Importer 無縫配合</li>
+</ol>
+
+<h3>❌ 缺點</h3>
+
+<ol>
+<li><strong>無 GUI 視覺化骨骼映射</strong> — 自訂映射需手動編寫 JSON，學習門檻較高</li>
+<li><strong>沒有腳部 IK/接地修正</strong> — 不處理滑步、穿地等問題（需搭配其他工具）</li>
+<li><strong>文件較分散</strong> — 主要靠 blog post，無統一官方文件站</li>
+<li><strong>無商業支援</strong> — 個人開發者維護，bug 回應不一定即時</li>
+<li><strong>不處理 Root Motion</strong> — 缺乏 root motion 提取/轉移功能</li>
+<li><strong>社群較小</strong> — 相比 Auto-Rig Pro 等付費工具，使用者基數較少</li>
+</ol>
+
+<hr>
+
+<h2>與 Kimodo BVH 輸出的整合可能性</h2>
+
+<h3>整合評估：⭐⭐⭐⭐⭐（高度適合）</h3>
+
+<table>
+<tr><th>面向</th><th>評估</th></tr>
+<tr><td><strong>格式相容性</strong></td><td>✅ Kimodo 輸出 BVH → BVH Retargeter 原生支援</td></tr>
+<tr><td><strong>骨架映射</strong></td><td>⚠️ 需建立 Kimodo 專用的 source rig JSON 映射檔（一次性工作）</td></tr>
+<tr><td><strong>批次處理</strong></td><td>✅ 支援 Python scripting，可寫批次 retarget 腳本</td></tr>
+<tr><td><strong>自動化整合</strong></td><td>✅ 可嵌入我們的 pipeline（Blender headless + Python）</td></tr>
+<tr><td><strong>品質</strong></td><td>⚠️ retarget 品質中上，但缺乏腳部修正（需 Foot Locker/In Placer 補足）</td></tr>
+</table>
+
+<h3>建議整合流程</h3>
+
+<pre><code>
+Kimodo BVH → BVH Retargeter（retarget 到遊戲骨架）
+    → Foot Locker/In Placer（修腳步接地）
+    → Export FBX/GLB（匯入遊戲引擎）
+</code></pre>
+
+<h3>需要的一次性準備工作</h3>
+
+<ol>
+<li>分析 Kimodo 輸出 BVH 的骨架結構與命名</li>
+<li>建立 <code>kimodo_source.json</code> 骨骼映射檔</li>
+<li>建立 Blender Python 批次腳本模板</li>
+<li>測試常見動作類型的 retarget 品質</li>
+</ol>
+
+<hr>
+
+<h2>對「AI 動作量產工作流」的貢獻定位</h2>
+
+<h3>定位：<strong>pipeline 第一環 — BVH 轉遊戲骨架</strong></h3>
+
+<pre><code>
+[Kimodo AI 生成 BVH]
+        ↓
+[BVH Retargeter] ← 本工具定位
+  - retarget 到統一遊戲骨架
+  - 基本動畫清理（simplify、loop）
+  - 批次自動化處理
+        ↓
+[Mocap Clean-up 工具鏈]
+  - Foot Locker（接地修正）
+  - In Placer（原地化）
+  - Root Motion Transfer
+        ↓
+[遊戲引擎匯入]
+</code></pre>
+
+<p><strong>核心價值：</strong></p>
+<ul>
+<li>免費、可程式化、BVH 原生支援</li>
+<li>作為 AI 動作量產 pipeline 的「格式轉換+骨架適配」第一站</li>
+<li>搭配其他工具形成完整 clean-up 鏈路</li>
+</ul>
+
+<p><strong>限制：</strong></p>
+<ul>
+<li>不解決滑步/穿地（交給專用腳步工具）</li>
+<li>不處理 root motion 問題（交給 Root Motion Transfer）</li>
+<li>需要一次性建立 Kimodo 骨架映射</li>
+</ul>
+
+<hr>
+
+<h2>參考來源</h2>
+
+<ul>
+<li>GitHub Repo: <a href="https://github.com/Diffeomorphic/retarget_bvh" target="_blank">https://github.com/Diffeomorphic/retarget_bvh</a></li>
+<li>開發者 Blog: <a href="https://diffeomorphic.blogspot.com/2020/03/bvh-retargeter.html" target="_blank">https://diffeomorphic.blogspot.com/2020/03/bvh-retargeter.html</a></li>
+<li>BlenderArtists 發佈帖: <a href="https://blenderartists.org/t/bvh-retargeter-the-add-on-formerly-known-as-makewalk/1216579" target="_blank">https://blenderartists.org/t/bvh-retargeter-the-add-on-formerly-known-as-makewalk/1216579</a></li>
+<li>CGDive 收錄頁: <a href="https://addons.cgdive.com/tools/bvh-retargeter" target="_blank">https://addons.cgdive.com/tools/bvh-retargeter</a></li>
+<li>FBX 支援說明: <a href="https://diffeomorphic.blogspot.com/2024/03/fbx-files-and-bvh-retargeter.html" target="_blank">https://diffeomorphic.blogspot.com/2024/03/fbx-files-and-bvh-retargeter.html</a></li>
+<li>Animation Layers 功能: <a href="https://diffeomorphic.blogspot.com/2025/07/animation-layers.html" target="_blank">https://diffeomorphic.blogspot.com/2025/07/animation-layers.html</a></li>
+</ul>
+
+</body>
+</html>

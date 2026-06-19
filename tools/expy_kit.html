@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expy-Kit — 深度調研報告</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#1a1a2e;color:#e0d6c8;font-family:-apple-system,'Noto Sans TC',sans-serif;max-width:900px;margin:0 auto;padding:2rem;line-height:1.7}
+h1{color:#f5a623;margin:1.5rem 0 1rem}
+h2{color:#fff;margin:1.5rem 0 .8rem}
+h3{color:#e0d6c8;margin:1.2rem 0 .6rem}
+a{color:#f5a623}
+strong{color:#f5a623}
+ul,ol{margin:.5rem 0 .5rem 1.5rem}
+li{margin:.3rem 0}
+table{border-collapse:collapse;margin:1rem 0;max-width:100%;overflow-x:auto;display:block}
+th,td{border:1px solid #333;padding:8px 12px;text-align:left}
+th{background:#2a2a3e}
+pre{background:#0d0d1a;padding:1rem;border-radius:8px;overflow-x:auto;margin:1rem 0}
+code{background:#0d0d1a;padding:2px 6px;border-radius:4px;font-size:.9em}
+pre code{padding:0;background:none}
+hr{border:none;border-top:1px solid #333;margin:1.5rem 0}
+p{margin:.6rem 0}
+img{max-width:100%}
+.back{display:inline-block;margin-bottom:1.5rem;text-decoration:none}
+</style>
+</head>
+<body>
+<a href="../index.html" class="back">← 返回首頁</a>
+<h1>Expy-Kit — 深度調研報告</h1>
+
+<h2>工具概述</h2>
+
+<p><strong>Expy-Kit</strong> 是一款 Blender 外掛，專門用於在不同類型的骨架系統之間進行轉換與動畫 retarget。它作為 Rigify、Mixamo、Unreal Engine、DAZ3D 等不同系統之間的「橋樑」，能夠轉換骨骼命名、建立 Rigify 控制器、批次 retarget 多個動畫。</p>
+
+<p><strong>開發者：</strong> Paulo Acampora (pKrime / BallsAndNinjas)</p>
+
+<p><strong>解決的問題：</strong></p>
+<ul>
+<li>在 Mixamo → Rigify → 遊戲引擎 的工作流中，快速轉換骨架類型</li>
+<li>批次 retarget 大量 Mixamo 動畫到 Rigify 角色</li>
+<li>讓 Rigify 角色能直接匯出到遊戲引擎（骨骼命名轉換）</li>
+<li>在任意骨架上建立 Rigify 控制器</li>
+</ul>
+
+<hr>
+
+<h2>功能詳細說明</h2>
+
+<h3>核心功能</h3>
+
+<table>
+<tr><th>功能</th><th>說明</th></tr>
+<tr><td><strong>Convert Bone Names</strong></td><td>在不同命名系統間轉換骨骼名稱（Rigify ↔ Mixamo ↔ Unreal 等）</td></tr>
+<tr><td><strong>Build Rigify Controls</strong></td><td>在任何骨架上建立 Rigify 控制器（含 IK/FK 切換）</td></tr>
+<tr><td><strong>Batch Retarget Actions</strong></td><td>一次 retarget 數十甚至數百個動畫動作</td></tr>
+<tr><td><strong>Make Game Friendly</strong></td><td>將 Rigify 角色轉換為遊戲引擎相容的簡單骨架</td></tr>
+<tr><td><strong>Export to Game Engines</strong></td><td>匯出至 Unreal Engine / Unity 相容格式</td></tr>
+<tr><td><strong>Upload to Mixamo</strong></td><td>準備角色上傳至 Mixamo 取得動畫</td></tr>
+<tr><td><strong>Intermediate FK Rig</strong></td><td>建立中間 FK 骨架用於 retarget 橋接</td></tr>
+<tr><td><strong>DAZ3D 整合</strong></td><td>支援 DAZ 角色的骨架轉換</td></tr>
+</table>
+
+<h3>支援的骨架系統</h3>
+
+<ul>
+<li>Rigify</li>
+<li>Mixamo</li>
+<li>Unreal Engine Mannequin</li>
+<li>DAZ3D</li>
+<li>自訂骨架（透過 bone_mapping.py 定義）</li>
+</ul>
+
+<h3>使用流程（Mixamo → Rigify retarget）</h3>
+
+<ol>
+<li>匯入 Mixamo FBX 動畫</li>
+<li>選取 Rigify 角色</li>
+<li>Expy-Kit → Batch Retarget → 選擇所有 Mixamo Actions</li>
+<li>一鍵完成所有動畫的 retarget</li>
+</ol>
+
+<h3>使用流程（Rigify → 遊戲引擎匯出）</h3>
+
+<ol>
+<li>選取 Rigify 角色 → Pose Mode</li>
+<li>右鍵 → Make Game Friendly</li>
+<li>Convert Bone Names（source: Rigify, target: Mixamo/Unreal）</li>
+<li>匯出 FBX</li>
+</ol>
+
+<hr>
+
+<h2>官方影片教學連結</h2>
+
+<table>
+<tr><th>#</th><th>影片/播放清單</th><th>連結</th></tr>
+<tr><td>1</td><td>Expy Kit - Game Character Workflow（開發者官方播放清單）</td><td><a href="https://www.youtube.com/playlist?list=PLlYRBY5qQKSkd5E21U8TSDONzYSsRCupG" target="_blank">https://www.youtube.com/playlist?list=PLlYRBY5qQKSkd5E21U8TSDONzYSsRCupG</a></td></tr>
+<tr><td>2</td><td>CGDive - Blender Expy Kit Addon: Mixamo to Rigify</td><td><a href="https://www.classcentral.com/course/youtube-blender-expy-kit-addon-mixamo-to-rigify-208798" target="_blank">https://www.classcentral.com/course/youtube-blender-expy-kit-addon-mixamo-to-rigify-208798</a></td></tr>
+<tr><td>3</td><td>BlenderNation 介紹文</td><td><a href="https://www.blendernation.com/2022/06/04/blender-expy-kit-addon-easy-mixamo-to-rigify-retargeting/" target="_blank">https://www.blendernation.com/2022/06/04/blender-expy-kit-addon-easy-mixamo-to-rigify-retargeting/</a></td></tr>
+</table>
+
+<hr>
+
+<h2>安裝/使用流程</h2>
+
+<h3>安裝</h3>
+
+<p><strong>免費版（GitHub）：</strong></p>
+<ol>
+<li>從 <a href="https://github.com/pKrime/Expy-Kit" target="_blank">https://github.com/pKrime/Expy-Kit</a> 下載 zip</li>
+<li>Blender → Edit → Preferences → Add-ons → Install → 選取 zip</li>
+<li>啟用 Expy-Kit</li>
+</ol>
+
+<p><strong>付費版（Gumroad）：</strong></p>
+<ol>
+<li>購買：<a href="https://ballsandninjas.gumroad.com/l/xotibs" target="_blank">https://ballsandninjas.gumroad.com/l/xotibs</a></li>
+<li>下載 zip，同樣方式安裝</li>
+</ol>
+
+<h3>相容性</h3>
+
+<ul>
+<li>Blender 2.8x ~ 4.x</li>
+<li>421 GitHub Stars, 37 Forks</li>
+<li>258 commits（活躍開發）</li>
+</ul>
+
+<hr>
+
+<h2>定價與授權</h2>
+
+<table>
+<tr><th>項目</th><th>內容</th></tr>
+<tr><td><strong>價格</strong></td><td>免費版（GitHub）+ 付費版（Gumroad，支持開發者）</td></tr>
+<tr><td><strong>免費版</strong></td><td>核心功能完整可用</td></tr>
+<tr><td><strong>付費版</strong></td><td>額外功能/支持開發者（自定價格）</td></tr>
+<tr><td><strong>授權</strong></td><td>開源 (GitHub)</td></tr>
+<tr><td><strong>平台</strong></td><td>Blender 2.80+</td></tr>
+<tr><td><strong>開發者</strong></td><td>Paulo Acampora (pKrime)</td></tr>
+<tr><td><strong>維護狀態</strong></td><td>活躍更新（2025 年有新 commit）</td></tr>
+</table>
+
+<hr>
+
+<h2>優缺點分析</h2>
+
+<h3>✅ 優點</h3>
+
+<ol>
+<li><strong>免費開源</strong> — 核心功能完全免費</li>
+<li><strong>批次 Retarget</strong> — 一次處理數百個動畫，非常適合量產工作流</li>
+<li><strong>Rigify 深度整合</strong> — 能在任何骨架上建立 Rigify 控制器</li>
+<li><strong>雙向轉換</strong> — Rigify ↔ Mixamo ↔ Unreal 骨骼命名互轉</li>
+<li><strong>遊戲引擎匯出</strong> — Make Game Friendly 一鍵轉換</li>
+<li><strong>快速流線</strong> — 比 ARP/Rokoko 更精簡的 retarget 操作</li>
+<li><strong>社群活躍</strong> — 421 Stars，持續更新</li>
+<li><strong>不需額外付費工具</strong> — 不依賴 Auto-Rig Pro</li>
+</ol>
+
+<h3>❌ 缺點</h3>
+
+<ol>
+<li><strong>無 IK Retarget</strong> — 純 FK constraint-based retarget，會有腳步滑動</li>
+<li><strong>不直接支援 BVH</strong> — 主要設計為 FBX/Mixamo 動畫，BVH 需先匯入再處理</li>
+<li><strong>文件較少</strong> — 主要靠影片教學，無完整文字文件站</li>
+<li><strong>Preset 以 Mixamo 為主</strong> — 自訂骨架需修改 bone_mapping.py</li>
+<li><strong>無 Mocap Clean-up 功能</strong> — 純 retarget/轉換工具，不處理動畫品質</li>
+<li><strong>Rigify 依賴</strong> — 最佳使用場景需要 Rigify 生態</li>
+</ol>
+
+<hr>
+
+<h2>與 Kimodo BVH 輸出的整合可能性</h2>
+
+<h3>整合評估：⭐⭐⭐（中等適合，需額外步驟）</h3>
+
+<table>
+<tr><th>面向</th><th>評估</th></tr>
+<tr><td><strong>格式相容性</strong></td><td>⚠️ Kimodo BVH 需先匯入 Blender 轉為 Action，再用 Expy-Kit 處理</td></tr>
+<tr><td><strong>骨架映射</strong></td><td>⚠️ 需在 bone_mapping.py 新增 Kimodo 骨架定義</td></tr>
+<tr><td><strong>批次處理</strong></td><td>✅ 批次 retarget 是最大優勢</td></tr>
+<tr><td><strong>遊戲匯出</strong></td><td>✅ Make Game Friendly + Convert Bone Names</td></tr>
+<tr><td><strong>品質</strong></td><td>⚠️ FK retarget，腳步品質一般</td></tr>
+</table>
+
+<h3>建議使用場景</h3>
+
+<p>Expy-Kit 最適合的場景是：<strong>已經使用 Rigify 作為角色骨架系統的工作流</strong>。</p>
+
+<pre><code>
+Kimodo BVH → Blender BVH Import → Expy-Kit Batch Retarget to Rigify
+    → Rigify 動畫編輯（利用 IK/FK 控制器）
+    → Make Game Friendly → Export FBX
+</code></pre>
+
+<hr>
+
+<h2>對「AI 動作量產工作流」的貢獻定位</h2>
+
+<h3>定位：<strong>批次骨架轉換與 Rigify 整合的快速橋樑</strong></h3>
+
+<pre><code>
+[Kimodo AI 生成 BVH]
+        ↓
+[BVH Retargeter 初步映射]
+        ↓
+[Expy-Kit] ← 本工具定位
+  - 批次 retarget 到 Rigify（數百動作一次完成）
+  - Rigify 控制器 → 方便動畫師手動調整
+  - Convert Bone Names → 遊戲引擎匯出
+        ↓
+[遊戲引擎匯入]
+</code></pre>
+
+<p><strong>核心價值：</strong></p>
+<ul>
+<li>批次處理能力：AI 量產大量動作時，一次 retarget 數百個</li>
+<li>Rigify 生態加持：建立控制器後動畫師可用 IK/FK 精修</li>
+<li>骨骼命名轉換：最後一哩路的引擎適配</li>
+</ul>
+
+<p><strong>限制：</strong></p>
+<ul>
+<li>不解決腳步問題（需搭配 Foot Locker）</li>
+<li>不直接吃 BVH（需中間步驟）</li>
+<li>更適合 Rigify 工作流，不適合純 Mixamo/ARP 流程</li>
+</ul>
+
+<hr>
+
+<h2>參考來源</h2>
+
+<ul>
+<li>GitHub Repo: <a href="https://github.com/pKrime/Expy-Kit" target="_blank">https://github.com/pKrime/Expy-Kit</a></li>
+<li>Gumroad: <a href="https://ballsandninjas.gumroad.com/l/xotibs" target="_blank">https://ballsandninjas.gumroad.com/l/xotibs</a></li>
+<li>CGDive 工具頁: <a href="https://addons.cgdive.com/tools/expy-kit" target="_blank">https://addons.cgdive.com/tools/expy-kit</a></li>
+<li>BlenderNation: <a href="https://www.blendernation.com/2022/06/04/blender-expy-kit-addon-easy-mixamo-to-rigify-retargeting/" target="_blank">https://www.blendernation.com/2022/06/04/blender-expy-kit-addon-easy-mixamo-to-rigify-retargeting/</a></li>
+<li>BlenderArtists 討論: <a href="https://blenderartists.org/t/expy-kit-character-conversion-for-mixamo-rigify-unreal/1321351" target="_blank">https://blenderartists.org/t/expy-kit-character-conversion-for-mixamo-rigify-unreal/1321351</a></li>
+<li>開發者 YouTube: <a href="https://www.youtube.com/c/BallsAndNinjas" target="_blank">https://www.youtube.com/c/BallsAndNinjas</a></li>
+</ul>
+
+</body>
+</html>

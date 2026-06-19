@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PINOC (Viggle.ai) — AI 影片轉動捕 / 遊戲動畫工具</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#1a1a2e;color:#e0d6c8;font-family:-apple-system,'Noto Sans TC',sans-serif;max-width:900px;margin:0 auto;padding:2rem;line-height:1.7}
+h1{color:#f5a623;margin:1.5rem 0 1rem}
+h2{color:#fff;margin:1.5rem 0 .8rem}
+h3{color:#e0d6c8;margin:1.2rem 0 .6rem}
+a{color:#f5a623}
+strong{color:#f5a623}
+ul,ol{margin:.5rem 0 .5rem 1.5rem}
+li{margin:.3rem 0}
+table{border-collapse:collapse;margin:1rem 0;max-width:100%;overflow-x:auto;display:block}
+th,td{border:1px solid #333;padding:8px 12px;text-align:left}
+th{background:#2a2a3e}
+pre{background:#0d0d1a;padding:1rem;border-radius:8px;overflow-x:auto;margin:1rem 0}
+code{background:#0d0d1a;padding:2px 6px;border-radius:4px;font-size:.9em}
+pre code{padding:0;background:none}
+hr{border:none;border-top:1px solid #333;margin:1.5rem 0}
+p{margin:.6rem 0}
+img{max-width:100%}
+.back{display:inline-block;margin-bottom:1.5rem;text-decoration:none}
+</style>
+</head>
+<body>
+<a href="../index.html" class="back">← 返回首頁</a>
+<h1>PINOC (Viggle.ai) — AI 影片轉動捕 / 遊戲動畫工具</h1>
+
+<p>&gt; 調研日期：2026-06-19</p>
+<p>&gt; 官網：<a href="https://viggle.ai" target="_blank">https://viggle.ai</a></p>
+<p>&gt; 3D Studio：<a href="https://viggle.ai/3d-studio/landing" target="_blank">https://viggle.ai/3d-studio/landing</a></p>
+<p>&gt; 遊戲開發頁：<a href="https://viggle.ai/gamedev" target="_blank">https://viggle.ai/gamedev</a></p>
+<p>&gt; API 文件：<a href="https://docs.viggle.ai" target="_blank">https://docs.viggle.ai</a></p>
+
+<hr>
+
+<h2>一、工具概述</h2>
+
+<p><strong>PINOC</strong> 是 Viggle.ai 推出的 3D Studio 功能模組，專門將普通影片轉換為專業級 Motion Capture 資料。Viggle 原本以 AI 影片迷因生成聞名（「跳舞迷因 App」），2026 年正式轉型推出面向遊戲開發者和 3D 創作者的專業工具。</p>
+
+<p><strong>核心能力</strong>：單鏡頭影片 → 65 骨骼 Mixamo 相容骨架 → FBX/GLB 輸出 → 直入遊戲引擎</p>
+
+<p><strong>解決的問題</strong>：</p>
+<ul>
+<li>傳統 Mocap 系統昂貴（$500-$1,500/clip、$5,000-$15,000/session）</li>
+<li>獨立開發者無法負擔動捕設備</li>
+<li>手工 K 動作一個走路循環要花一整天</li>
+<li>遊戲角色需要大量獨特動作</li>
+</ul>
+
+<hr>
+
+<h2>二、功能詳細說明</h2>
+
+<h3>核心功能矩陣</h3>
+
+<table>
+<tr><th>功能</th><th>說明</th><th>用途</th></tr>
+<tr><td><strong>Video-to-Mocap (PINOC)</strong></td><td>上傳影片 → AI 提取骨架動畫 → 輸出 GLB/FBX</td><td>遊戲動畫量產</td></tr>
+<tr><td><strong>Mix</strong></td><td>將角色圖片放入動作影片中，生成動畫影片</td><td>角色預覽/Pre-viz</td></tr>
+<tr><td><strong>Move</strong></td><td>上傳靜態角色圖 + 動作參考影片 → 角色動起來</td><td>概念預覽/Devlog</td></tr>
+<tr><td><strong>3D Gaussian Splatting Preview</strong></td><td>上傳單張照片 → 生成體積化 3D 動畫預覽</td><td>快速視覺化</td></tr>
+<tr><td><strong>Fight Anyone</strong></td><td>Viggle 自行開發的格鬥遊戲，驗證其 Pipeline</td><td>技術展示/Proof</td></tr>
+</table>
+
+<h3>技術規格</h3>
+
+<table>
+<tr><th>項目</th><th>規格</th></tr>
+<tr><td>骨骼數量</td><td>65 bones</td></tr>
+<tr><td>輸出格式</td><td>GLB（目前主要）、FBX（即將推出/部分支援）</td></tr>
+<tr><td>幀率</td><td>30 fps</td></tr>
+<tr><td>骨架相容</td><td>Mixamo 命名規範</td></tr>
+<tr><td>Root Motion</td><td>包含，可配置</td></tr>
+<tr><td>檔案大小</td><td>典型 5-15 MB</td></tr>
+<tr><td>多人追蹤</td><td>最多 5 個角色同時（API）</td></tr>
+<tr><td>速度控制</td><td>可加速/減速（API）</td></tr>
+<tr><td>腳部修正</td><td>內建 foot contact correction</td></tr>
+</table>
+
+<h3>遊戲引擎相容性</h3>
+
+<table>
+<tr><th>引擎</th><th>支援狀態</th></tr>
+<tr><td>Unity 2022-2024</td><td>✅ 自動偵測 Humanoid，Mecanim Ready</td></tr>
+<tr><td>Unreal Engine 5</td><td>✅ 可 Retarget 到任何 UE5 骨架</td></tr>
+<tr><td>Godot</td><td>✅ 原生 GLB 匯入或透過 Blender</td></tr>
+<tr><td>Blender</td><td>✅ 直接 GLB/glTF 匯入</td></tr>
+<tr><td>Maya</td><td>✅ GLB 匯入</td></tr>
+<tr><td>Cascadeur</td><td>✅ 支援</td></tr>
+<tr><td>MotionBuilder</td><td>✅ 支援</td></tr>
+</table>
+
+<h3>API 功能（開發者）</h3>
+
+<ul>
+<li>On-Demand Rendering</li>
+<li>批次處理動畫</li>
+<li>速度調整</li>
+<li>透明背景合成模式</li>
+<li>單影片多角色提取（最多 5 人）</li>
+<li>5 個並發 render jobs / org</li>
+</ul>
+
+<hr>
+
+<h2>三、官方影片 / 教學連結</h2>
+
+<table>
+<tr><th>資源</th><th>連結</th></tr>
+<tr><td>官方 YouTube</td><td><a href="https://www.youtube.com/@ViggleAI" target="_blank">https://www.youtube.com/@ViggleAI</a></td></tr>
+<tr><td>API 文件</td><td><a href="https://docs.viggle.ai" target="_blank">https://docs.viggle.ai</a></td></tr>
+<tr><td>Discord 社群</td><td><a href="https://discord.com/invite/viggle" target="_blank">https://discord.com/invite/viggle</a></td></tr>
+<tr><td>X (Twitter)</td><td><a href="https://twitter.com/ViggleAI" target="_blank">https://twitter.com/ViggleAI</a></td></tr>
+<tr><td>遊戲開發專頁</td><td><a href="https://viggle.ai/gamedev" target="_blank">https://viggle.ai/gamedev</a></td></tr>
+<tr><td>3D Studio Landing</td><td><a href="https://viggle.ai/3d-studio/landing" target="_blank">https://viggle.ai/3d-studio/landing</a></td></tr>
+<tr><td>Fight Anyone 遊戲</td><td><a href="https://viggle.ai/games/app" target="_blank">https://viggle.ai/games/app</a></td></tr>
+<tr><td>CGDive 評測</td><td><a href="https://addons.cgdive.com/tools/pinoc" target="_blank">https://addons.cgdive.com/tools/pinoc</a></td></tr>
+<tr><td>Quasa.io 報導 (2026/05)</td><td><a href="https://quasa.io/media/viggle-ai-just-dropped-a-serious-mocap-punch-meet-p-i-n-o-c" target="_blank">https://quasa.io/media/viggle-ai-just-dropped-a-serious-mocap-punch-meet-p-i-n-o-c</a></td></tr>
+</table>
+
+<hr>
+
+<h2>四、使用流程</h2>
+
+<h3>基本流程（免費試用）</h3>
+
+<ol>
+<li><strong>前往 3D Studio</strong>：<a href="https://viggle.ai/3d-studio/landing" target="_blank">https://viggle.ai/3d-studio/landing</a></li>
+<li><strong>Guest 模式可用</strong>：無需註冊帳號即可試用</li>
+<li><strong>上傳影片</strong>：MP4 格式，拍攝任何人執行動作</li>
+<li><strong>AI 處理</strong>：自動骨架偵測 + 動作追蹤</li>
+<li><strong>3D 預覽</strong>：即時在瀏覽器中查看骨架動畫</li>
+<li><strong>下載</strong>：匯出 GLB 檔案</li>
+<li><strong>匯入引擎</strong>：拖入 Unity/Unreal/Blender 直接使用</li>
+</ol>
+
+<h3>API 流程（量產化）</h3>
+
+<ol>
+<li>取得 API Key：<a href="https://portal.viggle.ai/api-keys" target="_blank">https://portal.viggle.ai/api-keys</a></li>
+<li>預處理角色（1 credit）</li>
+<li>提交 render job（1 credit/秒）</li>
+<li>下載結果 GLB</li>
+<li>批次整合至 Pipeline</li>
+</ol>
+
+<h3>所需素材</h3>
+
+<ul>
+<li>手機影片即可（不需專業攝影機）</li>
+<li>人物動作清晰可見</li>
+<li>支援複雜動作和高速動作</li>
+</ul>
+
+<hr>
+
+<h2>五、定價與授權</h2>
+
+<h3>消費者方案（viggle.ai/mocap）</h3>
+
+<table>
+<tr><th>方案</th><th>月費</th><th>內容</th></tr>
+<tr><td><strong>Free</strong></td><td>$0</td><td>5 animations/day</td></tr>
+<tr><td><strong>PRO</strong></td><td>$9.99/月（年繳 $7.99/月）</td><td>80 credits/月</td></tr>
+<tr><td><strong>進階方案</strong></td><td>$31.99-$79.99/月</td><td>更多 credits</td></tr>
+</table>
+
+<h3>API 定價（開發者）</h3>
+
+<table>
+<tr><th>項目</th><th>費用</th></tr>
+<tr><td>1 credit</td><td>$0.01</td></tr>
+<tr><td>渲染成本</td><td>1 credit/秒影片</td></tr>
+<tr><td>角色預處理</td><td>1 credit</td></tr>
+<tr><td>場景建立</td><td>免費</td></tr>
+<tr><td>失敗 render</td><td>退款</td></tr>
+<tr><td>並發限制</td><td>5 jobs/org</td></tr>
+</table>
+
+<h3>商用授權</h3>
+
+<ul>
+<li>✅ 所有生成動畫可用於商業專案</li>
+<li>✅ 無版稅、無標注要求</li>
+<li>✅ 可用於 Steam/itch.io/主機遊戲</li>
+</ul>
+
+<h3>成本比較</h3>
+
+<table>
+<tr><th>方式</th><th>每個動畫成本</th></tr>
+<tr><td>傳統 Mocap</td><td>$500-$1,500/clip</td></tr>
+<tr><td>Viggle PINOC</td><td>~$0.03/animation</td></tr>
+<tr><td>手工 K 動作</td><td>4-8 小時人力</td></tr>
+</table>
+
+<hr>
+
+<h2>六、優缺點分析</h2>
+
+<h3>✅ 優點</h3>
+
+<ol>
+<li><strong>極低成本</strong>：每個動畫約 $0.03，比傳統 Mocap 便宜 10,000 倍</li>
+<li><strong>免費試用門檻極低</strong>：Guest 模式無需帳號，每日 5 次免費</li>
+<li><strong>Mixamo 相容骨架</strong>：65 骨骼 + Mixamo 命名 → 直入各大引擎</li>
+<li><strong>內建腳部修正</strong>：自動 foot contact correction</li>
+<li><strong>有 API + 批次處理</strong>：適合量產化</li>
+<li><strong>已有產品驗證</strong>：Fight Anyone 遊戲證明品質可用於出貨產品</li>
+<li><strong>Root Motion 包含</strong>：遊戲角色必備</li>
+<li><strong>多人追蹤</strong>：單影片可提取 5 個角色</li>
+<li><strong>引擎相容性完整</strong>：Unity/UE5/Godot/Blender/Maya 全支援</li>
+<li><strong>手機拍攝即可</strong>：不需要專業設備</li>
+</ol>
+
+<h3>❌ 缺點</h3>
+
+<ol>
+<li><strong>GLB 為主</strong>：FBX 匯出標示「coming soon」，目前主力是 GLB</li>
+<li><strong>不直接輸出 BVH</strong>：需要額外格式轉換</li>
+<li><strong>30fps 固定</strong>：無法自訂幀率</li>
+<li><strong>複雜動作/寬鬆衣物品質不穩</strong>：還有改進空間</li>
+<li><strong>雲端依賴</strong>：無離線方案</li>
+<li><strong>Video 輸入限制</strong>：只接受 MP4</li>
+<li><strong>Pre-viz 輸出是影片</strong>：只有 3D Studio/Sandbox 才輸出骨架</li>
+</ol>
+
+<hr>
+
+<h2>七、與 Kimodo BVH 工作流的整合可能性</h2>
+
+<table>
+<tr><th>面向</th><th>評估</th></tr>
+<tr><td><strong>格式</strong></td><td>Kimodo 輸出 BVH，Viggle 輸出 GLB — 都可匯入 Blender 做 retarget。GLB→BVH 轉換容易</td></tr>
+<tr><td><strong>互補場景</strong></td><td>Kimodo = text prompt 生成；Viggle = 影片參考轉 mocap。兩者輸入方式不同，覆蓋不同創作場景</td></tr>
+<tr><td><strong>量產化</strong></td><td>Viggle API 支援批次 + $0.03/animation → 大量參考影片可批次轉換</td></tr>
+<tr><td><strong>品質比較</strong></td><td>需要實測比較：Kimodo vs Viggle 在相同動作的品質差異</td></tr>
+<tr><td><strong>Pipeline 整合</strong></td><td>可以設計：拍攝參考影片 → Viggle API 批次處理 → GLB → Blender retarget → 遊戲引擎</td></tr>
+<tr><td><strong>Root Motion</strong></td><td>Viggle 內建 Root Motion，Kimodo 需要額外處理（--no-postprocess 的限制）</td></tr>
+<tr><td><strong>腳部修正</strong></td><td>Viggle 內建 foot contact correction vs Kimodo 目前無後處理</td></tr>
+</table>
+
+<h3>推薦整合方式</h3>
+
+<pre><code>
+方案 A：影片參考工作流
+  拍攝動作參考影片 → Viggle API → GLB → Blender retarget → UE5/Unity
+
+方案 B：混合工作流
+  簡單動作 → Kimodo text prompt → BVH
+  複雜/特定動作 → 拍攝影片 → Viggle → GLB
+  兩者統一在 Blender 做 retarget + clean-up → 遊戲引擎
+
+方案 C：量產工作流
+  蒐集大量動作參考影片（YouTube/自拍/素材庫）
+  → Viggle API 批次處理（$0.03/個）
+  → 統一 retarget 到遊戲角色骨架
+  → 動作庫建置
+</code></pre>
+
+<hr>
+
+<h2>八、對「AI 動作量產工作流」的貢獻定位</h2>
+
+<pre><code>
+┌─────────────────────────────────────────────────────────┐
+│          AI 動作量產工作流中的 Viggle PINOC 定位          │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  [輸入源]                                               │
+│    ├── Text Prompt ──→ Kimodo (離線)                    │
+│    ├── 影片參考 ──→ Viggle PINOC (雲端) ← ⭐ 核心價值   │
+│    └── 手動 K 幀 ──→ 傳統 DCC                          │
+│                                                         │
+│  [Viggle 的獨特優勢]                                    │
+│    • 成本極低（$0.03/動作）                              │
+│    • 有 API 可批次自動化                                 │
+│    • 內建 foot contact + root motion                    │
+│    • Mixamo 骨架直接入引擎                               │
+│    • 已被真實遊戲產品驗證（Fight Anyone）                 │
+│                                                         │
+│  [量產化場景]                                            │
+│    • 大量 NPC idle/walk/combat 動畫                      │
+│    • 遊戲預告/Devlog 快速產出                            │
+│    • 格鬥遊戲角色動作庫                                  │
+│    • 手遊 casual 動作                                    │
+│                                                         │
+└─────────────────────────────────────────────────────────┘
+</code></pre>
+
+<hr>
+
+<h2>九、總結評分</h2>
+
+<table>
+<tr><th>項目</th><th>評分 (1-5)</th></tr>
+<tr><td>與我們目標的相關性</td><td>⭐⭐⭐⭐⭐</td></tr>
+<tr><td>技術成熟度</td><td>⭐⭐⭐⭐</td></tr>
+<tr><td>易用性</td><td>⭐⭐⭐⭐⭐</td></tr>
+<tr><td>性價比</td><td>⭐⭐⭐⭐⭐</td></tr>
+<tr><td>Pipeline 整合潛力</td><td>⭐⭐⭐⭐⭐</td></tr>
+<tr><td>量產化適合度</td><td>⭐⭐⭐⭐⭐</td></tr>
+</table>
+
+<p><strong>推薦等級</strong>：🟢 <strong>強烈推薦納入工作流</strong> — 成本極低、有 API、遊戲級品質已驗證。建議優先實測。</p>
+
+<hr>
+
+<h2>十、行動建議</h2>
+
+<ol>
+<li><strong>立即試用</strong>：<a href="https://viggle.ai/3d-studio/landing（Guest" target="_blank">https://viggle.ai/3d-studio/landing（Guest</a> 免註冊）</li>
+<li><strong>測試比較</strong>：同一動作分別用 Kimodo 和 Viggle 生成，比較品質</li>
+<li><strong>API 評估</strong>：申請 API Key 測試批次工作流</li>
+<li><strong>格式測試</strong>：GLB → Blender → retarget 到我們的遊戲角色骨架，確認流程暢通</li>
+<li><strong>成本估算</strong>：評估量產 100 個動作的成本（Viggle API ~$3 vs 傳統方式）</li>
+</ol>
+
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FaceIt（Facial Expressions & Performance Capture）— 深度調研報告</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#1a1a2e;color:#e0d6c8;font-family:-apple-system,'Noto Sans TC',sans-serif;max-width:900px;margin:0 auto;padding:2rem;line-height:1.7}
+h1{color:#f5a623;margin:1.5rem 0 1rem}
+h2{color:#fff;margin:1.5rem 0 .8rem}
+h3{color:#e0d6c8;margin:1.2rem 0 .6rem}
+a{color:#f5a623}
+strong{color:#f5a623}
+ul,ol{margin:.5rem 0 .5rem 1.5rem}
+li{margin:.3rem 0}
+table{border-collapse:collapse;margin:1rem 0;max-width:100%;overflow-x:auto;display:block}
+th,td{border:1px solid #333;padding:8px 12px;text-align:left}
+th{background:#2a2a3e}
+pre{background:#0d0d1a;padding:1rem;border-radius:8px;overflow-x:auto;margin:1rem 0}
+code{background:#0d0d1a;padding:2px 6px;border-radius:4px;font-size:.9em}
+pre code{padding:0;background:none}
+hr{border:none;border-top:1px solid #333;margin:1.5rem 0}
+p{margin:.6rem 0}
+img{max-width:100%}
+.back{display:inline-block;margin-bottom:1.5rem;text-decoration:none}
+</style>
+</head>
+<body>
+<a href="../index.html" class="back">← 返回首頁</a>
+<h1>FaceIt（Facial Expressions &amp; Performance Capture）— 深度調研報告</h1>
+
+<h2>工具概述</h2>
+
+<p>FaceIt 是 Blender 的<strong>全方位臉部動畫外掛</strong>，集臉部綁定（Rigging）、表情創建、動作捕捉（Motion Capture）和動畫於一體。它能讓任意 3D 角色（寫實人物到卡通角色）快速獲得臉部表情系統，並支援 ARKit、Audio2Face、Hallway Tile 等平台的動捕資料匯入和即時錄製。</p>
+
+<p><strong>解決的問題：</strong></p>
+<ul>
+<li>臉部 Shape Keys 創建耗時耗力（52 個 ARKit 表情手動雕刻可能花費數天）</li>
+<li>臉部動捕資料匯入 Blender 流程繁瑣</li>
+<li>不同拓撲的角色需要重新製作表情，無法複用</li>
+<li>即時臉部動捕錄製需要額外軟體</li>
+</ul>
+
+<hr>
+
+<h2>功能詳細說明</h2>
+
+<h3>版本劃分</h3>
+
+<table>
+<tr><th>版本</th><th>功能重點</th></tr>
+<tr><td><strong>FaceIt 1.8</strong></td><td>完整 ARKit 工具集：52 個 ARKit Shape Keys 自動生成、控制 Rig、動捕匯入、即時錄製</td></tr>
+<tr><td><strong>FaceIt 2.3</strong></td><td>自訂表情（不限 52 個）、表情預設包、匯入/匯出自訂表情、自訂 Rig 支援</td></tr>
+<tr><td><strong>FaceIt 2.3 Studio</strong></td><td>多人座位授權（2-9 seats）</td></tr>
+</table>
+
+<h3>核心功能模組</h3>
+
+<p>#### FaceIt Create（表情創建）</p>
+<table>
+<tr><th>功能</th><th>說明</th></tr>
+<tr><td>Prepare Geometry</td><td>準備角色幾何體</td></tr>
+<tr><td>Setup</td><td>配置面部區域</td></tr>
+<tr><td>Landmarks</td><td>臉部標記點</td></tr>
+<tr><td>Rigging</td><td>自動臉部骨架生成</td></tr>
+<tr><td>Create Expressions</td><td>半自動創建 52 個 ARKit 表情（可自訂）</td></tr>
+<tr><td>Edit Expressions</td><td>微調表情</td></tr>
+<tr><td>Bake</td><td>烘焙到 Shape Keys</td></tr>
+<tr><td>Export</td><td>匯出（支援遊戲引擎格式）</td></tr>
+</table>
+
+<p>#### MOCAP（動捕）</p>
+<table>
+<tr><th>功能</th><th>說明</th></tr>
+<tr><td>Target Shapes</td><td>動捕目標 Shape Keys 映射</td></tr>
+<tr><td>Importers</td><td>支援 ARKit、Audio2Face、自訂 CSV 等格式</td></tr>
+<tr><td>Live Recorder</td><td><strong>即時在 Blender Viewport 中錄製臉部動捕</strong></td></tr>
+<tr><td>Control Rig</td><td>滑桿式控制 Rig，方便手動動畫</td></tr>
+<tr><td>FBX Retargeting</td><td>FBX 臉部動畫重定向</td></tr>
+</table>
+
+<h3>支援的動捕平台</h3>
+<ul>
+<li><strong>ARKit</strong>（iPhone Face Tracking）</li>
+<li><strong>Audio2Face</strong>（NVIDIA）</li>
+<li><strong>Hallway Tile</strong></li>
+<li><strong>自訂格式</strong>（CSV 等）</li>
+<li>支援 FACS 命名（非 ARKit 也可使用）</li>
+</ul>
+
+<h3>表情系統</h3>
+<ul>
+<li>52 個標準 ARKit Blend Shapes</li>
+<li>自訂表情（FaceIt 2.3）：舌頭動作、Visemes、FACS、任何自訂表情</li>
+<li>表情預設包：可匯入/匯出/分享</li>
+<li>適用於任意拓撲的角色（人形、卡通、動物均可）</li>
+</ul>
+
+<hr>
+
+<h2>官方影片教學連結</h2>
+
+<table>
+<tr><th>主題</th><th>連結</th></tr>
+<tr><td>CGDive FaceIt 教學課程</td><td><a href="https://toshicg.gumroad.com/l/faceit_tutorials" target="_blank">https://toshicg.gumroad.com/l/faceit_tutorials</a></td></tr>
+<tr><td>FaceIt Tutorial - Rig Step</td><td><a href="https://www.classcentral.com/classroom/youtube-faceit-tutorial-1-facial-mocap-shapekeys-addon-blender-208778" target="_blank">https://www.classcentral.com/classroom/youtube-faceit-tutorial-1-facial-mocap-shapekeys-addon-blender-208778</a></td></tr>
+<tr><td>官方文件</td><td><a href="https://faceit-doc.readthedocs.io/" target="_blank">https://faceit-doc.readthedocs.io/</a></td></tr>
+<tr><td>MOCAP 說明</td><td><a href="https://faceit-doc.readthedocs.io/en/latest/mocap_general/" target="_blank">https://faceit-doc.readthedocs.io/en/latest/mocap_general/</a></td></tr>
+<tr><td>Live Recorder</td><td><a href="https://faceit-doc.readthedocs.io/en/latest/mocap_live/" target="_blank">https://faceit-doc.readthedocs.io/en/latest/mocap_live/</a></td></tr>
+</table>
+
+<hr>
+
+<h2>安裝/使用流程</h2>
+
+<h3>安裝</h3>
+<ol>
+<li>從 Superhive（原 Blender Market）購買下載</li>
+<li>Blender → Edit → Preferences → Add-ons → Install</li>
+<li>啟用 FaceIt</li>
+</ol>
+
+<h3>基本使用流程</h3>
+<pre><code>
+1. 準備角色模型（任意拓撲）
+2. Setup：標記臉部區域（眼睛、嘴巴、鼻子等）
+3. Landmarks：放置臉部特徵點
+4. Rigging：自動生成臉部骨架
+5. Create Expressions：半自動生成 52 個 ARKit 表情
+   - 系統自動生成初始版本
+   - 使用者微調每個表情
+6. Bake：烘焙為 Shape Keys
+7. （選擇性）設定 Control Rig
+8. MOCAP：匯入或即時錄製動捕資料
+</code></pre>
+
+<h3>動捕錄製流程（ARKit）</h3>
+<pre><code>
+iPhone（Face ID）→ 錄製/串流 ARKit 資料
+→ FaceIt Importer 匯入 .csv/.json
+→ 自動映射到 52 個 Shape Keys
+→ 即時預覽 / 匯出動畫
+</code></pre>
+
+<hr>
+
+<h2>定價與授權</h2>
+
+<table>
+<tr><th>版本</th><th>價格（估計）</th></tr>
+<tr><td>FaceIt 1.8（ARKit 基礎版）</td><td>~$40-50 USD</td></tr>
+<tr><td>FaceIt 2.3（自訂表情）</td><td>~$50-60 USD</td></tr>
+<tr><td>FaceIt 2.3 Studio（多座位）</td><td>~$100+ USD</td></tr>
+</table>
+
+<ul>
+<li>平台：Superhive（原 Blender Market）</li>
+<li>一次購買包含未來更新</li>
+</ul>
+
+<hr>
+
+<h2>優缺點分析</h2>
+
+<h3>優點</h3>
+<ul>
+<li>✅ <strong>全方位解決方案</strong>：從 Rig 到動捕到動畫一站式完成</li>
+<li>✅ <strong>ARKit 完美整合</strong>：52 個 Blend Shapes 自動生成 + 動捕匯入</li>
+<li>✅ <strong>任意拓撲</strong>：不限於寫實人物，卡通/動物均可</li>
+<li>✅ <strong>即時錄製</strong>：直接在 Blender Viewport 中 Live 捕捉</li>
+<li>✅ <strong>非破壞性</strong>：表情可隨時修改、重新烘焙</li>
+<li>✅ <strong>Control Rig</strong>：方便手動微調和動畫</li>
+<li>✅ <strong>自訂表情</strong>（v2.3）：不限 52 個，可做 Visemes、FACS、舌頭等</li>
+<li>✅ <strong>文件完善</strong>：ReadTheDocs 官方文件 + 教學影片</li>
+</ul>
+
+<h3>缺點</h3>
+<ul>
+<li>❌ <strong>主要專注 Shape Keys</strong>：不做骨骼式臉部 Rig（如 Rigify Face）</li>
+<li>❌ <strong>表情品質依賴微調</strong>：自動生成的初始表情可能需大量手動修正</li>
+<li>❌ <strong>ARKit 錄製需 iPhone</strong>：Face ID 硬體需求</li>
+<li>❌ <strong>非免費</strong>：需要購買</li>
+<li>❌ <strong>不含 Lip Sync</strong>：需搭配 Rhubarb/Parrot 等工具</li>
+</ul>
+
+<hr>
+
+<h2>與現有工具的整合可能性</h2>
+
+<h3>與 Kimodo 的整合</h3>
+
+<table>
+<tr><th>環節</th><th>整合方式</th></tr>
+<tr><td>身體 + 臉部組合</td><td>Kimodo 生成身體動作 + FaceIt 提供臉部表情 = 完整角色動畫</td></tr>
+<tr><td>AI 動作 + 手動臉部</td><td>AI 無法生成精細臉部動畫，FaceIt 填補此缺口</td></tr>
+<tr><td>動捕全身 + 臉部分離</td><td>身體用 Kimodo/BVH，臉部用 ARKit + FaceIt</td></tr>
+</table>
+
+<h3>與 Blender → UE/Unity Pipeline 的整合</h3>
+
+<table>
+<tr><th>流程</th><th>說明</th></tr>
+<tr><td>ARKit Shape Keys → UE</td><td>52 個 ARKit 表情直接對應 UE 的 Morph Target 系統</td></tr>
+<tr><td>FBX 匯出</td><td>FaceIt 的 Shape Keys 可隨角色一起匯出 FBX</td></tr>
+<tr><td>UE Live Link Face</td><td>可搭配 UE Live Link Face App 做即時臉部動捕串流</td></tr>
+</table>
+
+<h3>建議整合流程</h3>
+<pre><code>
+角色建模 → FaceIt 臉部 Rig + 表情 → ARP 身體 Rig
+→ Kimodo 身體動作 + ARKit 臉部動捕
+→ ARP Game Export（含 Shape Keys）→ UE/Unity
+</code></pre>
+
+<hr>
+
+<h2>對「AI 動作量產工作流」的貢獻定位</h2>
+
+<h3>定位：<strong>AI 動作工作流中的臉部動畫缺口填補者</strong></h3>
+
+<pre><code>
+[AI 身體動作]  +  [FaceIt 臉部動畫]  =  [完整角色表演]
+  (Kimodo)         (ARKit Mocap /        (身體+臉部)
+                    手動/Audio2Face)
+</code></pre>
+
+<p><strong>具體貢獻：</strong></p>
+<ol>
+<li><strong>填補 AI 盲區</strong>：Kimodo 等 AI 工具只生成身體動作，臉部完全空白，FaceIt 完美補充</li>
+<li><strong>ARKit 動捕低成本</strong>：只需 iPhone 即可獲得高品質臉部動捕</li>
+<li><strong>批次角色表情</strong>：一次建好表情預設，可套用到多個角色</li>
+<li><strong>遊戲引擎直通</strong>：52 ARKit Shape Keys 是業界標準，直接對應 UE/Unity</li>
+</ol>
+
+<hr>
+
+<h2>參考資料</h2>
+
+<ul>
+<li>官方文件：<a href="https://faceit-doc.readthedocs.io/" target="_blank">https://faceit-doc.readthedocs.io/</a></li>
+<li>Superhive 商品頁：<a href="https://superhivemarket.com/products/faceit" target="_blank">https://superhivemarket.com/products/faceit</a></li>
+<li>CGDive 教學：<a href="https://toshicg.gumroad.com/l/faceit_tutorials" target="_blank">https://toshicg.gumroad.com/l/faceit_tutorials</a></li>
+<li>MOCAP 文件：<a href="https://faceit-doc.readthedocs.io/en/latest/mocap_general/" target="_blank">https://faceit-doc.readthedocs.io/en/latest/mocap_general/</a></li>
+<li>Live Recorder：<a href="https://faceit-doc.readthedocs.io/en/latest/mocap_live/" target="_blank">https://faceit-doc.readthedocs.io/en/latest/mocap_live/</a></li>
+</ul>
+
+</body>
+</html>

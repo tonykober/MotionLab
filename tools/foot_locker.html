@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foot Locker — 深度調研報告</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#1a1a2e;color:#e0d6c8;font-family:-apple-system,'Noto Sans TC',sans-serif;max-width:900px;margin:0 auto;padding:2rem;line-height:1.7}
+h1{color:#f5a623;margin:1.5rem 0 1rem}
+h2{color:#fff;margin:1.5rem 0 .8rem}
+h3{color:#e0d6c8;margin:1.2rem 0 .6rem}
+a{color:#f5a623}
+strong{color:#f5a623}
+ul,ol{margin:.5rem 0 .5rem 1.5rem}
+li{margin:.3rem 0}
+table{border-collapse:collapse;margin:1rem 0;max-width:100%;overflow-x:auto;display:block}
+th,td{border:1px solid #333;padding:8px 12px;text-align:left}
+th{background:#2a2a3e}
+pre{background:#0d0d1a;padding:1rem;border-radius:8px;overflow-x:auto;margin:1rem 0}
+code{background:#0d0d1a;padding:2px 6px;border-radius:4px;font-size:.9em}
+pre code{padding:0;background:none}
+hr{border:none;border-top:1px solid #333;margin:1.5rem 0}
+p{margin:.6rem 0}
+img{max-width:100%}
+.back{display:inline-block;margin-bottom:1.5rem;text-decoration:none}
+</style>
+</head>
+<body>
+<a href="../index.html" class="back">← 返回首頁</a>
+<h1>Foot Locker — 深度調研報告</h1>
+
+<h2>工具概述</h2>
+
+<p><strong>Foot Locker</strong> 是一款免費的 Blender 小型外掛，由開發者 Fatih Pehlevan 開發。其功能非常專一：鎖定選取骨骼在指定範圍內的移動，主要用於修正動畫中腳步滑動（foot sliding）的問題。</p>
+
+<p><strong>解決的問題：</strong></p>
+<ul>
+<li>Mocap / AI 生成動畫中常見的腳步滑動問題</li>
+<li>腳部應該著地靜止時卻仍有微小位移</li>
+<li>需要將骨骼移動限制在可接受的閾值範圍內</li>
+</ul>
+
+<hr>
+
+<h2>功能詳細說明</h2>
+
+<h3>核心功能</h3>
+
+<table>
+<tr><th>功能</th><th>說明</th></tr>
+<tr><td><strong>Lock Bone Movement</strong></td><td>鎖定選取骨骼的移動在指定範圍內</td></tr>
+<tr><td><strong>Range Threshold</strong></td><td>設定允許的最大移動範圍（閾值）</td></tr>
+<tr><td><strong>Frame Range</strong></td><td>指定需要鎖定的幀範圍</td></tr>
+<tr><td><strong>Per-Bone 操作</strong></td><td>可針對不同骨骼分別設定</td></tr>
+</table>
+
+<h3>工作原理</h3>
+
+<p>Foot Locker 的方法相對簡單：</p>
+<ol>
+<li>選取需要鎖定的骨骼（通常是腳部 IK 骨骼）</li>
+<li>設定移動閾值（低於此閾值的移動被消除）</li>
+<li>指定幀範圍</li>
+<li>外掛將該範圍內的微小位移清零，實現「鎖定」效果</li>
+</ol>
+
+<h3>使用流程</h3>
+
+<ol>
+<li>進入 Pose Mode</li>
+<li>選取要鎖定的骨骼（如 foot_ik.L / foot_ik.R）</li>
+<li>開啟 N-Panel → Foot Locker tab</li>
+<li>設定鎖定參數（範圍、閾值）</li>
+<li>執行鎖定</li>
+</ol>
+
+<hr>
+
+<h2>官方影片教學連結</h2>
+
+<table>
+<tr><th>#</th><th>資源</th><th>連結</th></tr>
+<tr><td>1</td><td>CGDive 工具頁（含資訊）</td><td><a href="https://addons.cgdive.com/tools/foot-locker-for-blender" target="_blank">https://addons.cgdive.com/tools/foot-locker-for-blender</a></td></tr>
+<tr><td>2</td><td>Gumroad 頁面</td><td><a href="https://fatihpehlevan.gumroad.com/l/footlocker" target="_blank">https://fatihpehlevan.gumroad.com/l/footlocker</a></td></tr>
+<tr><td>3</td><td>開發者其他工具（Animazing）</td><td><a href="https://fatihpehlevan.gumroad.com/l/animazing" target="_blank">https://fatihpehlevan.gumroad.com/l/animazing</a></td></tr>
+</table>
+
+<p>&gt; 注意：Foot Locker 是輕量工具，官方無專門影片教學。使用方式簡單直覺。</p>
+
+<hr>
+
+<h2>安裝/使用流程</h2>
+
+<h3>安裝</h3>
+
+<ol>
+<li>從 Gumroad 免費下載：<a href="https://fatihpehlevan.gumroad.com/l/footlocker" target="_blank">https://fatihpehlevan.gumroad.com/l/footlocker</a></li>
+<li>Blender → Edit → Preferences → Add-ons → Install → 選取 zip</li>
+<li>啟用 Foot Locker</li>
+</ol>
+
+<h3>使用</h3>
+
+<ol>
+<li>打開動畫好的角色 → Pose Mode</li>
+<li>選取腳部骨骼</li>
+<li>N-Panel → Foot Locker</li>
+<li>設定閾值與幀範圍</li>
+<li>執行鎖定 → 腳步滑動消除</li>
+</ol>
+
+<hr>
+
+<h2>定價與授權</h2>
+
+<table>
+<tr><th>項目</th><th>內容</th></tr>
+<tr><td><strong>價格</strong></td><td>免費（Gumroad $0）</td></tr>
+<tr><td><strong>授權</strong></td><td>免費使用</td></tr>
+<tr><td><strong>平台</strong></td><td>Blender</td></tr>
+<tr><td><strong>開發者</strong></td><td>Fatih Pehlevan</td></tr>
+<tr><td><strong>同開發者其他工具</strong></td><td>In Placer（原地化）、Animazing（動畫工具包）</td></tr>
+</table>
+
+<hr>
+
+<h2>優缺點分析</h2>
+
+<h3>✅ 優點</h3>
+
+<ol>
+<li><strong>完全免費</strong> — 零成本解決腳步滑動</li>
+<li><strong>極度簡單</strong> — 功能專一，學習成本近乎為零</li>
+<li><strong>輕量級</strong> — 小型外掛，不影響其他工作流</li>
+<li><strong>即時見效</strong> — 設定好直接執行，結果立刻可見</li>
+<li><strong>同開發者生態</strong> — 配合 In Placer 形成完整的 mocap 後處理工具組</li>
+</ol>
+
+<h3>❌ 缺點</h3>
+
+<ol>
+<li><strong>功能過於簡單</strong> — 只有基本的閾值鎖定，無智慧型接地偵測</li>
+<li><strong>無自動偵測</strong> — 不會自動判斷哪些幀是接地狀態</li>
+<li><strong>無地面適配</strong> — 不處理不平地面或斜坡</li>
+<li><strong>無 IK 補償</strong> — 鎖定腳部後不會自動調整腿部 IK 鏈</li>
+<li><strong>需手動指定</strong> — 每段動畫都需手動設定鎖定範圍</li>
+<li><strong>無批次處理</strong> — 不適合大量動畫自動處理</li>
+<li><strong>文件/教學極少</strong> — 簡單工具無需太多說明，但也缺乏進階用法</li>
+</ol>
+
+<hr>
+
+<h2>與 Kimodo BVH 輸出的整合可能性</h2>
+
+<h3>整合評估：⭐⭐⭐（輕度適合，適合手動微調）</h3>
+
+<table>
+<tr><th>面向</th><th>評估</th></tr>
+<tr><td><strong>問題對應</strong></td><td>✅ Kimodo 動作常有輕微腳步滑動，此工具正好處理</td></tr>
+<tr><td><strong>自動化</strong></td><td>❌ 無法批次自動處理，需手動操作</td></tr>
+<tr><td><strong>品質</strong></td><td>⚠️ 基本閾值鎖定，不如專業 IK 接地方案</td></tr>
+<tr><td><strong>工作流</strong></td><td>✅ 輕量不干擾，retarget 後隨時可用</td></tr>
+</table>
+
+<h3>建議使用場景</h3>
+
+<p>適合作為 retarget 後的<strong>快速手動修復工具</strong>，用於少量需要精修的動畫：</p>
+
+<pre><code>
+Kimodo BVH → Retarget（ARP/BVH Retargeter）
+    → Foot Locker（手動修腳步滑動）← 本工具
+    → Export
+</code></pre>
+
+<hr>
+
+<h2>對「AI 動作量產工作流」的貢獻定位</h2>
+
+<h3>定位：<strong>輕量手動修復工具（非主力）</strong></h3>
+
+<pre><code>
+[AI 動作量產 Pipeline]
+        ↓
+[Retarget]
+        ↓
+[主要腳步修正] → Foot Flow / ARP IK（自動化方案）
+        ↓
+[Foot Locker] ← 少量殘留問題的手動快速修復
+        ↓
+[Export]
+</code></pre>
+
+<p><strong>核心價值：</strong></p>
+<ul>
+<li>零成本、零學習門檻的最後一道手動修復</li>
+<li>適合少量動作的快速處理</li>
+<li>與 In Placer 搭配使用效果更好</li>
+</ul>
+
+<p><strong>限制：</strong></p>
+<ul>
+<li>不適合大量動作的自動化 pipeline</li>
+<li>品質不如 ARP IK retarget 或 Foot Flow 的專業方案</li>
+<li>需要動畫師手動判斷哪些幀需要鎖定</li>
+</ul>
+
+<p><strong>與相似工具比較：</strong></p>
+
+<table>
+<tr><th></th><th>Foot Locker</th><th>Foot Flow</th><th>ARP IK Retarget</th></tr>
+<tr><td>價格</td><td>免費</td><td>付費</td><td>含在 ARP $40</td></tr>
+<tr><td>自動化程度</td><td>手動</td><td>半自動</td><td>自動</td></tr>
+<tr><td>接地品質</td><td>基本</td><td>專業</td><td>專業</td></tr>
+<tr><td>批次處理</td><td>❌</td><td>✅</td><td>✅</td></tr>
+<tr><td>適合場景</td><td>少量手動修</td><td>大量 mocap</td><td>retarget 時</td></tr>
+</table>
+
+<hr>
+
+<h2>參考來源</h2>
+
+<ul>
+<li>Gumroad: <a href="https://fatihpehlevan.gumroad.com/l/footlocker" target="_blank">https://fatihpehlevan.gumroad.com/l/footlocker</a></li>
+<li>CGDive 工具頁: <a href="https://addons.cgdive.com/tools/foot-locker-for-blender" target="_blank">https://addons.cgdive.com/tools/foot-locker-for-blender</a></li>
+<li>開發者 BlenderNation 頁面: <a href="https://www.blendernation.com/author/fatihpehlevan/" target="_blank">https://www.blendernation.com/author/fatihpehlevan/</a></li>
+<li>同開發者 In Placer: <a href="https://fatihpehlevan.gumroad.com/l/InPlacer" target="_blank">https://fatihpehlevan.gumroad.com/l/InPlacer</a></li>
+</ul>
+
+</body>
+</html>

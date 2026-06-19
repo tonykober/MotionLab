@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Move.AI — 企業級無標記動作捕捉系統</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#1a1a2e;color:#e0d6c8;font-family:-apple-system,'Noto Sans TC',sans-serif;max-width:900px;margin:0 auto;padding:2rem;line-height:1.7}
+h1{color:#f5a623;margin:1.5rem 0 1rem}
+h2{color:#fff;margin:1.5rem 0 .8rem}
+h3{color:#e0d6c8;margin:1.2rem 0 .6rem}
+a{color:#f5a623}
+strong{color:#f5a623}
+ul,ol{margin:.5rem 0 .5rem 1.5rem}
+li{margin:.3rem 0}
+table{border-collapse:collapse;margin:1rem 0;max-width:100%;overflow-x:auto;display:block}
+th,td{border:1px solid #333;padding:8px 12px;text-align:left}
+th{background:#2a2a3e}
+pre{background:#0d0d1a;padding:1rem;border-radius:8px;overflow-x:auto;margin:1rem 0}
+code{background:#0d0d1a;padding:2px 6px;border-radius:4px;font-size:.9em}
+pre code{padding:0;background:none}
+hr{border:none;border-top:1px solid #333;margin:1.5rem 0}
+p{margin:.6rem 0}
+img{max-width:100%}
+.back{display:inline-block;margin-bottom:1.5rem;text-decoration:none}
+</style>
+</head>
+<body>
+<a href="../index.html" class="back">← 返回首頁</a>
+<h1>Move.AI — 企業級無標記動作捕捉系統</h1>
+
+<p>&gt; 調研日期：2026-06-19</p>
+<p>&gt; 官網：<a href="https://www.move.ai" target="_blank">https://www.move.ai</a></p>
+<p>&gt; 開發者 API：<a href="https://developers.move.ai" target="_blank">https://developers.move.ai</a></p>
+<p>&gt; 文件：<a href="https://docs.move.ai" target="_blank">https://docs.move.ai</a></p>
+
+<hr>
+
+<h2>一、工具概述</h2>
+
+<p><strong>Move.AI</strong> 是英國 AI 動捕公司（2019 年成立），開發企業級無標記動作捕捉技術。其旗艦產品 <strong>Genesis</strong> 是首款聲稱可達「光學系統品質」的 AI 動捕方案，目標客群為大型遊戲/VFX/電影工作室。</p>
+
+<p><strong>核心定位</strong>：<strong>取代 Vicon/OptiTrack 等傳統光學動捕系統</strong>，用 AI + 多鏡頭達到同等品質但更低成本和更簡單設置。</p>
+
+<p><strong>解決的問題</strong>：</p>
+<ul>
+<li>傳統光學 Mocap 系統動輒 $50,000+</li>
+<li>標記點（marker）穿戴繁瑣</li>
+<li>需要專門 Mocap 場地</li>
+<li>後處理清理工作量大</li>
+</ul>
+
+<p><strong>知名客戶</strong>：EA、Ubisoft (Just Dance 2023)、Sonic 3 電影、Shōgun FX 影集、Nike x UEFA、Grimes @ Coachella</p>
+
+<hr>
+
+<h2>二、功能詳細說明</h2>
+
+<h3>產品線</h3>
+
+<table>
+<tr><th>產品</th><th>定位</th><th>攝影機</th></tr>
+<tr><td><strong>Move One</strong></td><td>iPhone App，個人/獨立開發者</td><td>單鏡頭</td></tr>
+<tr><td><strong>Move API</strong></td><td>開發者，自訂 Pipeline</td><td>單/多鏡頭</td></tr>
+<tr><td><strong>Genesis</strong></td><td>企業系統，取代傳統 Mocap</td><td>6-12 台 Z-Cam</td></tr>
+</table>
+
+<h3>追蹤能力</h3>
+
+<table>
+<tr><th>功能</th><th>支援</th></tr>
+<tr><td>全身骨骼追蹤</td><td>✅</td></tr>
+<tr><td>手部追蹤 (Dex)</td><td>✅ 第二代模型 (s2, m2)</td></tr>
+<tr><td>臉部追蹤</td><td>❌ 目前無</td></tr>
+<tr><td>多人追蹤</td><td>✅ 最多 8 人 (Genesis)、20+ 人 (m2)</td></tr>
+<tr><td>即時串流</td><td>✅ rt1/rt2 模型 (Enterprise)</td></tr>
+<tr><td>時間碼</td><td>✅</td></tr>
+</table>
+
+<h3>輸出格式（業界最完整）</h3>
+
+<table>
+<tr><th>格式</th><th>說明</th></tr>
+<tr><td><strong>FBX</strong></td><td>✅ 業界標準</td></tr>
+<tr><td><strong>BVH</strong></td><td>✅ 骨架動畫</td></tr>
+<tr><td><strong>GLB</strong></td><td>✅ glTF 二進位</td></tr>
+<tr><td><strong>USDZ</strong></td><td>✅ iOS/AR</td></tr>
+<tr><td><strong>USDC</strong></td><td>✅ Binary USD</td></tr>
+<tr><td><strong>Blend</strong></td><td>✅ Blender 原生</td></tr>
+<tr><td><strong>C3D</strong></td><td>✅ 運動分析標準</td></tr>
+<tr><td><strong>JSON</strong></td><td>✅ 原始骨骼資料</td></tr>
+<tr><td><strong>MP4</strong></td><td>✅ 預覽</td></tr>
+</table>
+
+<h3>API 模型</h3>
+
+<table>
+<tr><th>模型</th><th>類型</th><th>存取權限</th></tr>
+<tr><td>s1</td><td>單鏡頭，第一代</td><td>所有用戶</td></tr>
+<tr><td>s2</td><td>單鏡頭，+手部</td><td>所有用戶</td></tr>
+<tr><td>m1</td><td>多鏡頭，最多 4 人</td><td>所有用戶</td></tr>
+<tr><td>m2</td><td>多鏡頭，+手部，20+ 人</td><td>所有用戶</td></tr>
+<tr><td>m2-xl</td><td>多鏡頭，大空間</td><td>Enterprise</td></tr>
+<tr><td>rt1/rt2</td><td>即時串流</td><td>Enterprise</td></tr>
+</table>
+
+<h3>生物力學輸出</h3>
+<ul>
+<li>關節力矩（牛頓·米）</li>
+<li>地面反作用力（牛頓）</li>
+<li>適合體育/醫療應用</li>
+</ul>
+
+<hr>
+
+<h2>三、官方影片 / 教學連結</h2>
+
+<table>
+<tr><th>資源</th><th>連結</th></tr>
+<tr><td>官方知識庫</td><td><a href="https://docs.move.ai/knowledge" target="_blank">https://docs.move.ai/knowledge</a></td></tr>
+<tr><td>Genesis 文件</td><td><a href="https://docs.move.ai/knowledge/genesis" target="_blank">https://docs.move.ai/knowledge/genesis</a></td></tr>
+<tr><td>API 文件</td><td><a href="https://developers.move.ai/docs/intro" target="_blank">https://developers.move.ai/docs/intro</a></td></tr>
+<tr><td>API 定價</td><td><a href="https://developers.move.ai/docs/pricing" target="_blank">https://developers.move.ai/docs/pricing</a></td></tr>
+<tr><td>API Quickstart</td><td><a href="https://developers.move.ai/docs/quickstart" target="_blank">https://developers.move.ai/docs/quickstart</a></td></tr>
+<tr><td>GitHub Recipes</td><td><a href="https://github.com/move-ai/recipes" target="_blank">https://github.com/move-ai/recipes</a></td></tr>
+<tr><td>YouTube</td><td><a href="https://www.youtube.com/@moveai/featured" target="_blank">https://www.youtube.com/@moveai/featured</a></td></tr>
+<tr><td>EA 展示影片</td><td><a href="https://www.youtube.com/watch?v=0374-8sD8QM" target="_blank">https://www.youtube.com/watch?v=0374-8sD8QM</a></td></tr>
+<tr><td>案例研究</td><td><a href="https://www.move.ai/case-study" target="_blank">https://www.move.ai/case-study</a></td></tr>
+</table>
+
+<hr>
+
+<h2>四、使用流程</h2>
+
+<h3>Move One (個人)</h3>
+<ol>
+<li>下載 iPhone App</li>
+<li>用 iPhone 拍攝動作影片</li>
+<li>上傳處理</li>
+<li>下載 FBX/BVH/GLB</li>
+</ol>
+
+<h3>Move API (開發者)</h3>
+<ol>
+<li>註冊：<a href="https://portal.move.ai" target="_blank">https://portal.move.ai</a></li>
+<li>上傳影片（單/多鏡頭）</li>
+<li>選擇模型 (s1/s2/m1/m2)</li>
+<li>處理 → 取得動畫資料</li>
+<li>匯出所需格式</li>
+</ol>
+
+<h3>Genesis (企業)</h3>
+<ol>
+<li>安裝 6-12 台 Z-Cam + Nvidia GPU</li>
+<li>棋盤格校準</li>
+<li>拍攝表演</li>
+<li>本地端 AI 處理（100% on-premise）</li>
+<li>匯出所有格式</li>
+</ol>
+
+<hr>
+
+<h2>五、定價與授權</h2>
+
+<h3>Move One (iPhone App)</h3>
+
+<table>
+<tr><th>方案</th><th>月費</th><th>Credits/月</th></tr>
+<tr><td>Free</td><td>$0</td><td>一次性 30</td></tr>
+<tr><td>Starter</td><td>$18</td><td>60</td></tr>
+<tr><td>Standard</td><td>$48</td><td>180</td></tr>
+<tr><td>Plus</td><td>$225</td><td>240</td></tr>
+<tr><td>Advanced</td><td>$490</td><td>700</td></tr>
+</table>
+
+<p>信用消耗：s1 = 1 credit/秒/人、s2 = 2 credits/秒/人</p>
+
+<h3>Move API (按量)</h3>
+
+<table>
+<tr><th>模型</th><th>單價</th></tr>
+<tr><td>s1（單鏡頭）</td><td>$0.012/秒</td></tr>
+<tr><td>s2（單鏡頭+手部）</td><td>$0.024/秒</td></tr>
+<tr><td>m1（多鏡頭）</td><td>$0.024/秒/攝影機</td></tr>
+<tr><td>m2（多鏡頭+手部）</td><td>$0.043/秒/攝影機</td></tr>
+</table>
+
+<p>乘數：解析度(1080p=1x, 4K=1.25x) × FPS(30=1x, 120=2.2x) × 攝影機數</p>
+
+<h3>Genesis (企業)</h3>
+<ul>
+<li>不公開定價，需 Book Demo</li>
+<li>硬體：6-12 台 Z-Cam + Nvidia GPU（~$3,000 GPU）</li>
+</ul>
+
+<hr>
+
+<h2>六、優缺點分析</h2>
+
+<h3>✅ 優點</h3>
+
+<ol>
+<li><strong>品質最高</strong>：聲稱達光學系統等級，EA/Ubisoft 驗證</li>
+<li><strong>格式最完整</strong>：FBX/BVH/GLB/USDZ/USDC/Blend/C3D/JSON 全支援</li>
+<li><strong>有 API</strong>：支援批次處理</li>
+<li><strong>手部追蹤</strong>：s2/m2 模型內建</li>
+<li><strong>多人追蹤</strong>：最多 20+ 人</li>
+<li><strong>本地端部署</strong>：Genesis 100% on-premise，無雲端依賴</li>
+<li><strong>即時串流</strong>：rt1/rt2 模型支援</li>
+<li><strong>生物力學輸出</strong>：關節力矩/地面反力</li>
+<li><strong>頂級客戶背書</strong>：EA、Ubisoft、Sony Music</li>
+<li><strong>Blender 原生輸出</strong>：直接 .blend 檔</li>
+</ol>
+
+<h3>❌ 缺點</h3>
+
+<ol>
+<li><strong>定價偏高</strong>：Move One 起步 $18/月，Genesis 企業級</li>
+<li><strong>iPhone 限定</strong>：Move One App 只有 iOS</li>
+<li><strong>無臉部追蹤</strong>：目前沒有 face capture</li>
+<li><strong>Genesis 硬體成本</strong>：需要多台攝影機+GPU</li>
+<li><strong>API 為 Beta</strong>：尚在開發中</li>
+<li><strong>品質嚴重依賴條件</strong>：光線、遮擋、攝影機數量都影響</li>
+<li><strong>非即時（除 Enterprise）</strong>：一般用戶都是後處理</li>
+</ol>
+
+<hr>
+
+<h2>七、與 Kimodo BVH 工作流的整合可能性</h2>
+
+<table>
+<tr><th>面向</th><th>評估</th></tr>
+<tr><td><strong>格式相容</strong></td><td>⭐⭐⭐⭐⭐ BVH 直出</td></tr>
+<tr><td><strong>品質層級</strong></td><td>Move.AI &gt; Kimodo（在有影片參考的場景）</td></tr>
+<tr><td><strong>API 批次</strong></td><td>✅ 可自動化</td></tr>
+<tr><td><strong>成本</strong></td><td>偏高，不適合大量低預算量產</td></tr>
+<tr><td><strong>定位</strong></td><td>「高品質影片 Mocap」vs Kimodo「text-to-motion」</td></tr>
+<tr><td><strong>適合場景</strong></td><td>重要角色/主角動作用 Move.AI 品質，NPC 用 Kimodo 量產</td></tr>
+</table>
+
+<hr>
+
+<h2>八、對「AI 動作量產工作流」的貢獻定位</h2>
+
+<pre><code>
+Move.AI 在工作流中的角色：
+「品質天花板」— 當需要最高品質動捕時的選擇
+
+量產工作流分層：
+• 頂級品質（主角/Boss 動作）→ Move.AI Genesis
+• 高品質（重要 NPC）→ Move.AI API / Viggle
+• 量產級（雜兵/背景 NPC）→ Kimodo + Motorica
+</code></pre>
+
+<hr>
+
+<h2>九、總結評分</h2>
+
+<table>
+<tr><th>項目</th><th>評分 (1-5)</th></tr>
+<tr><td>與我們目標的相關性</td><td>⭐⭐⭐⭐</td></tr>
+<tr><td>技術成熟度</td><td>⭐⭐⭐⭐⭐</td></tr>
+<tr><td>易用性</td><td>⭐⭐⭐</td></tr>
+<tr><td>性價比</td><td>⭐⭐⭐</td></tr>
+<tr><td>Pipeline 整合潛力</td><td>⭐⭐⭐⭐⭐</td></tr>
+<tr><td>量產化適合度</td><td>⭐⭐⭐</td></tr>
+</table>
+
+<p><strong>推薦等級</strong>：🟡 <strong>進階選項</strong> — 品質最高但成本也最高。適合作為工作流中「品質需求最高」的頂層方案。量產場景建議 Viggle/Kimodo。</p>
+
+</body>
+</html>
