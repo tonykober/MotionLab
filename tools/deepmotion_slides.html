@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>DeepMotion — AI 動畫平台（Video + Text to Motion）</title>
+<style>
+:root{--bg-primary:#1a1f2e;--bg-card:rgba(30,42,60,0.55);--text-primary:#ffffff;--text-secondary:#b8c4d0;--text-dim:#8090a0;--accent-cyan:#4db8d4;--accent-teal:#2dd4a8;--accent-red:#e05555;--accent-gold:#f5a623;--border-subtle:rgba(255,255,255,0.08);--radius-card:16px;--font-family:'Noto Sans TC','Inter',-apple-system,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth}
+body{background:var(--bg-primary);color:var(--text-secondary);font-family:var(--font-family);font-weight:400;overflow-x:hidden}
+body::before{content:'';position:fixed;top:-20%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(45,212,168,0.04) 0%,transparent 70%);pointer-events:none;z-index:0}
+.slide{min-height:100vh;scroll-snap-align:start;display:flex;align-items:center;padding:40px 6% 80px;position:relative;z-index:1}
+.slide-inner{max-width:1200px;width:100%;margin:0 auto}
+h1{font-size:4rem;font-weight:800;color:var(--text-primary);line-height:1.1}
+h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8rem;padding-left:1.2rem;border-left:4px solid;border-image:linear-gradient(180deg,var(--accent-teal),var(--accent-cyan)) 1}
+.desc{color:var(--text-secondary);font-size:1rem;line-height:1.8;margin:.8rem 0;max-width:800px}
+.grad-text{background:linear-gradient(135deg,var(--accent-teal),var(--accent-cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.card{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-card);padding:2.2rem}
+.card-grid{display:grid;gap:1.2rem}
+.cols-2{grid-template-columns:1fr 1fr}
+.cols-3{grid-template-columns:1fr 1fr 1fr}
+.card-title{color:var(--accent-cyan);font-weight:700;font-size:1.6rem;margin-bottom:.5rem}
+.big-num{font-size:3.2rem;font-weight:800;line-height:1}
+.big-label{color:var(--text-dim);font-size:1rem;margin-top:.4rem}
+.tag{display:inline-block;background:rgba(45,212,168,0.1);border:1px solid rgba(45,212,168,0.25);color:var(--accent-teal);border-radius:6px;padding:.2rem .7rem;font-size:.85rem;margin-right:.5rem;margin-bottom:.4rem}
+.list-clean{list-style:none;padding:0}
+.list-clean li{padding:.6rem 0;border-bottom:1px solid var(--border-subtle);font-size:1rem;line-height:1.7}
+.list-clean li:last-child{border:none}
+.list-clean li strong{color:var(--accent-teal)}
+.card-con .list-clean li strong{color:var(--accent-red)}
+.pos{color:var(--accent-teal)}
+.neg{color:var(--accent-red)}
+.video-wrap{position:relative;width:100%;max-width:800px;height:45vh;max-height:45vh;margin:0 auto;border-radius:10px;overflow:hidden}
+.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+.nav-dots{position:fixed;right:24px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:100}
+.nav-dots a{width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,0.2);display:block;transition:.2s}
+.nav-dots a.active{width:14px;height:22px;border-radius:7px;background:var(--accent-teal);box-shadow:0 0 8px var(--accent-teal)}
+.back-link{position:fixed;top:1.5rem;left:1.5rem;color:var(--accent-gold);text-decoration:none;font-size:.85rem;z-index:100;opacity:.7;transition:.2s}
+.back-link:hover{opacity:1}
+.bottom-nav{position:fixed;bottom:1.2rem;left:50%;transform:translateX(-50%);background:rgba(26,31,46,0.85);backdrop-filter:blur(8px);border:1px solid var(--border-subtle);border-radius:10px;padding:.5rem 1.2rem;display:flex;align-items:center;gap:1rem;z-index:100;font-size:.85rem}
+.bottom-nav button{background:none;border:none;color:var(--accent-teal);cursor:pointer;font-size:.85rem;font-family:inherit;padding:.3rem .6rem;border-radius:6px;transition:.2s}
+.bottom-nav button:hover{background:rgba(45,212,168,0.15)}
+.bottom-nav .page-num{color:var(--text-secondary);min-width:3rem;text-align:center}
+@media(max-width:768px){h1{font-size:2.4rem}h2{font-size:1.6rem}.cols-2,.cols-3{grid-template-columns:1fr}.slide{padding:48px 1.2rem 80px}}
+</style>
+</head>
+<body>
+<a href="../index.html" class="back-link">← 返回首頁</a>
+<nav class="nav-dots" id="dots"></nav>
+<div class="bottom-nav"><button id="prev">← 上一頁</button><span class="page-num" id="pageNum">1/10</span><button id="next">下一頁 →</button></div>
+
+<!-- 1: Cover -->
+<section class="slide" id="s1">
+<div class="slide-inner">
+<p style="color:var(--accent-teal);font-size:.9rem;letter-spacing:2px;margin-bottom:1rem">DEEPMOTION · AI ANIMATION PLATFORM</p>
+<h1>DeepMotion</h1>
+<h1 style="font-size:2rem;font-weight:400;color:var(--text-secondary);margin-top:.5rem">Video + Text → 3D Animation</h1>
+<p class="desc" style="margin-top:1.5rem">DeepMotion 是美國加州的 AI 動畫平台，定位為「最大的 AI 生成 3D 動畫平台」。提供兩大產品線：Animate 3D（影片→動畫）和 SayMotion（文字→動畫），涵蓋 video-to-motion 和 text-to-motion 雙賽道。</p>
+<p class="desc">支援全身+臉部+手部追蹤、多人追蹤（最多 8 人）、BVH/FBX 直接匯出，並提供 REST API 支援批次自動化。</p>
+<div style="display:flex;gap:.5rem;margin-top:1.5rem;flex-wrap:wrap">
+<span class="tag">Video-to-Motion</span><span class="tag">Text-to-Motion</span><span class="tag">BVH 匯出</span><span class="tag">REST API</span><span class="tag">多人追蹤</span><span class="tag">臉部+手部</span>
+</div>
+<img src="../images/deepmotion.png" alt="DeepMotion" style="margin-top:1.5rem;border-radius:12px;max-height:35vh;width:auto;max-width:100%;border:1px solid var(--border-subtle)">
+</div>
+</section>
+
+<!-- 2: Core Capabilities -->
+<section class="slide" id="s2">
+<div class="slide-inner">
+<h2>核心能力：雙模態 AI 動畫</h2>
+<p class="desc">DeepMotion 獨特之處在於同時提供影片和文字兩種輸入方式生成 3D 動畫，覆蓋不同創作場景。有現成參考影片時用 Animate 3D，想從零創造時用 SayMotion。</p>
+<div class="card-grid cols-2" style="margin-top:1.5rem">
+<div class="card">
+<p style="color:var(--accent-cyan);font-weight:700;font-size:1.6rem;margin-bottom:1rem">📹 Animate 3D</p>
+<p style="color:var(--text-primary);font-weight:600;margin-bottom:.8rem">Video → 3D Animation</p>
+<ul class="list-clean">
+<li><strong>全身 AI 動捕</strong> — 單鏡頭影片，無需設備</li>
+<li><strong>臉部+手部追蹤</strong> — 完整表情和手勢捕捉</li>
+<li><strong>多人追蹤</strong> — 最多 8 人同時（Studio 方案）</li>
+<li><strong>物理模擬濾鏡</strong> — 防止不自然關節運動</li>
+<li><strong>腳部鎖定</strong> — Foot Locking 防滑步</li>
+<li><strong>Rotoscope Editor</strong> — 專利技術逐幀校正</li>
+</ul>
+</div>
+<div class="card">
+<p style="color:var(--accent-teal);font-weight:700;font-size:1.6rem;margin-bottom:1rem">✍️ SayMotion</p>
+<p style="color:var(--text-primary);font-weight:600;margin-bottom:.8rem">Text → 3D Animation</p>
+<ul class="list-clean">
+<li><strong>自然語言描述</strong> — 輸入文字生成 3D 動作</li>
+<li><strong>AI Inpainting</strong> — 在既有動畫中插入/延展/混合新段落</li>
+<li><strong>多變體生成</strong> — 同一描述產出多個版本選擇最佳</li>
+<li><strong>REST API</strong> — 支援自動化批次生成</li>
+<li><strong>風格控制</strong> — 可指定動作風格和情緒</li>
+<li><strong>與 Animate 3D 互補</strong> — 文字+影片雙管齊下</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 3: Video -->
+<section class="slide" id="s3">
+<div class="slide-inner" style="text-align:center">
+<h2 style="border:none;padding:0;text-align:center">展示影片</h2>
+<p class="desc" style="margin:0 auto 1.5rem;text-align:center">DeepMotion Animate 3D 完整工作流程展示：從上傳影片到 AI 動作捕捉，再到匯出 BVH/FBX 到遊戲引擎。</p>
+<div class="video-wrap">
+<iframe src="https://www.youtube.com/embed/0aDQx35oGjE" allowfullscreen></iframe>
+</div>
+<p style="margin-top:1rem;font-size:1rem;color:var(--text-dim)">DeepMotion — AI Motion Capture Demo</p>
+</div>
+</section>
+
+<!-- 4: Tech Specs -->
+<section class="slide" id="s4">
+<div class="slide-inner">
+<h2>技術規格</h2>
+<p class="desc">DeepMotion 支援從 30fps 到 240fps 的輸出幀率（依方案），輸入格式無限制，輸出格式涵蓋遊戲引擎常用的 BVH/FBX/GLB。Credit 按秒計費，臉部和手部追蹤各額外 +0.5 credit/秒。</p>
+<div class="card-grid cols-3" style="margin-top:1.5rem">
+<div class="card" style="text-align:center">
+<div class="big-num grad-text">8</div>
+<div class="big-label">最多同時追蹤人數</div>
+<p style="margin-top:.6rem;font-size:1rem">Studio 方案支援 8 人多角色追蹤</p>
+</div>
+<div class="card" style="text-align:center">
+<div class="big-num grad-text">240fps</div>
+<div class="big-label">最高輸出幀率</div>
+<p style="margin-top:.6rem;font-size:1rem">Studio 方案支援 8K 解析度 + 240fps</p>
+</div>
+<div class="card" style="text-align:center">
+<div class="big-num grad-text">BVH</div>
+<div class="big-label">直接匯出格式</div>
+<p style="margin-top:.6rem;font-size:1rem">BVH / FBX / GLB 多格式輸出</p>
+</div>
+</div>
+<div class="card-grid cols-3" style="margin-top:1.2rem">
+<div class="card"><p class="card-title">身體+臉+手</p><p style="font-size:1rem">全身骨骼 + 面部表情 + 手指追蹤一站搞定</p></div>
+<div class="card"><p class="card-title">物理模擬</p><p style="font-size:1rem">自動修正不自然關節角度和穿模</p></div>
+<div class="card"><p class="card-title">REST API</p><p style="font-size:1rem">Animate 3D + SayMotion 雙 API 支援批次</p></div>
+</div>
+</div>
+</section>
+
+<!-- 5: Integrations -->
+<section class="slide" id="s5">
+<div class="slide-inner">
+<h2>引擎整合 & API</h2>
+<p class="desc">DeepMotion 提供完整的引擎整合文件，並支援自訂角色上傳（FBX/GLB/VRM），內建 Auto Retargeting 功能可自動將動畫套用到你的角色上。</p>
+<div class="card-grid" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr));margin-top:1.5rem">
+<div class="card" style="text-align:center;padding:1.5rem"><div style="font-size:1.8rem;margin-bottom:.5rem">🔥</div><p style="color:var(--text-primary);font-weight:600">Unreal 5</p><p style="font-size:1rem;color:var(--accent-teal);margin-top:.3rem">官方整合文件</p></div>
+<div class="card" style="text-align:center;padding:1.5rem"><div style="font-size:1.8rem;margin-bottom:.5rem">🎮</div><p style="color:var(--text-primary);font-weight:600">Unity</p><p style="font-size:1rem;color:var(--accent-teal);margin-top:.3rem">FBX/BVH 直入</p></div>
+<div class="card" style="text-align:center;padding:1.5rem"><div style="font-size:1.8rem;margin-bottom:.5rem">🧊</div><p style="color:var(--text-primary);font-weight:600">Blender</p><p style="font-size:1rem;color:var(--accent-teal);margin-top:.3rem">Companion Tool</p></div>
+<div class="card" style="text-align:center;padding:1.5rem"><div style="font-size:1.8rem;margin-bottom:.5rem">🎬</div><p style="color:var(--text-primary);font-weight:600">Maya</p><p style="font-size:1rem;color:var(--accent-teal);margin-top:.3rem">Companion Tool</p></div>
+<div class="card" style="text-align:center;padding:1.5rem"><div style="font-size:1.8rem;margin-bottom:.5rem">👤</div><p style="color:var(--text-primary);font-weight:600">MetaHuman</p><p style="font-size:1rem;color:var(--accent-teal);margin-top:.3rem">直接匯入</p></div>
+<div class="card" style="text-align:center;padding:1.5rem"><div style="font-size:1.8rem;margin-bottom:.5rem">🤖</div><p style="color:var(--text-primary);font-weight:600">Roblox</p><p style="font-size:1rem;color:var(--accent-teal);margin-top:.3rem">官方支援</p></div>
+</div>
+</div>
+</section>
+
+<!-- 6: Pricing -->
+<section class="slide" id="s6">
+<div class="slide-inner" style="text-align:center">
+<h2 style="border:none;padding:0;text-align:center">定價方案</h2>
+<p class="desc" style="margin:0 auto 1rem;text-align:center">Credit 制：1 credit = 1 秒動畫。臉部/手部追蹤各額外 +0.5 credit/秒。Credits 每月重置不累積。Starter 以上方案可商用。</p>
+<div style="margin:1.5rem 0"><span class="grad-text" style="font-size:4rem;font-weight:800">$9/月</span><p style="margin-top:.5rem;font-size:1rem">Starter 年繳方案起（180 credits）</p></div>
+<div class="card-grid cols-3" style="margin-top:1.5rem;text-align:center">
+<div class="card"><p style="color:var(--text-dim);font-size:1.4rem;font-weight:800">Free</p><p class="big-label">60 credits/月</p><p style="font-size:1rem;margin-top:.5rem">非商業、2 人追蹤、20 秒影片</p></div>
+<div class="card" style="border-color:var(--accent-teal)"><p class="grad-text" style="font-size:1.4rem;font-weight:800">Starter $9-15</p><p class="big-label">180 credits/月</p><p style="font-size:1rem;margin-top:.5rem">商業授權、3 人追蹤</p></div>
+<div class="card"><p style="color:var(--accent-cyan);font-size:1.4rem;font-weight:800">Pro $17-48</p><p class="big-label">480 credits/月</p><p style="font-size:1rem;margin-top:.5rem">4 人追蹤、60FPS、慢動作</p></div>
+</div>
+<p style="margin-top:1rem;font-size:1rem;color:var(--text-dim)">Professional $39-117（1,500 cr）| Studio $83-300（無限制、8 人、240FPS）</p>
+</div>
+</section>
+
+<!-- 7: Pros/Cons -->
+<section class="slide" id="s7">
+<div class="slide-inner">
+<h2>優缺點分析</h2>
+<p class="desc">DeepMotion 最大優勢是 Video + Text 雙模態加上直接 BVH 輸出，與 Kimodo 工作流完美相容。但免費版不可商用，且 SayMotion API 需要申請合作夥伴。</p>
+<div class="card-grid cols-2" style="margin-top:1.2rem">
+<div class="card">
+<p class="pos" style="font-weight:700;font-size:1.6rem;margin-bottom:1rem">✅ 優點</p>
+<ul class="list-clean">
+<li><strong>雙模態</strong> — Video + Text 兩種輸入生成動畫</li>
+<li><strong>BVH 直接匯出</strong> — 與 Kimodo 格式完全相容</li>
+<li><strong>REST API</strong> — 支援批次自動化處理</li>
+<li><strong>臉+手完整</strong> — 全身+表情+手勢一站搞定</li>
+<li><strong>多人追蹤</strong> — 最多 8 人同時</li>
+<li><strong>物理濾鏡+腳鎖</strong> — 內建品質修正</li>
+<li><strong>AI Inpainting</strong> — 在既有動畫中插入新段落</li>
+</ul>
+</div>
+<div class="card card-con">
+<p class="neg" style="font-weight:700;font-size:1.6rem;margin-bottom:1rem">❌ 缺點</p>
+<ul class="list-clean">
+<li><strong>免費版不可商用</strong> — Freemium 僅供測試評估</li>
+<li><strong>Credit 按秒計費</strong> — 長影片消耗快，credits 不累積</li>
+<li><strong>SayMotion API 限制</strong> — 需申請 verified partner</li>
+<li><strong>SayMotion 無手臉</strong> — 文字生成目前僅 body</li>
+<li><strong>遮擋/衣物問題</strong> — AI 精度不如光學系統</li>
+<li><strong>雲端依賴</strong> — 無離線方案</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 8: Integration -->
+<section class="slide" id="s8">
+<div class="slide-inner">
+<h2>與 Kimodo 整合</h2>
+<p class="desc">DeepMotion 和 Kimodo 有極高互補性：都支援 BVH 格式、都有文字生成動作能力。DeepMotion 的 Animate 3D 補足了 Kimodo 沒有的「影片轉動畫」功能，而 SayMotion 則是 text-to-motion 賽道的另一個選擇。</p>
+<div class="card-grid cols-3" style="margin-top:1.5rem">
+<div class="card">
+<p style="color:var(--accent-cyan);font-weight:700;font-size:1.4rem;margin-bottom:.6rem">格式相容</p>
+<p style="color:var(--text-primary);font-weight:600;margin-bottom:.8rem">BVH 直接共用 Pipeline</p>
+<p style="font-size:1rem;line-height:1.7">DeepMotion 直接輸出 BVH，與 Kimodo 的 BVH 輸出使用完全相同的後處理工具鏈（Retarget → Foot Fix → Root Motion）。</p>
+</div>
+<div class="card">
+<p style="color:var(--accent-teal);font-weight:700;font-size:1.4rem;margin-bottom:.6rem">功能互補</p>
+<p style="color:var(--text-primary);font-weight:600;margin-bottom:.8rem">Text + Video 雙輸入</p>
+<p style="font-size:1rem;line-height:1.7">Kimodo = 離線 text-to-motion。DeepMotion = 雲端 video-to-motion + text-to-motion。覆蓋不同場景和品質需求。</p>
+</div>
+<div class="card">
+<p style="color:var(--accent-gold);font-weight:700;font-size:1.4rem;margin-bottom:.6rem">批次自動化</p>
+<p style="color:var(--text-primary);font-weight:600;margin-bottom:.8rem">API 串接量產</p>
+<p style="font-size:1rem;line-height:1.7">Animate 3D REST API 可批次上傳影片自動處理。搭配 Kimodo 本地生成，雙管齊下建置大規模動作庫。</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 9: Workflow -->
+<section class="slide" id="s9">
+<div class="slide-inner">
+<h2>工作流定位</h2>
+<p class="desc">在 AI 動作量產工作流中，DeepMotion 佔據「雲端 AI 平台」的核心位置。它同時提供 video 和 text 兩種輸入管道，並直接輸出 BVH — 這讓它能無縫銜接我們現有的 retarget + clean-up pipeline。</p>
+<div class="card" style="font-family:monospace;font-size:1rem;line-height:2.2;padding:2.5rem;margin-top:1.5rem">
+<span style="color:var(--text-primary);font-weight:700">[動作輸入源]</span><br>
+&nbsp;&nbsp;├── Text Prompt ──→ Kimodo（離線 BVH）<br>
+&nbsp;&nbsp;├── Text Prompt ──→ <span style="color:var(--accent-teal);font-weight:700">DeepMotion SayMotion（雲端 BVH）</span><br>
+&nbsp;&nbsp;├── <span style="color:var(--accent-cyan);font-weight:700">影片參考 ──→ DeepMotion Animate 3D（雲端 BVH）⭐</span><br>
+&nbsp;&nbsp;├── 影片參考 ──→ Viggle PINOC（雲端 GLB）<br>
+&nbsp;&nbsp;└── 手動 K 幀 ──→ 傳統 DCC<br>
+<br>
+<span style="color:var(--text-primary);font-weight:700">[統一 Pipeline]</span><br>
+&nbsp;&nbsp;BVH → Retarget → Foot Fix → Root Motion → FBX Export<br>
+<br>
+<span style="color:var(--text-primary);font-weight:700">[輸出]</span><br>
+&nbsp;&nbsp;Unity / Unreal Engine 5 / Godot
+</div>
+</div>
+</section>
+
+<!-- 10: Summary -->
+<section class="slide" id="s10">
+<div class="slide-inner" style="text-align:center">
+<h2 style="border:none;padding:0;text-align:center">總結與行動建議</h2>
+<p class="desc" style="margin:0 auto 1.5rem;text-align:center">DeepMotion 是目前功能最全面的 AI 動畫平台之一：雙模態輸入、BVH 直接輸出、REST API、完整引擎整合。特別適合需要影片轉動畫、且要求輸出 BVH 格式的團隊。</p>
+<div class="card-grid" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr));text-align:center">
+<div class="card" style="padding:1.2rem"><p style="font-size:1rem;margin-bottom:.3rem">目標相關性</p><p style="color:var(--accent-teal)">⭐⭐⭐⭐⭐</p></div>
+<div class="card" style="padding:1.2rem"><p style="font-size:1rem;margin-bottom:.3rem">技術成熟度</p><p style="color:var(--accent-teal)">⭐⭐⭐⭐⭐</p></div>
+<div class="card" style="padding:1.2rem"><p style="font-size:1rem;margin-bottom:.3rem">功能完整度</p><p style="color:var(--accent-teal)">⭐⭐⭐⭐⭐</p></div>
+<div class="card" style="padding:1.2rem"><p style="font-size:1rem;margin-bottom:.3rem">性價比</p><p style="color:var(--accent-teal)">⭐⭐⭐⭐</p></div>
+<div class="card" style="padding:1.2rem"><p style="font-size:1rem;margin-bottom:.3rem">Pipeline 整合</p><p style="color:var(--accent-teal)">⭐⭐⭐⭐⭐</p></div>
+<div class="card" style="padding:1.2rem"><p style="font-size:1rem;margin-bottom:.3rem">量產適合度</p><p style="color:var(--accent-teal)">⭐⭐⭐⭐</p></div>
+</div>
+<div class="card" style="margin-top:1.5rem;border-color:var(--accent-teal);text-align:left">
+<p class="grad-text" style="font-size:1.3rem;font-weight:800;margin-bottom:1rem">🟢 強烈推薦 — 建議行動步驟</p>
+<ul class="list-clean">
+<li><strong>Step 1</strong> — 註冊免費帳號，用 60 credits 測試 Animate 3D 品質</li>
+<li><strong>Step 2</strong> — 測試 SayMotion 文字生成，與 Kimodo 做品質 A/B 比較</li>
+<li><strong>Step 3</strong> — 確認 BVH 輸出可直接進入我們的 retarget pipeline</li>
+<li><strong>Step 4</strong> — 評估 Starter 方案 $9/月是否滿足量產需求</li>
+<li><strong>Step 5</strong> — 串接 Animate 3D REST API 到自動化工作流</li>
+</ul>
+</div>
+<p style="margin-top:2rem;font-size:1rem;color:var(--text-dim)">MotionLab Research · 2026-06-19 · deepmotion.com</p>
+</div>
+</section>
+
+<script>
+const d=document.getElementById('dots');const total=10;
+for(let i=1;i<=total;i++){const a=document.createElement('a');a.href='#s'+i;d.appendChild(a)}
+let cur=1;
+const prevBtn=document.getElementById('prev'),nextBtn=document.getElementById('next');
+function updateNav(){document.getElementById('pageNum').textContent=cur+'/'+total;prevBtn.style.visibility=cur===1?'hidden':'visible';nextBtn.style.visibility=cur===total?'hidden':'visible'}
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){cur=parseInt(e.target.id.slice(1));d.querySelectorAll('a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));updateNav()}})},{threshold:.5});
+document.querySelectorAll('.slide').forEach(s=>obs.observe(s));
+updateNav();
+function go(n){const t=Math.max(1,Math.min(total,n));document.getElementById('s'+t).scrollIntoView({behavior:'smooth'})}
+prevBtn.onclick=()=>go(cur-1);nextBtn.onclick=()=>go(cur+1);
+document.addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();go(cur+1)}if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();go(cur-1)}});
+</script>
+</body>
+</html>
