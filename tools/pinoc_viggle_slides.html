@@ -20,7 +20,11 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 .card-grid{display:grid;gap:1.2rem}
 .cols-2{grid-template-columns:1fr 1fr}
 .cols-3{grid-template-columns:1fr 1fr 1fr}
-.card-title{color:var(--accent-cyan);font-weight:700;font-size:1.3rem;margin-bottom:.5rem}
+.card-title{color:var(--accent-cyan);font-weight:700;font-size:1.6rem;margin-bottom:.5rem}
+.pos{color:var(--accent-teal)}
+.neg{color:var(--accent-red)}
+.list-clean li strong{color:var(--accent-teal)}
+.card-con .list-clean li strong{color:var(--accent-red)}
 .big-num{font-size:3.2rem;font-weight:800;line-height:1}
 .big-label{color:var(--text-dim);font-size:1rem;margin-top:.4rem}
 .tag{display:inline-block;background:rgba(45,212,168,0.1);border:1px solid rgba(45,212,168,0.25);color:var(--accent-teal);border-radius:6px;padding:.2rem .7rem;font-size:1rem;margin-right:.5rem;margin-bottom:.4rem}
@@ -30,7 +34,7 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 .tool-name{color:var(--accent-gold)}
 .pos{color:var(--accent-teal)}
 .neg{color:var(--accent-red)}
-.video-wrap{position:relative;padding-bottom:56.25%;height:0;width:100%;max-width:800px;margin:0 auto;border-radius:var(--radius-img);overflow:hidden}
+.video-wrap{position:relative;width:100%;max-width:800px;height:45vh;max-height:45vh;margin:0 auto;border-radius:var(--radius-img);overflow:hidden}
 .video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
 .nav-dots{position:fixed;right:24px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:100}
 .nav-dots a{width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,0.2);display:block;transition:.2s}
@@ -69,8 +73,8 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <h2>核心能力</h2>
 <p class="desc">傳統動作捕捉系統成本高昂、流程複雜，獨立開發者幾乎無法負擔。PINOC 用 AI 神經網路從普通影片中提取骨架動畫，將門檻降到幾乎為零。</p>
 <div class="card-grid cols-2" style="margin-top:1.5rem">
-<div class="card">
-<p style="color:var(--accent-red);font-weight:700;margin-bottom:1rem">⚠️ 傳統痛點</p>
+<div class="card card-con">
+<p class="neg" style="font-weight:700;font-size:1.6rem;margin-bottom:1rem">⚠️ 傳統痛點</p>
 <ul class="list-clean">
 <li><strong>高昂費用</strong> — 一個 Mocap clip $500-$1,500；一次 session $5,000-$15,000，小團隊根本無法負擔</li>
 <li><strong>專業設備</strong> — 需要動捕棚、多攝影機陣列、緊身衣標記點</li>
@@ -79,7 +83,7 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 </ul>
 </div>
 <div class="card">
-<p style="color:var(--accent-teal);font-weight:700;margin-bottom:1rem">✅ PINOC 方案</p>
+<p class="pos" style="font-weight:700;font-size:1.6rem;margin-bottom:1rem">✅ PINOC 方案</p>
 <ul class="list-clean">
 <li><strong>影片即動捕</strong> — 上傳任何手機影片，AI 自動提取完整骨架動畫</li>
 <li><strong>引擎直通</strong> — 65 骨骼 Mixamo 命名標準，匯入引擎免 retarget</li>
@@ -170,7 +174,7 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <p class="desc">PINOC 在成本和易用性上有壓倒性優勢，但在格式支援和特殊場景品質上仍有改進空間。以下是完整評估：</p>
 <div class="card-grid cols-2" style="margin-top:1.2rem">
 <div class="card">
-<p style="color:var(--accent-teal);font-weight:700;font-size:1.1rem;margin-bottom:1rem">✅ 優點</p>
+<p class="pos" style="font-weight:700;font-size:1.6rem;margin-bottom:1rem">✅ 優點</p>
 <ul class="list-clean">
 <li><strong>💰 極低成本</strong> — $0.03/動畫，比傳統 Mocap 便宜萬倍，可以大量試錯不心疼</li>
 <li><strong>🆓 零門檻試用</strong> — Guest 模式無需帳號，每日 5 次免費，立即評估品質</li>
@@ -181,8 +185,8 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <li><strong>👥 多人追蹤</strong> — 單影片同時提取 5 個角色，適合群戲場景</li>
 </ul>
 </div>
-<div class="card">
-<p style="color:var(--accent-red);font-weight:700;font-size:1.1rem;margin-bottom:1rem">❌ 缺點</p>
+<div class="card card-con">
+<p class="neg" style="font-weight:700;font-size:1.6rem;margin-bottom:1rem">❌ 缺點</p>
 <ul class="list-clean">
 <li><strong>📦 格式限制</strong> — GLB 為主要輸出，FBX 標示 coming soon，BVH 不支援</li>
 <li><strong>🎬 固定幀率</strong> — 30fps 無法自訂，部分場景需要 60fps 的開發者需注意</li>
@@ -203,7 +207,7 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <p class="desc">Kimodo 用文字描述生成動作（text-to-motion），Viggle 用影片參考提取動作（video-to-mocap）。兩者輸入方式互補，可組合成靈活的混合工作流，依場景選擇最適合的生成方式。</p>
 <div class="card-grid cols-3" style="margin-top:1.5rem">
 <div class="card">
-<p style="color:var(--accent-cyan);font-weight:700;margin-bottom:.6rem">方案 A：影片參考</p>
+<p style="color:var(--accent-cyan);font-weight:700;font-size:1.4rem;margin-bottom:.6rem">方案 A：影片參考</p>
 <p class="card-title">有參考影片時使用</p>
 <ul class="list-clean">
 <li>1. 拍攝或蒐集動作參考影片</li>
@@ -214,7 +218,7 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 </ul>
 </div>
 <div class="card">
-<p style="color:var(--accent-teal);font-weight:700;margin-bottom:.6rem">方案 B：混合工作流</p>
+<p style="color:var(--accent-teal);font-weight:700;font-size:1.4rem;margin-bottom:.6rem">方案 B：混合工作流</p>
 <p class="card-title">依動作複雜度選擇</p>
 <ul class="list-clean">
 <li>簡單/通用動作 → Kimodo text prompt 生成 BVH</li>
@@ -225,7 +229,7 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 </ul>
 </div>
 <div class="card">
-<p style="color:var(--accent-link);font-weight:700;margin-bottom:.6rem">方案 C：批次量產</p>
+<p style="color:var(--accent-link);font-weight:700;font-size:1.4rem;margin-bottom:.6rem">方案 C：批次量產</p>
 <p class="card-title">建置大規模動作庫</p>
 <ul class="list-clean">
 <li>1. 蒐集大量動作參考影片來源</li>
