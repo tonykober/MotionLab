@@ -3,38 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Move.AI — 企業級無標記動捕系統</title>
+<title>Move.AI — 企業級無標記動作捕捉系統</title>
 <style>
-:root{--bg-primary:#1a1f2e;--bg-card:rgba(30,42,60,0.55);--text-primary:#ffffff;--text-secondary:#b8c4d0;--text-dim:#8090a0;--accent-cyan:#4db8d4;--accent-teal:#2dd4a8;--accent-red:#e05555;--accent-gold:#f5a623;--accent-link:#e07050;--border-subtle:rgba(255,255,255,0.08);--radius-card:16px;--radius-img:10px;--font-family:'Noto Sans TC','Inter',-apple-system,sans-serif}
+:root{--bg-primary:#1a1f2e;--bg-card:rgba(30,42,60,0.55);--text-primary:#ffffff;--text-secondary:#b8c4d0;--text-dim:#8090a0;--accent-cyan:#4db8d4;--accent-teal:#2dd4a8;--accent-red:#e05555;--accent-gold:#f5a623;--border-subtle:rgba(255,255,255,0.08);--radius-card:16px;--font-family:'Noto Sans TC','Inter',-apple-system,sans-serif}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-snap-type:y mandatory;scroll-behavior:smooth}
-body{background:var(--bg-primary);color:var(--text-secondary);font-family:var(--font-family);overflow-x:hidden}
+body{background:var(--bg-primary);color:var(--text-secondary);font-family:var(--font-family);font-weight:400;overflow-x:hidden}
 body::before{content:'';position:fixed;top:-20%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(45,212,168,0.04) 0%,transparent 70%);pointer-events:none;z-index:0}
 .slide{min-height:100vh;scroll-snap-align:start;display:flex;align-items:center;padding:40px 6% 80px;position:relative;z-index:1}
 .slide-inner{max-width:1200px;width:100%;margin:0 auto}
 h1{font-size:4rem;font-weight:800;color:var(--text-primary);line-height:1.1}
 h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8rem;padding-left:1.2rem;border-left:4px solid;border-image:linear-gradient(180deg,var(--accent-teal),var(--accent-cyan)) 1}
 .desc{color:var(--text-secondary);font-size:1rem;line-height:1.8;margin:.8rem 0;max-width:800px}
+.grad-text{background:linear-gradient(135deg,var(--accent-teal),var(--accent-cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .card{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-card);padding:2.2rem}
 .card-grid{display:grid;gap:1.2rem}
 .cols-2{grid-template-columns:1fr 1fr}
 .cols-3{grid-template-columns:1fr 1fr 1fr}
-.tag{display:inline-block;background:rgba(45,212,168,0.1);border:1px solid rgba(45,212,168,0.25);color:var(--accent-teal);border-radius:6px;padding:.2rem .7rem;font-size:1rem;margin-right:.5rem;margin-bottom:.4rem}
+.card-title{color:var(--accent-cyan);font-weight:700;font-size:1.6rem;margin-bottom:.5rem}
+.big-num{font-size:3.2rem;font-weight:800;line-height:1}
+.big-label{color:var(--text-dim);font-size:1rem;margin-top:.4rem}
+.tag{display:inline-block;background:rgba(45,212,168,0.1);border:1px solid rgba(45,212,168,0.25);color:var(--accent-teal);border-radius:6px;padding:.2rem .7rem;font-size:.85rem;margin-right:.5rem;margin-bottom:.4rem}
 .list-clean{list-style:none;padding:0}
 .list-clean li{padding:.6rem 0;border-bottom:1px solid var(--border-subtle);font-size:1rem;line-height:1.7}
 .list-clean li:last-child{border:none}
 .list-clean li strong{color:var(--accent-teal)}
+.card-con .list-clean li strong{color:var(--accent-red)}
 .pos{color:var(--accent-teal)}
 .neg{color:var(--accent-red)}
-.video-wrap{position:relative;width:100%;max-width:800px;height:45vh;max-height:45vh;margin:0 auto;border-radius:var(--radius-img);overflow:hidden}
+.video-wrap{position:relative;width:100%;max-width:800px;height:45vh;max-height:45vh;margin:0 auto;border-radius:10px;overflow:hidden}
 .video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
 .nav-dots{position:fixed;right:24px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:100}
 .nav-dots a{width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,0.2);display:block;transition:.2s}
 .nav-dots a.active{width:14px;height:22px;border-radius:7px;background:var(--accent-teal);box-shadow:0 0 8px var(--accent-teal)}
-.back-link{position:fixed;top:1.5rem;left:1.5rem;color:var(--accent-link);text-decoration:none;font-size:1rem;z-index:100;opacity:.7;transition:.2s}
+.back-link{position:fixed;top:1.5rem;left:1.5rem;color:var(--accent-gold);text-decoration:none;font-size:.85rem;z-index:100;opacity:.7;transition:.2s}
 .back-link:hover{opacity:1}
-.bottom-nav{position:fixed;bottom:1.2rem;left:50%;transform:translateX(-50%);background:rgba(26,31,46,0.85);backdrop-filter:blur(8px);border:1px solid var(--border-subtle);border-radius:10px;padding:.5rem 1.2rem;display:flex;align-items:center;gap:1rem;z-index:100;font-size:1rem}
-.bottom-nav button{background:none;border:none;color:var(--accent-teal);cursor:pointer;font-size:1rem;font-family:inherit;padding:.3rem .6rem;border-radius:6px;transition:.2s}
+.bottom-nav{position:fixed;bottom:1.2rem;left:50%;transform:translateX(-50%);background:rgba(26,31,46,0.85);backdrop-filter:blur(8px);border:1px solid var(--border-subtle);border-radius:10px;padding:.5rem 1.2rem;display:flex;align-items:center;gap:1rem;z-index:100;font-size:.85rem}
+.bottom-nav button{background:none;border:none;color:var(--accent-teal);cursor:pointer;font-size:.85rem;font-family:inherit;padding:.3rem .6rem;border-radius:6px;transition:.2s}
 .bottom-nav button:hover{background:rgba(45,212,168,0.15)}
 .bottom-nav .page-num{color:var(--text-secondary);min-width:3rem;text-align:center}
 @media(max-width:768px){h1{font-size:2.4rem}h2{font-size:1.6rem}.cols-2,.cols-3{grid-template-columns:1fr}.slide{padding:48px 1.2rem 80px}}
@@ -45,146 +50,191 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <nav class="nav-dots" id="dots"></nav>
 <div class="bottom-nav"><button id="prev">← 上一頁</button><span class="page-num" id="pageNum">1/10</span><button id="next">下一頁 →</button></div>
 
-<!-- 1: Cover -->
 <section class="slide" id="s1">
 <div class="slide-inner">
 <p style="color:var(--accent-teal);font-size:.9rem;letter-spacing:2px;margin-bottom:1rem">MOVE.AI · ENTERPRISE MOCAP</p>
 <h1>Move.AI</h1>
-<h1 style="font-size:2rem;font-weight:400;color:var(--text-secondary);margin-top:.5rem">光學品質 · 無標記 · EA/Ubisoft 驗證</h1>
-<p class="desc" style="margin-top:1.5rem">英國 AI 動捕公司，Genesis 系統聲稱達光學 Mocap（Vicon/OptiTrack）等級品質。EA、Ubisoft (Just Dance)、Sonic 3 電影等使用。支援 FBX/BVH/GLB/USDZ/Blend/C3D 七種格式。</p>
+<h1 style="font-size:2rem;font-weight:400;color:var(--text-secondary);margin-top:.5rem">企業級 AI 無標記動作捕捉系統</h1>
+<p class="desc" style="margin-top:1.5rem">Move.AI 是英國 AI 動捕公司（2019 年成立），開發企業級無標記動作捕捉技術。其旗艦產品 Genesis 是首款聲稱可達「光學系統品質」的 AI 動捕方案，目標客群為大型遊戲/VFX/電影工作室。</p>
+<p class="desc">支援多達 20+ 人同時追蹤、BVH/FBX/GLB 多格式輸出、本地端 on-premise 部署（無雲端依賴）、有即時串流模型和完整 REST API。EA、Ubisoft 等 AAA 工作室已採用驗證。</p>
 <div style="display:flex;gap:.5rem;margin-top:1.5rem;flex-wrap:wrap">
-<span class="tag">Enterprise</span><span class="tag">EA 驗證</span><span class="tag">BVH/FBX/GLB</span><span class="tag">手部追蹤</span><span class="tag">20+ 人</span><span class="tag">本地部署</span>
+<span class="tag">光學等級品質</span><span class="tag">BVH 輸出</span><span class="tag">20+ 人追蹤</span><span class="tag">本地部署</span><span class="tag">即時串流</span><span class="tag">REST API</span>
 </div>
 </div>
 </section>
 
-<!-- 2: Problem -->
 <section class="slide" id="s2">
 <div class="slide-inner">
-<h2>解決什麼問題？</h2>
-<p class="desc">傳統光學 Mocap 需要 $50,000+ 設備、標記點穿戴、專用場地。Move.AI 用 AI + 多鏡頭取代。</p>
+<h2>核心能力</h2>
+<p class="desc">Move.AI 提供多個模型針對不同場景：Genesis（最高品質離線）、s2/m2（含手部）、rt1/rt2（即時串流）。用普通攝影機（iPhone/GoPro/Cinema Camera）替代 $50,000+ 的光學系統。</p>
 <div class="card-grid cols-2" style="margin-top:1.5rem">
-<div class="card">
-<p class="neg" style="font-weight:700;font-size:1.6rem;margin-bottom:1rem">❌ 傳統方式</p>
+<div class="card card-con">
+<p class="neg" style="font-weight:700;font-size:1.6rem;margin-bottom:1rem">⚠️ 傳統光學 Mocap</p>
 <ul class="list-clean">
-<li><strong>$50K+ 設備</strong> — Vicon/OptiTrack 系統昂貴</li><li><strong>標記點</strong> — 穿戴繁瑣+限制動作</li><li><strong>專用場地</strong> — 需要 Mocap 棚</li>
+<li><strong>設備成本</strong> — $50,000+ Vicon/OptiTrack 系統</li>
+<li><strong>場地限制</strong> — 需要專用攝影棚</li>
+<li><strong>標記穿戴</strong> — 演員需穿戴標記點服裝</li>
+<li><strong>單次費用</strong> — $5,000-$15,000/session</li>
 </ul>
 </div>
 <div class="card">
 <p class="pos" style="font-weight:700;font-size:1.6rem;margin-bottom:1rem">✅ Move.AI 方案</p>
 <ul class="list-clean">
-<li><strong>AI 替代</strong> — 無標記式等精度動捕</li><li><strong>任何場地</strong> — 4×4m 到 20×20m 皆可</li><li><strong>手部追蹤</strong> — s2/m2 模型含 Dex 手指</li>
+<li><strong>普通攝影機</strong> — iPhone/GoPro/Cinema 皆可</li>
+<li><strong>任何場地</strong> — 室內外不限</li>
+<li><strong>無需標記</strong> — 穿日常衣物直接拍攝</li>
+<li><strong>光學等級品質</strong> — EA/Ubisoft AAA 驗證</li>
 </ul>
 </div>
 </div>
 </div>
 </section>
 
-<!-- 3: Video -->
 <section class="slide" id="s3">
 <div class="slide-inner" style="text-align:center">
 <h2 style="border:none;padding:0;text-align:center">展示影片</h2>
-<p class="desc" style="margin:0 auto 1.5rem;text-align:center">Move.AI 無標記動作捕捉實際操作展示，展現 markerless mocap 的品質和易用性。</p>
-<div class="video-wrap">
-<iframe src="https://www.youtube.com/embed/y7FpUWri_qA" allowfullscreen></iframe>
-</div>
-<p style="margin-top:1rem;font-size:1rem">Motion capture | Move.AI | Markerless Mocap</p>
+<p class="desc" style="margin:0 auto 1.5rem;text-align:center">Move.AI 企業級無標記動捕系統展示，包含多人追蹤、即時串流和品質比較。</p>
+<div class="video-wrap"><iframe src="https://www.youtube.com/embed/y7FpUWri_qA" allowfullscreen></iframe></div>
+<p style="margin-top:1rem;font-size:1rem;color:var(--text-dim)">Move.AI — Enterprise Markerless Motion Capture</p>
 </div>
 </section>
 
-<!-- 4: Features -->
 <section class="slide" id="s4">
 <div class="slide-inner">
-<h2>核心功能</h2>
-<p class="desc">Move.AI 提供從個人（iPhone App）到企業（Genesis 多鏡頭系統）的完整產品線。</p>
+<h2>技術規格</h2>
+<p class="desc">Move.AI 提供業界最完整的輸出格式支援和最高的追蹤人數。Genesis 模型聲稱品質可媲美 Vicon 等光學系統，且支援 100% 本地端部署。</p>
 <div class="card-grid cols-3" style="margin-top:1.5rem">
-<div class="card" style="padding:1.5rem"><p style="font-size:2rem;margin-bottom:.5rem">📱</p><p style="color:var(--accent-teal);font-weight:700;margin-bottom:.3rem">Move One</p><p style="font-size:.9rem">iPhone App 個人動捕</p></div><div class="card" style="padding:1.5rem"><p style="font-size:2rem;margin-bottom:.5rem">🏢</p><p style="color:var(--accent-teal);font-weight:700;margin-bottom:.3rem">Genesis</p><p style="font-size:.9rem">6-12 鏡頭企業系統</p></div><div class="card" style="padding:1.5rem"><p style="font-size:2rem;margin-bottom:.5rem">🖐️</p><p style="color:var(--accent-teal);font-weight:700;margin-bottom:.3rem">Dex 手指</p><p style="font-size:.9rem">s2/m2 含手指追蹤</p></div><div class="card" style="padding:1.5rem"><p style="font-size:2rem;margin-bottom:.5rem">👥</p><p style="color:var(--accent-teal);font-weight:700;margin-bottom:.3rem">20+ 人</p><p style="font-size:.9rem">多人同時追蹤</p></div><div class="card" style="padding:1.5rem"><p style="font-size:2rem;margin-bottom:.5rem">⚡</p><p style="color:var(--accent-teal);font-weight:700;margin-bottom:.3rem">即時串流</p><p style="font-size:.9rem">rt1/rt2 Enterprise</p></div><div class="card" style="padding:1.5rem"><p style="font-size:2rem;margin-bottom:.5rem">📊</p><p style="color:var(--accent-teal);font-weight:700;margin-bottom:.3rem">生物力學</p><p style="font-size:.9rem">關節力矩+地面反力</p></div>
+<div class="card" style="text-align:center"><div class="big-num grad-text">20+</div><div class="big-label">最多同時追蹤人數</div><p style="margin-top:.6rem;font-size:1rem">業界最高多人追蹤能力</p></div>
+<div class="card" style="text-align:center"><div class="big-num grad-text">BVH</div><div class="big-label">直接輸出格式</div><p style="margin-top:.6rem;font-size:1rem">+FBX/GLB/USDZ/C3D/JSON</p></div>
+<div class="card" style="text-align:center"><div class="big-num grad-text">本地</div><div class="big-label">Genesis 部署方式</div><p style="margin-top:.6rem;font-size:1rem">100% on-premise 無雲端依賴</p></div>
+</div>
+<div class="card-grid cols-3" style="margin-top:1.2rem">
+<div class="card"><p class="card-title">即時串流</p><p style="font-size:1rem">rt1/rt2 模型支援低延遲即時動捕</p></div>
+<div class="card"><p class="card-title">手部追蹤</p><p style="font-size:1rem">s2/m2 模型內建手指追蹤</p></div>
+<div class="card"><p class="card-title">生物力學</p><p style="font-size:1rem">輸出關節力矩/地面反力數據</p></div>
 </div>
 </div>
 </section>
 
-<!-- 5: Tech Specs -->
 <section class="slide" id="s5">
 <div class="slide-inner">
-<h2>技術規格</h2>
-<p class="desc">Move.AI 的輸出格式覆蓋最完整（7 種）。</p>
-<div class="card" style="margin-top:1.5rem">
-<ul class="list-clean">
-<li><strong>格式</strong> — FBX, BVH, GLB, USDZ, USDC, Blend, C3D, JSON</li><li><strong>品質</strong> — 宣稱達光學系統等級</li><li><strong>本地</strong> — Genesis 100% on-premise</li><li><strong>API</strong> — Beta（s1/s2/m1/m2 模型）</li><li><strong>客戶</strong> — EA, Ubisoft, Sonic 3, Nike x UEFA</li><li><strong>手部</strong> — Dex 追蹤（s2/m2）</li>
-</ul>
+<h2>平台與整合</h2>
+<p class="desc">Move.AI 提供完整的引擎整合方案，支援所有主流遊戲引擎和 DCC 工具。其 REST API 可用於批次處理大量動畫。Blender 有官方外掛可直接匯入。</p>
+<div class="card-grid" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr));margin-top:1.5rem">
+<div class="card" style="text-align:center;padding:1.5rem"><div style="font-size:1.8rem">🔥</div><p style="color:var(--text-primary);font-weight:600">Unreal 5</p><p style="font-size:1rem;color:var(--accent-teal)">FBX/BVH 匯入</p></div>
+<div class="card" style="text-align:center;padding:1.5rem"><div style="font-size:1.8rem">🎮</div><p style="color:var(--text-primary);font-weight:600">Unity</p><p style="font-size:1rem;color:var(--accent-teal)">FBX 直接匯入</p></div>
+<div class="card" style="text-align:center;padding:1.5rem"><div style="font-size:1.8rem">🧊</div><p style="color:var(--text-primary);font-weight:600">Blender</p><p style="font-size:1rem;color:var(--accent-teal)">官方外掛</p></div>
+<div class="card" style="text-align:center;padding:1.5rem"><div style="font-size:1.8rem">🎬</div><p style="color:var(--text-primary);font-weight:600">Maya</p><p style="font-size:1rem;color:var(--accent-teal)">FBX/BVH</p></div>
+<div class="card" style="text-align:center;padding:1.5rem"><div style="font-size:1.8rem">⚡</div><p style="color:var(--text-primary);font-weight:600">REST API</p><p style="font-size:1rem;color:var(--accent-teal)">批次自動化</p></div>
+<div class="card" style="text-align:center;padding:1.5rem"><div style="font-size:1.8rem">📊</div><p style="color:var(--text-primary);font-weight:600">生物力學</p><p style="font-size:1rem;color:var(--accent-teal)">C3D/JSON 輸出</p></div>
 </div>
 </div>
 </section>
 
-<!-- 6: Pricing -->
 <section class="slide" id="s6">
-<div class="slide-inner">
-<h2>定價方案</h2>
-<p class="desc">Move.AI 從個人到企業都有方案，API 按量計費。</p>
-<div class="card-grid cols-3" style="margin-top:1.5rem">
-<div class="card" style="text-align:center"><p style="color:var(--accent-teal);font-weight:700;font-size:1.2rem;margin-bottom:.5rem">Move One</p><p style="font-size:2.5rem;font-weight:800;color:var(--text-primary)">$18-490/月</p><p style="margin-top:.5rem;font-size:.9rem">iPhone App</p></div><div class="card" style="text-align:center"><p style="color:var(--accent-teal);font-weight:700;font-size:1.2rem;margin-bottom:.5rem">API s1</p><p style="font-size:2.5rem;font-weight:800;color:var(--text-primary)">$0.012/秒</p><p style="margin-top:.5rem;font-size:.9rem">單鏡頭</p></div><div class="card" style="text-align:center"><p style="color:var(--accent-teal);font-weight:700;font-size:1.2rem;margin-bottom:.5rem">Genesis</p><p style="font-size:2.5rem;font-weight:800;color:var(--text-primary)">聯繫</p><p style="margin-top:.5rem;font-size:.9rem">企業系統</p></div>
+<div class="slide-inner" style="text-align:center">
+<h2 style="border:none;padding:0;text-align:center">定價</h2>
+<p class="desc" style="margin:0 auto 1rem;text-align:center">Move.AI 採用企業級定價模式。有免費試用方案（Move One 單人單攝影機），但完整功能需要付費訂閱。Genesis 本地部署為最高階方案。</p>
+<div style="margin:2rem 0"><span class="grad-text" style="font-size:3.5rem;font-weight:800">企業級</span><p style="margin-top:.5rem;font-size:1rem">按需求報價，有免費試用入口</p></div>
+<div class="card-grid cols-3" style="margin-top:1.5rem;text-align:center">
+<div class="card"><p style="color:var(--accent-teal);font-size:1.4rem;font-weight:800">Move One</p><p class="big-label">免費試用</p><p style="font-size:1rem;margin-top:.5rem">單人、單攝影機、基礎品質</p></div>
+<div class="card" style="border-color:var(--accent-teal)"><p class="grad-text" style="font-size:1.4rem;font-weight:800">Pro Plans</p><p class="big-label">訂閱制</p><p style="font-size:1rem;margin-top:.5rem">多人、多攝影機、高品質</p></div>
+<div class="card"><p style="color:var(--accent-cyan);font-size:1.4rem;font-weight:800">Genesis</p><p class="big-label">企業報價</p><p style="font-size:1rem;margin-top:.5rem">本地部署、光學等級、20+人</p></div>
 </div>
 </div>
 </section>
 
-<!-- 7: Pros & Cons -->
 <section class="slide" id="s7">
 <div class="slide-inner">
 <h2>優缺點分析</h2>
-<p class="desc">基於實際調研的綜合評估。</p>
-<div class="card-grid cols-2" style="margin-top:1.5rem">
+<p class="desc">Move.AI 定位為市場上品質最高的 AI 動捕方案，但價格和使用門檻也相對較高。適合有預算的專業團隊，不太適合獨立開發者。</p>
+<div class="card-grid cols-2" style="margin-top:1.2rem">
 <div class="card">
-<p class="pos" style="font-weight:700;font-size:1.4rem;margin-bottom:1rem">✅ 優點</p>
+<p class="pos" style="font-weight:700;font-size:1.6rem;margin-bottom:1rem">✅ 優點</p>
 <ul class="list-clean">
-<li>品質最高（EA/Ubisoft 驗證）</li><li>格式最完整（7 種）</li><li>有 API 可批次</li><li>手部追蹤</li><li>多人 20+ 追蹤</li><li>本地部署（Genesis）</li>
+<li><strong>品質最高</strong> — 聲稱達光學系統等級，AAA 驗證</li>
+<li><strong>格式最完整</strong> — BVH/FBX/GLB/USDZ/C3D/JSON</li>
+<li><strong>多人追蹤</strong> — 最多 20+ 人同時</li>
+<li><strong>本地部署</strong> — Genesis 無雲端依賴</li>
+<li><strong>即時串流</strong> — rt1/rt2 低延遲模型</li>
+<li><strong>有 API</strong> — 批次自動化支援</li>
+<li><strong>手部追蹤</strong> — s2/m2 模型內建</li>
 </ul>
 </div>
 <div class="card card-con">
-<p class="neg" style="font-weight:700;font-size:1.4rem;margin-bottom:1rem">❌ 缺點</p>
+<p class="neg" style="font-weight:700;font-size:1.6rem;margin-bottom:1rem">❌ 缺點</p>
 <ul class="list-clean">
-<li>定價偏高</li><li>iPhone App 限 iOS</li><li>無臉部追蹤</li><li>Genesis 需多鏡頭+GPU</li><li>API 為 Beta</li>
+<li><strong>價格高</strong> — 企業級定價，非獨立開發者友善</li>
+<li><strong>硬體需求</strong> — 需要多攝影機設置</li>
+<li><strong>學習曲線</strong> — 設置流程較複雜</li>
+<li><strong>定價不透明</strong> — 需聯繫銷售取得報價</li>
+<li><strong>非即時（Genesis）</strong> — 最高品質模型需離線處理</li>
+<li><strong>場景限制</strong> — 極端光線/遮擋仍有影響</li>
 </ul>
 </div>
 </div>
 </div>
 </section>
 
-<!-- 8: Integration -->
 <section class="slide" id="s8">
 <div class="slide-inner">
-<h2>與 Kimodo 的整合方式</h2>
-<p class="desc">Move.AI 是工作流中的「品質天花板」方案。</p>
-<div class="card" style="margin-top:1.5rem">
-<ul class="list-clean">
-<li><strong>格式</strong> — BVH 直出 — 與 Kimodo 相容</li><li><strong>品質</strong> — Move.AI > Kimodo（有影片參考時）</li><li><strong>API</strong> — 可批次自動化</li><li><strong>定位</strong> — 重要角色/主角用 Move.AI，NPC 用 Kimodo 量產</li>
-</ul>
+<h2>與 Kimodo 整合</h2>
+<p class="desc">Move.AI 和 Kimodo 的整合空間在於：Move.AI 處理「需要真人動作參考」的高品質動捕場景，Kimodo 處理「純文字描述生成」的快速量產場景。兩者的 BVH 輸出可共用同一套後處理 pipeline。</p>
+<div class="card-grid cols-3" style="margin-top:1.5rem">
+<div class="card">
+<p style="color:var(--accent-cyan);font-weight:700;font-size:1.4rem;margin-bottom:.6rem">格式相容</p>
+<p style="font-size:1rem;line-height:1.7">Move.AI 直接輸出 BVH，與 Kimodo BVH 使用相同的 Retarget → Foot Fix → Root Motion pipeline。</p>
+</div>
+<div class="card">
+<p style="color:var(--accent-teal);font-weight:700;font-size:1.4rem;margin-bottom:.6rem">場景互補</p>
+<p style="font-size:1rem;line-height:1.7">主角/Boss 動作 → Move.AI（高品質）。NPC 通用動作 → Kimodo（快速量產）。</p>
+</div>
+<div class="card">
+<p style="color:var(--accent-gold);font-weight:700;font-size:1.4rem;margin-bottom:.6rem">API 串接</p>
+<p style="font-size:1rem;line-height:1.7">Move.AI REST API 可與 Kimodo 整合到同一自動化工作流。</p>
+</div>
 </div>
 </div>
 </section>
 
-<!-- 9: Workflow -->
 <section class="slide" id="s9">
 <div class="slide-inner">
-<h2>量產工作流定位</h2>
-<p class="desc">Move.AI 負責量產工作流中「最高品質需求」的頂層。</p>
-<div class="card" style="margin-top:1.5rem;font-family:monospace;font-size:.95rem;line-height:1.8;white-space:pre-wrap">頂級品質（主角/Boss）→ Move.AI Genesis
-高品質（重要 NPC）→ Move.AI API / Viggle
-量產級（雜兵/背景）→ Kimodo + Motorica</div>
+<h2>工作流定位</h2>
+<p class="desc">在 AI 動作量產工作流中，Move.AI 佔據「高品質影片動捕」的頂端位置。它適合預算較高、對品質要求極高的正式產出（主角動作、過場動畫），而非大量 NPC 通用動作。</p>
+<div class="card" style="font-family:monospace;font-size:1rem;line-height:2.2;padding:2.5rem;margin-top:1.5rem">
+<span style="color:var(--text-primary);font-weight:700">[動作輸入源]</span><br>
+&nbsp;&nbsp;├── Text Prompt ──→ Kimodo（離線 BVH，快速量產）<br>
+&nbsp;&nbsp;├── 影片參考 ──→ Viggle/DeepMotion（中等品質，低成本）<br>
+&nbsp;&nbsp;├── <span style="color:var(--accent-teal);font-weight:700">專業影片 ──→ Move.AI Genesis（光學等級品質）⭐</span><br>
+&nbsp;&nbsp;└── 手動 K 幀 ──→ 傳統 DCC<br><br>
+<span style="color:var(--text-primary);font-weight:700">[統一 Pipeline]</span><br>
+&nbsp;&nbsp;BVH → Retarget → Foot Fix → Root Motion → FBX Export<br><br>
+<span style="color:var(--text-primary);font-weight:700">[輸出]</span><br>
+&nbsp;&nbsp;Unity / Unreal Engine 5 / 電影 VFX
+</div>
 </div>
 </section>
 
-<!-- 10: Verdict -->
 <section class="slide" id="s10">
-<div class="slide-inner">
-<h2>總結評分與行動建議</h2>
-<p class="desc">綜合評估與下一步建議。</p>
-<div class="card-grid cols-3" style="margin-top:1.5rem">
-<div class="card" style="padding:1.2rem"><p style="font-size:1rem;margin-bottom:.3rem">相關性</p><p style="color:var(--accent-teal)">⭐⭐⭐⭐</p></div><div class="card" style="padding:1.2rem"><p style="font-size:1rem;margin-bottom:.3rem">成熟度</p><p style="color:var(--accent-teal)">⭐⭐⭐⭐⭐</p></div><div class="card" style="padding:1.2rem"><p style="font-size:1rem;margin-bottom:.3rem">易用性</p><p style="color:var(--accent-teal)">⭐⭐⭐</p></div><div class="card" style="padding:1.2rem"><p style="font-size:1rem;margin-bottom:.3rem">性價比</p><p style="color:var(--accent-teal)">⭐⭐⭐</p></div><div class="card" style="padding:1.2rem"><p style="font-size:1rem;margin-bottom:.3rem">整合潛力</p><p style="color:var(--accent-teal)">⭐⭐⭐⭐⭐</p></div><div class="card" style="padding:1.2rem"><p style="font-size:1rem;margin-bottom:.3rem">量產適合度</p><p style="color:var(--accent-teal)">⭐⭐⭐</p></div>
+<div class="slide-inner" style="text-align:center">
+<h2 style="border:none;padding:0;text-align:center">總結與行動建議</h2>
+<p class="desc" style="margin:0 auto 1.5rem;text-align:center">Move.AI 是市場上品質最高但價格也最高的 AI 動捕方案。適合有預算的團隊用於關鍵動作（主角、Boss、過場），不適合大量通用動作量產。</p>
+<div class="card-grid" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr));text-align:center">
+<div class="card" style="padding:1.2rem"><p style="font-size:1rem;margin-bottom:.3rem">品質等級</p><p style="color:var(--accent-teal)">⭐⭐⭐⭐⭐</p></div>
+<div class="card" style="padding:1.2rem"><p style="font-size:1rem;margin-bottom:.3rem">性價比</p><p style="color:var(--accent-teal)">⭐⭐⭐</p></div>
+<div class="card" style="padding:1.2rem"><p style="font-size:1rem;margin-bottom:.3rem">易用性</p><p style="color:var(--accent-teal)">⭐⭐⭐</p></div>
+<div class="card" style="padding:1.2rem"><p style="font-size:1rem;margin-bottom:.3rem">Pipeline 整合</p><p style="color:var(--accent-teal)">⭐⭐⭐⭐⭐</p></div>
+<div class="card" style="padding:1.2rem"><p style="font-size:1rem;margin-bottom:.3rem">量產適合度</p><p style="color:var(--accent-teal)">⭐⭐</p></div>
+<div class="card" style="padding:1.2rem"><p style="font-size:1rem;margin-bottom:.3rem">獨立開發者友善</p><p style="color:var(--accent-teal)">⭐⭐</p></div>
 </div>
-<div class="card" style="margin-top:1.5rem;border-color:var(--accent-teal)">
-<p class="pos" style="font-size:1.3rem;font-weight:800;margin-bottom:1rem">🟡 進階選項 — 品質最高但成本也最高</p>
+<div class="card" style="margin-top:1.5rem;border-color:var(--accent-teal);text-align:left">
+<p class="grad-text" style="font-size:1.3rem;font-weight:800;margin-bottom:1rem">🟡 值得關注 — 建議行動</p>
 <ul class="list-clean">
-<li><strong>Step 1</strong> — Move One Free 試用（30 credits）</li><li><strong>Step 2</strong> — API 測試單鏡頭品質</li><li><strong>Step 3</strong> — 與 Viggle 做 A/B 比較</li><li><strong>Step 4</strong> — 評估 Genesis 企業方案需求</li>
+<li><strong>Step 1</strong> — 試用 Move One（免費單人模式）評估基礎品質</li>
+<li><strong>Step 2</strong> — 確認 BVH 輸出可直接進入我們的 retarget pipeline</li>
+<li><strong>Step 3</strong> — 評估是否有預算用於關鍵動作（主角/Boss）</li>
+<li><strong>Step 4</strong> — 比較 Move.AI vs DeepMotion vs Viggle 的品質差異</li>
+<li><strong>Step 5</strong> — 決定「高品質動作用 Move.AI + 量產用 Kimodo」的混合策略</li>
 </ul>
 </div>
 <p style="margin-top:2rem;font-size:1rem;color:var(--text-dim)">MotionLab Research · 2026-06-19 · move.ai</p>
@@ -195,11 +245,13 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 const d=document.getElementById('dots');const total=10;
 for(let i=1;i<=total;i++){const a=document.createElement('a');a.href='#s'+i;d.appendChild(a)}
 let cur=1;
-function updateNav(){document.getElementById('pageNum').textContent=cur+'/'+total;document.getElementById('prev').style.visibility=cur===1?'hidden':'visible';document.getElementById('next').style.visibility=cur===total?'hidden':'visible'}
-const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){cur=parseInt(e.target.id.slice(1));d.querySelectorAll('a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));updateNav()}}},{threshold:.5});
-document.querySelectorAll('.slide').forEach(s=>obs.observe(s));updateNav();
+const prevBtn=document.getElementById('prev'),nextBtn=document.getElementById('next');
+function updateNav(){document.getElementById('pageNum').textContent=cur+'/'+total;prevBtn.style.visibility=cur===1?'hidden':'visible';nextBtn.style.visibility=cur===total?'hidden':'visible'}
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){cur=parseInt(e.target.id.slice(1));d.querySelectorAll('a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));updateNav()}})},{threshold:.5});
+document.querySelectorAll('.slide').forEach(s=>obs.observe(s));
+updateNav();
 function go(n){const t=Math.max(1,Math.min(total,n));document.getElementById('s'+t).scrollIntoView({behavior:'smooth'})}
-document.getElementById('prev').onclick=()=>go(cur-1);document.getElementById('next').onclick=()=>go(cur+1);
+prevBtn.onclick=()=>go(cur-1);nextBtn.onclick=()=>go(cur+1);
 document.addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();go(cur+1)}if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();go(cur-1)}});
 </script>
 </body>
