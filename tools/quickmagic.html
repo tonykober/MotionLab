@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QuickMagic — AI 影片轉動畫（自動關鍵幀）</title>
+<title>QuickMagic — AI 影片轉動畫（自動關鍵幀偵測）</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#1a1a2e;color:#e0d6c8;font-family:-apple-system,'Noto Sans TC',sans-serif;max-width:900px;margin:0 auto;padding:2rem;line-height:1.7}
@@ -19,54 +19,168 @@ th,td{border:1px solid #333;padding:8px 12px;text-align:left}
 th{background:#2a2a3e}
 pre{background:#0d0d1a;padding:1rem;border-radius:8px;overflow-x:auto;margin:1rem 0}
 code{background:#0d0d1a;padding:2px 6px;border-radius:4px;font-size:.9em}
+pre code{padding:0;background:none}
 hr{border:none;border-top:1px solid #333;margin:1.5rem 0}
 p{margin:.6rem 0}
 img{max-width:100%;border-radius:8px}
 .back{display:inline-block;margin-bottom:1.5rem;text-decoration:none}
-.tag{display:inline-block;background:#2a2a3e;border:1px solid #444;border-radius:4px;padding:2px 8px;margin:2px;font-size:.85em}
 </style>
 </head>
 <body>
 <a href="../index.html" class="back">← 返回首頁</a>
-<h1>QuickMagic — AI 影片轉動畫（自動關鍵幀）</h1>
 
-<p>> 調研日期：2026-06-19</p>
-<p>> 官網：<a href="https://www.quickmagic.ai" target="_blank">https://www.quickmagic.ai</a></p>
+<img src="../images/quickmagic.png" alt="quickmagic 官網截圖" style="width:100%;border:1px solid #333;margin:0 0 1.5rem;border-radius:8px">
 
+<h1>QuickMagic — AI 影片轉動畫（自動關鍵幀偵測）</h1>
+<p style="color:#999">調研日期：2026-06-19</p>
+<p style="color:#999">官網：https://www.quickmagic.ai</p>
+<p style="color:#999">定價：Freemium → Pro $49.99/月</p>
+<p style="color:#999">合作：Reallusion iClone Video Mocap 技術夥伴</p>
 <hr>
-
-<h2>工具概述</h2>
-<p>AI 動捕工具，主打自動關鍵幀偵測，將影片轉換為動畫資料。支援 FBX/Mixamo/BIP/UE 格式匯出，相容 3DS Max、MotionBuilder、Maya。</p>
-
-
-<img src="../images/quickmagic.png" alt="官網截圖" style="width:100%;border:1px solid #333;margin:1rem 0">
-<div style="margin:1rem 0">
-<span class="tag">Freemium</span><span class="tag">FBX</span><span class="tag">BIP</span><span class="tag">UE</span><span class="tag">Auto-Keyframe</span>
-</div>
-
-<hr>
-
-<h2>核心功能</h2>
+<h2>一、工具概述</h2>
+<p><strong>QuickMagic</strong> 是 AI 動捕工具，核心特色是<strong>自動關鍵幀偵測</strong>和<strong>多格式匯出</strong>（FBX/Mixamo/BIP/UE/VMD）。2025 年 10 月與 Reallusion 合作推出 iClone Video Mocap 服務。</p>
+<p><strong>核心能力一句話</strong>：上傳影片 → AI 自動偵測 keyframe → 匯出 FBX/BIP/UE 格式 → 3DS Max/Maya/MotionBuilder 直接使用。</p>
+<p><strong>解決的問題</strong>：</p>
 <ul>
-<li>影片→自動關鍵幀偵測</li>
-<li>FBX 匯出</li>
-<li>Mixamo 格式</li>
-<li>BIP（3DS Max）</li>
-<li>UE 格式匯出</li>
-<li>3DS Max/Maya/MotionBuilder 相容</li>
-<li>30% 生產力提升</li>
-
+<li>影片轉動畫後需要大量手動修 keyframe</li>
+<li>不同軟體需要不同格式（FBX/BIP/UE 各有適用場景）</li>
+<li>3DS Max 用戶缺乏好用的 AI Mocap 方案</li>
 </ul>
-
 <hr>
-
-<h2>定價</h2>
-<p><strong>Free (50 V-Coins/月) | Basic $29/月 | Pro $49.99/月</strong></p>
-
+<h2>二、功能詳細說明</h2>
+<h3>功能矩陣</h3>
+<table>
+<tr><th>功能</th><th>支援</th><th>說明</th></tr>
+<tr><td>Video-to-Mocap</td><td>✅</td><td>瀏覽器上傳影片</td></tr>
+<tr><td>自動關鍵幀</td><td>✅</td><td>AI 偵測最佳 keyframe</td></tr>
+<tr><td>增強物理優化</td><td>✅</td><td>Physics optimization</td></tr>
+<tr><td>2D 資料精煉</td><td>✅</td><td>2D data refinement</td></tr>
+<tr><td>多人追蹤</td><td>❓</td><td>未確認</td></tr>
+<tr><td>FBX 匯出</td><td>✅</td><td></td></tr>
+<tr><td>Mixamo 格式</td><td>✅</td><td></td></tr>
+<tr><td>BIP 格式</td><td>✅</td><td>3DS Max Biped</td></tr>
+<tr><td>UE 格式</td><td>✅</td><td>Unreal Engine</td></tr>
+<tr><td>VMD 格式</td><td>✅</td><td>MikuMikuDance</td></tr>
+<tr><td>Retarget to MetaHuman</td><td>✅</td><td></td></tr>
+</table>
+<h3>技術規格</h3>
+<table>
+<tr><th>項目</th><th>規格</th></tr>
+<tr><td>輸入</td><td>影片檔案（瀏覽器上傳）</td></tr>
+<tr><td>相容軟體</td><td>3DS Max, Maya, MotionBuilder, iClone</td></tr>
+<tr><td>匯出格式</td><td>FBX, Mixamo, BIP, UE, VMD</td></tr>
+<tr><td>計費</td><td>V-Coin credit 制</td></tr>
+<tr><td>平台</td><td>雲端（瀏覽器）</td></tr>
+<tr><td>合作夥伴</td><td>Reallusion (iClone Video Mocap)</td></tr>
+</table>
 <hr>
+<h2>三、官方影片 / 教學連結</h2>
+<table>
+<tr><th>資源</th><th>連結</th></tr>
+<tr><td>官網</td><td>https://www.quickmagic.ai</td></tr>
+<tr><td>教學（Blender retarget）</td><td>https://sabbirz.com/blog-3d/retargeting-quickmagic-markerless-ai-mocap-in-blender-using-auto-rig-pro</td></tr>
+<tr><td>詳細教學</td><td>https://sabbirz.com/blog-3d/video-mocap-in-a-couple-of-seconds-with-quickmagic-ai</td></tr>
+<tr><td>tato.studio 評測</td><td>https://tato.studio/best-ai-video-to-mocap</td></tr>
+<tr><td>Reallusion 合作</td><td>https://www.cgchannel.com/2025/10/reallusion-launches-ai-motion-capture-service-video-mocap/</td></tr>
+</table>
+<hr>
+<h2>四、使用流程</h2>
+<ol>
+<li>**註冊** → https://www.quickmagic.ai/register</li>
+<li>**上傳影片** → 瀏覽器介面上傳 MP4</li>
+<li>**設定範圍** → 設 in/out 點選取動作片段</li>
+<li>**AI 處理** → 自動偵測 keyframe + 動捕</li>
+<li>**選擇格式** → FBX / Mixamo / BIP / UE / VMD</li>
+<li>**下載** → 取得動畫檔案</li>
+<li>**匯入 DCC** → 3DS Max / Maya / Blender（用 Auto-Rig Pro retarget）</li>
+</ol>
+<hr>
+<h2>五、定價與授權</h2>
+<table>
+<tr><th>方案</th><th>費用</th><th>V-Coins/月</th><th>特色</th></tr>
+<tr><td>**Free**</td><td>$0</td><td>50</td><td>低優先、基本功能</td></tr>
+<tr><td>**Basic**</td><td>$29/月</td><td>更多</td><td>—</td></tr>
+<tr><td>**Pro**</td><td>$49.99/月</td><td>更多</td><td>進階功能</td></tr>
+<tr><td>**Enterprise**</td><td>聯繫</td><td>無限</td><td>客製化</td></tr>
+</table>
+<h3>商用授權</h3>
+<ul>
+<li>付費方案可商用</li>
+<li>Reallusion 合作版另計</li>
+</ul>
+<hr>
+<h2>六、優缺點分析</h2>
+<h3>✅ 優點</h3>
+<ol>
+<li>**多格式匯出** — FBX/Mixamo/BIP/UE/VMD 覆蓋幾乎所有流程</li>
+<li>**自動關鍵幀** — 減少後處理手動修 keyframe 工作</li>
+<li>**3DS Max 友善** — BIP 格式直接支援（少見）</li>
+<li>**Reallusion 合作** — iClone 整合+品質背書</li>
+<li>**瀏覽器即用** — 無需安裝</li>
+<li>**tato.studio 評價正面** — 「可靠、預算友好的基礎動畫方案」</li>
+</ol>
+<h3>❌ 缺點</h3>
+<ol>
+<li>**無 BVH 匯出** — 與 Kimodo 格式不直接相容</li>
+<li>**Credit 制** — 量大成本增加</li>
+<li>**精度評價中等** — 適合 blocking 不一定適合最終品質</li>
+<li>**無 API** — 手動操作</li>
+<li>**中國平台** — 部分地區可能存取受限</li>
+</ol>
+<hr>
+<h2>七、與 Kimodo BVH 工作流的整合可能性</h2>
+<table>
+<tr><th>面向</th><th>評估</th></tr>
+<tr><td>**格式**</td><td>無 BVH — 需要 FBX→BVH 轉換（Blender 可做）</td></tr>
+<tr><td>**互補性**</td><td>QuickMagic 的 BIP/UE 格式適合直接入引擎，Kimodo 的 BVH 需 retarget</td></tr>
+<tr><td>**品質**</td><td>QuickMagic 適合快速 blocking，Kimodo 適合特定動作生成</td></tr>
+<tr><td>**3DS Max 場景**</td><td>如果團隊用 3DS Max，QuickMagic 的 BIP 格式很有價值</td></tr>
+</table>
+<h3>推薦整合方式</h3>
+<pre><code>
+如果用 3DS Max Pipeline：
+  影片參考 → QuickMagic → BIP → 3DS Max 直接使用
 
-<h2>評估結論</h2>
-<p>🟡 備選方案 — 自動關鍵幀是亮點，多格式匯出適合 3DS Max 用戶。</p>
+如果用 Blender Pipeline：
+  影片參考 → QuickMagic → FBX → Blender → Auto-Rig Pro retarget
+  文字描述 → Kimodo → BVH → Blender → retarget
+</code></pre>
+<hr>
+<h2>八、對「AI 動作量產工作流」的貢獻定位</h2>
+<pre><code>
+QuickMagic 定位：「多格式橋樑工具」
+
+最適合：
+• 3DS Max / MotionBuilder 用戶（BIP 格式直通）
+• iClone / MetaHuman 工作流
+• 需要快速 blocking 的前期預覽
+• 需要 VMD 格式（MMD）的場景
+
+不適合：
+• 大規模自動化（無 API）
+• 需要最高品質的最終產出
+• Blender-only 工作流（Viggle/Marionette 更直接）
+</code></pre>
+<hr>
+<h2>九、總結評分</h2>
+<table>
+<tr><th>項目</th><th>評分 (1-5)</th></tr>
+<tr><td>與我們目標的相關性</td><td>⭐⭐⭐</td></tr>
+<tr><td>技術成熟度</td><td>⭐⭐⭐⭐</td></tr>
+<tr><td>易用性</td><td>⭐⭐⭐⭐</td></tr>
+<tr><td>性價比</td><td>⭐⭐⭐</td></tr>
+<tr><td>Pipeline 整合潛力</td><td>⭐⭐⭐⭐</td></tr>
+<tr><td>量產化適合度</td><td>⭐⭐</td></tr>
+</table>
+<p><strong>推薦等級</strong>：🟡 <strong>備選方案</strong> — 如果團隊有 3DS Max/MotionBuilder/iClone 工作流，QuickMagic 的多格式匯出有獨特價值。否則 Viggle 更經濟。</p>
+<hr>
+<h2>十、行動建議</h2>
+<ol>
+<li>**Free 方案試用** → 用 50 V-Coins 測試基本品質</li>
+<li>**BIP 格式測試** → 如果團隊有 3DS Max，測試 BIP 匯入品質</li>
+<li>**與 Auto-Rig Pro 搭配** → FBX 匯入 Blender 用 ARP retarget（有教學）</li>
+<li>**Reallusion 整合評估** → 如果考慮 iClone pipeline</li>
+</ol>
 
 <hr>
 <p style="color:#666;font-size:.85em">MotionLab Research · 2026-06-19</p>

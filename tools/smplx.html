@@ -1,74 +1,279 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SMPL-X — 動捕工具調研</title>
+<title>SMPL-X (Expressive Body Model) — 深度調研報告</title>
 <style>
-body{background:#1a1f2e;color:#b8c4d0;font-family:'Noto Sans TC',-apple-system,sans-serif;margin:0;padding:2rem;line-height:1.7}
-.container{max-width:900px;margin:0 auto}
-h1,h2,h3{color:#fff}
-a{color:#4db8d4;text-decoration:none}
-a:hover{text-decoration:underline}
-table{border-collapse:collapse;width:100%;margin:1rem 0}
-th,td{border:1px solid #333;padding:0.6rem 1rem;text-align:left}
-th{background:#2a2a3e;color:#fff}
-code{background:#0d0d1a;padding:0.2rem 0.5rem;border-radius:4px}
-pre{background:#0d0d1a;padding:1rem;border-radius:8px;overflow-x:auto}
-.back-link{margin-bottom:2rem;display:inline-block}
-ul,ol{padding-left:1.5rem}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#1a1a2e;color:#e0d6c8;font-family:-apple-system,'Noto Sans TC',sans-serif;max-width:900px;margin:0 auto;padding:2rem;line-height:1.7}
+h1{color:#f5a623;margin:1.5rem 0 1rem}
+h2{color:#fff;margin:1.5rem 0 .8rem}
+h3{color:#e0d6c8;margin:1.2rem 0 .6rem}
+a{color:#f5a623}
+strong{color:#f5a623}
+ul,ol{margin:.5rem 0 .5rem 1.5rem}
+li{margin:.3rem 0}
+table{border-collapse:collapse;margin:1rem 0;max-width:100%;overflow-x:auto;display:block}
+th,td{border:1px solid #333;padding:8px 12px;text-align:left}
+th{background:#2a2a3e}
+pre{background:#0d0d1a;padding:1rem;border-radius:8px;overflow-x:auto;margin:1rem 0}
+code{background:#0d0d1a;padding:2px 6px;border-radius:4px;font-size:.9em}
+pre code{padding:0;background:none}
+hr{border:none;border-top:1px solid #333;margin:1.5rem 0}
+p{margin:.6rem 0}
+img{max-width:100%}
+.back{display:inline-block;margin-bottom:1.5rem;text-decoration:none}
 </style>
 </head>
 <body>
-<div class="container">
-<a href="../index.html" class="back-link">← 返回首頁</a>
-<h1>SMPL-X (Expressive Body Model)</h1>
+<a href="../index.html" class="back">← 返回首頁</a>
+<h1>SMPL-X (Expressive Body Model) — 深度調研報告</h1>
 
-<div style="margin:1.5rem 0;text-align:center">
-<img src="../images/smplx.png" alt="smplx" style="max-width:100%;border-radius:8px;border:1px solid #333;margin-bottom:1rem">
-</div>
-<div style="margin:1.5rem 0;padding:1.5rem;background:rgba(30,42,60,0.55);border-radius:12px;border:1px solid rgba(255,255,255,0.08)">
-<h3 style="color:#4db8d4;margin-bottom:1rem">📺 影片展示</h3>
-<div style="position:relative;padding-bottom:56.25%;height:0;max-width:720px;margin-bottom:1rem"><iframe src="https://www.youtube.com/embed/3LBQax0ou20" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:8px" allowfullscreen></iframe></div>
-</div>
+<h2>1. 工具概述</h2>
 
+<p>SMPL-X 是由 Max Planck Institute for Intelligent Systems 開發的<strong>統一參數化 3D 人體模型</strong>，涵蓋身體、手部與臉部表情。作為學術界的事實標準人體表示格式，絕大多數視覺動捕研究（4D-Humans、WHAM、SMPLer-X、ExPose 等）都基於此模型。</p>
 
-<p>Max Planck Institute 開發的統一 3D 人體模型，涵蓋身體+手部+臉部表情，學術界標準的人體表示格式。</p>
+<strong>核心能力一句話</strong>：用數百個參數精確控制完整人體的姿態、體型和表情——學術人體重建的通用語言。
 
-<h2>基本資訊</h2>
-<table>
-<tr><th>開發者</th><td>Max Planck Institute for Intelligent Systems</td></tr>
-<tr><th>類型</th><td>人體模型格式 / 學術標準</td></tr>
-<tr><th>價格</th><td>免費學術使用（需註冊）；商用需洽談</td></tr>
-<tr><th>官網</th><td><a href="https://smpl-x.is.tue.mpg.de/">smpl-x.is.tue.mpg.de</a></td></tr>
-</table>
-
-<h2>功能特色</h2>
+<strong>解決的問題：</strong>
 <ul>
-<li>身體 + 手部 + 臉部表情統一模型</li>
-<li>參數化表示（pose / shape / expression）</li>
-<li>學術界公認標準，大量研究基於此格式</li>
-<li>SMPLer-X 等推理框架支援</li>
-<li>可轉換為傳統骨架動畫</li>
+<li>需要統一的數學模型來表示「任何人的任何姿態」</li>
+<li>身體/手/臉以往分離建模，SMPL-X 統一整合</li>
+<li>AI 推理需要可微分（differentiable）的人體模型用於訓練</li>
+<li>研究成果間需要共通格式進行比較和轉換</li>
 </ul>
 
-<h2>輸出格式</h2>
-<p>SMPL-X 參數（pose/shape/expression），需透過轉換工具（如 smplx2bvh）轉為 BVH 骨架動畫。</p>
+<hr>
 
-<h2>優缺點</h2>
-<table>
-<tr><th>優點</th><th>缺點</th></tr>
-<tr><td>學術標準，工具鏈豐富</td><td>商業授權需洽談</td></tr>
-<tr><td>身體+手+臉完整</td><td>輸出需額外轉換</td></tr>
-<tr><td>參數化便於編輯</td><td>學術導向非產品化</td></tr>
-<tr><td>持續有新研究發展</td><td>模型精度受訓練資料限制</td></tr>
+<h2>2. 功能詳細說明</h2>
+
+<h3>功能矩陣</h3>
+
+<table><tr><th><th>功能</th><th>說明</th></tr>
+<tr><td>參數化身體</td><td>10 個 shape 參數 + 63 個 body pose 參數</td></tr>
+<tr><td>手部建模</td><td>每手 15 joints × 3 DoF = 90 個手部 pose 參數</td></tr>
+<tr><td>臉部表情</td><td>10 個 expression 參數（基於 FLAME）</td></tr>
+<tr><td>性別模型</td><td>Male / Female / Neutral 三種</td></tr>
+<tr><td>可微分</td><td>PyTorch 實作，支援自動微分（可用於訓練）</td></tr>
+<tr><td>Mesh 輸出</td><td>10,475 個頂點的完整 mesh</td></tr>
+<tr><td>關節回歸</td><td>從 mesh 回歸 55 個關節位置</td></tr>
+<tr><td>蒙皮</td><td>LBS (Linear Blend Skinning)</td></tr>
 </table>
 
-<h2>與 Kimodo 整合</h2>
-<p>SMPL-X 是很多 AI mocap 工具的底層格式。整合路徑：SMPL-X 參數 → 關節旋轉 → BVH。已有開源工具支援轉換。理解 SMPL-X 有助於整合各種研究工具輸出。</p>
+<h3>技術規格</h3>
 
-<h2>量產工作流定位</h2>
-<p><strong>基礎設施層的人體表示標準</strong>——掌握 SMPL-X 轉換是整合各種 AI 動作研究工具的關鍵。</p>
-</div>
+<table><tr><th><th>項目</th><th>規格</th></tr>
+<tr><td>頂點數</td><td>10,475</td></tr>
+<tr><td>關節數</td><td>55 (body 22 + jaw 1 + eyes 2 + fingers 30)</td></tr>
+<tr><td>Shape 參數</td><td>10（PCA 體型空間）</td></tr>
+<tr><td>Body Pose 參數</td><td>63（21 joints × 3 軸向旋轉）</td></tr>
+<tr><td>Hand Pose 參數</td><td>90（30 joints × 3）</td></tr>
+<tr><td>Expression 參數</td><td>10（PCA 表情空間）</td></tr>
+<tr><td>模型格式</td><td>.pkl / .npz</td></tr>
+<tr><td>API</td><td>Python (PyTorch / NumPy)</td></tr>
+<tr><td>視覺化</td><td>Open3D / Pyrender / Trimesh</td></tr>
+<tr><td>前置模型</td><td>SMPL → SMPL+H → SMPL-X（演化路線）</td></tr>
+</table>
+
+<h3>SMPL 家族演化</h3>
+
+<pre><code>SMPL (2015)      → 僅身體 (23 joints, 6,890 verts)
+SMPL+H (2017)   → 身體 + 手 (51 joints)
+SMPL-X (2019)   → 身體 + 手 + 臉 (55 joints, 10,475 verts)
+STAR (2020)     → SMPL 的高效替代</code></pre>
+
+<hr>
+
+<h2>3. 官方影片/教學連結</h2>
+
+<table><tr><th><th>主題</th><th>連結</th></tr>
+<tr><td>SMPL-X 官方頁面</td><td>https://smpl-x.is.tue.mpg.de/</td></tr>
+<tr><td>SMPL 系列首頁</td><td>https://smpl.is.tue.mpg.de/</td></tr>
+<tr><td>GitHub (smplx Python)</td><td>https://github.com/vchoutas/smplx</td></tr>
+<tr><td>論文 (ECCV 2019)</td><td>"Expressive Body Capture: 3D Hands, Face, and Body from a Single Image"</td></tr>
+<tr><td>SMPLer-X（推理框架）</td><td>https://huggingface.co/duyle2408/SMPLer-X</td></tr>
+<tr><td>Meshcapade（商業授權）</td><td>https://meshcapade.com/</td></tr>
+<tr><td>SMPL-X 授權條款</td><td>https://smpl-x.is.tuebingen.mpg.de/modellicense.html</td></tr>
+</table>
+
+<hr>
+
+<h2>4. 安裝/使用流程</h2>
+
+<h3>取得模型</h3>
+<ul>
+<li>前往 https://smpl-x.is.tue.mpg.de/ 註冊帳號</li>
+<li>同意非商業使用條款</li>
+<li>下載模型檔案（.pkl）：SMPL-X Male / Female / Neutral</li>
+<li>下載放置於專案指定路徑</li>
+</ul>
+
+<h3>安裝 Python 套件</h3>
+<pre><code>pip install smplx
+pip install torch  # PyTorch
+pip install trimesh pyrender  # 視覺化</code></pre>
+
+<h3>基本使用</h3>
+<pre><code>import smplx
+import torch
+
+&lt;h1&gt;載入模型&lt;/h1&gt;
+model = smplx.create('models/', model_type='smplx', gender='neutral')
+
+&lt;h1&gt;設定參數&lt;/h1&gt;
+body_pose = torch.zeros(1, 63)   # 身體姿態
+betas = torch.zeros(1, 10)       # 體型
+expression = torch.zeros(1, 10)  # 表情
+
+&lt;h1&gt;前向推理&lt;/h1&gt;
+output = model(body_pose=body_pose, betas=betas, expression=expression)
+
+&lt;h1&gt;取得結果&lt;/h1&gt;
+vertices = output.vertices  # (1, 10475, 3) mesh 頂點
+joints = output.joints      # (1, 55, 3) 關節位置</code></pre>
+
+<h3>轉換為骨架動畫</h3>
+<ul>
+<li>SMPL-X → BVH：使用 <code>smplx2bvh</code> 等轉換腳本</li>
+<li>SMPL-X → FBX：透過 Blender SMPL-X 外掛（如 MPFB）</li>
+<li>SMPL-X → 遊戲骨架：ARP Remap 重定向</li>
+</ul>
+
+<hr>
+
+<h2>5. 定價與授權</h2>
+
+<table><tr><th><th>項目</th><th>價格</th><th>授權類型</th></tr>
+<tr><td>SMPL-X 模型（學術）</td><td>免費</td><td><strong>僅非商業研究用途</strong></td></tr>
+<tr><td>smplx Python 套件</td><td>免費</td><td>非商業研究</td></tr>
+<tr><td>商業授權</td><td>需洽 Meshcapade</td><td>付費商業授權</td></tr>
+<tr><td>SMPLer-X 推理框架</td><td>免費</td><td>研究用途</td></tr>
+</table>
+
+<strong>⚠️ 商用授權重點：</strong>
+<ul>
+<li>SMPL-X 模型<strong>明確禁止商業用途</strong></li>
+<li>禁止：商業產品嵌入、商業服務、軍事/監控用途</li>
+<li>商業使用需透過 <strong>Meshcapade</strong>（MPI 的商業授權夥伴）取得</li>
+<li>Meshcapade 網站：https://meshcapade.com/</li>
+<li>學術用途需機構 email 或說明研究目的</li>
+</ul>
+
+<hr>
+
+<h2>6. 優缺點分析</h2>
+
+<h3>優點</h3>
+<ul>
+<li>✅ <strong>學術標準</strong>：幾乎所有人體重建研究都基於此，生態最完整</li>
+<li>✅ <strong>統一模型</strong>：身體+手+臉一個模型搞定</li>
+<li>✅ <strong>可微分</strong>：可用於 AI 訓練/優化</li>
+<li>✅ <strong>精確</strong>：10,475 頂點高精度 mesh</li>
+<li>✅ <strong>大量下游工具</strong>：4D-Humans、WHAM、SMPLer-X 等都輸出 SMPL-X</li>
+<li>✅ <strong>Python 生態完整</strong>：pip install 即可使用</li>
+</ul>
+
+<h3>缺點</h3>
+<ul>
+<li>❌ <strong>嚴格非商業授權</strong>：無法直接用於商業專案</li>
+<li>❌ <strong>商業授權成本不透明</strong>：Meshcapade 需個案洽談</li>
+<li>❌ <strong>不是直接可用的動畫格式</strong>：需轉換為 BVH/FBX</li>
+<li>❌ <strong>模型體型較固定</strong>：10 個 shape 參數無法表示極端體型</li>
+<li>❌ <strong>計算成本</strong>：完整推理含手部 mesh 較重</li>
+<li>❌ <strong>註冊門檻</strong>：需同意條款才能下載</li>
+</ul>
+
+<hr>
+
+<h2>7. 與 Kimodo 的整合可能性</h2>
+
+<table><tr><th><th>比較項目</th><th>SMPL-X 生態</th><th>Kimodo</th></tr>
+<tr><td>本質</td><td>人體表示模型/格式</td><td>動作生成器</td></tr>
+<tr><td>輸出</td><td>Mesh + Joints (pkl/npz)</td><td>BVH</td></tr>
+<tr><td>商用</td><td>❌ 需另購授權</td><td>✅</td></tr>
+<tr><td>手指</td><td>✅ 30 joints</td><td>❌</td></tr>
+<tr><td>臉部</td><td>✅ 10 expressions</td><td>❌</td></tr>
+<tr><td>從影片提取</td><td>✅（透過推理框架）</td><td>❌</td></tr>
+<tr><td>從文字生成</td><td>❌</td><td>✅</td></tr>
+</table>
+
+<h3>推薦整合方式</h3>
+
+<p>SMPL-X 不是「競爭工具」而是「底層格式」：</p>
+
+<pre><code>[影片] → [SMPLer-X 推理] → [SMPL-X 參數]
+→ [smplx2bvh 轉換] → [BVH]
+→ [ARP Remap 到角色] → [引擎]
+
+vs.
+
+[文字] → [Kimodo] → [BVH] → [ARP] → [引擎]</code></pre>
+
+<p>兩者互補：SMPL-X 生態處理「影片→動作」，Kimodo 處理「文字→動作」。</p>
+
+<hr>
+
+<h2>8. 對 AI 動作量產工作流的貢獻定位</h2>
+
+<h3>定位：<strong>底層人體表示標準（非直接生產工具）</strong></h3>
+
+<pre><code>┌─────────────────────────────────────────┐
+│         SMPL-X = 人體的「通用語言」       │
+│                                           │
+│  [4D-Humans] ─→ SMPL-X ─┐               │
+│  [WHAM]      ─→ SMPL-X  ├→ [轉換為 BVH] │
+│  [SMPLer-X]  ─→ SMPL-X ─┘    ↓          │
+│                            [ARP → 引擎]   │
+└─────────────────────────────────────────┘
+
+獨立路線：[Kimodo] → BVH → [ARP → 引擎]（不經 SMPL-X）</code></pre>
+
+<strong>量產流程中的角色：</strong>
+<ul>
+<li>SMPL-X 是「格式」不是「工具」</li>
+<li>大量學術工具輸出此格式，需要轉換到 BVH/FBX</li>
+<li>了解 SMPL-X 有助於理解和評估新的學術動捕工具</li>
+<li>商用限制是主要障礙，Kimodo 路線更適合量產</li>
+</ul>
+
+<hr>
+
+<h2>9. 總結評分</h2>
+
+<table><tr><th><th>項目</th><th>評分</th><th>說明</th></tr>
+<tr><td>技術完整度</td><td>⭐⭐⭐⭐⭐</td><td>學術標準，身體+手+臉統一</td></tr>
+<tr><td>易用性</td><td>⭐⭐⭐</td><td>Python API 好，但需轉換才能用</td></tr>
+<tr><td>性價比</td><td>⭐⭐⭐⭐</td><td>學術免費，但商用需付費</td></tr>
+<tr><td>量產適用性</td><td>⭐⭐</td><td>非直接生產工具 + 商用限制</td></tr>
+<tr><td>生態完整度</td><td>⭐⭐⭐⭐⭐</td><td>下游工具最多</td></tr>
+<tr><td>商用合規</td><td>⭐</td><td>嚴格禁止商用，需另外洽談</td></tr>
+</table>
+
+<hr>
+
+<h2>10. 行動建議</h2>
+
+<ul>
+<li><strong>理解但不依賴</strong>：了解 SMPL-X 格式以評估學術工具，但量產不走此路線</li>
+<li><strong>建立 SMPL-X→BVH 轉換管線</strong>：若需使用學術工具產出，準備好轉換腳本</li>
+<li><strong>評估 Meshcapade 商業授權</strong>：若未來需要「影片→動作」的商用管線</li>
+<li><strong>優先使用 Kimodo 路線</strong>：文字→BVH，無授權問題</li>
+<li><strong>關注 SMPL 商用替代</strong>：如 STAR 等無授權限制的模型出現</li>
+</ul>
+
+<hr>
+
+<h2>參考資料</h2>
+
+<ul>
+<li>官方網站：https://smpl-x.is.tue.mpg.de/</li>
+<li>GitHub：https://github.com/vchoutas/smplx</li>
+<li>授權條款：https://smpl-x.is.tuebingen.mpg.de/modellicense.html</li>
+<li>Meshcapade（商業授權）：https://meshcapade.com/</li>
+<li>SMPL 系列首頁：https://smpl.is.tue.mpg.de/</li>
+<li>SMPLer-X：https://huggingface.co/duyle2408/SMPLer-X</li>
+</ul>
+
 </body>
 </html>

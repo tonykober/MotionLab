@@ -1,75 +1,256 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MocapNET — 動捕工具調研</title>
+<title>MocapNET — 深度調研報告</title>
 <style>
-body{background:#1a1f2e;color:#b8c4d0;font-family:'Noto Sans TC',-apple-system,sans-serif;margin:0;padding:2rem;line-height:1.7}
-.container{max-width:900px;margin:0 auto}
-h1,h2,h3{color:#fff}
-a{color:#4db8d4;text-decoration:none}
-a:hover{text-decoration:underline}
-table{border-collapse:collapse;width:100%;margin:1rem 0}
-th,td{border:1px solid #333;padding:0.6rem 1rem;text-align:left}
-th{background:#2a2a3e;color:#fff}
-code{background:#0d0d1a;padding:0.2rem 0.5rem;border-radius:4px}
-pre{background:#0d0d1a;padding:1rem;border-radius:8px;overflow-x:auto}
-.back-link{margin-bottom:2rem;display:inline-block}
-ul,ol{padding-left:1.5rem}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#1a1a2e;color:#e0d6c8;font-family:-apple-system,'Noto Sans TC',sans-serif;max-width:900px;margin:0 auto;padding:2rem;line-height:1.7}
+h1{color:#f5a623;margin:1.5rem 0 1rem}
+h2{color:#fff;margin:1.5rem 0 .8rem}
+h3{color:#e0d6c8;margin:1.2rem 0 .6rem}
+a{color:#f5a623}
+strong{color:#f5a623}
+ul,ol{margin:.5rem 0 .5rem 1.5rem}
+li{margin:.3rem 0}
+table{border-collapse:collapse;margin:1rem 0;max-width:100%;overflow-x:auto;display:block}
+th,td{border:1px solid #333;padding:8px 12px;text-align:left}
+th{background:#2a2a3e}
+pre{background:#0d0d1a;padding:1rem;border-radius:8px;overflow-x:auto;margin:1rem 0}
+code{background:#0d0d1a;padding:2px 6px;border-radius:4px;font-size:.9em}
+pre code{padding:0;background:none}
+hr{border:none;border-top:1px solid #333;margin:1.5rem 0}
+p{margin:.6rem 0}
+img{max-width:100%}
+.back{display:inline-block;margin-bottom:1.5rem;text-decoration:none}
 </style>
 </head>
 <body>
-<div class="container">
-<a href="../index.html" class="back-link">← 返回首頁</a>
-<h1>MocapNET</h1>
+<a href="../index.html" class="back">← 返回首頁</a>
+<h1>MocapNET — 深度調研報告</h1>
 
-<div style="margin:1.5rem 0;text-align:center">
-<img src="../images/mocapnet.png" alt="mocapnet" style="max-width:100%;border-radius:8px;border:1px solid #333;margin-bottom:1rem">
-</div>
-<div style="margin:1.5rem 0;padding:1.5rem;background:rgba(30,42,60,0.55);border-radius:12px;border:1px solid rgba(255,255,255,0.08)">
-<h3 style="color:#4db8d4;margin-bottom:1rem">📺 影片展示</h3>
-<div style="position:relative;padding-bottom:56.25%;height:0;max-width:720px;margin-bottom:1rem"><iframe src="https://www.youtube.com/embed/CZMSGvb5lcI" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:8px" allowfullscreen></iframe></div>
-</div>
+<h2>1. 工具概述</h2>
 
+<p>MocapNET 是由希臘 FORTH（Foundation for Research and Technology）研究院開發的<strong>即時神經網路 3D 姿態估計系統</strong>。最大特色是直接輸出 BVH 格式動畫，無需額外格式轉換。系統基於 OpenPose 2D 偵測結果進行 3D 提升，支援上下半身分離估計與 IK 求解器精修。</p>
 
-<p>FORTH 研究院開發的即時神經網路 3D 姿態估計系統，直接輸出 BVH 格式。</p>
+<strong>核心能力一句話</strong>：從影片直接輸出 BVH 動畫檔——唯一原生 BVH 輸出的開源 AI 動捕工具。
 
-<h2>基本資訊</h2>
-<table>
-<tr><th>開發者</th><td>FORTH（希臘）</td></tr>
-<tr><th>平台</th><td>Linux（Ubuntu 建議）</td></tr>
-<tr><th>價格</th><td>免費開源</td></tr>
-<tr><th>GitHub</th><td><a href="https://github.com/FORTH-ModelBasedTracker/MocapNET">MocapNET</a></td></tr>
-</table>
-
-<h2>功能特色</h2>
+<strong>解決的問題：</strong>
 <ul>
-<li><strong>直接輸出 BVH 格式</strong>（！）</li>
-<li>即時 3D 姿態估計</li>
-<li>上下半身分離估計</li>
-<li>IK 求解器精修</li>
-<li>遮擋處理能力</li>
-<li>基於 OpenPose 2D 偵測</li>
+<li>其他 AI 動捕工具輸出 SMPL/pkl 格式，需額外轉換</li>
+<li>BVH 是遊戲動畫業界標準格式，直接輸出免去中間步驟</li>
+<li>即時性需求：需要在合理時間內處理影片</li>
+<li>上下半身分離追蹤適用於桌面半身畫面</li>
 </ul>
 
-<h2>輸出格式</h2>
-<p><strong>BVH 格式</strong>——直接可用！無需任何格式轉換即可進入後續 pipeline。</p>
+<hr>
 
-<h2>優缺點</h2>
-<table>
-<tr><th>優點</th><th>缺點</th></tr>
-<tr><td>直接 BVH 輸出</td><td>需要 Linux 環境</td></tr>
-<tr><td>即時處理</td><td>依賴 OpenPose</td></tr>
-<tr><td>完全開源免費</td><td>安裝配置複雜</td></tr>
-<tr><td>支援遮擋處理</td><td>品質不如商業方案</td></tr>
+<h2>2. 功能詳細說明</h2>
+
+<h3>功能矩陣</h3>
+
+<table><tr><th><th>功能</th><th>說明</th></tr>
+<tr><td>直接 BVH 輸出</td><td>無需格式轉換，直接產生業界標準 BVH</td></tr>
+<tr><td>即時推理</td><td>接近即時的處理速度</td></tr>
+<tr><td>上下半身分離</td><td>可獨立追蹤上半身或下半身</td></tr>
+<tr><td>IK 精修</td><td>Inverse Kinematics 後處理提升品質</td></tr>
+<tr><td>遮擋容忍</td><td>部分遮擋情況仍可運作</td></tr>
+<tr><td>手部追蹤</td><td>MocapNET v3 增加手部支援</td></tr>
+<tr><td>攝影機/影片輸入</td><td>即時攝影機或預錄影片</td></tr>
+<tr><td>OpenPose 前端</td><td>基於 OpenPose 2D 偵測</td></tr>
 </table>
 
-<h2>與 Kimodo 整合</h2>
-<p><strong>極高相容性</strong>——同樣輸出 BVH，可共用整個後處理 pipeline。MocapNET BVH → 直接進入 Kimodo 品質檢查、retarget、清理流程。零轉換成本。</p>
+<h3>技術規格</h3>
 
-<h2>量產工作流定位</h2>
-<p><strong>開源 BVH 直出動捕方案</strong>——適合 Linux 伺服器批次處理大量影片，品質中等但產量高。</p>
-</div>
+<table><tr><th><th>項目</th><th>規格</th></tr>
+<tr><td>輸入</td><td>影片/攝影機（經 OpenPose 2D 前處理）</td></tr>
+<tr><td>輸出</td><td><strong>BVH</strong>（直接，不需轉換）</td></tr>
+<tr><td>骨架</td><td>CMU MoCap 相容骨架</td></tr>
+<tr><td>關節數</td><td>~35（含手部更多）</td></tr>
+<tr><td>推理引擎</td><td>TensorFlow</td></tr>
+<tr><td>支援系統</td><td>Linux（Ubuntu，CMake 編譯）</td></tr>
+<tr><td>GPU 支援</td><td>可選 CUDA 加速</td></tr>
+<tr><td>2D 偵測</td><td>OpenPose / OpenCV DNN</td></tr>
+<tr><td>精修</td><td>IK Solver（內建）</td></tr>
+<tr><td>版本</td><td>v1 → v2 → v3（手部）</td></tr>
+</table>
+
+<hr>
+
+<h2>3. 官方影片/教學連結</h2>
+
+<table><tr><th><th>主題</th><th>連結</th></tr>
+<tr><td>GitHub</td><td>https://github.com/FORTH-ModelBasedTracker/MocapNET</td></tr>
+<tr><td>論文 v1 (BMVC 2019)</td><td>"Single Shot Multi-Person 3D Pose Estimation From Monocular RGB"</td></tr>
+<tr><td>論文 v2</td><td>"MocapNET 2.0: Real Time Estimation of 3D Body Pose and Shape"</td></tr>
+<tr><td>FORTH 研究頁面</td><td>http://amlab.ics.forth.gr/</td></tr>
+</table>
+
+<hr>
+
+<h2>4. 安裝/使用流程</h2>
+
+<h3>環境需求</h3>
+<ul>
+<li>Linux（Ubuntu 18.04/20.04 建議）</li>
+<li>CMake 3.x+</li>
+<li>OpenCV 4.x</li>
+<li>TensorFlow C API</li>
+<li>（可選）CUDA + cuDNN</li>
+</ul>
+
+<h3>安裝步驟</h3>
+<pre><code>&lt;h1&gt;Clone&lt;/h1&gt;
+git clone https://github.com/FORTH-ModelBasedTracker/MocapNET
+cd MocapNET
+
+&lt;h1&gt;下載模型與依賴&lt;/h1&gt;
+./initialize.sh
+
+&lt;h1&gt;編譯&lt;/h1&gt;
+mkdir build && cd build
+cmake ..
+make -j$(nproc)
+
+&lt;h1&gt;下載範例影片&lt;/h1&gt;
+wget [範例影片 URL]</code></pre>
+
+<h3>使用</h3>
+<pre><code>&lt;h1&gt;從影片生成 BVH&lt;/h1&gt;
+./MocapNET2 --from video.mp4 --openpose
+
+&lt;h1&gt;即時攝影機&lt;/h1&gt;
+./MocapNET2 --from /dev/video0
+
+&lt;h1&gt;僅上半身&lt;/h1&gt;
+./MocapNET2 --from video.mp4 --upperbody
+
+&lt;h1&gt;指定輸出&lt;/h1&gt;
+./MocapNET2 --from video.mp4 --bvh output.bvh</code></pre>
+
+<h3>輸出流程</h3>
+<pre><code>影片 → OpenPose 2D → MocapNET 3D 推理 → IK 精修 → BVH 輸出</code></pre>
+
+<hr>
+
+<h2>5. 定價與授權</h2>
+
+<table><tr><th><th>項目</th><th>價格</th><th>授權</th></tr>
+<tr><td>MocapNET 程式碼</td><td>免費</td><td>GPL v3（開源）</td></tr>
+<tr><td>模型權重</td><td>免費</td><td>隨程式碼下載</td></tr>
+<tr><td>OpenPose（依賴）</td><td>免費</td><td>非商業 / 商業需另購</td></tr>
+</table>
+
+<strong>商用授權說明：</strong>
+<ul>
+<li>MocapNET 本身 GPL v3：開源可商用（但衍生作品需開源）</li>
+<li><strong>OpenPose 授權問題</strong>：OpenPose 的商業使用需向 CMU 購買授權</li>
+<li>若使用 OpenCV DNN 替代 OpenPose，可迴避授權問題</li>
+<li>輸出的 BVH 動畫資料本身不受授權限制</li>
+</ul>
+
+<hr>
+
+<h2>6. 優缺點分析</h2>
+
+<h3>優點</h3>
+<ul>
+<li>✅ <strong>直接 BVH 輸出</strong>：唯一原生 BVH 輸出的開源方案，免格式轉換</li>
+<li>✅ <strong>骨架相容性好</strong>：CMU MoCap 相容骨架，與業界工具無縫整合</li>
+<li>✅ <strong>IK 精修</strong>：內建 IK 求解器提升品質</li>
+<li>✅ <strong>上下半身分離</strong>：適合桌面/半身場景</li>
+<li>✅ <strong>開源免費</strong>：GPL v3，學術和商用（含開源義務）</li>
+<li>✅ <strong>無 SMPL 依賴</strong>：不受 MPI 商用授權限制</li>
+</ul>
+
+<h3>缺點</h3>
+<ul>
+<li>❌ <strong>僅 Linux</strong>：不支援 Windows/macOS</li>
+<li>❌ <strong>安裝複雜</strong>：CMake 編譯 + 多重依賴</li>
+<li>❌ <strong>OpenPose 商用問題</strong>：依賴 OpenPose 的授權</li>
+<li>❌ <strong>精度不如最新 SOTA</strong>：2019-2021 架構，不如 4D-Humans</li>
+<li>❌ <strong>維護不活躍</strong>：GitHub 近年更新較少</li>
+<li>❌ <strong>GPU 非必要但影響速度</strong>：CPU 模式較慢</li>
+</ul>
+
+<hr>
+
+<h2>7. 與 Kimodo 的整合可能性</h2>
+
+<table><tr><th><th>比較項目</th><th>MocapNET</th><th>Kimodo</th></tr>
+<tr><td>輸入</td><td>影片</td><td>文字 prompt</td></tr>
+<tr><td>輸出</td><td>BVH（直接！）</td><td>BVH</td></tr>
+<tr><td>格式相容</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐⭐⭐</td></tr>
+<tr><td>精度</td><td>中</td><td>中高</td></tr>
+<tr><td>手指</td><td>v3 有基礎支援</td><td>❌</td></tr>
+<tr><td>商用</td><td>⚠️ OpenPose 限制</td><td>✅</td></tr>
+<tr><td>即時性</td><td>接近即時</td><td>離線 5-6 分鐘</td></tr>
+</table>
+
+<h3>推薦整合方式</h3>
+<pre><code>[MocapNET 從影片提取 BVH]
+        ↓
+[與 Kimodo BVH 格式完全相同]
+        ↓
+[ARP Remap 重定向到角色] → [引擎]</code></pre>
+
+<p>MocapNET 和 Kimodo 輸出格式完全一致（BVH），可使用同一套後處理管線（ARP Remap），形成「影片→動作」和「文字→動作」的雙軌並行。</p>
+
+<hr>
+
+<h2>8. 對 AI 動作量產工作流的貢獻定位</h2>
+
+<h3>定位：<strong>影片→BVH 的直通管線（免格式轉換）</strong></h3>
+
+<pre><code>路線 A（影片源）：
+[參考影片] → [MocapNET] → [BVH] ─┐
+                                    ├→ [ARP Remap] → [引擎]
+路線 B（文字源）：                   │
+[Prompt] → [Kimodo] → [BVH] ──────┘</code></pre>
+
+<strong>量產流程中的角色：</strong>
+<ul>
+<li>影片→動作的「免轉換」備選方案</li>
+<li>精度不如最新方案但格式最友好</li>
+<li>適合快速批次從影片提取大量基礎動作</li>
+<li>Linux 環境限制降低了日常使用便利性</li>
+</ul>
+
+<hr>
+
+<h2>9. 總結評分</h2>
+
+<table><tr><th><th>項目</th><th>評分</th><th>說明</th></tr>
+<tr><td>動作品質</td><td>⭐⭐⭐</td><td>可用但不如 SOTA</td></tr>
+<tr><td>易用性</td><td>⭐⭐</td><td>Linux only + 編譯安裝</td></tr>
+<tr><td>性價比</td><td>⭐⭐⭐⭐</td><td>免費開源</td></tr>
+<tr><td>量產適用性</td><td>⭐⭐⭐</td><td>BVH 直出是大優勢</td></tr>
+<tr><td>整合便利性</td><td>⭐⭐⭐⭐⭐</td><td>BVH 格式 = 零轉換成本</td></tr>
+<tr><td>商用合規</td><td>⭐⭐⭐</td><td>GPL OK，但 OpenPose 需注意</td></tr>
+</table>
+
+<hr>
+
+<h2>10. 行動建議</h2>
+
+<ul>
+<li><strong>在 WSL/Linux 環境編譯測試</strong>：評估實際輸出品質</li>
+<li><strong>測試 OpenCV DNN 模式</strong>：迴避 OpenPose 商用授權問題</li>
+<li><strong>建立 BVH 品質比較基準</strong>：MocapNET vs Kimodo vs 手動製作</li>
+<li><strong>考慮作為備選方案</strong>：當有現成影片素材且 Kimodo prompt 難以描述時使用</li>
+<li><strong>關注後續更新</strong>：若 v4 出現可重新評估</li>
+</ul>
+
+<hr>
+
+<h2>參考資料</h2>
+
+<ul>
+<li>GitHub：https://github.com/FORTH-ModelBasedTracker/MocapNET</li>
+<li>FORTH 實驗室：http://amlab.ics.forth.gr/</li>
+<li>OpenPose 授權：https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/LICENSE</li>
+</ul>
+
 </body>
 </html>

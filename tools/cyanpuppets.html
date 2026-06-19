@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CyanPuppets — 十億參數動捕大模型</title>
+<title>CyanPuppets — 十億參數動捕大模型（208 關鍵點）</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#1a1a2e;color:#e0d6c8;font-family:-apple-system,'Noto Sans TC',sans-serif;max-width:900px;margin:0 auto;padding:2rem;line-height:1.7}
@@ -19,55 +19,171 @@ th,td{border:1px solid #333;padding:8px 12px;text-align:left}
 th{background:#2a2a3e}
 pre{background:#0d0d1a;padding:1rem;border-radius:8px;overflow-x:auto;margin:1rem 0}
 code{background:#0d0d1a;padding:2px 6px;border-radius:4px;font-size:.9em}
+pre code{padding:0;background:none}
 hr{border:none;border-top:1px solid #333;margin:1.5rem 0}
 p{margin:.6rem 0}
 img{max-width:100%;border-radius:8px}
 .back{display:inline-block;margin-bottom:1.5rem;text-decoration:none}
-.tag{display:inline-block;background:#2a2a3e;border:1px solid #444;border-radius:4px;padding:2px 8px;margin:2px;font-size:.85em}
 </style>
 </head>
 <body>
 <a href="../index.html" class="back">← 返回首頁</a>
-<h1>CyanPuppets — 十億參數動捕大模型</h1>
 
-<p>> 調研日期：2026-06-19</p>
-<p>> 官網：<a href="https://www.cyanpuppets.com" target="_blank">https://www.cyanpuppets.com</a></p>
+<img src="../images/cyanpuppets.png" alt="cyanpuppets 官網截圖" style="width:100%;border:1px solid #333;margin:0 0 1.5rem;border-radius:8px">
 
+<h1>CyanPuppets — 十億參數動捕大模型（208 關鍵點）</h1>
+<p style="color:#999">調研日期：2026-06-19</p>
+<p style="color:#999">官網：https://www.cyanpuppets.com</p>
+<p style="color:#999">公司：青瞳視覺（中國）</p>
+<p style="color:#999">定價：Personal $50/月 | Enterprise $1,499/年</p>
+<p style="color:#999">插件：Blender / Unreal Engine</p>
 <hr>
-
-<h2>工具概述</h2>
-<p>中國 AI 動捕公司，十億參數大模型，208 關鍵點（臉140+手指21+四肢30）。Blender/UE 插件，0.1 秒延遲即時渲染。</p>
-
-
-<img src="../images/cyanpuppets.png" alt="官網截圖" style="width:100%;border:1px solid #333;margin:1rem 0">
-<div style="margin:1rem 0">
-<span class="tag">$50/mo</span><span class="tag">208 Points</span><span class="tag">Blender</span><span class="tag">UE</span><span class="tag">Real-time</span>
-</div>
-
-<hr>
-
-<h2>核心功能</h2>
+<h2>一、工具概述</h2>
+<p><strong>CyanPuppets</strong>（青瞳視覺 / CYAN.AI）是中國 AI 動捕公司，擁有<strong>十億參數</strong>動捕大模型。從攝影機/影片即時提取 208 個關鍵點（臉 140 + 手指 21 + 四肢 30），延遲僅 0.1 秒。</p>
+<p><strong>核心能力一句話</strong>：十億參數 AI → 208 關鍵點（臉140+手21+肢體30）→ 0.1 秒延遲即時 → Blender/UE 插件。</p>
+<p><strong>解決的問題</strong>：</p>
 <ul>
-<li>208 關鍵點追蹤</li>
-<li>140 臉部關鍵點</li>
-<li>21 手指關鍵點</li>
-<li>30 四肢關鍵點</li>
-<li>0.1 秒延遲即時</li>
-<li>Blender 插件</li>
-<li>Unreal Engine 插件</li>
-<li>十億參數模型</li>
-
+<li>普通 AI 動捕追蹤點少、精度不足（尤其臉/手）</li>
+<li>需要分開用不同工具追蹤臉/身/手</li>
+<li>延遲太高無法即時預覽</li>
 </ul>
-
 <hr>
-
-<h2>定價</h2>
-<p><strong>Personal $50/月 | Enterprise $1,499/年 | 免費離線版開發中</strong></p>
-
+<h2>二、功能詳細說明</h2>
+<h3>功能矩陣</h3>
+<table>
+<tr><th>功能</th><th>支援</th><th>說明</th></tr>
+<tr><td>全身動捕</td><td>✅</td><td>30 個四肢關鍵點</td></tr>
+<tr><td>臉部追蹤</td><td>✅</td><td>140 個臉部關鍵點（高精度）</td></tr>
+<tr><td>手指追蹤</td><td>✅</td><td>21 個手指關鍵點</td></tr>
+<tr><td>即時渲染</td><td>✅</td><td>0.1 秒延遲</td></tr>
+<tr><td>Blender 插件</td><td>✅</td><td>即時串流到 Blender</td></tr>
+<tr><td>Unreal Engine 插件</td><td>✅</td><td>即時串流到 UE</td></tr>
+<tr><td>影片分析</td><td>✅</td><td>預錄影片也可處理</td></tr>
+<tr><td>攝影機輸入</td><td>✅</td><td>Webcam 即時</td></tr>
+<tr><td>十億參數模型</td><td>✅</td><td>大模型品質</td></tr>
+</table>
+<h3>技術規格</h3>
+<table>
+<tr><th>項目</th><th>規格</th></tr>
+<tr><td>模型大小</td><td>1 Billion parameters</td></tr>
+<tr><td>追蹤點</td><td>208 總計（臉 140 + 手 21 + 肢體 30 + 其他 17）</td></tr>
+<tr><td>延遲</td><td>0.1 秒</td></tr>
+<tr><td>輸入</td><td>Webcam / 影片</td></tr>
+<tr><td>輸出</td><td>Blender/UE 即時串流 / 動畫匯出</td></tr>
+<tr><td>應用領域</td><td>遊戲動畫、影視製作、機器人訓練、運動分析、VTuber</td></tr>
+</table>
 <hr>
+<h2>三、官方影片 / 教學連結</h2>
+<table>
+<tr><th>資源</th><th>連結</th></tr>
+<tr><td>官網</td><td>https://www.cyanpuppets.com</td></tr>
+<tr><td>商店</td><td>https://cyanpuppets.myshopify.com</td></tr>
+<tr><td>80.lv 報導（免費版開發）</td><td>https://cdn.80.lv/articles/cyanpuppets-free-offline-motion-capture-software-is-underway/</td></tr>
+<tr><td>80.lv 報導（大模型）</td><td>https://80.lv/articles/convert-videos-to-motion-data-with-this-add-on</td></tr>
+<tr><td>Let's Data Science 報導</td><td>https://www.letsdatascience.com/news/cyanpuppets-releases-billion-parameter-motion-capture-model-61b69f07</td></tr>
+<tr><td>CGDive 收錄</td><td>https://addons.cgdive.com/tools/cyan-puppets</td></tr>
+<tr><td>AI 分享網介紹</td><td>https://aisharenet.com/en/cyanai/</td></tr>
+</table>
+<hr>
+<h2>四、使用流程</h2>
+<ol>
+<li>**訂閱** → https://cyanpuppets.myshopify.com（Personal $50/月）</li>
+<li>**下載插件** → Blender 或 Unreal Engine</li>
+<li>**安裝到 DCC** → 安裝 CyanPuppets 插件</li>
+<li>**連接攝影機** → 或載入影片</li>
+<li>**啟動追蹤** → 208 點即時追蹤</li>
+<li>**即時預覽** → 在 Blender/UE 中即時看到動畫</li>
+<li>**錄製/匯出** → 錄製動畫到 timeline</li>
+</ol>
+<hr>
+<h2>五、定價與授權</h2>
+<table>
+<tr><th>方案</th><th>費用</th><th>說明</th></tr>
+<tr><td>**Personal**</td><td>$50/月</td><td>個人使用</td></tr>
+<tr><td>**Enterprise**</td><td>$1,499/年</td><td>企業/團隊</td></tr>
+<tr><td>**Free Offline（開發中）**</td><td>$0</td><td>離線免費版（尚未正式發佈）</td></tr>
+</table>
+<h3>商用授權</h3>
+<ul>
+<li>Personal 方案：個人項目</li>
+<li>Enterprise：商業項目</li>
+</ul>
+<hr>
+<h2>六、優缺點分析</h2>
+<h3>✅ 優點</h3>
+<ol>
+<li>**208 追蹤點** — 市場上數一數二的精細度（臉 140 點）</li>
+<li>**十億參數大模型** — AI 品質理論上更高</li>
+<li>**0.1 秒延遲** — 接近即時</li>
+<li>**Blender + UE 插件** — 直接整合主流引擎</li>
+<li>**臉+身+手一體** — 不需分開工具</li>
+<li>**免費版開發中** — 未來可能零成本使用</li>
+</ol>
+<h3>❌ 缺點</h3>
+<ol>
+<li>**$50/月偏貴** — 比 Marionette($12.50) 和 Viggle($0.03/clip) 貴很多</li>
+<li>**中國產品** — 英文文件較少</li>
+<li>**市場認知度低** — 獨立品質驗證少</li>
+<li>**免費版未發佈** — 目前只能付費</li>
+<li>**匯出格式不明確** — 官方文件未詳列 BVH/FBX 等格式支援</li>
+</ol>
+<hr>
+<h2>七、與 Kimodo BVH 工作流的整合可能性</h2>
+<table>
+<tr><th>面向</th><th>評估</th></tr>
+<tr><td>**互補性**</td><td>CyanPuppets 提供高精度臉/手（Kimodo 沒有的）</td></tr>
+<tr><td>**格式**</td><td>透過 Blender 插件可匯出各種格式</td></tr>
+<tr><td>**即時性**</td><td>CyanPuppets 即時預覽，Kimodo 是離線生成</td></tr>
+<tr><td>**成本**</td><td>$50/月 vs Kimodo 免費 — 成本差異大</td></tr>
+</table>
+<h3>推薦整合方式</h3>
+<pre><code>
+高精度場景：
+  臉部+手指表演 → CyanPuppets(208點) → Blender 錄製 → FBX
+  全身表演動作 → Kimodo/Viggle → BVH/GLB
+  統一在 Blender 合併
 
-<h2>評估結論</h2>
-<p>🟡 觀望 — 等免費版再評測。精度高但 $50/月對量產不夠經濟。</p>
+等免費版發佈後：
+  CyanPuppets 免費版 → 替代臉部追蹤付費工具
+</code></pre>
+<hr>
+<h2>八、對「AI 動作量產工作流」的貢獻定位</h2>
+<pre><code>
+CyanPuppets 定位：「高精度臉部+手指追蹤方案」
+
+最適合：
+• 需要精細臉部表情（140 點）的角色演出
+• 需要手指動畫的場景
+• 已有 Blender/UE Pipeline
+
+等免費版後：
+• 可能成為免費高精度動捕的首選
+
+現階段不適合：
+• 預算有限的量產（$50/月 vs Viggle $0.03）
+• 只需要全身動捕的場景（overkill）
+</code></pre>
+<hr>
+<h2>九、總結評分</h2>
+<table>
+<tr><th>項目</th><th>評分 (1-5)</th></tr>
+<tr><td>與我們目標的相關性</td><td>⭐⭐⭐</td></tr>
+<tr><td>技術成熟度</td><td>⭐⭐⭐⭐</td></tr>
+<tr><td>易用性</td><td>⭐⭐⭐⭐</td></tr>
+<tr><td>性價比</td><td>⭐⭐</td></tr>
+<tr><td>Pipeline 整合潛力</td><td>⭐⭐⭐⭐</td></tr>
+<tr><td>量產化適合度</td><td>⭐⭐</td></tr>
+</table>
+<p><strong>推薦等級</strong>：🟡 <strong>觀望</strong> — 技術指標很好（208 點、十億參數），但 $50/月不經濟。等免費離線版發佈後優先評測。</p>
+<hr>
+<h2>十、行動建議</h2>
+<ol>
+<li>**追蹤免費版進度** → 定期檢查是否發佈</li>
+<li>**如需精細臉部** → 考慮短期訂閱測試 Personal 方案品質</li>
+<li>**與 Marionette 對比** → 同為全能型，Marionette $12.50/月 vs CyanPuppets $50/月</li>
+<li>**Blender 插件評估** → 安裝插件測試即時串流穩定性</li>
+<li>**暫不列為量產工具** → 等降價或免費版</li>
+</ol>
 
 <hr>
 <p style="color:#666;font-size:.85em">MotionLab Research · 2026-06-19</p>

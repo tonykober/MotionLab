@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>XR Animator — 免費 AI 全身動捕（瀏覽器端）</title>
+<title>XR Animator — 免費 AI 全身動捕（瀏覽器端/開源）</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#1a1a2e;color:#e0d6c8;font-family:-apple-system,'Noto Sans TC',sans-serif;max-width:900px;margin:0 auto;padding:2rem;line-height:1.7}
@@ -19,55 +19,146 @@ th,td{border:1px solid #333;padding:8px 12px;text-align:left}
 th{background:#2a2a3e}
 pre{background:#0d0d1a;padding:1rem;border-radius:8px;overflow-x:auto;margin:1rem 0}
 code{background:#0d0d1a;padding:2px 6px;border-radius:4px;font-size:.9em}
+pre code{padding:0;background:none}
 hr{border:none;border-top:1px solid #333;margin:1.5rem 0}
 p{margin:.6rem 0}
 img{max-width:100%;border-radius:8px}
 .back{display:inline-block;margin-bottom:1.5rem;text-decoration:none}
-.tag{display:inline-block;background:#2a2a3e;border:1px solid #444;border-radius:4px;padding:2px 8px;margin:2px;font-size:.85em}
 </style>
 </head>
 <body>
 <a href="../index.html" class="back">← 返回首頁</a>
-<h1>XR Animator — 免費 AI 全身動捕（瀏覽器端）</h1>
 
-<p>> 調研日期：2026-06-19</p>
-<p>> 官網：<a href="https://sao.animetheme.com/XR_Animator.html" target="_blank">https://sao.animetheme.com/XR_Animator.html</a></p>
+<img src="../images/xr_animator.png" alt="xr_animator 官網截圖" style="width:100%;border:1px solid #333;margin:0 0 1.5rem;border-radius:8px">
 
+<h1>XR Animator — 免費 AI 全身動捕（瀏覽器端/開源）</h1>
+<p style="color:#999">調研日期：2026-06-19</p>
+<p style="color:#999">官網：https://sao.animetheme.com/XR_Animator.html</p>
+<p style="color:#999">GitHub：https://github.com/ButzYung/SystemAnimatorOnline</p>
+<p style="color:#999">定價：完全免費 / MIT 開源</p>
 <hr>
-
-<h2>工具概述</h2>
-<p>免費開源瀏覽器端 AI 動捕工具，使用 MediaPipe + TensorFlow 做即時全身/臉部/手指追蹤。支援 VRM 模型，面向 VTuber 和 XR 應用。</p>
-
-
-<img src="../images/xr_animator.png" alt="官網截圖" style="width:100%;border:1px solid #333;margin:1rem 0">
-<div style="margin:1rem 0">
-<span class="tag">Free</span><span class="tag">Browser</span><span class="tag">VTuber</span><span class="tag">MediaPipe</span><span class="tag">VRM</span>
-</div>
-
-<hr>
-
-<h2>核心功能</h2>
+<h2>一、工具概述</h2>
+<p><strong>XR Animator</strong>（原 System Animator Online）是瀏覽器端 AI 全身動捕工具，使用 Google MediaPipe + TensorFlow 即時追蹤。支援 VRM 模型驅動，面向 VTuber 和 XR 應用。由獨立開發者 ButzYung 維護。</p>
+<p><strong>核心能力一句話</strong>：瀏覽器開啟 → Webcam 即時全身/臉/手追蹤 → VRM 角色驅動 → VMC 串流。</p>
+<p><strong>解決的問題</strong>：</p>
 <ul>
-<li>全身追蹤（MediaPipe BlazePose）</li>
-<li>臉部表情追蹤</li>
-<li>手指追蹤</li>
-<li>VRM 模型支援</li>
-<li>即時 VMC Protocol 串流</li>
-<li>瀏覽器端零安裝</li>
-<li>手機支援</li>
-<li>完全免費開源</li>
-
+<li>VTuber 需要全身動捕但預算有限</li>
+<li>安裝動捕軟體門檻高</li>
+<li>需要即時表演工具</li>
 </ul>
-
 <hr>
-
-<h2>定價</h2>
-<p><strong>完全免費（GitHub 開源）</strong></p>
-
+<h2>二、功能詳細說明</h2>
+<h3>功能矩陣</h3>
+<table>
+<tr><th>功能</th><th>支援</th><th>說明</th></tr>
+<tr><td>全身追蹤</td><td>✅</td><td>MediaPipe BlazePose</td></tr>
+<tr><td>臉部追蹤</td><td>✅</td><td>含表情辨識</td></tr>
+<tr><td>手指追蹤</td><td>✅</td><td>MediaPipe Hands</td></tr>
+<tr><td>VRM 支援</td><td>✅</td><td>載入自訂 VRM 模型</td></tr>
+<tr><td>即時串流</td><td>✅</td><td>VMC Protocol</td></tr>
+<tr><td>影片輸入</td><td>✅</td><td>可分析預錄影片</td></tr>
+<tr><td>瀏覽器端</td><td>✅</td><td>Chrome/Firefox/Safari</td></tr>
+<tr><td>手機支援</td><td>✅</td><td>手機瀏覽器可用</td></tr>
+<tr><td>錄製</td><td>✅</td><td>瀏覽器內錄製</td></tr>
+<tr><td>自訂組合</td><td>✅</td><td>臉/身/手任意組合</td></tr>
+</table>
+<h3>技術規格</h3>
+<table>
+<tr><th>項目</th><th>規格</th></tr>
+<tr><td>AI 引擎</td><td>Google MediaPipe + TensorFlow.js</td></tr>
+<tr><td>輸入</td><td>Webcam / 影片檔案</td></tr>
+<tr><td>輸出</td><td>VMC Protocol 串流 / 瀏覽器內錄製</td></tr>
+<tr><td>平台</td><td>所有主流瀏覽器（桌面+手機）</td></tr>
+<tr><td>GPU 需求</td><td>不需要（CPU 可運行）</td></tr>
+<tr><td>授權</td><td>MIT（開源）</td></tr>
+<tr><td>GitHub Stars</td><td>活躍維護中</td></tr>
+</table>
 <hr>
+<h2>三、官方影片 / 教學連結</h2>
+<table>
+<tr><th>資源</th><th>連結</th></tr>
+<tr><td>官網</td><td>https://sao.animetheme.com/XR_Animator.html</td></tr>
+<tr><td>GitHub</td><td>https://github.com/ButzYung/SystemAnimatorOnline</td></tr>
+<tr><td>說明文件</td><td>https://sao.animetheme.com/readme.txt</td></tr>
+<tr><td>與 VROOM 搭配</td><td>https://hackmd.io/@reneil1337/vtubing</td></tr>
+</table>
+<hr>
+<h2>四、使用流程</h2>
+<ol>
+<li>**開啟網頁** → https://sao.animetheme.com/XR_Animator.html</li>
+<li>**允許攝影機** → 瀏覽器授權 webcam</li>
+<li>**載入 VRM** → 上傳自訂 VRM 模型（或用內建）</li>
+<li>**選擇追蹤** → 勾選臉/身/手的組合</li>
+<li>**開始追蹤** → 即時在瀏覽器中驅動角色</li>
+<li>**串流** → 用 VMC Protocol 送到 VROOM/VSeeFace 等</li>
+<li>**錄製** → 在瀏覽器內錄製表演</li>
+</ol>
+<hr>
+<h2>五、定價與授權</h2>
+<table>
+<tr><th>項目</th><th>說明</th></tr>
+<tr><td>價格</td><td>完全免費</td></tr>
+<tr><td>授權</td><td>MIT 開源</td></tr>
+<tr><td>商用</td><td>✅ MIT 允許商用</td></tr>
+<tr><td>限制</td><td>無</td></tr>
+</table>
+<hr>
+<h2>六、優缺點分析</h2>
+<h3>✅ 優點</h3>
+<ol>
+<li>**完全免費零門檻** — 開啟網頁即用</li>
+<li>**無需安裝** — 瀏覽器端，跨平台</li>
+<li>**全身+臉+手** — 追蹤覆蓋完整</li>
+<li>**手機也能用** — 行動端可運行</li>
+<li>**開源可修改** — MIT 授權</li>
+</ol>
+<h3>❌ 缺點</h3>
+<ol>
+<li>**不輸出 FBX/BVH** — 不產生遊戲可用動畫檔案</li>
+<li>**精度有限** — MediaPipe 等級，不如商業工具</li>
+<li>**主要是即時工具** — 不適合後處理工作流</li>
+<li>**VTuber 導向** — 非遊戲動畫設計</li>
+<li>**無 retargeting** — 只驅動 VRM，不能轉到任意骨架</li>
+</ol>
+<hr>
+<h2>七、與 Kimodo BVH 工作流的整合可能性</h2>
+<table>
+<tr><th>面向</th><th>評估</th></tr>
+<tr><td>**格式**</td><td>❌ 不輸出 BVH/FBX — 基本不相容</td></tr>
+<tr><td>**用途**</td><td>快速動作參考預覽（看著動一下確認動作可行性）</td></tr>
+<tr><td>**量產**</td><td>❌ 不適合</td></tr>
+</table>
+<hr>
+<h2>八、對「AI 動作量產工作流」的貢獻定位</h2>
+<pre><code>
+XR Animator 定位：「零成本即時動作預覽」
 
-<h2>評估結論</h2>
-<p>🔵 低優先級 — VTuber 即時工具，不輸出遊戲可用動畫格式。</p>
+僅適合：
+• 快速確認動作可行性（5 秒開啟看看）
+• VTuber 即時表演
+• 教學展示 AI 動捕概念
+
+不適合量產工作流的任何環節。
+</code></pre>
+<hr>
+<h2>九、總結評分</h2>
+<table>
+<tr><th>項目</th><th>評分 (1-5)</th></tr>
+<tr><td>與我們目標的相關性</td><td>⭐</td></tr>
+<tr><td>技術成熟度</td><td>⭐⭐⭐</td></tr>
+<tr><td>易用性</td><td>⭐⭐⭐⭐⭐</td></tr>
+<tr><td>性價比</td><td>⭐⭐⭐⭐⭐</td></tr>
+<tr><td>Pipeline 整合潛力</td><td>⭐</td></tr>
+<tr><td>量產化適合度</td><td>⭐</td></tr>
+</table>
+<p><strong>推薦等級</strong>：🔵 <strong>低優先級</strong> — 免費好玩但不產出遊戲可用資料。</p>
+<hr>
+<h2>十、行動建議</h2>
+<ol>
+<li>**知道就好** — 不需要投入時間評測</li>
+<li>**偶爾用於快速參考** — 需要即時看某個動作效果時 5 秒開啟看看</li>
+<li>**不納入正式 Pipeline** — 無 FBX/BVH 輸出</li>
+</ol>
 
 <hr>
 <p style="color:#666;font-size:.85em">MotionLab Research · 2026-06-19</p>

@@ -1,74 +1,260 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CEB 4D Humans — 動捕工具調研</title>
+<title>CEB 4D Humans — 深度調研報告</title>
 <style>
-body{background:#1a1f2e;color:#b8c4d0;font-family:'Noto Sans TC',-apple-system,sans-serif;margin:0;padding:2rem;line-height:1.7}
-.container{max-width:900px;margin:0 auto}
-h1,h2,h3{color:#fff}
-a{color:#4db8d4;text-decoration:none}
-a:hover{text-decoration:underline}
-table{border-collapse:collapse;width:100%;margin:1rem 0}
-th,td{border:1px solid #333;padding:0.6rem 1rem;text-align:left}
-th{background:#2a2a3e;color:#fff}
-code{background:#0d0d1a;padding:0.2rem 0.5rem;border-radius:4px}
-pre{background:#0d0d1a;padding:1rem;border-radius:8px;overflow-x:auto}
-.back-link{margin-bottom:2rem;display:inline-block}
-ul,ol{padding-left:1.5rem}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#1a1a2e;color:#e0d6c8;font-family:-apple-system,'Noto Sans TC',sans-serif;max-width:900px;margin:0 auto;padding:2rem;line-height:1.7}
+h1{color:#f5a623;margin:1.5rem 0 1rem}
+h2{color:#fff;margin:1.5rem 0 .8rem}
+h3{color:#e0d6c8;margin:1.2rem 0 .6rem}
+a{color:#f5a623}
+strong{color:#f5a623}
+ul,ol{margin:.5rem 0 .5rem 1.5rem}
+li{margin:.3rem 0}
+table{border-collapse:collapse;margin:1rem 0;max-width:100%;overflow-x:auto;display:block}
+th,td{border:1px solid #333;padding:8px 12px;text-align:left}
+th{background:#2a2a3e}
+pre{background:#0d0d1a;padding:1rem;border-radius:8px;overflow-x:auto;margin:1rem 0}
+code{background:#0d0d1a;padding:2px 6px;border-radius:4px;font-size:.9em}
+pre code{padding:0;background:none}
+hr{border:none;border-top:1px solid #333;margin:1.5rem 0}
+p{margin:.6rem 0}
+img{max-width:100%}
+.back{display:inline-block;margin-bottom:1.5rem;text-decoration:none}
 </style>
 </head>
 <body>
-<div class="container">
-<a href="../index.html" class="back-link">← 返回首頁</a>
-<h1>CEB 4D Humans</h1>
+<a href="../index.html" class="back">← 返回首頁</a>
+<h1>CEB 4D Humans — 深度調研報告</h1>
 
-<div style="margin:1.5rem 0;text-align:center">
-<img src="../images/ceb_4d_humans.png" alt="ceb_4d_humans" style="max-width:100%;border-radius:8px;border:1px solid #333;margin-bottom:1rem">
-</div>
-<div style="margin:1.5rem 0;padding:1.5rem;background:rgba(30,42,60,0.55);border-radius:12px;border:1px solid rgba(255,255,255,0.08)">
-<h3 style="color:#4db8d4;margin-bottom:1rem">📺 影片展示</h3>
-<div style="position:relative;padding-bottom:56.25%;height:0;max-width:720px;margin-bottom:1rem"><iframe src="https://www.youtube.com/embed/jti3634GeX4" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:8px" allowfullscreen></iframe></div>
-</div>
+<h2>1. 工具概述</h2>
 
+<p>CEB 4D Humans 是由 Carlos Eduardo Barreto 開發的 <strong>Blender 外掛</strong>，整合了 4D-Humans、WHAM、SLAHMR 等頂級學術人體重建項目，讓使用者在 Blender 中直接將影片轉為 3D 骨架動畫。</p>
 
-<p>Carlos Eduardo Barreto 開發的 Blender 外掛，整合 4D-Humans / WHAM / SLAHMR 學術項目，在 Blender 中直接將影片轉為 3D 動畫。</p>
+<strong>核心能力一句話</strong>：在 Blender 內一鍵將影片轉為 3D 骨架動畫，整合多個 SOTA 學術模型 + SmoothNet 後處理。
 
-<h2>基本資訊</h2>
-<table>
-<tr><th>開發者</th><td>Carlos Eduardo Barreto</td></tr>
-<tr><th>平台</th><td>Blender 外掛（需 NVIDIA GPU）</td></tr>
-<tr><th>價格</th><td>免費開源（GitHub）+ Gumroad 付費支持版</td></tr>
-<tr><th>GitHub</th><td><a href="https://github.com/carlosedubarreto/CEB_4d_Humans">CEB_4d_Humans</a></td></tr>
-</table>
-
-<h2>功能特色</h2>
+<strong>解決的問題：</strong>
 <ul>
-<li>影片直接轉 3D 骨架動畫</li>
-<li>整合多種學術推理後端（4D-Humans、WHAM、SLAHMR）</li>
-<li>SmoothNet 後處理平滑</li>
-<li>Blender 原生整合</li>
-<li>GPU 加速推理（CUDA）</li>
+<li>學術 AI 動捕工具（4D-Humans/WHAM）需要複雜的 Python/CUDA 環境設定</li>
+<li>研究程式碼的輸出難以直接在 DCC 軟體中使用</li>
+<li>手動將 SMPL-X 結果轉為骨架動畫流程繁瑣</li>
+<li>動捕結果抖動需要後處理平滑</li>
 </ul>
 
-<h2>輸出格式</h2>
-<p>Blender 骨架動畫，可透過 Blender 內建功能匯出為 BVH / FBX。</p>
+<hr>
 
-<h2>優缺點</h2>
-<table>
-<tr><th>優點</th><th>缺點</th></tr>
-<tr><td>免費開源</td><td>需要 NVIDIA GPU</td></tr>
-<tr><td>基於頂級學術研究</td><td>安裝配置複雜</td></tr>
-<tr><td>Blender 原生整合</td><td>學術項目穩定性有限</td></tr>
-<tr><td>SmoothNet 平滑</td><td>非即時處理</td></tr>
+<h2>2. 功能詳細說明</h2>
+
+<h3>功能矩陣</h3>
+
+<table><tr><th><th>功能</th><th>說明</th></tr>
+<tr><td>4D-Humans 推理</td><td>從影片重建 3D 人體（HMR2.0）</td></tr>
+<tr><td>WHAM 推理</td><td>含全域軌跡的人體重建（World-grounded）</td></tr>
+<tr><td>SLAHMR 推理</td><td>SLAM + 人體重建整合</td></tr>
+<tr><td>SmoothNet 後處理</td><td>自動平滑抖動，提升動畫品質</td></tr>
+<tr><td>Blender 原生輸出</td><td>結果直接呈現為 Blender 骨架動畫</td></tr>
+<tr><td>GPU 加速</td><td>CUDA 加速推理</td></tr>
+<tr><td>批次處理</td><td>可處理多段影片</td></tr>
+<tr><td>自動環境配置</td><td>外掛可自動安裝 Python 依賴</td></tr>
 </table>
 
-<h2>與 Kimodo 整合</h2>
-<p>可作為免費的影片轉動畫替代方案。在 Blender 中生成骨架動畫後，直接匯出 BVH 進入 Kimodo 後處理 pipeline。retarget 流程在 Blender 內可一併完成。</p>
+<h3>技術規格</h3>
 
-<h2>量產工作流定位</h2>
-<p><strong>免費影片轉動畫方案</strong>——影片參考用 CEB 4D Humans，文字描述用 Kimodo，互補使用。</p>
-</div>
+<table><tr><th><th>項目</th><th>規格</th></tr>
+<tr><td>推理後端</td><td>4D-Humans (HMR2.0) / WHAM / SLAHMR</td></tr>
+<tr><td>人體模型</td><td>SMPL / SMPL-X</td></tr>
+<tr><td>輸入</td><td>影片檔案（MP4/AVI 等）</td></tr>
+<tr><td>輸出</td><td>Blender Armature Animation</td></tr>
+<tr><td>後處理</td><td>SmoothNet（可選）</td></tr>
+<tr><td>GPU 需求</td><td>NVIDIA GPU + CUDA 11.x+</td></tr>
+<tr><td>VRAM 需求</td><td>≥ 6GB（建議 8GB+）</td></tr>
+<tr><td>Blender 版本</td><td>3.x - 4.x</td></tr>
+<tr><td>系統需求</td><td>Windows/Linux（CUDA 環境）</td></tr>
+</table>
+
+<hr>
+
+<h2>3. 官方影片/教學連結</h2>
+
+<table><tr><th><th>主題</th><th>連結</th></tr>
+<tr><td>GitHub</td><td>https://github.com/carlosedubarreto/CEB_4d_Humans</td></tr>
+<tr><td>Patreon（含教學）</td><td>https://www.patreon.com/posts/88955474</td></tr>
+<tr><td>Gumroad</td><td>https://carlosedubarreto.gumroad.com/</td></tr>
+<tr><td>Blender Market</td><td>https://blendermarket.com/products/ceb-4d-humans</td></tr>
+<tr><td>4D-Humans 論文</td><td>https://github.com/shubham-goel/4D-Humans</td></tr>
+<tr><td>CGDive 介紹</td><td>https://addons.cgdive.com/tools/ceb-4d-humans</td></tr>
+<tr><td>SmoothNet 展示</td><td>https://www.patreon.com/posts/ceb-4d-humans-0-87599519</td></tr>
+<tr><td>教學影片（4D Humans 匯入 Blender）</td><td>https://youtu.be/WYdO0fOxEWU</td></tr>
+</table>
+
+<hr>
+
+<h2>4. 安裝/使用流程</h2>
+
+<h3>環境需求</h3>
+<ul>
+<li>NVIDIA GPU（≥ 6GB VRAM）</li>
+<li>CUDA 11.x+ 已安裝</li>
+<li>Blender 3.x - 4.x</li>
+<li>網路連線（首次下載模型權重）</li>
+</ul>
+
+<h3>安裝步驟</h3>
+<ul>
+<li>從 GitHub/Gumroad/Blender Market 下載外掛 zip</li>
+<li>Blender → Edit → Preferences → Add-ons → Install</li>
+<li>啟用 CEB 4D Humans</li>
+<li>首次使用時，外掛會提示安裝 Python 依賴：</li>
+</ul>
+<p>   - PyTorch (CUDA 版)</p>
+<p>   - 4D-Humans / WHAM 模型權重</p>
+<p>   - 其他依賴套件</p>
+<ul>
+<li>下載 SMPL 模型檔案（需到官網註冊同意條款）</li>
+<li>設定模型路徑</li>
+</ul>
+
+<h3>使用流程</h3>
+<pre><code>1. 在 Blender 中開啟 CEB 4D Humans 面板
+<li>匯入影片檔案</li>
+<li>選擇推理後端（4D-Humans / WHAM / SLAHMR）</li>
+<li>設定參數（解析度、幀範圍等）</li>
+<li>點擊 "Run" 開始推理（GPU 處理）</li>
+<li>推理完成後，3D 骨架動畫自動載入場景</li>
+<li>（可選）啟用 SmoothNet 後處理平滑</li>
+<li>微調結果 → 匯出 FBX/BVH</code></pre></li>
+
+<hr>
+
+<h2>5. 定價與授權</h2>
+
+<table><tr><th><th>版本</th><th>價格</th><th>說明</th></tr>
+<tr><td>Free 版</td><td>免費</td><td>基礎功能，Patreon 下載</td></tr>
+<tr><td>Patreon 支持版</td><td>$1+/月</td><td>最新版本 + 進階功能</td></tr>
+<tr><td>Blender Market 版</td><td>~$15-25 USD</td><td>一次性購買</td></tr>
+<tr><td>Gumroad 版</td><td>自由定價</td><td>支持開發者</td></tr>
+</table>
+
+<strong>商用授權說明：</strong>
+<ul>
+<li>外掛本身：開發者允許商用</li>
+<li><strong>注意</strong>：底層 SMPL/SMPL-X 模型為<strong>非商業研究用途</strong>授權（MPI License）</li>
+<li>若需商用 SMPL，需另外洽 Meshcapade 取得商業授權</li>
+<li>生成的動畫資料本身不受 SMPL 授權限制（需確認）</li>
+</ul>
+
+<hr>
+
+<h2>6. 優缺點分析</h2>
+
+<h3>優點</h3>
+<ul>
+<li>✅ <strong>學術 SOTA 整合</strong>：直接使用頂級研究成果，無需自己搭環境</li>
+<li>✅ <strong>Blender 原生</strong>：結果直接在 Blender 中可用</li>
+<li>✅ <strong>多後端選擇</strong>：4D-Humans/WHAM/SLAHMR 各有優勢</li>
+<li>✅ <strong>SmoothNet 後處理</strong>：有效減少抖動</li>
+<li>✅ <strong>免費可用</strong>：基礎版免費</li>
+<li>✅ <strong>持續更新</strong>：開發者活躍，跟進最新研究</li>
+</ul>
+
+<h3>缺點</h3>
+<ul>
+<li>❌ <strong>CUDA 強制需求</strong>：無 NVIDIA GPU 無法使用</li>
+<li>❌ <strong>安裝複雜</strong>：Python 依賴環境容易出問題</li>
+<li>❌ <strong>處理速度慢</strong>：非即時，一段 10 秒影片可能需數分鐘</li>
+<li>❌ <strong>SMPL 授權限制</strong>：底層模型不允許商業用途</li>
+<li>❌ <strong>無手指追蹤</strong>：SMPL 模型不含手指細節</li>
+<li>❌ <strong>單人追蹤為主</strong>：多人場景需分別處理</li>
+<li>❌ <strong>硬體門檻</strong>：需要較高階 GPU（≥6GB VRAM）</li>
+</ul>
+
+<hr>
+
+<h2>7. 與 Kimodo 的整合可能性</h2>
+
+<table><tr><th><th>比較項目</th><th>CEB 4D Humans</th><th>Kimodo</th></tr>
+<tr><td>輸入方式</td><td>影片</td><td>文字 prompt</td></tr>
+<tr><td>輸出格式</td><td>Blender Armature</td><td>BVH</td></tr>
+<tr><td>品質</td><td>中高（依影片品質）</td><td>中高（AI 生成）</td></tr>
+<tr><td>速度</td><td>慢（離線 GPU）</td><td>慢（5-6 分鐘）</td></tr>
+<tr><td>手指</td><td>❌</td><td>❌</td></tr>
+<tr><td>全域軌跡</td><td>✅（WHAM）</td><td>❌（原地）</td></tr>
+<tr><td>商用授權</td><td>⚠️ SMPL 限制</td><td>✅</td></tr>
+</table>
+
+<h3>推薦整合方式</h3>
+<pre><code>方案 A：互補使用
+[參考影片] → [CEB 4D Humans 提取動作] → [觀察動作特徵]
+→ [撰寫 Kimodo Prompt] → [Kimodo 生成商用版本]
+
+方案 B：CEB 作為品質參考
+[CEB 產出] vs [Kimodo 產出] → 比較選擇較佳者
+→ [ARP Retarget] → [引擎]</code></pre>
+
+<p>CEB 4D Humans 最適合作為<strong>影片參考動作的提取工具</strong>，但因 SMPL 商用限制，正式產出建議用 Kimodo。</p>
+
+<hr>
+
+<h2>8. 對 AI 動作量產工作流的貢獻定位</h2>
+
+<h3>定位：<strong>影片→動作的學術級提取器（非商用限定）</strong></h3>
+
+<pre><code>[參考影片/實拍素材]
+        ↓
+[CEB 4D Humans（Blender 內）]
+        ↓
+[3D 骨架動畫（SMPL）] → [分析動作特徵] → [轉為 Kimodo Prompt]
+                                                    ↓
+                                          [Kimodo 生成（可商用）]
+                                                    ↓
+                                          [ARP → 引擎]</code></pre>
+
+<strong>量產流程中的角色：</strong>
+<ul>
+<li>研究/原型階段的快速動作提取</li>
+<li>「看影片→提取→分析→描述」的輔助工具</li>
+<li>不適合作為最終商業產出的動作來源（授權問題）</li>
+</ul>
+
+<hr>
+
+<h2>9. 總結評分</h2>
+
+<table><tr><th><th>項目</th><th>評分</th><th>說明</th></tr>
+<tr><td>動作品質</td><td>⭐⭐⭐⭐</td><td>SOTA 模型品質好，SmoothNet 加分</td></tr>
+<tr><td>易用性</td><td>⭐⭐⭐</td><td>Blender 整合好，但安裝環境複雜</td></tr>
+<tr><td>性價比</td><td>⭐⭐⭐⭐</td><td>免費/極低成本</td></tr>
+<tr><td>量產適用性</td><td>⭐⭐</td><td>非即時 + 商用授權受限</td></tr>
+<tr><td>整合便利性</td><td>⭐⭐⭐⭐</td><td>Blender 原生，直接可用</td></tr>
+<tr><td>商用合規</td><td>⭐⭐</td><td>SMPL 授權限制是重大問題</td></tr>
+</table>
+
+<hr>
+
+<h2>10. 行動建議</h2>
+
+<ul>
+<li><strong>安裝試用</strong>：確認團隊 GPU 環境可正常運行，評估實際品質</li>
+<li><strong>定位為研究工具</strong>：用於分析參考影片中的動作，而非直接商用產出</li>
+<li><strong>建立 CEB→Kimodo 工作流</strong>：CEB 提取動作特徵 → 撰寫精確 Kimodo prompt</li>
+<li><strong>關注 SMPL 商用授權</strong>：若未來 Meshcapade 開放合理商用授權可重新評估</li>
+<li><strong>測試 WHAM 後端</strong>：含全域軌跡，對 Root Motion 提取特別有幫助</li>
+</ul>
+
+<hr>
+
+<h2>參考資料</h2>
+
+<ul>
+<li>GitHub：https://github.com/carlosedubarreto/CEB_4d_Humans</li>
+<li>Patreon：https://www.patreon.com/posts/88955474</li>
+<li>4D-Humans：https://github.com/shubham-goel/4D-Humans</li>
+<li>SMPL-X 授權：https://smpl-x.is.tuebingen.mpg.de/modellicense.html</li>
+<li>CGDive：https://addons.cgdive.com/tools/ceb-4d-humans</li>
+</ul>
+
 </body>
 </html>

@@ -1,74 +1,230 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>mimem AI — 動捕工具調研</title>
+<title>mimem AI — 深度調研報告</title>
 <style>
-body{background:#1a1f2e;color:#b8c4d0;font-family:'Noto Sans TC',-apple-system,sans-serif;margin:0;padding:2rem;line-height:1.7}
-.container{max-width:900px;margin:0 auto}
-h1,h2,h3{color:#fff}
-a{color:#4db8d4;text-decoration:none}
-a:hover{text-decoration:underline}
-table{border-collapse:collapse;width:100%;margin:1rem 0}
-th,td{border:1px solid #333;padding:0.6rem 1rem;text-align:left}
-th{background:#2a2a3e;color:#fff}
-code{background:#0d0d1a;padding:0.2rem 0.5rem;border-radius:4px}
-pre{background:#0d0d1a;padding:1rem;border-radius:8px;overflow-x:auto}
-.back-link{margin-bottom:2rem;display:inline-block}
-ul,ol{padding-left:1.5rem}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#1a1a2e;color:#e0d6c8;font-family:-apple-system,'Noto Sans TC',sans-serif;max-width:900px;margin:0 auto;padding:2rem;line-height:1.7}
+h1{color:#f5a623;margin:1.5rem 0 1rem}
+h2{color:#fff;margin:1.5rem 0 .8rem}
+h3{color:#e0d6c8;margin:1.2rem 0 .6rem}
+a{color:#f5a623}
+strong{color:#f5a623}
+ul,ol{margin:.5rem 0 .5rem 1.5rem}
+li{margin:.3rem 0}
+table{border-collapse:collapse;margin:1rem 0;max-width:100%;overflow-x:auto;display:block}
+th,td{border:1px solid #333;padding:8px 12px;text-align:left}
+th{background:#2a2a3e}
+pre{background:#0d0d1a;padding:1rem;border-radius:8px;overflow-x:auto;margin:1rem 0}
+code{background:#0d0d1a;padding:2px 6px;border-radius:4px;font-size:.9em}
+pre code{padding:0;background:none}
+hr{border:none;border-top:1px solid #333;margin:1.5rem 0}
+p{margin:.6rem 0}
+img{max-width:100%}
+.back{display:inline-block;margin-bottom:1.5rem;text-decoration:none}
 </style>
 </head>
 <body>
-<div class="container">
-<a href="../index.html" class="back-link">← 返回首頁</a>
-<h1>mimem AI</h1>
+<a href="../index.html" class="back">← 返回首頁</a>
+<h1>mimem AI — 深度調研報告</h1>
 
-<div style="margin:1.5rem 0;text-align:center">
-<img src="../images/mimem_ai.png" alt="mimem_ai" style="max-width:100%;border-radius:8px;border:1px solid #333;margin-bottom:1rem">
-</div>
-<div style="margin:1.5rem 0;padding:1.5rem;background:rgba(30,42,60,0.55);border-radius:12px;border:1px solid rgba(255,255,255,0.08)">
-<h3 style="color:#4db8d4;margin-bottom:1rem">📺 影片展示</h3>
-<div style="position:relative;padding-bottom:56.25%;height:0;max-width:720px;margin-bottom:1rem"><iframe src="https://www.youtube.com/embed/6R4FTLNTwzs" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:8px" allowfullscreen></iframe></div>
-</div>
+<h2>1. 工具概述</h2>
 
+<p>mimem AI 是一個<strong>雲端無標記多攝影機動捕平台</strong>，強調無需校準、用現有設備即可使用。透過多攝影機同步拍攝，雲端 AI 進行 3D 重建與動畫平滑處理，大幅降低多攝影機動捕的設置門檻。</p>
 
-<p>雲端無標記多攝影機動捕平台，強調無需校準、用現有設備即可使用。</p>
+<strong>核心能力一句話</strong>：多攝影機無標記動捕——免校準、用現有手機/攝影機、雲端 AI 處理。
 
-<h2>基本資訊</h2>
-<table>
-<tr><th>開發者</th><td>mimem</td></tr>
-<tr><th>類型</th><td>雲端多攝影機動捕平台</td></tr>
-<tr><th>價格</th><td>尚未公開（early access）</td></tr>
-<tr><th>官網</th><td><a href="https://www.mimem.ai/">mimem.ai</a></td></tr>
-</table>
-
-<h2>功能特色</h2>
+<strong>解決的問題：</strong>
 <ul>
-<li>多攝影機同步</li>
-<li><strong>無需校準</strong>（巨大賣點）</li>
-<li>雲端 AI 重建 + 平滑</li>
-<li>支援現有設備（無需專用硬體）</li>
-<li>輸出標準格式（FBX / BVH）</li>
+<li>傳統多攝影機動捕（如 OptiTrack/Vicon）需昂貴專用設備和繁瑣校準</li>
+<li>單攝影機 AI 動捕精度不足（遮擋問題）</li>
+<li>多攝影機系統的空間標定耗時且需專業知識</li>
+<li>想要多角度精度但不想投資硬體的團隊</li>
 </ul>
 
-<h2>輸出格式</h2>
-<p>FBX / BVH 等標準格式，可直接用於主流 3D 軟體。</p>
+<hr>
 
-<h2>優缺點</h2>
-<table>
-<tr><th>優點</th><th>缺點</th></tr>
-<tr><td>無需校準設置</td><td>尚未正式發佈</td></tr>
-<tr><td>多攝影機精度高</td><td>雲端依賴</td></tr>
-<tr><td>雲端免本地算力</td><td>定價未知</td></tr>
-<tr><td>支援現有設備</td><td>成熟度待驗證</td></tr>
+<h2>2. 功能詳細說明</h2>
+
+<h3>功能矩陣</h3>
+
+<table><tr><th><th>功能</th><th>說明</th></tr>
+<tr><td>多攝影機同步</td><td>支援多角度同步拍攝（手機/攝影機）</td></tr>
+<tr><td>無需校準</td><td>不需傳統多攝影機系統的棋盤格校準流程</td></tr>
+<tr><td>雲端 AI 處理</td><td>3D 重建在雲端完成</td></tr>
+<tr><td>AI 平滑</td><td>自動後處理平滑，減少抖動</td></tr>
+<tr><td>標準格式輸出</td><td>FBX/BVH 匯出</td></tr>
+<tr><td>現有設備可用</td><td>不需專用攝影機，手機即可</td></tr>
+<tr><td>多人追蹤</td><td>支援多人同時動捕（推測）</td></tr>
 </table>
 
-<h2>與 Kimodo 整合</h2>
-<p>可作為高精度影片動捕方案。輸出 BVH 可直接進入 Kimodo 後處理 pipeline，補足 text-to-motion 無法覆蓋的複雜動作場景。</p>
+<h3>技術規格</h3>
 
-<h2>量產工作流定位</h2>
-<p><strong>高精度影片動捕來源</strong>——無校準設計讓小團隊也能進行專業動捕，待正式發佈後評估納入 pipeline。</p>
-</div>
+<table><tr><th><th>項目</th><th>規格</th></tr>
+<tr><td>攝影機數量</td><td>多個（具體最少/最多未公開）</td></tr>
+<tr><td>攝影機類型</td><td>一般攝影機/手機</td></tr>
+<tr><td>校準需求</td><td><strong>無</strong>（AI 自動推算攝影機相對位置）</td></tr>
+<tr><td>處理方式</td><td>雲端 AI</td></tr>
+<tr><td>輸出格式</td><td>FBX / BVH</td></tr>
+<tr><td>骨架</td><td>標準 Humanoid</td></tr>
+<tr><td>精度</td><td>高於單攝影機方案（多角度互補）</td></tr>
+<tr><td>即時性</td><td>❌ 非即時（上傳→處理→下載）</td></tr>
+<tr><td>狀態</td><td>Early Access</td></tr>
+</table>
+
+<hr>
+
+<h2>3. 官方影片/教學連結</h2>
+
+<table><tr><th><th>主題</th><th>連結</th></tr>
+<tr><td>官方網站</td><td>https://www.mimem.ai/</td></tr>
+</table>
+
+<strong>注意</strong>：目前 Early Access 階段，公開資料有限。
+
+<hr>
+
+<h2>4. 安裝/使用流程</h2>
+
+<h3>使用步驟</h3>
+<ul>
+<li>前往 https://www.mimem.ai/ 申請 Early Access</li>
+<li>設置多個攝影機/手機圍繞拍攝空間</li>
+<li>使用 mimem 提供的同步錄製方式拍攝動作</li>
+<li>上傳多角度影片至 mimem 雲端</li>
+<li>AI 自動處理：</li>
+</ul>
+<p>   - 推算攝影機位置（免校準）</p>
+<p>   - 3D 人體重建</p>
+<p>   - 動畫平滑</p>
+<ul>
+<li>處理完成後下載 FBX/BVH 動畫檔案</li>
+<li>匯入 Blender/引擎使用</li>
+</ul>
+
+<h3>無需安裝軟體</h3>
+<ul>
+<li>純雲端服務</li>
+<li>透過 Web 介面或 API 操作</li>
+</ul>
+
+<hr>
+
+<h2>5. 定價與授權</h2>
+
+<table><tr><th><th>項目</th><th>價格</th><th>說明</th></tr>
+<tr><td>Early Access</td><td>尚未公開</td><td>目前邀請制</td></tr>
+<tr><td>正式版</td><td>未定</td><td>預期為訂閱制</td></tr>
+</table>
+
+<strong>商用授權說明：</strong>
+<ul>
+<li>Early Access 階段，商用條款待確認</li>
+<li>推測正式上線後為 SaaS 訂閱模式</li>
+<li>輸出的動畫資料歸使用者所有（待確認）</li>
+</ul>
+
+<hr>
+
+<h2>6. 優缺點分析</h2>
+
+<h3>優點</h3>
+<ul>
+<li>✅ <strong>免校準</strong>：最大賣點，省去多攝影機系統最痛苦的環節</li>
+<li>✅ <strong>現有設備</strong>：不需專用攝影機，手機即可</li>
+<li>✅ <strong>多角度精度</strong>：比單攝影機方案精確（遮擋互補）</li>
+<li>✅ <strong>雲端處理</strong>：無需本地 GPU</li>
+<li>✅ <strong>標準格式輸出</strong>：FBX/BVH 直接可用</li>
+<li>✅ <strong>設置成本低</strong>：不需要動捕服、標記點、專用空間</li>
+</ul>
+
+<h3>缺點</h3>
+<ul>
+<li>❌ <strong>Early Access</strong>：尚未正式上線，穩定度未知</li>
+<li>❌ <strong>非即時</strong>：上傳處理需等待，不適合即時用途</li>
+<li>❌ <strong>雲端依賴</strong>：需要網路，隱私考量</li>
+<li>❌ <strong>定價未知</strong>：無法評估長期成本</li>
+<li>❌ <strong>精度未驗證</strong>：缺乏公開品質比較</li>
+<li>❌ <strong>多攝影機仍需空間</strong>：需要足夠空間擺放多個攝影機</li>
+<li>❌ <strong>同步問題</strong>：多台設備的時間同步如何處理未完全公開</li>
+</ul>
+
+<hr>
+
+<h2>7. 與 Kimodo 的整合可能性</h2>
+
+<table><tr><th><th>比較項目</th><th>mimem AI</th><th>Kimodo</th></tr>
+<tr><td>輸入</td><td>多角度影片</td><td>文字 prompt</td></tr>
+<tr><td>輸出</td><td>FBX/BVH</td><td>BVH</td></tr>
+<tr><td>精度</td><td>高（多角度）</td><td>中高（AI 生成）</td></tr>
+<tr><td>即時性</td><td>❌ 非即時</td><td>❌ 離線</td></tr>
+<tr><td>硬體需求</td><td>多攝影機 + 空間</td><td>無</td></tr>
+<tr><td>適合場景</td><td>實拍動作提取</td><td>想像中的動作生成</td></tr>
+<tr><td>商用</td><td>待確認</td><td>✅</td></tr>
+</table>
+
+<h3>推薦整合方式</h3>
+
+<pre><code>場景 A（有演員可拍）：
+[演員表演] → [mimem 多角度拍攝] → [BVH] → [ARP] → [引擎]
+
+場景 B（無法實拍）：
+[Prompt] → [Kimodo] → [BVH] → [ARP] → [引擎]</code></pre>
+
+<p>mimem 和 Kimodo 分別解決「有影片素材」和「無影片素材」的動作來源問題。</p>
+
+<hr>
+
+<h2>8. 對 AI 動作量產工作流的貢獻定位</h2>
+
+<h3>定位：<strong>低成本多攝影機動捕方案（等待驗證）</strong></h3>
+
+<pre><code>傳統高端路線：[OptiTrack/Vicon] → [$$$] → [高精度 BVH]
+mimem 路線：  [手機 × N] → [雲端 AI] → [中高精度 BVH]
+Kimodo 路線： [文字 Prompt] → [AI 生成] → [BVH]</code></pre>
+
+<strong>量產流程中的角色：</strong>
+<ul>
+<li>目前：觀望（Early Access）</li>
+<li>未來：若品質確認夠好，可成為「有參考影片時」的動捕方案</li>
+<li>與 Kimodo 互補：Kimodo 做想像的動作，mimem 做實拍的動作</li>
+<li>關鍵觀察：免校準的精度是否真的足夠</li>
+</ul>
+
+<hr>
+
+<h2>9. 總結評分</h2>
+
+<table><tr><th><th>項目</th><th>評分</th><th>說明</th></tr>
+<tr><td>技術願景</td><td>⭐⭐⭐⭐</td><td>免校準多攝影機是好方向</td></tr>
+<tr><td>當前可用性</td><td>⭐</td><td>Early Access，無法使用</td></tr>
+<tr><td>性價比</td><td>？</td><td>定價未知</td></tr>
+<tr><td>量產適用性</td><td>⭐⭐⭐</td><td>若品質好，批次處理影片很適合量產</td></tr>
+<tr><td>整合便利性</td><td>⭐⭐⭐⭐</td><td>FBX/BVH 輸出，格式相容</td></tr>
+<tr><td>商用合規</td><td>？</td><td>待確認</td></tr>
+</table>
+
+<hr>
+
+<h2>10. 行動建議</h2>
+
+<ul>
+<li><strong>申請 Early Access</strong>：取得測試資格，第一時間評估品質</li>
+<li><strong>準備測試場景</strong>：設計標準動作（walk/run/jump）用多手機拍攝</li>
+<li><strong>品質對比</strong>：mimem 輸出 vs Kimodo 輸出 vs 手動製作</li>
+<li><strong>評估免校準精度</strong>：這是核心賣點，需實測驗證</li>
+<li><strong>追蹤定價公告</strong>：正式上線後評估成本效益</li>
+</ul>
+
+<hr>
+
+<h2>參考資料</h2>
+
+<ul>
+<li>官方網站：https://www.mimem.ai/</li>
+</ul>
+
 </body>
 </html>

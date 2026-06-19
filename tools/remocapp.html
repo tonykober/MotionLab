@@ -1,75 +1,261 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ReMoCapp — 動捕工具調研</title>
+<title>ReMoCapp — 深度調研報告</title>
 <style>
-body{background:#1a1f2e;color:#b8c4d0;font-family:'Noto Sans TC',-apple-system,sans-serif;margin:0;padding:2rem;line-height:1.7}
-.container{max-width:900px;margin:0 auto}
-h1,h2,h3{color:#fff}
-a{color:#4db8d4;text-decoration:none}
-a:hover{text-decoration:underline}
-table{border-collapse:collapse;width:100%;margin:1rem 0}
-th,td{border:1px solid #333;padding:0.6rem 1rem;text-align:left}
-th{background:#2a2a3e;color:#fff}
-code{background:#0d0d1a;padding:0.2rem 0.5rem;border-radius:4px}
-pre{background:#0d0d1a;padding:1rem;border-radius:8px;overflow-x:auto}
-.back-link{margin-bottom:2rem;display:inline-block}
-ul,ol{padding-left:1.5rem}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#1a1a2e;color:#e0d6c8;font-family:-apple-system,'Noto Sans TC',sans-serif;max-width:900px;margin:0 auto;padding:2rem;line-height:1.7}
+h1{color:#f5a623;margin:1.5rem 0 1rem}
+h2{color:#fff;margin:1.5rem 0 .8rem}
+h3{color:#e0d6c8;margin:1.2rem 0 .6rem}
+a{color:#f5a623}
+strong{color:#f5a623}
+ul,ol{margin:.5rem 0 .5rem 1.5rem}
+li{margin:.3rem 0}
+table{border-collapse:collapse;margin:1rem 0;max-width:100%;overflow-x:auto;display:block}
+th,td{border:1px solid #333;padding:8px 12px;text-align:left}
+th{background:#2a2a3e}
+pre{background:#0d0d1a;padding:1rem;border-radius:8px;overflow-x:auto;margin:1rem 0}
+code{background:#0d0d1a;padding:2px 6px;border-radius:4px;font-size:.9em}
+pre code{padding:0;background:none}
+hr{border:none;border-top:1px solid #333;margin:1.5rem 0}
+p{margin:.6rem 0}
+img{max-width:100%}
+.back{display:inline-block;margin-bottom:1.5rem;text-decoration:none}
 </style>
 </head>
 <body>
-<div class="container">
-<a href="../index.html" class="back-link">← 返回首頁</a>
-<h1>ReMoCapp</h1>
+<a href="../index.html" class="back">← 返回首頁</a>
+<h1>ReMoCapp — 深度調研報告</h1>
 
-<div style="margin:1.5rem 0;text-align:center">
-<img src="../images/remocapp.png" alt="remocapp" style="max-width:100%;border-radius:8px;border:1px solid #333;margin-bottom:1rem">
-</div>
-<div style="margin:1.5rem 0;padding:1.5rem;background:rgba(30,42,60,0.55);border-radius:12px;border:1px solid rgba(255,255,255,0.08)">
-<h3 style="color:#4db8d4;margin-bottom:1rem">📺 影片展示</h3>
-<div style="position:relative;padding-bottom:56.25%;height:0;max-width:720px;margin-bottom:1rem"><iframe src="https://www.youtube.com/embed/97zGmkdhSNU" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:8px" allowfullscreen></iframe></div>
-</div>
+<h2>1. 工具概述</h2>
 
+<p>ReMoCapp 是一款 <strong>AI 即時無標記動捕軟體</strong>，使用 2-8 個網路攝影機即時捕捉全身與臉部動作。支援即時串流至 Blender、Unreal Engine、Unity 等主流 DCC 軟體，並可匯出 BVH/FBX 檔案。</p>
 
-<p>AI 即時無標記動捕軟體，用 2-8 個網路攝影機即時捕捉全身+臉部動作。</p>
+<strong>核心能力一句話</strong>：用 2-8 個網路攝影機做到即時全身+臉部動捕，直接串流到 Blender/UE/Unity。
 
-<h2>基本資訊</h2>
-<table>
-<tr><th>開發者</th><td>ReMoCapp</td></tr>
-<tr><th>平台</th><td>Windows</td></tr>
-<tr><th>價格</th><td>付費軟體</td></tr>
-<tr><th>官網</th><td><a href="https://remocapp.com/">remocapp.com</a></td></tr>
-</table>
-
-<h2>功能特色</h2>
+<strong>解決的問題：</strong>
 <ul>
-<li>即時動作捕捉（低延遲）</li>
-<li>2-8 攝影機多角度</li>
-<li>全身 + 臉部同時捕捉</li>
-<li>即時串流至 Blender / UE / Unity</li>
-<li>BVH / FBX 檔案匯出</li>
-<li>無需穿戴標記</li>
+<li>專業動捕系統昂貴（OptiTrack 數百萬台幣）</li>
+<li>單攝影機方案精度不足且有遮擋問題</li>
+<li>需要「即時」動捕且能直接串流到 DCC</li>
+<li>需同時捕捉全身和臉部</li>
+<li>不想穿戴任何追蹤裝置</li>
 </ul>
 
-<h2>輸出格式</h2>
-<p>即時串流到 DCC 軟體 + BVH / FBX 檔案匯出。雙輸出模式。</p>
+<hr>
 
-<h2>優缺點</h2>
-<table>
-<tr><th>優點</th><th>缺點</th></tr>
-<tr><td>即時低延遲</td><td>付費軟體</td></tr>
-<tr><td>全身+臉部</td><td>需多攝影機硬體</td></tr>
-<tr><td>Blender/UE 直連</td><td>Windows only</td></tr>
-<tr><td>多攝影機高精度</td><td>需空間設置</td></tr>
+<h2>2. 功能詳細說明</h2>
+
+<h3>功能矩陣</h3>
+
+<table><tr><th><th>功能</th><th>說明</th></tr>
+<tr><td>即時動捕</td><td>低延遲即時追蹤和輸出</td></tr>
+<tr><td>2-8 攝影機</td><td>多角度提升精度和遮擋處理</td></tr>
+<tr><td>全身追蹤</td><td>全身骨架（含手指基礎）</td></tr>
+<tr><td>臉部追蹤</td><td>ARKit 相容 Blend Shapes</td></tr>
+<tr><td>即時串流</td><td>直接串流至 Blender/UE/Unity</td></tr>
+<tr><td>BVH 匯出</td><td>標準 BVH 格式錄製輸出</td></tr>
+<tr><td>FBX 匯出</td><td>FBX 格式輸出</td></tr>
+<tr><td>無標記</td><td>無需穿戴追蹤設備</td></tr>
+<tr><td>內建校準</td><td>軟體內建攝影機校準工具</td></tr>
+<tr><td>多人追蹤</td><td>支援多人同時追蹤</td></tr>
 </table>
 
-<h2>與 Kimodo 整合</h2>
-<p>可作為即時動捕的精準方案。產出 BVH 直接進入 Kimodo 後處理 pipeline，格式完全相容。骨架定義可能需要 retarget，但 BVH 輸出無需額外轉換。</p>
+<h3>技術規格</h3>
 
-<h2>量產工作流定位</h2>
-<p><strong>即時高精度動捕方案</strong>——全身+臉部同時捕捉，BVH 直出，適合需要互動回饋的動作錄製場景。</p>
-</div>
+<table><tr><th><th>項目</th><th>規格</th></tr>
+<tr><td>攝影機</td><td>2-8 個 USB 網路攝影機</td></tr>
+<tr><td>即時性</td><td>✅ 即時（低延遲）</td></tr>
+<tr><td>身體關節</td><td>~50+（含手指）</td></tr>
+<tr><td>臉部</td><td>ARKit 52 Blend Shapes</td></tr>
+<tr><td>輸出協議</td><td>Live Link（UE）/ OSC / 自訂</td></tr>
+<tr><td>檔案格式</td><td>BVH / FBX</td></tr>
+<tr><td>系統</td><td>Windows</td></tr>
+<tr><td>硬體需求</td><td>多 USB 攝影機 + 高效能 CPU/GPU</td></tr>
+<tr><td>校準</td><td>內建（棋盤格式）</td></tr>
+<tr><td>串流目標</td><td>Blender / Unreal Engine / Unity</td></tr>
+</table>
+
+<hr>
+
+<h2>3. 官方影片/教學連結</h2>
+
+<table><tr><th><th>主題</th><th>連結</th></tr>
+<tr><td>官方網站</td><td>https://remocapp.com/</td></tr>
+<tr><td>教學/展示影片</td><td>官網內嵌</td></tr>
+<tr><td>社群/論壇</td><td>官網提供</td></tr>
+</table>
+
+<hr>
+
+<h2>4. 安裝/使用流程</h2>
+
+<h3>硬體準備</h3>
+<ul>
+<li>準備 2-8 個 USB 網路攝影機（1080p 建議）</li>
+<li>USB Hub 或多 USB Port 主機</li>
+<li>攝影機支架和固定裝置</li>
+<li>設計攝影機擺放位置（圍繞表演空間）</li>
+</ul>
+
+<h3>軟體安裝</h3>
+<ul>
+<li>購買 ReMoCapp 授權</li>
+<li>下載安裝軟體（Windows）</li>
+<li>連接所有攝影機</li>
+<li>軟體偵測並列出可用攝影機</li>
+</ul>
+
+<h3>校準流程</h3>
+<ul>
+<li>使用軟體內建校準工具</li>
+<li>舉棋盤格在各攝影機視野中移動</li>
+<li>軟體計算攝影機相對位置</li>
+<li>確認校準品質</li>
+</ul>
+
+<h3>動捕使用</h3>
+<pre><code>1. 選擇追蹤模式（全身/全身+臉部）
+<li>讓表演者站到拍攝區域</li>
+<li>開始追蹤 → 即時預覽</li>
+<li>選擇輸出方式：</li>
+   - 即時串流到 Blender/UE/Unity
+   - 錄製為 BVH/FBX 檔案
+<li>錄製完成 → 匯出檔案</code></pre></li>
+
+<hr>
+
+<h2>5. 定價與授權</h2>
+
+<table><tr><th><th>方案</th><th>價格（估計）</th><th>說明</th></tr>
+<tr><td>個人版</td><td>~$200-500 USD</td><td>基礎功能</td></tr>
+<tr><td>專業版</td><td>~$500-1000 USD</td><td>完整功能 + 多人追蹤</td></tr>
+<tr><td>企業版</td><td>客製報價</td><td>批量授權 + 支援</td></tr>
+</table>
+
+<strong>商用授權說明：</strong>
+<ul>
+<li>購買即可商用</li>
+<li>按版本/座位授權</li>
+<li>輸出的動畫資料歸使用者所有</li>
+<li>無月費（一次性購買，含版本更新）</li>
+</ul>
+
+<strong>額外硬體成本：</strong>
+<ul>
+<li>網路攝影機 × 4-8：約 $200-800 USD</li>
+<li>USB Hub/延長線：約 $50-100 USD</li>
+<li>總投入：軟體 + 硬體約 $500-1500 USD</li>
+</ul>
+
+<hr>
+
+<h2>6. 優缺點分析</h2>
+
+<h3>優點</h3>
+<ul>
+<li>✅ <strong>即時動捕</strong>：低延遲，適合互動和表演</li>
+<li>✅ <strong>全身+臉部</strong>：同時捕捉身體和面部，一套搞定</li>
+<li>✅ <strong>即時串流</strong>：直接串到 Blender/UE/Unity</li>
+<li>✅ <strong>BVH/FBX 輸出</strong>：標準格式，完全相容</li>
+<li>✅ <strong>無標記</strong>：無需穿戴任何設備</li>
+<li>✅ <strong>成本合理</strong>：比 OptiTrack ($50,000+) 便宜 100 倍</li>
+<li>✅ <strong>多攝影機精度</strong>：比單攝影機方案好很多</li>
+</ul>
+
+<h3>缺點</h3>
+<ul>
+<li>❌ <strong>需要空間</strong>：需設置 2-8 攝影機的固定空間</li>
+<li>❌ <strong>校準步驟</strong>：雖比傳統簡單但仍需設置</li>
+<li>❌ <strong>Windows Only</strong>：不支援 Mac/Linux</li>
+<li>❌ <strong>多 USB 設備管理</strong>：8 攝影機的 USB 頻寬/驅動可能有問題</li>
+<li>❌ <strong>精度仍不如專業系統</strong>：比 OptiTrack 差，但比單攝好</li>
+<li>❌ <strong>初始投入</strong>：需購買多個攝影機和支架</li>
+<li>❌ <strong>手指精度有限</strong>：網路攝影機解析度限制手指追蹤品質</li>
+</ul>
+
+<hr>
+
+<h2>7. 與 Kimodo 的整合可能性</h2>
+
+<table><tr><th><th>比較項目</th><th>ReMoCapp</th><th>Kimodo</th></tr>
+<tr><td>輸入</td><td>表演者即時動作</td><td>文字 prompt</td></tr>
+<tr><td>輸出</td><td>BVH/FBX（即時+離線）</td><td>BVH</td></tr>
+<tr><td>即時性</td><td>✅ 即時</td><td>❌ 離線</td></tr>
+<tr><td>臉部</td><td>✅ ARKit 52 BS</td><td>❌</td></tr>
+<tr><td>手指</td><td>⚠️ 基礎</td><td>❌</td></tr>
+<tr><td>精度</td><td>中高（多攝影機）</td><td>中高（AI）</td></tr>
+<tr><td>成本</td><td>硬體+軟體 ~$1000</td><td>軟體 ~$0（開源）</td></tr>
+<tr><td>適合場景</td><td>有演員可即時表演</td><td>無演員/想像動作</td></tr>
+</table>
+
+<h3>推薦整合方式</h3>
+
+<pre><code>高品質需求（有演員）：
+[演員表演] → [ReMoCapp 即時動捕] → [BVH] → [ARP Remap] → [引擎]
+
+量產需求（無演員）：
+[Prompt] → [Kimodo] → [BVH] → [ARP Remap] → [引擎]
+
+混合使用：
+[ReMoCapp 錄製參考] → [觀察動作] → [撰寫 Kimodo Prompt] → [量產]</code></pre>
+
+<p>ReMoCapp 適合「有演員、需要即時和臉部」的場景；Kimodo 適合「批次量產、無演員」的場景。</p>
+
+<hr>
+
+<h2>8. 對 AI 動作量產工作流的貢獻定位</h2>
+
+<h3>定位：<strong>即時動捕的中端方案（有演員時使用）</strong></h3>
+
+<pre><code>高端：[OptiTrack/Vicon] → [$$$$$] → [最高精度]
+中端：[ReMoCapp] → [$$] → [中高精度 + 即時 + 臉部]
+低端：[TDPT/單攝影機] → [免費] → [基礎品質]
+AI 端：[Kimodo] → [免費] → [中高品質，無需演員]</code></pre>
+
+<strong>量產流程中的角色：</strong>
+<ul>
+<li>特殊動作錄製（需要真人表演參考時）</li>
+<li>臉部動捕來源（ARKit BS 可直接用於 FaceIt 系統）</li>
+<li>即時預視和互動場景</li>
+<li>非日常工具，是「需要時才用」的特殊工具</li>
+</ul>
+
+<hr>
+
+<h2>9. 總結評分</h2>
+
+<table><tr><th><th>項目</th><th>評分</th><th>說明</th></tr>
+<tr><td>動作品質</td><td>⭐⭐⭐⭐</td><td>多攝影機精度不錯</td></tr>
+<tr><td>易用性</td><td>⭐⭐⭐</td><td>需要設置空間和攝影機</td></tr>
+<tr><td>性價比</td><td>⭐⭐⭐⭐</td><td>比專業系統便宜 100 倍</td></tr>
+<tr><td>量產適用性</td><td>⭐⭐⭐</td><td>需要演員和空間，非全自動化</td></tr>
+<tr><td>整合便利性</td><td>⭐⭐⭐⭐⭐</td><td>BVH/FBX + 即時串流</td></tr>
+<tr><td>臉部能力</td><td>⭐⭐⭐⭐</td><td>ARKit 52 BS，品質好</td></tr>
+</table>
+
+<hr>
+
+<h2>10. 行動建議</h2>
+
+<ul>
+<li><strong>評估空間和預算</strong>：是否有固定空間可設置 4+ 攝影機</li>
+<li><strong>試用/Demo</strong>：聯繫官方取得試用版本</li>
+<li><strong>定位為特殊工具</strong>：非日常使用，當需要真人參考動作時使用</li>
+<li><strong>重點評估臉部品質</strong>：ReMoCapp 的臉部動捕可搭配 FaceIt 使用</li>
+<li><strong>與 Kimodo 明確分工</strong>：ReMoCapp 做「有演員的」，Kimodo 做「無演員的」</li>
+</ul>
+
+<hr>
+
+<h2>參考資料</h2>
+
+<ul>
+<li>官方網站：https://remocapp.com/</li>
+</ul>
+
 </body>
 </html>
