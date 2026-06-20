@@ -2,101 +2,268 @@
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>MotionLab — AI 動作工具調研</title>
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { background: #1a1a2e; color: #e0d6c8; font-family: -apple-system, 'Noto Sans TC', sans-serif; line-height: 1.6; padding: 2rem; }
-.container { max-width: 1100px; margin: 0 auto; }
-h1 { color: #f5a623; font-size: 2.2rem; text-align: center; margin-bottom: 0.5rem; }
-.subtitle { text-align: center; color: #999; margin-bottom: 2.5rem; font-size: 0.95rem; }
-.category { margin-bottom: 2.5rem; background: #16213e; border-radius: 12px; padding: 1.5rem 2rem; border: 1px solid #2a2a3e; }
-.category h2 { color: #f5a623; font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 1px solid #2a2a3e; padding-bottom: 0.5rem; }
-.tool-list { list-style: none; }
-.tool-list li { padding: 0.5rem 0; border-bottom: 1px solid #1a1a2e; display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap; }
-.tool-list li:last-child { border-bottom: none; }
-.tool-list a { color: #f5a623; text-decoration: none; font-weight: 600; white-space: nowrap; }
-.tool-list a:hover { text-decoration: underline; }
-.desc { color: #aaa; font-size: 0.88rem; }
-.badge { font-size: 0.85rem; }
-.workflow { margin-top: 2rem; background: #0d0d1a; border-radius: 12px; padding: 2rem; border: 1px solid #2a2a3e; }
-.workflow h2 { color: #f5a623; font-size: 1.3rem; margin-bottom: 1rem; }
-.flow-diagram { font-family: monospace; color: #e0d6c8; font-size: 0.9rem; line-height: 2; white-space: pre-wrap; background: #1a1a2e; padding: 1.2rem; border-radius: 8px; margin-top: 0.8rem; }
-.flow-diagram strong { color: #f5a623; }
-footer { text-align: center; margin-top: 3rem; color: #555; font-size: 0.8rem; }
-@media (max-width: 600px) { body { padding: 1rem; } .category { padding: 1rem; } h1 { font-size: 1.6rem; } }
+:root{--bg:#1a1f2e;--card:rgba(30,42,60,0.55);--border:rgba(255,255,255,0.08);--text:#b8c4d0;--dim:#8090a0;--white:#fff;--teal:#2dd4a8;--cyan:#4db8d4;--gold:#f5a623;--red:#e05555}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans TC','Inter',-apple-system,sans-serif;padding:2rem;line-height:1.6}
+.container{max-width:1400px;margin:0 auto}
+h1{color:var(--gold);font-size:2.4rem;font-weight:800;text-align:center;margin-bottom:.3rem}
+.subtitle{text-align:center;color:var(--dim);margin-bottom:2.5rem;font-size:.95rem}
+.category{margin-bottom:2.5rem}
+.category h2{color:var(--white);font-size:1.5rem;font-weight:700;margin-bottom:1rem;padding-left:1rem;border-left:4px solid;border-image:linear-gradient(180deg,var(--teal),var(--cyan)) 1}
+.tool-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem}
+.tool-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.2rem;display:flex;flex-direction:column;transition:.2s}
+.tool-card:hover{border-color:rgba(77,184,212,0.3);transform:translateY(-2px)}
+.tool-card .top{display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem}
+.tool-card .badge{font-size:1rem}
+.tool-card .name{color:var(--white);font-weight:700;font-size:1rem}
+.tool-card .desc{color:var(--dim);font-size:.85rem;line-height:1.5;flex:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tool-card .btns{display:flex;gap:.5rem;margin-top:.8rem}
+.tool-card .btn{padding:4px 10px;border-radius:6px;font-size:.75rem;text-decoration:none;white-space:nowrap}
+.btn-detail{background:rgba(77,184,212,0.12);border:1px solid rgba(77,184,212,0.3);color:var(--cyan)}
+.btn-slides{background:rgba(45,212,168,0.12);border:1px solid rgba(45,212,168,0.3);color:var(--teal)}
+.workflow{margin-top:2rem;background:rgba(13,13,26,0.6);border-radius:12px;padding:2rem;border:1px solid var(--border)}
+.workflow h2{color:var(--gold);font-size:1.3rem;margin-bottom:1rem}
+.flow-diagram{font-family:monospace;color:var(--text);font-size:.9rem;line-height:2;white-space:pre-wrap;background:var(--bg);padding:1.2rem;border-radius:8px;margin-top:.8rem}
+.flow-diagram strong{color:var(--gold)}
+footer{text-align:center;margin-top:3rem;color:var(--dim);font-size:.8rem}
+@media(max-width:600px){body{padding:1rem}h1{font-size:1.8rem}}
 </style>
 </head>
 <body>
 <div class="container">
 <h1>🎬 MotionLab — AI 動作工具調研</h1>
-<p class="subtitle">Kimodo AI 動作量產工作流 — 工具鏈完整調研 (23 tools)</p>
+<p class="subtitle">Kimodo AI 動作量產工作流 — 工具鏈完整調研 (40 tools)</p>
 
-<!-- Category 1: AI Mocap / 動作生成 -->
 <div class="category">
 <h2>🤖 AI Mocap / 動作生成</h2>
-<ul class="tool-list">
-<li><span class="badge">🟢</span><a href="tools/pinoc_viggle.html">PINOC (Viggle.ai)</a><span class="desc">— AI 影片轉動捕/遊戲動畫，BVH 輸出</span><a href="tools/pinoc_viggle_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">🟢</span><a href="tools/deepmotion.html">DeepMotion</a><span class="desc">— AI 動作捕捉 + 文字生成動畫平台</span><a href="tools/deepmotion_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">🟢</span><a href="tools/plask_motion.html">Plask Motion</a><span class="desc">— AI 影片轉 3D 動畫平台，瀏覽器操作</span><a href="tools/plask_motion_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">🟡</span><a href="tools/rokoko_vision.html">Rokoko Vision</a><span class="desc">— AI 影片動捕（Rokoko 生態系整合）</span><a href="tools/rokoko_vision_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">🟡</span><a href="tools/freemocap.html">FreeMoCap</a><span class="desc">— 免費開源無標記動捕系統</span><a href="tools/freemocap_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">🟡</span><a href="tools/move_ai.html">Move.AI</a><span class="desc">— 企業級無標記動作捕捉系統</span><a href="tools/move_ai_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">🟢</span><a href="tools/motorica_ai.html">Motorica AI</a><span class="desc">— AI 角色動畫引擎（Locomotion 專精）</span><a href="tools/motorica_ai_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">🟢</span><a href="tools/cartwheel.html">Cartwheel</a><span class="desc">— AI 3D 動畫生成平台（文字→動畫）</span><a href="tools/cartwheel_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">🔵</span><a href="tools/xr_animator.html">XR Animator</a><span class="desc">— 瀏覽器即時全身動捕（MediaPipe）</span><a href="tools/xr_animator_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">🟡</span><a href="tools/marionette.html">Marionette</a><span class="desc">— AI 影片轉 3D 動畫（雲端平台）</span><a href="tools/marionette_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">🟡</span><a href="tools/quickmagic.html">QuickMagic</a><span class="desc">— 無標記 AI 動捕（手機/網頁即時）</span><a href="tools/quickmagic_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">🔵</span><a href="tools/wonder_dynamics.html">Wonder Dynamics</a><span class="desc">— AI 影片合成+動捕（Autodesk Flow Studio）</span><a href="tools/wonder_dynamics_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">🔵</span><a href="tools/webcam_motion_capture.html">Webcam Motion Capture</a><span class="desc">— 瀏覽器 Webcam 即時動捕外掛</span> <a href="tools/webcam_motion_capture_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">🟡</span><a href="tools/dollars_mocap.html">Dollars MoCap</a><span class="desc">— 低成本即時動捕系統（手機/Webcam）</span><a href="tools/dollars_mocap_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">🟡</span><a href="tools/agi_mocap.html">AGI Mocap</a><span class="desc">— AI 影片轉動畫雲端服務</span><a href="tools/agi_mocap_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">❌</span><a href="tools/radical_motion.html">Radical Motion</a><span class="desc">— 已關閉（原 AI 影片動捕平台）</span> <a href="tools/radical_motion_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">🟡</span><a href="tools/cyanpuppets.html">CyanPuppets</a><span class="desc">— AI 即時臉部+身體動捕</span> <a href="tools/cyanpuppets_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">🔵</span><a href="tools/tdpt.html">TDPT</a><span class="desc">— 即時 3D 姿態追蹤（24 關鍵點/VMC 輸出）</span><a href="tools/tdpt_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">🔵</span><a href="tools/ceb_4d_humans.html">CEB 4D Humans</a><span class="desc">— Blender 外掛（學術 4D Humans 整合）</span><a href="tools/ceb_4d_humans_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">🔵</span><a href="tools/smplx.html">SMPL-X</a><span class="desc">— 學術標準人體模型（身體+手+臉統一）</span><a href="tools/smplx_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">🟡</span><a href="tools/mocapnet.html">MocapNET</a><span class="desc">— 即時神經網路動捕，直接輸出 BVH</span><a href="tools/mocapnet_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">🟡</span><a href="tools/kinetix.html">Kinetix</a><span class="desc">— 遊戲內 UGC 動畫 SDK（B2B 平台）</span> <a href="tools/kinetix_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">🟡</span><a href="tools/kinephy.html">Kinephy</a><span class="desc">— 物理驅動 AI 動畫生成</span> <a href="tools/kinephy_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">🟡</span><a href="tools/mimem_ai.html">mimem AI</a><span class="desc">— 多攝影機雲端動捕（免校準）</span><a href="tools/mimem_ai_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">🟡</span><a href="tools/remocapp.html">ReMoCapp</a><span class="desc">— 即時全身+臉部動捕（2-8 Webcam）</span><a href="tools/remocapp_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-</ul>
+<div class="tool-grid">
+<div class="tool-card">
+<div class="top"><span class="badge">🟢</span><span class="name">PINOC (Viggle.ai)</span></div>
+<p class="desc">AI 影片轉動捕/遊戲動畫，BVH 輸出</p>
+<div class="btns"><a href="tools/pinoc_viggle.html" class="btn btn-detail">📄 詳細</a><a href="tools/pinoc_viggle_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🟢</span><span class="name">DeepMotion</span></div>
+<p class="desc">AI 動作捕捉 + 文字生成動畫平台</p>
+<div class="btns"><a href="tools/deepmotion.html" class="btn btn-detail">📄 詳細</a><a href="tools/deepmotion_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🟢</span><span class="name">Plask Motion</span></div>
+<p class="desc">AI 影片轉 3D 動畫平台，瀏覽器操作</p>
+<div class="btns"><a href="tools/plask_motion.html" class="btn btn-detail">📄 詳細</a><a href="tools/plask_motion_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🟡</span><span class="name">Rokoko Vision</span></div>
+<p class="desc">AI 影片動捕（Rokoko 生態系整合）</p>
+<div class="btns"><a href="tools/rokoko_vision.html" class="btn btn-detail">📄 詳細</a><a href="tools/rokoko_vision_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🟡</span><span class="name">FreeMoCap</span></div>
+<p class="desc">免費開源無標記動捕系統</p>
+<div class="btns"><a href="tools/freemocap.html" class="btn btn-detail">📄 詳細</a><a href="tools/freemocap_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🟡</span><span class="name">Move.AI</span></div>
+<p class="desc">企業級無標記動作捕捉系統</p>
+<div class="btns"><a href="tools/move_ai.html" class="btn btn-detail">📄 詳細</a><a href="tools/move_ai_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🟢</span><span class="name">Motorica AI</span></div>
+<p class="desc">AI 角色動畫引擎（Locomotion 專精）</p>
+<div class="btns"><a href="tools/motorica_ai.html" class="btn btn-detail">📄 詳細</a><a href="tools/motorica_ai_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🟢</span><span class="name">Cartwheel</span></div>
+<p class="desc">AI 3D 動畫生成平台（文字→動畫）</p>
+<div class="btns"><a href="tools/cartwheel.html" class="btn btn-detail">📄 詳細</a><a href="tools/cartwheel_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🔵</span><span class="name">XR Animator</span></div>
+<p class="desc">瀏覽器即時全身動捕（MediaPipe）</p>
+<div class="btns"><a href="tools/xr_animator.html" class="btn btn-detail">📄 詳細</a><a href="tools/xr_animator_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🟡</span><span class="name">Marionette</span></div>
+<p class="desc">AI 影片轉 3D 動畫（雲端平台）</p>
+<div class="btns"><a href="tools/marionette.html" class="btn btn-detail">📄 詳細</a><a href="tools/marionette_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🟡</span><span class="name">QuickMagic</span></div>
+<p class="desc">無標記 AI 動捕（手機/網頁即時）</p>
+<div class="btns"><a href="tools/quickmagic.html" class="btn btn-detail">📄 詳細</a><a href="tools/quickmagic_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🔵</span><span class="name">Wonder Dynamics</span></div>
+<p class="desc">AI 影片合成+動捕（Autodesk Flow Studio）</p>
+<div class="btns"><a href="tools/wonder_dynamics.html" class="btn btn-detail">📄 詳細</a><a href="tools/wonder_dynamics_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🔵</span><span class="name">Webcam Motion Capture</span></div>
+<p class="desc">瀏覽器 Webcam 即時動捕外掛</p>
+<div class="btns"><a href="tools/webcam_motion_capture.html" class="btn btn-detail">📄 詳細</a><a href="tools/webcam_motion_capture_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🟡</span><span class="name">Dollars MoCap</span></div>
+<p class="desc">低成本即時動捕系統（手機/Webcam）</p>
+<div class="btns"><a href="tools/dollars_mocap.html" class="btn btn-detail">📄 詳細</a><a href="tools/dollars_mocap_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🟡</span><span class="name">AGI Mocap</span></div>
+<p class="desc">AI 影片轉動畫雲端服務</p>
+<div class="btns"><a href="tools/agi_mocap.html" class="btn btn-detail">📄 詳細</a><a href="tools/agi_mocap_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">❌</span><span class="name">Radical Motion</span></div>
+<p class="desc">已關閉（原 AI 影片動捕平台）</p>
+<div class="btns"><a href="tools/radical_motion.html" class="btn btn-detail">📄 詳細</a><a href="tools/radical_motion_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🟡</span><span class="name">CyanPuppets</span></div>
+<p class="desc">AI 即時臉部+身體動捕</p>
+<div class="btns"><a href="tools/cyanpuppets.html" class="btn btn-detail">📄 詳細</a><a href="tools/cyanpuppets_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🔵</span><span class="name">TDPT</span></div>
+<p class="desc">即時 3D 姿態追蹤（24 關鍵點/VMC 輸出）</p>
+<div class="btns"><a href="tools/tdpt.html" class="btn btn-detail">📄 詳細</a><a href="tools/tdpt_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🔵</span><span class="name">CEB 4D Humans</span></div>
+<p class="desc">Blender 外掛（學術 4D Humans 整合）</p>
+<div class="btns"><a href="tools/ceb_4d_humans.html" class="btn btn-detail">📄 詳細</a><a href="tools/ceb_4d_humans_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🔵</span><span class="name">SMPL-X</span></div>
+<p class="desc">學術標準人體模型（身體+手+臉統一）</p>
+<div class="btns"><a href="tools/smplx.html" class="btn btn-detail">📄 詳細</a><a href="tools/smplx_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🟡</span><span class="name">MocapNET</span></div>
+<p class="desc">即時神經網路動捕，直接輸出 BVH</p>
+<div class="btns"><a href="tools/mocapnet.html" class="btn btn-detail">📄 詳細</a><a href="tools/mocapnet_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🟡</span><span class="name">Kinetix</span></div>
+<p class="desc">遊戲內 UGC 動畫 SDK（B2B 平台）</p>
+<div class="btns"><a href="tools/kinetix.html" class="btn btn-detail">📄 詳細</a><a href="tools/kinetix_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🟡</span><span class="name">Kinephy</span></div>
+<p class="desc">物理驅動 AI 動畫生成</p>
+<div class="btns"><a href="tools/kinephy.html" class="btn btn-detail">📄 詳細</a><a href="tools/kinephy_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🟡</span><span class="name">mimem AI</span></div>
+<p class="desc">多攝影機雲端動捕（免校準）</p>
+<div class="btns"><a href="tools/mimem_ai.html" class="btn btn-detail">📄 詳細</a><a href="tools/mimem_ai_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🟡</span><span class="name">ReMoCapp</span></div>
+<p class="desc">即時全身+臉部動捕（2-8 Webcam）</p>
+<div class="btns"><a href="tools/remocapp.html" class="btn btn-detail">📄 詳細</a><a href="tools/remocapp_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+</div>
 </div>
 
-<!-- Category 2: Retargeting / Clean-up -->
 <div class="category">
 <h2>🔄 Retargeting / Mocap Clean-up</h2>
-<ul class="tool-list">
-<li><span class="badge">🟢</span><a href="tools/bvh_retargeter.html">BVH Retargeter</a><span class="desc">— 免費 BVH 重定向，Pipeline 第一環</span><a href="tools/bvh_retargeter_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">🟢</span><a href="tools/auto_rig_pro.html">Auto-Rig Pro (Remap)</a><span class="desc">— 業界最穩 IK Retarget + 遊戲引擎匯出（$40）</span><a href="tools/auto_rig_pro_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">🟡</span><a href="tools/expy_kit.html">Expy-Kit</a><span class="desc">— 批次骨架轉換橋樑（Rigify↔Mixamo↔Unreal）</span><a href="tools/expy_kit_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">🟡</span><a href="tools/retargeting_automation_system.html">Retargeting Automation System</a><span class="desc">— 智慧比例匹配 Retarget（付費/新工具）</span><a href="tools/retargeting_automation_system_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">🟢</span><a href="tools/foot_locker.html">Foot Locker</a><span class="desc">— 免費腳步鎖定（輕量手動修復）</span><a href="tools/foot_locker_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">🟡</span><a href="tools/foot_flow.html">Foot Flow</a><span class="desc">— 專業 Mocap 腳步清理（付費半自動）</span><a href="tools/foot_flow_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">🟢</span><a href="tools/in_placer.html">In Placer</a><span class="desc">— 免費一鍵原地化動畫</span><a href="tools/in_placer_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">🟢</span><a href="tools/root_motion_batch_transfer.html">Root Motion Batch Transfer</a><span class="desc">— 免費批次 Root Motion 轉移到遊戲骨架</span><a href="tools/root_motion_batch_transfer_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-</ul>
+<div class="tool-grid">
+<div class="tool-card">
+<div class="top"><span class="badge">🟢</span><span class="name">BVH Retargeter</span></div>
+<p class="desc">免費 BVH 重定向，Pipeline 第一環</p>
+<div class="btns"><a href="tools/bvh_retargeter.html" class="btn btn-detail">📄 詳細</a><a href="tools/bvh_retargeter_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🟢</span><span class="name">Auto-Rig Pro (Remap)</span></div>
+<p class="desc">業界最穩 IK Retarget + 遊戲引擎匯出（$40）</p>
+<div class="btns"><a href="tools/auto_rig_pro.html" class="btn btn-detail">📄 詳細</a><a href="tools/auto_rig_pro_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🟡</span><span class="name">Expy-Kit</span></div>
+<p class="desc">批次骨架轉換橋樑（Rigify↔Mixamo↔Unreal）</p>
+<div class="btns"><a href="tools/expy_kit.html" class="btn btn-detail">📄 詳細</a><a href="tools/expy_kit_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🟡</span><span class="name">Retargeting Automation System</span></div>
+<p class="desc">智慧比例匹配 Retarget（付費/新工具）</p>
+<div class="btns"><a href="tools/retargeting_automation_system.html" class="btn btn-detail">📄 詳細</a><a href="tools/retargeting_automation_system_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🟢</span><span class="name">Foot Locker</span></div>
+<p class="desc">免費腳步鎖定（輕量手動修復）</p>
+<div class="btns"><a href="tools/foot_locker.html" class="btn btn-detail">📄 詳細</a><a href="tools/foot_locker_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🟡</span><span class="name">Foot Flow</span></div>
+<p class="desc">專業 Mocap 腳步清理（付費半自動）</p>
+<div class="btns"><a href="tools/foot_flow.html" class="btn btn-detail">📄 詳細</a><a href="tools/foot_flow_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🟢</span><span class="name">In Placer</span></div>
+<p class="desc">免費一鍵原地化動畫</p>
+<div class="btns"><a href="tools/in_placer.html" class="btn btn-detail">📄 詳細</a><a href="tools/in_placer_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🟢</span><span class="name">Root Motion Batch Transfer</span></div>
+<p class="desc">免費批次 Root Motion 轉移到遊戲骨架</p>
+<div class="btns"><a href="tools/root_motion_batch_transfer.html" class="btn btn-detail">📄 詳細</a><a href="tools/root_motion_batch_transfer_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+</div>
 </div>
 
-<!-- Category 3: Rigging / 引擎整合 / 臉部 -->
 <div class="category">
 <h2>🎭 Rigging / 引擎整合 / 臉部 / 其他</h2>
-<ul class="tool-list">
-<li><span class="badge">🟢</span><a href="tools/ragdoll_dynamics.html">Ragdoll Dynamics</a><span class="desc">— 物理驅動動畫系統（Maya/Blender）</span><a href="tools/ragdoll_dynamics_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">🟡</span><a href="tools/third_person_kit.html">Third Person Kit</a><span class="desc">— 第三人稱角色控制器系統</span><a href="tools/third_person_kit_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">🟢</span><a href="tools/faceit.html">FaceIt</a><span class="desc">— Blender 面部表情捕捉 + ARKit 整合</span><a href="tools/faceit_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">🟡</span><a href="tools/rhubarb_lipsync.html">Rhubarb Lipsync</a><span class="desc">— 免費開源音訊→口型動畫</span><a href="tools/rhubarb_lipsync_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">🔵</span><a href="tools/parrot_lipsync.html">Parrot Lipsync</a><span class="desc">— Blender 嘴型同步外掛</span><a href="tools/parrot_lipsync_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">🟡</span><a href="tools/crowdsim3d.html">CrowdSim3D</a><span class="desc">— Blender 群眾模擬系統</span><a href="tools/crowdsim3d_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-<li><span class="badge">🔵</span><a href="tools/agents_crowd_sim.html">Agents (Crowd Sim)</a><span class="desc">— 複雜群眾行為模擬</span><a href="tools/agents_crowd_sim_slides.html" style="margin-left:auto;background:rgba(45,212,168,0.15);border:1px solid rgba(45,212,168,0.4);color:#2dd4a8;padding:2px 8px;border-radius:5px;font-size:.75rem;text-decoration:none;white-space:nowrap">📊 簡報版</a></li>
-</ul>
+<div class="tool-grid">
+<div class="tool-card">
+<div class="top"><span class="badge">🟢</span><span class="name">Ragdoll Dynamics</span></div>
+<p class="desc">物理驅動動畫系統（Maya/Blender）</p>
+<div class="btns"><a href="tools/ragdoll_dynamics.html" class="btn btn-detail">📄 詳細</a><a href="tools/ragdoll_dynamics_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🟡</span><span class="name">Third Person Kit</span></div>
+<p class="desc">第三人稱角色控制器系統</p>
+<div class="btns"><a href="tools/third_person_kit.html" class="btn btn-detail">📄 詳細</a><a href="tools/third_person_kit_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🟢</span><span class="name">FaceIt</span></div>
+<p class="desc">Blender 面部表情捕捉 + ARKit 整合</p>
+<div class="btns"><a href="tools/faceit.html" class="btn btn-detail">📄 詳細</a><a href="tools/faceit_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🟡</span><span class="name">Rhubarb Lipsync</span></div>
+<p class="desc">免費開源音訊→口型動畫</p>
+<div class="btns"><a href="tools/rhubarb_lipsync.html" class="btn btn-detail">📄 詳細</a><a href="tools/rhubarb_lipsync_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🔵</span><span class="name">Parrot Lipsync</span></div>
+<p class="desc">Blender 嘴型同步外掛</p>
+<div class="btns"><a href="tools/parrot_lipsync.html" class="btn btn-detail">📄 詳細</a><a href="tools/parrot_lipsync_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🟡</span><span class="name">CrowdSim3D</span></div>
+<p class="desc">Blender 群眾模擬系統</p>
+<div class="btns"><a href="tools/crowdsim3d.html" class="btn btn-detail">📄 詳細</a><a href="tools/crowdsim3d_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🔵</span><span class="name">Agents (Crowd Sim)</span></div>
+<p class="desc">複雜群眾行為模擬</p>
+<div class="btns"><a href="tools/agents_crowd_sim.html" class="btn btn-detail">📄 詳細</a><a href="tools/agents_crowd_sim_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+</div>
 </div>
 
-<!-- Workflow -->
+<div class="category">
+<h2>🔧 推薦工作流架構</h2>
+<div class="tool-grid">
+</div>
+</div>
+
 <div class="workflow">
 <h2>🔧 推薦工作流架構</h2>
-<p style="color:#aaa; margin-bottom:0.8rem;">Kimodo AI 動作量產 → 遊戲引擎的完整處理鏈路：</p>
+<p style="color:var(--dim);margin-bottom:.8rem">Kimodo AI 動作量產 → 遊戲引擎的完整處理鏈路：</p>
 <div class="flow-diagram"><strong>[1. 動作生成]</strong>
   Kimodo / Viggle / Cartwheel / DeepMotion
   → 輸出 BVH / FBX 原始動畫
@@ -122,7 +289,7 @@ footer { text-align: center; margin-top: 3rem; color: #555; font-size: 0.8rem; }
 
 <footer>
 <p>MotionLab Research — 遊戲動作研發組 © 2026</p>
-<p style="margin-top:0.3rem;">推薦等級：🟢 強烈推薦 🟡 值得關注 🔵 特殊用途</p>
+<p style="margin-top:.3rem">推薦等級：🟢 強烈推薦 🟡 值得關注 🔵 特殊用途 ❌ 已關閉</p>
 </footer>
 </div>
 </body>
