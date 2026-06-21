@@ -267,28 +267,32 @@ footer{text-align:center;margin-top:3rem;color:var(--dim);font-size:.8rem}
 
 <div class="workflow">
 <h2>🔧 推薦工作流架構</h2>
-<p style="color:var(--dim);margin-bottom:.8rem">AI 動作生成 → 遊戲引擎的完整處理鏈路：</p>
-<div class="flow-diagram"><strong>[1. 動作生成]</strong>
+<p style="color:var(--dim);margin-bottom:.8rem">AI 動作生成 → 遊戲引擎的兩條處理路線：</p>
+<div class="flow-diagram"><strong>路線 A：通用工作流（適用任何引擎）</strong>
+
+<strong>[1. 動作生成]</strong>
   Viggle / Cartwheel / DeepMotion / Motorica
   → 輸出 BVH / FBX 原始動畫
         ↓
 <strong>[2. Retarget 重定向]</strong>
-  BVH Retargeter（免費快速原型）
-  Auto-Rig Pro Remap（IK 品質 + 遊戲匯出）
+  BVH Retargeter / Auto-Rig Pro Remap
   → 映射到統一遊戲骨架
         ↓
-<strong>[3. Foot 修正]</strong>
-  Foot Flow / Foot Locker（接地修正）
-  In Placer（原地化）
-  → 消除滑步、穿地
+<strong>[3. Foot 修正 + Root Motion]</strong>
+  Foot Locker / ARP IK / Root Motion Batch Transfer
         ↓
-<strong>[4. Root Motion]</strong>
-  Root Motion Batch Transfer
-  → Hips 位移轉到 Root Bone
-        ↓
-<strong>[5. 遊戲引擎匯出]</strong>
-  ARP Game Export / FBX
-  → Unity / Unreal Engine / Godot</div>
+<strong>[4. 遊戲引擎匯出]</strong>
+  Auto-Rig Pro → UE / Unity / Godot
+
+─────────────────────────────────────────────
+
+<strong>路線 B：UE 快速工作流 ⭐ 推薦（Unreal Engine 用戶）</strong>
+
+<strong>[1. 單鏡頭影片]</strong> → <strong>[2. MetaHuman Markerless Mocap Plugin]</strong> → <strong>[3. 直接驅動 MetaHuman]</strong>
+
+  免 Retarget、免 Foot 修正、免格式轉換
+  一站式完成，全部在 UE 5.8 內處理
+  完全免費、本地離線、全身+臉+手</div>
 </div>
 <footer>
 <p>MotionLab Research — 遊戲動作研發組 © 2026</p>
