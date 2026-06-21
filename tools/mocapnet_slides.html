@@ -53,7 +53,7 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <section class="slide" id="s1"><div class="slide-inner">
 <h1><span class="grad-text">MocapNET</span></h1>
 <h1>即時 3D 姿態估計</h1>
-<p class="desc">由希臘 FORTH 研究院開發的即時神經網路 3D 姿態估計系統。最大賣點：直接輸出 BVH 格式！與 Kimodo Pipeline 完美相容，免費開源。</p>
+<p class="desc">由希臘 FORTH 研究院開發的即時神經網路 3D 姿態估計系統。最大賣點：直接輸出 BVH 格式！與 AI 動作生成工具 Pipeline 完美相容，免費開源。</p>
 <div style="margin-top:1.5rem"><span class="tag">直接輸出 BVH</span><span class="tag">免費開源</span><span class="tag">即時推斷</span><span class="tag">IK 精修</span></div>
 <img src="https://raw.githubusercontent.com/FORTH-ModelBasedTracker/MocapNET/master/doc/shuffle.gif" alt="mocapnet" style="max-height:35vh;width:auto;border-radius:var(--radius-card);margin-top:1rem;border:1px solid var(--border-subtle)">
 </div></section>
@@ -61,7 +61,7 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <section class="slide" id="s2">
 <div class="slide-inner">
 <h2>核心能力</h2>
-<p class="desc">MocapNET 是學術研究院開發的即時 3D 姿態估計系統，最大特色是直接輸出 BVH 格式——這讓它與 Kimodo 的 BVH 輸出完美共用同一套後處理 pipeline。</p>
+<p class="desc">MocapNET 是學術研究院開發的即時 3D 姿態估計系統，最大特色是直接輸出 BVH 格式——這讓它與 AI 動作生成工具 的 BVH 輸出完美共用同一套後處理 pipeline。</p>
 <div class="card-grid cols-2" style="margin-top:1.5rem">
 <div class="card card-con">
 <p class="neg" style="font-weight:700;font-size:1.6rem;margin-bottom:1rem">⚠️ 一般 AI 動捕的格式問題</p>
@@ -73,7 +73,7 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <div class="card">
 <p class="pos" style="font-weight:700;font-size:1.6rem;margin-bottom:1rem">✅ MocapNET 方案</p>
 <ul class="list-clean"><li><strong>直接 BVH 輸出</strong> — 原生輸出 BVH，零轉換直接可用</li>
-<li><strong>與 Kimodo 共用</strong> — 同是 BVH 格式，共用 Retarget/Foot Fix pipeline</li>
+<li><strong>與 AI 動作生成工具 共用</strong> — 同是 BVH 格式，共用 Retarget/Foot Fix pipeline</li>
 <li><strong>即時處理</strong> — 可即時從攝影機提取 3D 動作</li>
 <li><strong>IK 精修</strong> — 內建 Inverse Kinematics 求解器修正比例</li></ul>
 </div>
@@ -110,7 +110,7 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <section class="slide" id="s6"><div class="slide-inner">
 <h2>優勢分析</h2>
 <div class="card"><ul class="list-clean">
-<li><strong>直接 BVH 輸出</strong> — 與所有動畫軟體和 Kimodo 完美相容，零轉換成本</li>
+<li><strong>直接 BVH 輸出</strong> — 與所有動畫軟體和 AI 動作生成工具 完美相容，零轉換成本</li>
 <li><strong>免費開源</strong> — GitHub 上完整程式碼，可自由修改與整合</li>
 <li><strong>上下半身分離估計</strong> — 提高各部位的估計精度</li>
 <li><strong>IK 求解器精修</strong> — 內建的反向動力學確保骨架物理合理性</li>
@@ -130,10 +130,10 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 </div></section>
 
 <section class="slide" id="s8"><div class="slide-inner">
-<h2>與 Kimodo 的整合可能</h2>
+<h2>與其他工具的整合可能</h2>
 <div class="card-grid cols-2">
-<div class="card"><div class="card-title">極高相容性</div><p class="desc">MocapNET 直接輸出 BVH 格式，與 Kimodo 使用完全相同的動作表示。兩者共用整個後處理 pipeline——動作平滑、retarget、品質檢查等步驟可直接套用。</p></div>
-<div class="card"><div class="card-title">整合流程</div><p class="desc">影片 → OpenPose → MocapNET → BVH 輸出 → 直接進入 Kimodo 後處理 pipeline → 最終產出。無需任何格式轉換步驟。</p></div>
+<div class="card"><div class="card-title">極高相容性</div><p class="desc">MocapNET 直接輸出 BVH 格式，與 AI 動作生成工具 使用完全相同的動作表示。兩者共用整個後處理 pipeline——動作平滑、retarget、品質檢查等步驟可直接套用。</p></div>
+<div class="card"><div class="card-title">整合流程</div><p class="desc">影片 → OpenPose → MocapNET → BVH 輸出 → 直接進入 AI 動作生成工具 後處理 pipeline → 最終產出。無需任何格式轉換步驟。</p></div>
 </div>
 </div></section>
 
@@ -150,9 +150,9 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <h2>總結評估</h2>
 <div class="card"><div class="card-grid cols-2">
 <div><div class="big-num pos">BVH 直出</div><div class="big-label">最大優勢</div></div>
-<div><div class="big-num" style="color:var(--accent-gold)">高度相容</div><div class="big-label">與 Kimodo 的關係</div></div>
+<div><div class="big-num" style="color:var(--accent-gold)">高度相容</div><div class="big-label">與 AI 動作生成工具 的關係</div></div>
 </div></div>
-<p class="desc" style="margin-top:1.5rem">MocapNET 最大價值在於直接輸出 BVH 格式，與 Kimodo 完美對接。雖然安裝複雜（Linux + OpenPose）且品質不如商業方案，但作為免費開源的影片轉 BVH 工具，是 Kimodo Pipeline 中相容性最高的影片動捕方案。</p>
+<p class="desc" style="margin-top:1.5rem">MocapNET 最大價值在於直接輸出 BVH 格式，與 AI 動作生成工具 完美對接。雖然安裝複雜（Linux + OpenPose）且品質不如商業方案，但作為免費開源的影片轉 BVH 工具，是 AI 動作生成工具 Pipeline 中相容性最高的影片動捕方案。</p>
 </div></section>
 
 <script>

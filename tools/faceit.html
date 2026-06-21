@@ -188,13 +188,13 @@ iPhone（Face ID）→ 錄製/串流 ARKit 資料
 
 <h2>與現有工具的整合可能性</h2>
 
-<h3>與 Kimodo 的整合</h3>
+<h3>與其他工具的整合</h3>
 
 <table>
 <tr><th>環節</th><th>整合方式</th></tr>
-<tr><td>身體 + 臉部組合</td><td>Kimodo 生成身體動作 + FaceIt 提供臉部表情 = 完整角色動畫</td></tr>
+<tr><td>身體 + 臉部組合</td><td>AI 動作生成工具 生成身體動作 + FaceIt 提供臉部表情 = 完整角色動畫</td></tr>
 <tr><td>AI 動作 + 手動臉部</td><td>AI 無法生成精細臉部動畫，FaceIt 填補此缺口</td></tr>
-<tr><td>動捕全身 + 臉部分離</td><td>身體用 Kimodo/BVH，臉部用 ARKit + FaceIt</td></tr>
+<tr><td>動捕全身 + 臉部分離</td><td>身體用 AI 動作生成工具/BVH，臉部用 ARKit + FaceIt</td></tr>
 </table>
 
 <h3>與 Blender → UE/Unity Pipeline 的整合</h3>
@@ -209,7 +209,7 @@ iPhone（Face ID）→ 錄製/串流 ARKit 資料
 <h3>建議整合流程</h3>
 <pre><code>
 角色建模 → FaceIt 臉部 Rig + 表情 → ARP 身體 Rig
-→ Kimodo 身體動作 + ARKit 臉部動捕
+→ AI 動作生成工具 身體動作 + ARKit 臉部動捕
 → ARP Game Export（含 Shape Keys）→ UE/Unity
 </code></pre>
 
@@ -221,13 +221,13 @@ iPhone（Face ID）→ 錄製/串流 ARKit 資料
 
 <pre><code>
 [AI 身體動作]  +  [FaceIt 臉部動畫]  =  [完整角色表演]
-  (Kimodo)         (ARKit Mocap /        (身體+臉部)
+  (AI 動作生成工具)         (ARKit Mocap /        (身體+臉部)
                     手動/Audio2Face)
 </code></pre>
 
 <p><strong>具體貢獻：</strong></p>
 <ol>
-<li><strong>填補 AI 盲區</strong>：Kimodo 等 AI 工具只生成身體動作，臉部完全空白，FaceIt 完美補充</li>
+<li><strong>填補 AI 盲區</strong>：AI 動作生成工具 等 AI 工具只生成身體動作，臉部完全空白，FaceIt 完美補充</li>
 <li><strong>ARKit 動捕低成本</strong>：只需 iPhone 即可獲得高品質臉部動捕</li>
 <li><strong>批次角色表情</strong>：一次建好表情預設，可套用到多個角色</li>
 <li><strong>遊戲引擎直通</strong>：52 ARKit Shape Keys 是業界標準，直接對應 UE/Unity</li>

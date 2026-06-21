@@ -215,15 +215,15 @@ img{max-width:100%}
 
 <hr>
 
-<h2>七、與 Kimodo BVH 工作流的整合可能性</h2>
+<h2>七、Pipeline 整合分析</h2>
 
 <table>
 <tr><th>面向</th><th>評估</th></tr>
-<tr><td><strong>技術互補性</strong></td><td>⭐⭐⭐⭐⭐ 極佳 — Kimodo 做表演動作(combat/gesture)，Motorica 做 locomotion</td></tr>
+<tr><td><strong>技術互補性</strong></td><td>⭐⭐⭐⭐⭐ 極佳 — AI 動作生成工具 做表演動作(combat/gesture)，Motorica 做 locomotion</td></tr>
 <tr><td><strong>格式相容</strong></td><td>兩者都輸出標準骨架動畫格式，可在 Blender 統一處理</td></tr>
-<tr><td><strong>品質層級</strong></td><td>Motorica = AAA 級 locomotion；Kimodo = 研究級 text-to-motion</td></tr>
-<tr><td><strong>覆蓋面互補</strong></td><td>Kimodo 擅長：表演/手勢/戰鬥特效；Motorica 擅長：移動/轉向/NPC 行為</td></tr>
-<tr><td><strong>Motion Matching</strong></td><td>Motorica 可為遊戲角色生成完整 MM 資料集，Kimodo 補充特殊動作</td></tr>
+<tr><td><strong>品質層級</strong></td><td>Motorica = AAA 級 locomotion；AI 動作生成工具 = 研究級 text-to-motion</td></tr>
+<tr><td><strong>覆蓋面互補</strong></td><td>AI 動作生成工具 擅長：表演/手勢/戰鬥特效；Motorica 擅長：移動/轉向/NPC 行為</td></tr>
+<tr><td><strong>Motion Matching</strong></td><td>Motorica 可為遊戲角色生成完整 MM 資料集，AI 動作生成工具 補充特殊動作</td></tr>
 <tr><td><strong>風格統一</strong></td><td>Motorica 的 Style Clone 可能幫助統一來自不同來源的動作風格</td></tr>
 </table>
 
@@ -237,7 +237,7 @@ img{max-width:100%}
   • Motion Matching 完整資料集
   • NPC 巡邏/移動行為
 
-[表演動作層] ← Kimodo + Viggle
+[表演動作層] ← AI 動作生成工具 + Viggle
   • 戰鬥招式
   • 特殊動作（跳躍/翻滾/施法）
   • 情緒表演
@@ -272,7 +272,7 @@ img{max-width:100%}
 │  • 遊戲角色 locomotion 系統的動畫資料源                  │
 │  • NPC 大量移動動畫的批次生成                            │
 │  • Motion Matching 實作的最佳搭檔                        │
-│  • 與 Kimodo 形成完美互補（移動 vs 表演）                │
+│  • 與 AI 動作生成工具 形成完美互補（移動 vs 表演）                │
 │                                                         │
 └─────────────────────────────────────────────────────────┘
 </code></pre>
@@ -291,7 +291,7 @@ img{max-width:100%}
 <tr><td>量產化適合度</td><td>⭐⭐⭐⭐⭐</td></tr>
 </table>
 
-<p><strong>推薦等級</strong>：🟢 <strong>強烈推薦</strong> — Locomotion + Motion Matching 領域的最佳解。與 Kimodo 形成完美互補。建議申請 Free Lite 試用，並 Book Demo 了解定價。</p>
+<p><strong>推薦等級</strong>：🟢 <strong>強烈推薦</strong> — Locomotion + Motion Matching 領域的最佳解。與 AI 動作生成工具 形成完美互補。建議申請 Free Lite 試用，並 Book Demo 了解定價。</p>
 
 <hr>
 
@@ -302,7 +302,7 @@ img{max-width:100%}
 <li><strong>下載免費 MM 資料集</strong>：<a href="https://www.motorica.ai/blog/download-the-free-motorica-motion-matching-dataset" target="_blank">https://www.motorica.ai/blog/download-the-free-motorica-motion-matching-dataset</a></li>
 <li><strong>Book Demo</strong>：了解企業版定價和 Style Clone 功能</li>
 <li><strong>評估 UE5 Plugin</strong>：如果我們用 UE5，測試其 Motion Matching 自動匯入</li>
-<li><strong>規劃角色分工</strong>：確認 Motorica(locomotion) + Kimodo(表演) 的分界線</li>
+<li><strong>規劃角色分工</strong>：確認 Motorica(locomotion) + AI 動作生成工具(表演) 的分界線</li>
 </ol>
 
 </body>

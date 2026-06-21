@@ -171,10 +171,10 @@ img{max-width:100%}
 
 <hr>
 
-<h2>7. 與 Kimodo 的整合可能性</h2>
+<h2>7. 與其他工具的整合可能性</h2>
 
 <table>
-<tr><th>比較項目</th><th>TDPT</th><th>Kimodo</th></tr>
+<tr><th>比較項目</th><th>TDPT</th><th>AI 動作生成工具</th></tr>
 <tr><td>輸入方式</td><td>攝影機/影片</td><td>文字 prompt</td></tr>
 <tr><td>輸出格式</td><td>VMC Protocol（即時）</td><td>BVH 檔案</td></tr>
 <tr><td>精度</td><td>中低（24 joints）</td><td>中高（AI 生成）</td></tr>
@@ -186,11 +186,11 @@ img{max-width:100%}
 <h3>推薦整合方式</h3>
 <pre><code>
 [TDPT 即時動捕] → [快速錄製參考動作]
-→ [人工描述動作] → [Kimodo 文字生成高品質版]
+→ [人工描述動作] → [文字生成動作高品質版]
 → [ARP Retarget] → [引擎]
 </code></pre>
 
-<p>TDPT 的最佳角色是<strong>快速參考錄製工具</strong>——用來錄製大致動作作為 Kimodo prompt 的視覺參考，或直接用於低品質需求（如 VTuber 驅動）。</p>
+<p>TDPT 的最佳角色是<strong>快速參考錄製工具</strong>——用來錄製大致動作作為 AI 動作生成工具 prompt 的視覺參考，或直接用於低品質需求（如 VTuber 驅動）。</p>
 
 <hr>
 
@@ -201,9 +201,9 @@ img{max-width:100%}
 <pre><code>
 [動作設計構思] → [TDPT 快速即時錄製] → [動作參考]
                                               ↓
-                                    [轉為 Kimodo Prompt]
+                                    [轉為 AI 動作生成工具 Prompt]
                                               ↓
-                                    [Kimodo 高品質生成]
+                                    [AI 動作生成工具 高品質生成]
                                               ↓
                                     [ARP → 遊戲引擎]
 </code></pre>
@@ -237,7 +237,7 @@ img{max-width:100%}
 <ol>
 <li><strong>下載試用 Windows 版</strong>：免費，立即可用，評估追蹤品質是否符合預視需求</li>
 <li><strong>測試 VMC → Blender 串流</strong>：安裝 VMC4B 確認即時串流穩定性</li>
-<li><strong>定位為動作參考工具</strong>：不替代 Kimodo，而是輔助 prompt 構思</li>
+<li><strong>定位為動作參考工具</strong>：不替代 AI 動作生成工具，而是輔助 prompt 構思</li>
 <li><strong>評估 iOS 版 Premium</strong>：如需行動端錄製，650 JPY 解鎖非常划算</li>
 <li><strong>探索 Unity Barracuda 版</strong>：若有即時遊戲內動捕需求可直接嵌入</li>
 </ol>

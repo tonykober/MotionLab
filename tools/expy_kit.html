@@ -173,14 +173,14 @@ img{max-width:100%}
 
 <hr>
 
-<h2>與 Kimodo BVH 輸出的整合可能性</h2>
+<h2>Pipeline 整合分析</h2>
 
 <h3>整合評估：⭐⭐⭐（中等適合，需額外步驟）</h3>
 
 <table>
 <tr><th>面向</th><th>評估</th></tr>
-<tr><td><strong>格式相容性</strong></td><td>⚠️ Kimodo BVH 需先匯入 Blender 轉為 Action，再用 Expy-Kit 處理</td></tr>
-<tr><td><strong>骨架映射</strong></td><td>⚠️ 需在 bone_mapping.py 新增 Kimodo 骨架定義</td></tr>
+<tr><td><strong>格式相容性</strong></td><td>⚠️ AI Text-to-Motion BVH 需先匯入 Blender 轉為 Action，再用 Expy-Kit 處理</td></tr>
+<tr><td><strong>骨架映射</strong></td><td>⚠️ 需在 bone_mapping.py 新增 AI 動作生成工具 骨架定義</td></tr>
 <tr><td><strong>批次處理</strong></td><td>✅ 批次 retarget 是最大優勢</td></tr>
 <tr><td><strong>遊戲匯出</strong></td><td>✅ Make Game Friendly + Convert Bone Names</td></tr>
 <tr><td><strong>品質</strong></td><td>⚠️ FK retarget，腳步品質一般</td></tr>
@@ -191,7 +191,7 @@ img{max-width:100%}
 <p>Expy-Kit 最適合的場景是：<strong>已經使用 Rigify 作為角色骨架系統的工作流</strong>。</p>
 
 <pre><code>
-Kimodo BVH → Blender BVH Import → Expy-Kit Batch Retarget to Rigify
+AI Text-to-Motion BVH → Blender BVH Import → Expy-Kit Batch Retarget to Rigify
     → Rigify 動畫編輯（利用 IK/FK 控制器）
     → Make Game Friendly → Export FBX
 </code></pre>
@@ -203,7 +203,7 @@ Kimodo BVH → Blender BVH Import → Expy-Kit Batch Retarget to Rigify
 <h3>定位：<strong>批次骨架轉換與 Rigify 整合的快速橋樑</strong></h3>
 
 <pre><code>
-[Kimodo AI 生成 BVH]
+[AI 動作生成工具 AI 生成 BVH]
         ↓
 [BVH Retargeter 初步映射]
         ↓

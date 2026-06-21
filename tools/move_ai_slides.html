@@ -179,20 +179,20 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 
 <section class="slide" id="s8">
 <div class="slide-inner">
-<h2>與 Kimodo 整合</h2>
-<p class="desc">Move.AI 和 Kimodo 的整合空間在於：Move.AI 處理「需要真人動作參考」的高品質動捕場景，Kimodo 處理「純文字描述生成」的快速量產場景。兩者的 BVH 輸出可共用同一套後處理 pipeline。</p>
+<h2>Pipeline 整合分析</h2>
+<p class="desc">Move.AI 和 AI 動作生成工具 的整合空間在於：Move.AI 處理「需要真人動作參考」的高品質動捕場景，AI 動作生成工具 處理「純文字描述生成」的快速量產場景。兩者的 BVH 輸出可共用同一套後處理 pipeline。</p>
 <div class="card-grid cols-3" style="margin-top:1.5rem">
 <div class="card">
 <p style="color:var(--accent-cyan);font-weight:700;font-size:1.4rem;margin-bottom:.6rem">格式相容</p>
-<p style="font-size:1rem;line-height:1.7">Move.AI 直接輸出 BVH，與 Kimodo BVH 使用相同的 Retarget → Foot Fix → Root Motion pipeline。</p>
+<p style="font-size:1rem;line-height:1.7">Move.AI 直接輸出 BVH，與 AI Text-to-Motion BVH 使用相同的 Retarget → Foot Fix → Root Motion pipeline。</p>
 </div>
 <div class="card">
 <p style="color:var(--accent-teal);font-weight:700;font-size:1.4rem;margin-bottom:.6rem">場景互補</p>
-<p style="font-size:1rem;line-height:1.7">主角/Boss 動作 → Move.AI（高品質）。NPC 通用動作 → Kimodo（快速量產）。</p>
+<p style="font-size:1rem;line-height:1.7">主角/Boss 動作 → Move.AI（高品質）。NPC 通用動作 → AI Text-to-Motion 工具。</p>
 </div>
 <div class="card">
 <p style="color:var(--accent-gold);font-weight:700;font-size:1.4rem;margin-bottom:.6rem">API 串接</p>
-<p style="font-size:1rem;line-height:1.7">Move.AI REST API 可與 Kimodo 整合到同一自動化工作流。</p>
+<p style="font-size:1rem;line-height:1.7">Move.AI REST API 可Pipeline 整合分析到同一自動化工作流。</p>
 </div>
 </div>
 </div>
@@ -204,7 +204,7 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <p class="desc">在 AI 動作量產工作流中，Move.AI 佔據「高品質影片動捕」的頂端位置。它適合預算較高、對品質要求極高的正式產出（主角動作、過場動畫），而非大量 NPC 通用動作。</p>
 <div class="card" style="font-family:monospace;font-size:1rem;line-height:2.2;padding:2.5rem;margin-top:1.5rem">
 <span style="color:var(--text-primary);font-weight:700">[動作輸入源]</span><br>
-&nbsp;&nbsp;├── Text Prompt ──→ Kimodo（離線 BVH，快速量產）<br>
+&nbsp;&nbsp;├── Text Prompt ──→ AI Text-to-Motion 工具<br>
 &nbsp;&nbsp;├── 影片參考 ──→ Viggle/DeepMotion（中等品質，低成本）<br>
 &nbsp;&nbsp;├── <span style="color:var(--accent-teal);font-weight:700">專業影片 ──→ Move.AI Genesis（光學等級品質）⭐</span><br>
 &nbsp;&nbsp;└── 手動 K 幀 ──→ 傳統 DCC<br><br>
@@ -235,7 +235,7 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <li><strong>Step 2</strong> — 確認 BVH 輸出可直接進入我們的 retarget pipeline</li>
 <li><strong>Step 3</strong> — 評估是否有預算用於關鍵動作（主角/Boss）</li>
 <li><strong>Step 4</strong> — 比較 Move.AI vs DeepMotion vs Viggle 的品質差異</li>
-<li><strong>Step 5</strong> — 決定「高品質動作用 Move.AI + 量產用 Kimodo」的混合策略</li>
+<li><strong>Step 5</strong> — 決定「高品質動作用 Move.AI + 量產用 AI 動作生成工具」的混合策略</li>
 </ul>
 </div>
 <p style="margin-top:2rem;font-size:1rem;color:var(--text-dim)">MotionLab Research · 2026-06-19 · move.ai</p>

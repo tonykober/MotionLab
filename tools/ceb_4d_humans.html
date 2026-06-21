@@ -181,10 +181,10 @@ img{max-width:100%}
 
 <hr>
 
-<h2>7. 與 Kimodo 的整合可能性</h2>
+<h2>7. 與其他工具的整合可能性</h2>
 
 <table>
-<tr><th>比較項目</th><th>CEB 4D Humans</th><th>Kimodo</th></tr>
+<tr><th>比較項目</th><th>CEB 4D Humans</th><th>AI 動作生成工具</th></tr>
 <tr><td>輸入方式</td><td>影片</td><td>文字 prompt</td></tr>
 <tr><td>輸出格式</td><td>Blender Armature</td><td>BVH</td></tr>
 <tr><td>品質</td><td>中高（依影片品質）</td><td>中高（AI 生成）</td></tr>
@@ -198,14 +198,14 @@ img{max-width:100%}
 <pre><code>
 方案 A：互補使用
 [參考影片] → [CEB 4D Humans 提取動作] → [觀察動作特徵]
-→ [撰寫 Kimodo Prompt] → [Kimodo 生成商用版本]
+→ [撰寫 AI 動作生成工具 Prompt] → [AI 動作生成工具 生成商用版本]
 
 方案 B：CEB 作為品質參考
-[CEB 產出] vs [Kimodo 產出] → 比較選擇較佳者
+[CEB 產出] vs [AI 動作生成工具 產出] → 比較選擇較佳者
 → [ARP Retarget] → [引擎]
 </code></pre>
 
-<p>CEB 4D Humans 最適合作為<strong>影片參考動作的提取工具</strong>，但因 SMPL 商用限制，正式產出建議用 Kimodo。</p>
+<p>CEB 4D Humans 最適合作為<strong>影片參考動作的提取工具</strong>，但因 SMPL 商用限制，正式產出建議用 AI 動作生成工具。</p>
 
 <hr>
 
@@ -218,9 +218,9 @@ img{max-width:100%}
         ↓
 [CEB 4D Humans（Blender 內）]
         ↓
-[3D 骨架動畫（SMPL）] → [分析動作特徵] → [轉為 Kimodo Prompt]
+[3D 骨架動畫（SMPL）] → [分析動作特徵] → [轉為 AI 動作生成工具 Prompt]
                                                     ↓
-                                          [Kimodo 生成（可商用）]
+                                          [AI 動作生成工具 生成（可商用）]
                                                     ↓
                                           [ARP → 引擎]
 </code></pre>
@@ -253,7 +253,7 @@ img{max-width:100%}
 <ol>
 <li><strong>安裝試用</strong>：確認團隊 GPU 環境可正常運行，評估實際品質</li>
 <li><strong>定位為研究工具</strong>：用於分析參考影片中的動作，而非直接商用產出</li>
-<li><strong>建立 CEB→Kimodo 工作流</strong>：CEB 提取動作特徵 → 撰寫精確 Kimodo prompt</li>
+<li><strong>建立 CEB→AI 動作生成工具 工作流</strong>：CEB 提取動作特徵 → 撰寫精確 AI 動作生成工具 prompt</li>
 <li><strong>關注 SMPL 商用授權</strong>：若未來 Meshcapade 開放合理商用授權可重新評估</li>
 <li><strong>測試 WHAM 後端</strong>：含全域軌跡，對 Root Motion 提取特別有幫助</li>
 </ol>

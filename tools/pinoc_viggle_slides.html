@@ -203,8 +203,8 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <!-- 8: Integration -->
 <section class="slide" id="s8">
 <div class="slide-inner">
-<h2>與 Kimodo 整合方案</h2>
-<p class="desc">Kimodo 用文字描述生成動作（text-to-motion），Viggle 用影片參考提取動作（video-to-mocap）。兩者輸入方式互補，可組合成靈活的混合工作流，依場景選擇最適合的生成方式。</p>
+<h2>Pipeline 整合分析方案</h2>
+<p class="desc">AI 動作生成工具 用文字描述生成動作（text-to-motion），Viggle 用影片參考提取動作（video-to-mocap）。兩者輸入方式互補，可組合成靈活的混合工作流，依場景選擇最適合的生成方式。</p>
 <div class="card-grid cols-3" style="margin-top:1.5rem">
 <div class="card">
 <p style="color:var(--accent-cyan);font-weight:700;font-size:1.4rem;margin-bottom:.6rem">方案 A：影片參考</p>
@@ -221,7 +221,7 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <p style="color:var(--accent-teal);font-weight:700;font-size:1.4rem;margin-bottom:.6rem">方案 B：混合工作流</p>
 <p class="card-title">依動作複雜度選擇</p>
 <ul class="list-clean">
-<li>簡單/通用動作 → Kimodo text prompt 生成 BVH</li>
+<li>簡單/通用動作 → 文字生成動作工具 生成 BVH</li>
 <li>複雜/特定動作 → 拍影片 Viggle 提取 GLB</li>
 <li>兩者在 Blender 統一 retarget</li>
 <li>統一 clean-up（腳步/Root Motion）</li>
@@ -247,10 +247,10 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <section class="slide" id="s9">
 <div class="slide-inner">
 <h2>工作流定位</h2>
-<p class="desc">在整個 AI 動作量產工作流中，Viggle PINOC 佔據「影片參考輸入」這個獨特位置。它與 Kimodo（文字輸入）形成互補，共同構成動作生成的前端，後續再接入統一的 retarget 和 clean-up pipeline。</p>
+<p class="desc">在整個 AI 動作量產工作流中，Viggle PINOC 佔據「影片參考輸入」這個獨特位置。它與 AI Text-to-Motion 工具形成互補，共同構成動作生成的前端，後續再接入統一的 retarget 和 clean-up pipeline。</p>
 <div class="card" style="font-family:monospace;font-size:.9rem;line-height:2.2;padding:2.5rem;margin-top:1.5rem">
 <span style="color:var(--text-primary);font-weight:700">[動作輸入源]</span><br>
-&nbsp;&nbsp;├── Text Prompt ──→ Kimodo（離線生成 BVH）<br>
+&nbsp;&nbsp;├── Text Prompt ──→ AI Text-to-Motion 工具<br>
 &nbsp;&nbsp;├── <span style="color:var(--accent-teal);font-weight:700">影片參考 ──→ Viggle PINOC（雲端 AI GLB）⭐</span><br>
 &nbsp;&nbsp;└── 手動 K 幀 ──→ 傳統 DCC（Maya/Blender）<br>
 <br>
@@ -262,7 +262,7 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 </div>
 <div class="card-grid cols-2" style="margin-top:1.2rem">
 <div class="card"><p class="card-title">最適合場景</p><p style="font-size:1rem">NPC idle/walk/combat 動畫、格鬥遊戲動作庫、遊戲預告片快速產出、手遊 casual 休閒動作、動作參考有大量現成影片可用時</p></div>
-<div class="card"><p class="card-title">相比 Kimodo 的優勢</p><p style="font-size:1rem">適合有明確視覺參考的動作（「照這個影片做」）、內建 Root Motion + 腳部修正、Mixamo 骨架免 retarget、API 批次量產能力</p></div>
+<div class="card"><p class="card-title">相比 AI 動作生成工具 的優勢</p><p style="font-size:1rem">適合有明確視覺參考的動作（「照這個影片做」）、內建 Root Motion + 腳部修正、Mixamo 骨架免 retarget、API 批次量產能力</p></div>
 </div>
 </div>
 </section>
@@ -286,7 +286,7 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <li><strong>Step 1</strong> — 前往 viggle.ai/3d-studio Guest 模式免費試 5 個動畫，評估品質</li>
 <li><strong>Step 2</strong> — 用我們的遊戲角色動作需求（走/跑/攻擊）拍攝測試影片</li>
 <li><strong>Step 3</strong> — 下載 GLB 匯入 Unity/UE5 確認骨架相容性</li>
-<li><strong>Step 4</strong> — 與 Kimodo 輸出做 A/B 品質比較</li>
+<li><strong>Step 4</strong> — 與 AI 動作生成工具 輸出做 A/B 品質比較</li>
 <li><strong>Step 5</strong> — 確認品質後申請 API Key 建立量產 Pipeline</li>
 </ul>
 </div>

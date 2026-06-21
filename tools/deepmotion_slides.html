@@ -176,13 +176,13 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <section class="slide" id="s7">
 <div class="slide-inner">
 <h2>優缺點分析</h2>
-<p class="desc">DeepMotion 最大優勢是 Video + Text 雙模態加上直接 BVH 輸出，與 Kimodo 工作流完美相容。但免費版不可商用，且 SayMotion API 需要申請合作夥伴。</p>
+<p class="desc">DeepMotion 最大優勢是 Video + Text 雙模態加上直接 BVH 輸出，與 AI 動作生成工具 工作流完美相容。但免費版不可商用，且 SayMotion API 需要申請合作夥伴。</p>
 <div class="card-grid cols-2" style="margin-top:1.2rem">
 <div class="card">
 <p class="pos" style="font-weight:700;font-size:1.6rem;margin-bottom:1rem">✅ 優點</p>
 <ul class="list-clean">
 <li><strong>雙模態</strong> — Video + Text 兩種輸入生成動畫</li>
-<li><strong>BVH 直接匯出</strong> — 與 Kimodo 格式完全相容</li>
+<li><strong>BVH 直接匯出</strong> — 與 AI 動作生成工具 格式完全相容</li>
 <li><strong>REST API</strong> — 支援批次自動化處理</li>
 <li><strong>臉+手完整</strong> — 全身+表情+手勢一站搞定</li>
 <li><strong>多人追蹤</strong> — 最多 8 人同時</li>
@@ -208,23 +208,23 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <!-- 8: Integration -->
 <section class="slide" id="s8">
 <div class="slide-inner">
-<h2>與 Kimodo 整合</h2>
-<p class="desc">DeepMotion 和 Kimodo 有極高互補性：都支援 BVH 格式、都有文字生成動作能力。DeepMotion 的 Animate 3D 補足了 Kimodo 沒有的「影片轉動畫」功能，而 SayMotion 則是 text-to-motion 賽道的另一個選擇。</p>
+<h2>Pipeline 整合分析</h2>
+<p class="desc">DeepMotion 和 AI 動作生成工具 有極高互補性：都支援 BVH 格式、都有文字生成動作能力。DeepMotion 的 Animate 3D 補足了 AI 動作生成工具 沒有的「影片轉動畫」功能，而 SayMotion 則是 text-to-motion 賽道的另一個選擇。</p>
 <div class="card-grid cols-3" style="margin-top:1.5rem">
 <div class="card">
 <p style="color:var(--accent-cyan);font-weight:700;font-size:1.4rem;margin-bottom:.6rem">格式相容</p>
 <p style="color:var(--text-primary);font-weight:600;margin-bottom:.8rem">BVH 直接共用 Pipeline</p>
-<p style="font-size:1rem;line-height:1.7">DeepMotion 直接輸出 BVH，與 Kimodo 的 BVH 輸出使用完全相同的後處理工具鏈（Retarget → Foot Fix → Root Motion）。</p>
+<p style="font-size:1rem;line-height:1.7">DeepMotion 直接輸出 BVH，與 AI 動作生成工具 的 BVH 輸出使用完全相同的後處理工具鏈（Retarget → Foot Fix → Root Motion）。</p>
 </div>
 <div class="card">
 <p style="color:var(--accent-teal);font-weight:700;font-size:1.4rem;margin-bottom:.6rem">功能互補</p>
 <p style="color:var(--text-primary);font-weight:600;margin-bottom:.8rem">Text + Video 雙輸入</p>
-<p style="font-size:1rem;line-height:1.7">Kimodo = 離線 text-to-motion。DeepMotion = 雲端 video-to-motion + text-to-motion。覆蓋不同場景和品質需求。</p>
+<p style="font-size:1rem;line-height:1.7">AI 動作生成工具 = 離線 text-to-motion。DeepMotion = 雲端 video-to-motion + text-to-motion。覆蓋不同場景和品質需求。</p>
 </div>
 <div class="card">
 <p style="color:var(--accent-gold);font-weight:700;font-size:1.4rem;margin-bottom:.6rem">批次自動化</p>
 <p style="color:var(--text-primary);font-weight:600;margin-bottom:.8rem">API 串接量產</p>
-<p style="font-size:1rem;line-height:1.7">Animate 3D REST API 可批次上傳影片自動處理。搭配 Kimodo 本地生成，雙管齊下建置大規模動作庫。</p>
+<p style="font-size:1rem;line-height:1.7">Animate 3D REST API 可批次上傳影片自動處理。搭配 AI 動作生成工具 本地生成，雙管齊下建置大規模動作庫。</p>
 </div>
 </div>
 </div>
@@ -237,7 +237,7 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <p class="desc">在 AI 動作量產工作流中，DeepMotion 佔據「雲端 AI 平台」的核心位置。它同時提供 video 和 text 兩種輸入管道，並直接輸出 BVH — 這讓它能無縫銜接我們現有的 retarget + clean-up pipeline。</p>
 <div class="card" style="font-family:monospace;font-size:1rem;line-height:2.2;padding:2.5rem;margin-top:1.5rem">
 <span style="color:var(--text-primary);font-weight:700">[動作輸入源]</span><br>
-&nbsp;&nbsp;├── Text Prompt ──→ Kimodo（離線 BVH）<br>
+&nbsp;&nbsp;├── Text Prompt ──→ AI Text-to-Motion 工具<br>
 &nbsp;&nbsp;├── Text Prompt ──→ <span style="color:var(--accent-teal);font-weight:700">DeepMotion SayMotion（雲端 BVH）</span><br>
 &nbsp;&nbsp;├── <span style="color:var(--accent-cyan);font-weight:700">影片參考 ──→ DeepMotion Animate 3D（雲端 BVH）⭐</span><br>
 &nbsp;&nbsp;├── 影片參考 ──→ Viggle PINOC（雲端 GLB）<br>
@@ -269,7 +269,7 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <p class="grad-text" style="font-size:1.3rem;font-weight:800;margin-bottom:1rem">🟢 強烈推薦 — 建議行動步驟</p>
 <ul class="list-clean">
 <li><strong>Step 1</strong> — 註冊免費帳號，用 60 credits 測試 Animate 3D 品質</li>
-<li><strong>Step 2</strong> — 測試 SayMotion 文字生成，與 Kimodo 做品質 A/B 比較</li>
+<li><strong>Step 2</strong> — 測試 SayMotion 文字生成，與 AI 動作生成工具 做品質 A/B 比較</li>
 <li><strong>Step 3</strong> — 確認 BVH 輸出可直接進入我們的 retarget pipeline</li>
 <li><strong>Step 4</strong> — 評估 Starter 方案 $9/月是否滿足量產需求</li>
 <li><strong>Step 5</strong> — 串接 Animate 3D REST API 到自動化工作流</li>

@@ -151,13 +151,13 @@ img{max-width:100%}
 
 <hr>
 
-<h2>與 Kimodo BVH 輸出的整合可能性</h2>
+<h2>Pipeline 整合分析</h2>
 
 <h3>整合評估：⭐⭐⭐（輕度適合，適合手動微調）</h3>
 
 <table>
 <tr><th>面向</th><th>評估</th></tr>
-<tr><td><strong>問題對應</strong></td><td>✅ Kimodo 動作常有輕微腳步滑動，此工具正好處理</td></tr>
+<tr><td><strong>問題對應</strong></td><td>✅ AI 動作生成工具 動作常有輕微腳步滑動，此工具正好處理</td></tr>
 <tr><td><strong>自動化</strong></td><td>❌ 無法批次自動處理，需手動操作</td></tr>
 <tr><td><strong>品質</strong></td><td>⚠️ 基本閾值鎖定，不如專業 IK 接地方案</td></tr>
 <tr><td><strong>工作流</strong></td><td>✅ 輕量不干擾，retarget 後隨時可用</td></tr>
@@ -168,7 +168,7 @@ img{max-width:100%}
 <p>適合作為 retarget 後的<strong>快速手動修復工具</strong>，用於少量需要精修的動畫：</p>
 
 <pre><code>
-Kimodo BVH → Retarget（ARP/BVH Retargeter）
+AI Text-to-Motion BVH → Retarget（ARP/BVH Retargeter）
     → Foot Locker（手動修腳步滑動）← 本工具
     → Export
 </code></pre>

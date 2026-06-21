@@ -160,13 +160,13 @@ img{max-width:100%}
 
 <hr>
 
-<h2>與 Kimodo BVH 輸出的整合可能性</h2>
+<h2>Pipeline 整合分析</h2>
 
 <h3>整合評估：⭐⭐⭐⭐（潛力高，但需驗證）</h3>
 
 <table>
 <tr><th>面向</th><th>評估</th></tr>
-<tr><td><strong>問題對應</strong></td><td>✅ Kimodo 動作最大痛點就是腳步滑動，本工具從源頭解決</td></tr>
+<tr><td><strong>問題對應</strong></td><td>✅ AI 動作生成工具 動作最大痛點就是腳步滑動，本工具從源頭解決</td></tr>
 <tr><td><strong>方法論</strong></td><td>✅ Hip alignment 對 AI 生成動畫特別有效（AI 骨架比例可能不精確）</td></tr>
 <tr><td><strong>品質</strong></td><td>✅ 理論上比純旋轉映射品質更高</td></tr>
 <tr><td><strong>批次</strong></td><td>⚠️ 未確認批次處理能力</td></tr>
@@ -176,9 +176,9 @@ img{max-width:100%}
 <h3>建議整合流程</h3>
 
 <pre><code>
-Kimodo BVH → Blender Import
+AI Text-to-Motion BVH → Blender Import
     → Retargeting Automation System ← 本工具
-      - 自動分析 Kimodo 骨架 vs 目標角色比例差異
+      - 自動分析 AI 動作生成工具 骨架 vs 目標角色比例差異
       - Hip alignment
       - Limb proportion matching
       - Retarget（已含接地優化）
@@ -193,7 +193,7 @@ Kimodo BVH → Blender Import
 <h3>定位：<strong>智慧型比例匹配 Retarget（品質優先方案）</strong></h3>
 
 <pre><code>
-[Kimodo AI 生成 BVH]
+[AI 動作生成工具 AI 生成 BVH]
         ↓
 方案 A（品質優先）：
   [Retargeting Automation System] ← 本工具
@@ -226,7 +226,7 @@ Kimodo BVH → Blender Import
 
 <p><strong>建議：</strong></p>
 <ul>
-<li>購買一份試用，以 Kimodo 輸出的 BVH 實際測試品質</li>
+<li>購買一份試用，以 AI 動作生成工具 輸出的 BVH 實際測試品質</li>
 <li>與 ARP IK Retarget 做 A/B 比較</li>
 <li>確認批次處理能力後再決定是否納入正式 pipeline</li>
 </ul>

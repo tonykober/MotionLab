@@ -178,13 +178,13 @@ img{max-width:100%}
 
 <h2>與現有工具的整合可能性</h2>
 
-<h3>與 Kimodo 的整合</h3>
+<h3>與其他工具的整合</h3>
 
 <table>
 <tr><th>環節</th><th>整合方式</th></tr>
-<tr><td>Kimodo 動作 → CrowdSim3D 動畫庫</td><td>用 Kimodo 批次生成 walk/run/idle 等基礎動作，作為 CrowdSim3D 的動畫資產</td></tr>
-<tr><td>AI 生成多樣性</td><td>用 Kimodo 為同一動作生成多個變體（不同速度/風格），增加群眾多樣性</td></tr>
-<tr><td>戰鬥動作</td><td>Kimodo 生成攻擊/防禦/倒地動作，CrowdSim3D 在狀態機中觸發</td></tr>
+<tr><td>AI 動作生成工具 動作 → CrowdSim3D 動畫庫</td><td>用 AI 動作生成工具 批次生成 walk/run/idle 等基礎動作，作為 CrowdSim3D 的動畫資產</td></tr>
+<tr><td>AI 生成多樣性</td><td>用 AI 動作生成工具 為同一動作生成多個變體（不同速度/風格），增加群眾多樣性</td></tr>
+<tr><td>戰鬥動作</td><td>AI 動作生成工具 生成攻擊/防禦/倒地動作，CrowdSim3D 在狀態機中觸發</td></tr>
 </table>
 
 <h3>與 Blender → UE/Unity Pipeline 的整合</h3>
@@ -198,7 +198,7 @@ img{max-width:100%}
 
 <h3>建議整合流程</h3>
 <pre><code>
-Kimodo 批次生成動作庫（walk/run/attack/idle...）
+AI 動作生成工具 批次生成動作庫（walk/run/attack/idle...）
 → CrowdSim3D 設定群眾行為（狀態機 + 動畫映射）
 → 模擬結果烘焙 → ARP 匯出 FBX → 遊戲引擎（過場動畫用）
 </code></pre>
@@ -211,14 +211,14 @@ Kimodo 批次生成動作庫（walk/run/attack/idle...）
 
 <pre><code>
 [AI 動作生成] → [動作庫] → [CrowdSim3D 行為編排] → [群眾場景]
-  (Kimodo)      (walk/run/   (狀態機+路徑+         (數百角色同場景)
+  (AI 動作生成工具)      (walk/run/   (狀態機+路徑+         (數百角色同場景)
                  attack...)    陣型+迴避)
 </code></pre>
 
 <p><strong>具體貢獻：</strong></p>
 
 <ol>
-<li><strong>動作消費放大</strong>：一個 Kimodo 動作可被數百個代理同時使用，一個動作的價值被放大 100 倍</li>
+<li><strong>動作消費放大</strong>：一個 AI 動作生成工具 動作可被數百個代理同時使用，一個動作的價值被放大 100 倍</li>
 <li><strong>多樣性需求驅動</strong>：群眾場景需要大量動作變體，驅動 AI 生成更多樣化的動作</li>
 <li><strong>戰鬥場景自動化</strong>：設定好行為邏輯後，戰鬥動畫由模擬器自動編排，減少手動 K 幀</li>
 <li><strong>場景預視</strong>：在投入引擎實作前，用 CrowdSim3D 快速驗證群眾行為設計</li>

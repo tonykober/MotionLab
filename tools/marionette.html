@@ -160,7 +160,7 @@ img{max-width:100%}
 <h3>❌ 缺點</h3>
 
 <ol>
-<li><strong>無 BVH 匯出</strong> — 只有 FBX（Mixamo），與 Kimodo BVH 需轉換</li>
+<li><strong>無 BVH 匯出</strong> — 只有 FBX（Mixamo），與 AI Text-to-Motion BVH 需轉換</li>
 <li><strong>無 API/批次</strong> — 手動操作，不適合全自動化</li>
 <li><strong>較新工具</strong> — 市場認知度低，獨立品質驗證少</li>
 <li><strong>精度未正式對比</strong> — 未見與 Vicon/OptiTrack 的對照測試</li>
@@ -169,15 +169,15 @@ img{max-width:100%}
 
 <hr>
 
-<h2>七、與 Kimodo BVH 工作流的整合可能性</h2>
+<h2>七、Pipeline 整合分析</h2>
 
 <table>
 <tr><th>面向</th><th>評估</th></tr>
-<tr><td><strong>格式</strong></td><td>Kimodo=BVH，Marionette=FBX(Mixamo) — 需在 Blender 轉換但 Mixamo 標準很好處理</td></tr>
-<tr><td><strong>互補場景</strong></td><td>Kimodo=text-to-motion；Marionette=video-to-motion(含臉手)</td></tr>
-<tr><td><strong>量產化</strong></td><td>Marionette 無限但手動；Kimodo 離線可腳本化</td></tr>
-<tr><td><strong>臉/手</strong></td><td>Marionette 補充 Kimodo 沒有的臉部和手指</td></tr>
-<tr><td><strong>成本</strong></td><td>兩者都極低（$12.50/月 vs Kimodo 本地免費）</td></tr>
+<tr><td><strong>格式</strong></td><td>AI 動作生成工具=BVH，Marionette=FBX(Mixamo) — 需在 Blender 轉換但 Mixamo 標準很好處理</td></tr>
+<tr><td><strong>互補場景</strong></td><td>AI 動作生成工具=text-to-motion；Marionette=video-to-motion(含臉手)</td></tr>
+<tr><td><strong>量產化</strong></td><td>Marionette 無限但手動；AI 動作生成工具 離線可腳本化</td></tr>
+<tr><td><strong>臉/手</strong></td><td>Marionette 補充 AI 動作生成工具 沒有的臉部和手指</td></tr>
+<tr><td><strong>成本</strong></td><td>兩者都極低（$12.50/月 vs AI 動作生成工具 本地免費）</td></tr>
 </table>
 
 <h3>推薦整合方式</h3>
@@ -185,7 +185,7 @@ img{max-width:100%}
 <pre><code>
 方案：混合工作流
   全身表演動作 → Marionette (含臉+手) → FBX → Blender retarget
-  文字描述動作 → Kimodo → BVH → Blender retarget
+  文字描述動作 → AI 動作生成工具 → BVH → Blender retarget
   統一在 Blender 合併 → 匯出到遊戲引擎
 </code></pre>
 

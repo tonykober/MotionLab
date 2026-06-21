@@ -162,11 +162,11 @@ img{max-width:100%}
 
 <h2>與現有工具的整合可能性</h2>
 
-<h3>與 Kimodo 的整合</h3>
+<h3>與其他工具的整合</h3>
 
 <table>
 <tr><th>環節</th><th>整合方式</th></tr>
-<tr><td>Kimodo 作為動畫來源</td><td>Kimodo 生成 walk/run/idle/jump → 作為 Third Person Kit 的動作庫</td></tr>
+<tr><td>AI 動作生成工具 作為動畫來源</td><td>AI 動作生成工具 生成 walk/run/idle/jump → 作為 Third Person Kit 的動作庫</td></tr>
 <tr><td>AI + 即時操控</td><td>AI 生成基礎動作 + 即時操控決定路線和時機</td></tr>
 <tr><td>量產場景動畫</td><td>用 TPK 快速走場，配合 AI 動作，大幅縮短 previs 時間</td></tr>
 </table>
@@ -182,7 +182,7 @@ img{max-width:100%}
 
 <h3>建議整合流程</h3>
 <pre><code>
-Kimodo 生成基礎動作（walk/run/idle/jump）
+AI 動作生成工具 生成基礎動作（walk/run/idle/jump）
 → Third Person Kit 設定
 → 即時操控角色在場景中走位
 → 錄製路徑和時機為 Action
@@ -198,7 +198,7 @@ Kimodo 生成基礎動作（walk/run/idle/jump）
 
 <pre><code>
 [AI 動作庫] → [Third Person Kit] → [場景走位動畫] → [完整過場/遊戲動畫]
- (Kimodo)      (即時操控決定       (何時走、何時跑    
+ (AI 動作生成工具)      (即時操控決定       (何時走、何時跑    
                 路線和時機)          何時跳、何時停)
 </code></pre>
 

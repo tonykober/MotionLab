@@ -186,10 +186,10 @@ wget [範例影片 URL]
 
 <hr>
 
-<h2>7. 與 Kimodo 的整合可能性</h2>
+<h2>7. 與其他工具的整合可能性</h2>
 
 <table>
-<tr><th>比較項目</th><th>MocapNET</th><th>Kimodo</th></tr>
+<tr><th>比較項目</th><th>MocapNET</th><th>AI 動作生成工具</th></tr>
 <tr><td>輸入</td><td>影片</td><td>文字 prompt</td></tr>
 <tr><td>輸出</td><td>BVH（直接！）</td><td>BVH</td></tr>
 <tr><td>格式相容</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐⭐⭐</td></tr>
@@ -203,12 +203,12 @@ wget [範例影片 URL]
 <pre><code>
 [MocapNET 從影片提取 BVH]
         ↓
-[與 Kimodo BVH 格式完全相同]
+[與 AI Text-to-Motion BVH 格式完全相同]
         ↓
 [ARP Remap 重定向到角色] → [引擎]
 </code></pre>
 
-<p>MocapNET 和 Kimodo 輸出格式完全一致（BVH），可使用同一套後處理管線（ARP Remap），形成「影片→動作」和「文字→動作」的雙軌並行。</p>
+<p>MocapNET 和 AI 動作生成工具 輸出格式完全一致（BVH），可使用同一套後處理管線（ARP Remap），形成「影片→動作」和「文字→動作」的雙軌並行。</p>
 
 <hr>
 
@@ -221,7 +221,7 @@ wget [範例影片 URL]
 [參考影片] → [MocapNET] → [BVH] ─┐
                                     ├→ [ARP Remap] → [引擎]
 路線 B（文字源）：                   │
-[Prompt] → [Kimodo] → [BVH] ──────┘
+[Prompt] → [AI 動作生成工具] → [BVH] ──────┘
 </code></pre>
 
 <p><strong>量產流程中的角色：</strong></p>
@@ -253,8 +253,8 @@ wget [範例影片 URL]
 <ol>
 <li><strong>在 WSL/Linux 環境編譯測試</strong>：評估實際輸出品質</li>
 <li><strong>測試 OpenCV DNN 模式</strong>：迴避 OpenPose 商用授權問題</li>
-<li><strong>建立 BVH 品質比較基準</strong>：MocapNET vs Kimodo vs 手動製作</li>
-<li><strong>考慮作為備選方案</strong>：當有現成影片素材且 Kimodo prompt 難以描述時使用</li>
+<li><strong>建立 BVH 品質比較基準</strong>：MocapNET vs AI 動作生成工具 vs 手動製作</li>
+<li><strong>考慮作為備選方案</strong>：當有現成影片素材且 AI 動作生成工具 prompt 難以描述時使用</li>
 <li><strong>關注後續更新</strong>：若 v4 出現可重新評估</li>
 </ol>
 

@@ -174,15 +174,15 @@ img{max-width:100%}
 
 <hr>
 
-<h2>與 Kimodo BVH 輸出的整合可能性</h2>
+<h2>Pipeline 整合分析</h2>
 
 <h3>整合評估：⭐⭐⭐⭐（高度適合，需少量前置工作）</h3>
 
 <table>
 <tr><th>面向</th><th>評估</th></tr>
 <tr><td><strong>格式相容性</strong></td><td>✅ 直接匯入 BVH</td></tr>
-<tr><td><strong>骨架映射</strong></td><td>⚠️ 需建立 Kimodo → ARP 的 Preset（一次性，可匯出重複使用）</td></tr>
-<tr><td><strong>IK Retarget</strong></td><td>✅ 最大優勢：IK 模式有效減少 Kimodo 輸出的腳步滑動</td></tr>
+<tr><td><strong>骨架映射</strong></td><td>⚠️ 需建立 AI 動作生成工具 → ARP 的 Preset（一次性，可匯出重複使用）</td></tr>
+<tr><td><strong>IK Retarget</strong></td><td>✅ 最大優勢：IK 模式有效減少 AI 動作生成工具 輸出的腳步滑動</td></tr>
 <tr><td><strong>批次處理</strong></td><td>⚠️ Multiple Animations 支援多動畫，但 headless 批次需社群方案</td></tr>
 <tr><td><strong>遊戲引擎匯出</strong></td><td>✅ 直接匯出 FBX 到 Unity/Unreal</td></tr>
 <tr><td><strong>品質</strong></td><td>⭐⭐⭐⭐⭐ IK retarget 品質業界頂級</td></tr>
@@ -198,8 +198,8 @@ img{max-width:100%}
 <h3>建議整合流程</h3>
 
 <pre><code>
-Kimodo BVH → Blender 匯入
-    → ARP Remap（IK mode, 自建 Kimodo Preset）
+AI Text-to-Motion BVH → Blender 匯入
+    → ARP Remap（IK mode, 自建 AI 動作生成工具 Preset）
     → Interactive Tweaks 微調
     → ARP Game Engine Export → FBX
     → Unity / Unreal 匯入
@@ -212,7 +212,7 @@ Kimodo BVH → Blender 匯入
 <h3>定位：<strong>高品質 retarget + 遊戲引擎匯出的一站式方案</strong></h3>
 
 <pre><code>
-[Kimodo AI 生成 BVH]
+[AI 動作生成工具 AI 生成 BVH]
         ↓
 [Auto-Rig Pro Remap] ← 本工具定位
   - IK retarget（減少滑步）

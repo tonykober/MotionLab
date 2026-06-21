@@ -146,13 +146,13 @@ img{max-width:100%}
 
 <hr>
 
-<h2>與 Kimodo BVH 輸出的整合可能性</h2>
+<h2>Pipeline 整合分析</h2>
 
 <h3>整合評估：⭐⭐⭐⭐（適合，定位為後處理修正）</h3>
 
 <table>
 <tr><th>面向</th><th>評估</th></tr>
-<tr><td><strong>問題對應</strong></td><td>✅ Kimodo 動作的腳步滑動是主要痛點</td></tr>
+<tr><td><strong>問題對應</strong></td><td>✅ AI 動作生成工具 動作的腳步滑動是主要痛點</td></tr>
 <tr><td><strong>工作流位置</strong></td><td>✅ retarget 後的清理環節</td></tr>
 <tr><td><strong>自動化</strong></td><td>⚠️ 比 Foot Locker 好但可能仍需手動操作</td></tr>
 <tr><td><strong>品質</strong></td><td>✅ 專業工具，品質應優於簡單閾值方案</td></tr>
@@ -161,7 +161,7 @@ img{max-width:100%}
 <h3>建議整合流程</h3>
 
 <pre><code>
-Kimodo BVH → Retarget（BVH Retargeter / ARP FK mode）
+AI Text-to-Motion BVH → Retarget（BVH Retargeter / ARP FK mode）
     → Foot Flow ← 本工具定位
       - 自動偵測接地幀
       - 修正滑動
@@ -176,7 +176,7 @@ Kimodo BVH → Retarget（BVH Retargeter / ARP FK mode）
 <h3>定位：<strong>專業級 Mocap 腳步清理（retarget 後修正）</strong></h3>
 
 <pre><code>
-[Kimodo AI 生成 BVH]
+[AI 動作生成工具 AI 生成 BVH]
         ↓
 [Retarget]
         ↓

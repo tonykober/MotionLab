@@ -168,19 +168,19 @@ img{max-width:100%}
 
 <hr>
 
-<h2>七、與 Kimodo BVH 工作流的整合可能性</h2>
+<h2>七、Pipeline 整合分析</h2>
 
 <table>
 <tr><th>面向</th><th>評估</th></tr>
-<tr><td><strong>格式相容</strong></td><td>Kimodo 輸出 BVH，Cartwheel 輸出 GLB/FBX — 可能需要格式轉換，但都是標準骨架動畫格式</td></tr>
-<tr><td><strong>互補定位</strong></td><td>Kimodo = 離線/本地 Text-to-Motion；Cartwheel = 雲端/多模態生成 + 編輯</td></tr>
-<tr><td><strong>Pipeline 整合</strong></td><td>可以考慮：Kimodo 生成 BVH → 匯入 Blender 做 Retarget → Cartwheel 做額外動作混合/補充</td></tr>
-<tr><td><strong>Video Reference</strong></td><td>Cartwheel 的 Video-to-Motion 功能可作為 Kimodo 的替代/對照方案</td></tr>
+<tr><td><strong>格式相容</strong></td><td>AI 動作生成工具 輸出 BVH，Cartwheel 輸出 GLB/FBX — 可能需要格式轉換，但都是標準骨架動畫格式</td></tr>
+<tr><td><strong>互補定位</strong></td><td>AI 動作生成工具 = 離線/本地 Text-to-Motion；Cartwheel = 雲端/多模態生成 + 編輯</td></tr>
+<tr><td><strong>Pipeline 整合</strong></td><td>可以考慮：AI 動作生成工具 生成 BVH → 匯入 Blender 做 Retarget → Cartwheel 做額外動作混合/補充</td></tr>
+<tr><td><strong>Video Reference</strong></td><td>Cartwheel 的 Video-to-Motion 功能可作為 AI 動作生成工具 的替代/對照方案</td></tr>
 <tr><td><strong>量產化</strong></td><td>Cartwheel 的 API（開發中）未來可用於批次自動化</td></tr>
 <tr><td><strong>風格遷移</strong></td><td>Cartwheel 的 Custom Style Model 功能可能有助於統一不同來源動作的風格</td></tr>
 </table>
 
-<p><strong>結論</strong>：Cartwheel 適合作為 Kimodo 的<strong>互補工具</strong>，特別在「影片參考轉 3D」和「動作混合/編輯」場景。但目前不適合完全替代 Kimodo 的離線量產角色。</p>
+<p><strong>結論</strong>：Cartwheel 適合作為 AI 動作生成工具 的<strong>互補工具</strong>，特別在「影片參考轉 3D」和「動作混合/編輯」場景。但目前不適合完全替代 AI 動作生成工具 的離線量產角色。</p>
 
 <hr>
 
@@ -195,7 +195,7 @@ img{max-width:100%}
 │       │                    │                            │
 │       ▼                    ▼                            │
 │  ┌─────────┐      ┌──────────────┐                     │
-│  │ Kimodo  │      │  Cartwheel   │                     │
+│  │ AI 動作生成工具  │      │  Cartwheel   │                     │
 │  │(離線本地)│      │ (雲端多模態) │                     │
 │  └────┬────┘      └──────┬───────┘                     │
 │       │ BVH               │ GLB/FBX                    │
@@ -217,7 +217,7 @@ img{max-width:100%}
 <li>🎯 <strong>快速原型</strong> — 構思動作時快速預覽</li>
 <li>🎯 <strong>影片參考轉 3D</strong> — 拍攝參考影片直接轉為可用動畫</li>
 <li>🎯 <strong>動作混合</strong> — 組合多段動作形成複雜序列</li>
-<li>🎯 <strong>備選方案</strong> — 當 Kimodo 的 text prompt 效果不佳時用 Cartwheel 嘗試</li>
+<li>🎯 <strong>備選方案</strong> — 當 AI 動作生成工具 的 text prompt 效果不佳時用 Cartwheel 嘗試</li>
 </ul>
 
 <hr>

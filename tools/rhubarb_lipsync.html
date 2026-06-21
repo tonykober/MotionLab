@@ -207,11 +207,11 @@ rhubarb -f json -o output.json my-recording.wav
 
 <h2>與現有工具的整合可能性</h2>
 
-<h3>與 Kimodo 的整合</h3>
+<h3>與其他工具的整合</h3>
 
 <table>
 <tr><th>環節</th><th>整合方式</th></tr>
-<tr><td>身體 + 口型</td><td>Kimodo 生成身體動作，Rhubarb 處理口型同步</td></tr>
+<tr><td>身體 + 口型</td><td>AI 動作生成工具 生成身體動作，Rhubarb 處理口型同步</td></tr>
 <tr><td>自動化流程</td><td>兩者都是命令列工具，可寫腳本串接批次處理</td></tr>
 </table>
 
@@ -227,7 +227,7 @@ rhubarb -f json -o output.json my-recording.wav
 <pre><code>
 語音錄音 → Rhubarb 分析 → 嘴型時間軸（JSON）
 → Blender 外掛映射到 FaceIt 的 Shape Keys
-→ 合併 Kimodo 身體動作 → ARP 匯出 → 遊戲引擎
+→ 合併 AI 動作生成工具 身體動作 → ARP 匯出 → 遊戲引擎
 </code></pre>
 
 <hr>

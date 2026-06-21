@@ -38,7 +38,7 @@ img{max-width:100%}
 
 <p><strong>解決的問題：</strong></p>
 <ul>
-<li>一般 AI 動作生成器（如 MDM、Kimodo）不考慮物理，動作可能不自然</li>
+<li>一般 AI 動作生成器（如 MDM、AI 動作生成工具）不考慮物理，動作可能不自然</li>
 <li>手動加入物理感需要 Ragdoll Dynamics 等後處理工具</li>
 <li>物理模擬和動畫生成傳統上是分離的兩個步驟</li>
 <li>場景互動（角色與環境碰撞）需要額外處理</li>
@@ -157,10 +157,10 @@ img{max-width:100%}
 
 <hr>
 
-<h2>7. 與 Kimodo 的整合可能性</h2>
+<h2>7. 與其他工具的整合可能性</h2>
 
 <table>
-<tr><th>比較項目</th><th>Kinephy</th><th>Kimodo</th></tr>
+<tr><th>比較項目</th><th>Kinephy</th><th>AI 動作生成工具</th></tr>
 <tr><td>AI 架構</td><td>物理+生成式</td><td>純生成式（Diffusion）</td></tr>
 <tr><td>物理感知</td><td>✅ 核心賣點</td><td>❌ 需後處理</td></tr>
 <tr><td>輸入</td><td>文字+場景</td><td>文字 prompt</td></tr>
@@ -174,10 +174,10 @@ img{max-width:100%}
 
 <pre><code>
 場景互動動作（爬/跳/靠牆）→ 考慮 Kinephy
-一般移動/戰鬥/日常動作    → Kimodo
+一般移動/戰鬥/日常動作    → AI 動作生成工具
 
 或：
-[Kimodo 生成基礎動作] → [Ragdoll Dynamics 加物理感] → [引擎]
+[AI 動作生成工具 生成基礎動作] → [Ragdoll Dynamics 加物理感] → [引擎]
 （不使用 Kinephy，用現有工具達成類似效果）
 </code></pre>
 
@@ -191,7 +191,7 @@ img{max-width:100%}
 
 <pre><code>
 當前路線（成熟）：
-[Kimodo] → [BVH] → [Ragdoll 物理後處理] → [ARP] → [引擎]
+[AI 動作生成工具] → [BVH] → [Ragdoll 物理後處理] → [ARP] → [引擎]
 
 未來可能路線（待 Kinephy 成熟）：
 [Kinephy] → [含物理感的動畫] → [直接可用] → [引擎]
@@ -201,7 +201,7 @@ img{max-width:100%}
 <p><strong>量產流程中的角色：</strong></p>
 <ul>
 <li>目前：純觀望，不納入工具鏈</li>
-<li>未來：若品質和格式支援到位，可能取代 Kimodo + Ragdoll 的組合</li>
+<li>未來：若品質和格式支援到位，可能取代 AI 動作生成工具 + Ragdoll 的組合</li>
 <li>關鍵觀察點：輸出格式、BVH 支援、品質穩定度</li>
 </ul>
 
@@ -227,7 +227,7 @@ img{max-width:100%}
 <li><strong>純觀望</strong>：目前不投入時間整合</li>
 <li><strong>每季度關注一次</strong>：觀察產品更新和品質進展</li>
 <li><strong>等待輸出格式確認</strong>：BVH 支援是否完善</li>
-<li><strong>比較效益</strong>：Kimodo + Ragdoll 已能達成類似效果</li>
+<li><strong>比較效益</strong>：AI 動作生成工具 + Ragdoll 已能達成類似效果</li>
 <li><strong>記錄為「未來潛力工具」</strong>：待成熟後重新評估</li>
 </ol>
 

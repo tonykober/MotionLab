@@ -232,17 +232,17 @@ img{max-width:100%}
 
 <hr>
 
-<h2>七、與 Kimodo BVH 工作流的整合可能性</h2>
+<h2>七、Pipeline 整合分析</h2>
 
 <table>
 <tr><th>面向</th><th>評估</th></tr>
-<tr><td><strong>格式</strong></td><td>Kimodo 輸出 BVH，Viggle 輸出 GLB — 都可匯入 Blender 做 retarget。GLB→BVH 轉換容易</td></tr>
-<tr><td><strong>互補場景</strong></td><td>Kimodo = text prompt 生成；Viggle = 影片參考轉 mocap。兩者輸入方式不同，覆蓋不同創作場景</td></tr>
+<tr><td><strong>格式</strong></td><td>AI 動作生成工具 輸出 BVH，Viggle 輸出 GLB — 都可匯入 Blender 做 retarget。GLB→BVH 轉換容易</td></tr>
+<tr><td><strong>互補場景</strong></td><td>AI 動作生成工具 = text prompt 生成；Viggle = 影片參考轉 mocap。兩者輸入方式不同，覆蓋不同創作場景</td></tr>
 <tr><td><strong>量產化</strong></td><td>Viggle API 支援批次 + $0.03/animation → 大量參考影片可批次轉換</td></tr>
-<tr><td><strong>品質比較</strong></td><td>需要實測比較：Kimodo vs Viggle 在相同動作的品質差異</td></tr>
+<tr><td><strong>品質比較</strong></td><td>需要實測比較：AI 動作生成工具 vs Viggle 在相同動作的品質差異</td></tr>
 <tr><td><strong>Pipeline 整合</strong></td><td>可以設計：拍攝參考影片 → Viggle API 批次處理 → GLB → Blender retarget → 遊戲引擎</td></tr>
-<tr><td><strong>Root Motion</strong></td><td>Viggle 內建 Root Motion，Kimodo 需要額外處理（--no-postprocess 的限制）</td></tr>
-<tr><td><strong>腳部修正</strong></td><td>Viggle 內建 foot contact correction vs Kimodo 目前無後處理</td></tr>
+<tr><td><strong>Root Motion</strong></td><td>Viggle 內建 Root Motion，AI 動作生成工具 需要額外處理（--no-postprocess 的限制）</td></tr>
+<tr><td><strong>腳部修正</strong></td><td>Viggle 內建 foot contact correction vs AI 動作生成工具 目前無後處理</td></tr>
 </table>
 
 <h3>推薦整合方式</h3>
@@ -252,7 +252,7 @@ img{max-width:100%}
   拍攝動作參考影片 → Viggle API → GLB → Blender retarget → UE5/Unity
 
 方案 B：混合工作流
-  簡單動作 → Kimodo text prompt → BVH
+  簡單動作 → 文字生成動作工具 → BVH
   複雜/特定動作 → 拍攝影片 → Viggle → GLB
   兩者統一在 Blender 做 retarget + clean-up → 遊戲引擎
 
@@ -273,7 +273,7 @@ img{max-width:100%}
 ├─────────────────────────────────────────────────────────┤
 │                                                         │
 │  [輸入源]                                               │
-│    ├── Text Prompt ──→ Kimodo (離線)                    │
+│    ├── Text Prompt ──→ AI 動作生成工具 (離線)                    │
 │    ├── 影片參考 ──→ Viggle PINOC (雲端) ← ⭐ 核心價值   │
 │    └── 手動 K 幀 ──→ 傳統 DCC                          │
 │                                                         │
@@ -315,7 +315,7 @@ img{max-width:100%}
 
 <ol>
 <li><strong>立即試用</strong>：<a href="https://viggle.ai/3d-studio/landing（Guest" target="_blank">https://viggle.ai/3d-studio/landing（Guest</a> 免註冊）</li>
-<li><strong>測試比較</strong>：同一動作分別用 Kimodo 和 Viggle 生成，比較品質</li>
+<li><strong>測試比較</strong>：同一動作分別用 AI 動作生成工具 和 Viggle 生成，比較品質</li>
 <li><strong>API 評估</strong>：申請 API Key 測試批次工作流</li>
 <li><strong>格式測試</strong>：GLB → Blender → retarget 到我們的遊戲角色骨架，確認流程暢通</li>
 <li><strong>成本估算</strong>：評估量產 100 個動作的成本（Viggle API ~$3 vs 傳統方式）</li>

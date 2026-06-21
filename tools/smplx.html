@@ -196,10 +196,10 @@ joints = output.joints      # (1, 55, 3) 關節位置
 
 <hr>
 
-<h2>7. 與 Kimodo 的整合可能性</h2>
+<h2>7. 與其他工具的整合可能性</h2>
 
 <table>
-<tr><th>比較項目</th><th>SMPL-X 生態</th><th>Kimodo</th></tr>
+<tr><th>比較項目</th><th>SMPL-X 生態</th><th>AI 動作生成工具</th></tr>
 <tr><td>本質</td><td>人體表示模型/格式</td><td>動作生成器</td></tr>
 <tr><td>輸出</td><td>Mesh + Joints (pkl/npz)</td><td>BVH</td></tr>
 <tr><td>商用</td><td>❌ 需另購授權</td><td>✅</td></tr>
@@ -220,10 +220,10 @@ joints = output.joints      # (1, 55, 3) 關節位置
 
 vs.
 
-[文字] → [Kimodo] → [BVH] → [ARP] → [引擎]
+[文字] → [AI 動作生成工具] → [BVH] → [ARP] → [引擎]
 </code></pre>
 
-<p>兩者互補：SMPL-X 生態處理「影片→動作」，Kimodo 處理「文字→動作」。</p>
+<p>兩者互補：SMPL-X 生態處理「影片→動作」，AI 動作生成工具 處理「文字→動作」。</p>
 
 <hr>
 
@@ -241,7 +241,7 @@ vs.
 │                            [ARP → 引擎]   │
 └─────────────────────────────────────────┘
 
-獨立路線：[Kimodo] → BVH → [ARP → 引擎]（不經 SMPL-X）
+獨立路線：[AI 動作生成工具] → BVH → [ARP → 引擎]（不經 SMPL-X）
 </code></pre>
 
 <p><strong>量產流程中的角色：</strong></p>
@@ -249,7 +249,7 @@ vs.
 <li>SMPL-X 是「格式」不是「工具」</li>
 <li>大量學術工具輸出此格式，需要轉換到 BVH/FBX</li>
 <li>了解 SMPL-X 有助於理解和評估新的學術動捕工具</li>
-<li>商用限制是主要障礙，Kimodo 路線更適合量產</li>
+<li>商用限制是主要障礙，AI 動作生成工具 路線更適合量產</li>
 </ul>
 
 <hr>
@@ -274,7 +274,7 @@ vs.
 <li><strong>理解但不依賴</strong>：了解 SMPL-X 格式以評估學術工具，但量產不走此路線</li>
 <li><strong>建立 SMPL-X→BVH 轉換管線</strong>：若需使用學術工具產出，準備好轉換腳本</li>
 <li><strong>評估 Meshcapade 商業授權</strong>：若未來需要「影片→動作」的商用管線</li>
-<li><strong>優先使用 Kimodo 路線</strong>：文字→BVH，無授權問題</li>
+<li><strong>優先使用 AI 動作生成工具 路線</strong>：文字→BVH，無授權問題</li>
 <li><strong>關注 SMPL 商用替代</strong>：如 STAR 等無授權限制的模型出現</li>
 </ol>
 

@@ -154,7 +154,7 @@ img{max-width:100%}
 
 <ol>
 <li><strong>雙模態</strong>：Video-to-Motion + Text-to-Motion 雙賽道都有</li>
-<li><strong>BVH 直接匯出</strong>：與 Kimodo 格式完全相容</li>
+<li><strong>BVH 直接匯出</strong>：與 AI 動作生成工具 格式完全相容</li>
 <li><strong>有 REST API</strong>：支援批次自動化處理</li>
 <li><strong>臉部+手部追蹤</strong>：功能全面</li>
 <li><strong>多人追蹤</strong>：最多 8 人</li>
@@ -178,15 +178,15 @@ img{max-width:100%}
 
 <hr>
 
-<h2>七、與 Kimodo BVH 工作流的整合可能性</h2>
+<h2>七、Pipeline 整合分析</h2>
 
 <table>
 <tr><th>面向</th><th>評估</th></tr>
-<tr><td><strong>格式相容</strong></td><td>⭐⭐⭐⭐⭐ BVH 直出，與 Kimodo 完全同格式</td></tr>
-<tr><td><strong>SayMotion vs Kimodo</strong></td><td>直接競品！兩者都是 text-to-motion，需對比品質</td></tr>
-<tr><td><strong>Video Mocap</strong></td><td>Animate 3D 補充 Kimodo 沒有的 video-to-motion 能力</td></tr>
+<tr><td><strong>格式相容</strong></td><td>⭐⭐⭐⭐⭐ BVH 直出，與 AI 動作生成工具 完全同格式</td></tr>
+<tr><td><strong>SayMotion vs AI 動作生成工具</strong></td><td>直接競品！兩者都是 text-to-motion，需對比品質</td></tr>
+<tr><td><strong>Video Mocap</strong></td><td>Animate 3D 補充 AI 動作生成工具 沒有的 video-to-motion 能力</td></tr>
 <tr><td><strong>API 批次處理</strong></td><td>Animate 3D API 可批次處理影片 → 建立動作庫</td></tr>
-<tr><td><strong>臉部/手部</strong></td><td>DeepMotion 可補充 Kimodo 缺乏的臉部和手指動捕</td></tr>
+<tr><td><strong>臉部/手部</strong></td><td>DeepMotion 可補充 AI 動作生成工具 缺乏的臉部和手指動捕</td></tr>
 </table>
 
 <hr>
@@ -195,7 +195,7 @@ img{max-width:100%}
 
 <pre><code>
 DeepMotion 在工作流中的角色：
-• Text-to-Motion 備選方案（與 Kimodo 對比）
+• Text-to-Motion 備選方案（與 AI 動作生成工具 對比）
 • 影片→動捕的 API 批次處理
 • 臉部+手指動捕的補充工具
 • Rotoscope 校正用於品質不佳的動作修正
@@ -215,7 +215,7 @@ DeepMotion 在工作流中的角色：
 <tr><td>量產化適合度</td><td>⭐⭐⭐⭐</td></tr>
 </table>
 
-<p><strong>推薦等級</strong>：🟡 <strong>值得評測</strong> — 與 Kimodo 直接可比的 text-to-motion + 額外的 video-to-motion 能力。建議做 SayMotion vs Kimodo 的品質對比測試。</p>
+<p><strong>推薦等級</strong>：🟡 <strong>值得評測</strong> — 與 AI 動作生成工具 直接可比的 text-to-motion + 額外的 video-to-motion 能力。建議做 SayMotion vs AI 動作生成工具 的品質對比測試。</p>
 
 </body>
 </html>
