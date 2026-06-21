@@ -269,32 +269,38 @@ footer{text-align:center;margin-top:3rem;color:var(--dim);font-size:.8rem}
 
 <div class="workflow">
 <h2>🔧 推薦工作流架構</h2>
-<p style="color:var(--dim);margin-bottom:.8rem">AI 動作生成 → 遊戲引擎的兩條處理路線：</p>
-<div class="flow-diagram"><strong>路線 A：通用工作流（適用任何引擎）</strong>
-
-<strong>[1. 動作生成]</strong>
+<p style="color:var(--dim);margin-bottom:1rem">AI 動作生成 → 遊戲引擎的兩條處理路線：</p>
+<div class="wf-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+<div style="background:rgba(30,42,60,0.55);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:1.5rem">
+<h3 style="color:#b8c4d0;font-size:1.1rem;margin-bottom:.5rem">路線 A：通用工作流</h3>
+<p style="color:var(--dim);font-size:.85rem;margin-bottom:1rem">適用任何引擎（UE / Unity / Godot）</p>
+<div class="flow-diagram"><strong>[1. 動作生成]</strong>
   Viggle / Cartwheel / DeepMotion / Motorica
-  → 輸出 BVH / FBX 原始動畫
+  → BVH / FBX
         ↓
-<strong>[2. Retarget 重定向]</strong>
-  BVH Retargeter / Auto-Rig Pro Remap
-  → 映射到統一遊戲骨架
+<strong>[2. Retarget]</strong>
+  BVH Retargeter / Auto-Rig Pro
         ↓
 <strong>[3. Foot 修正 + Root Motion]</strong>
-  Foot Locker / ARP IK / Root Motion Batch Transfer
+  Foot Locker / Root Motion Batch Transfer
         ↓
-<strong>[4. 遊戲引擎匯出]</strong>
-  Auto-Rig Pro → UE / Unity / Godot
+<strong>[4. 匯出]</strong>
+  → UE / Unity / Godot</div>
+</div>
+<div style="background:rgba(30,42,60,0.55);border:1px solid rgba(45,212,168,0.3);border-radius:12px;padding:1.5rem">
+<h3 style="color:#2dd4a8;font-size:1.1rem;margin-bottom:.5rem">路線 B：UE 快速工作流 ⭐</h3>
+<p style="color:var(--dim);font-size:.85rem;margin-bottom:1rem">Unreal Engine 5.8+ 用戶推薦</p>
+<div class="flow-diagram"><strong>[1. 單鏡頭影片]</strong>
+        ↓
+<strong>[2. MetaHuman Markerless Mocap]</strong>
+        ↓
+<strong>[3. 直接驅動 MetaHuman]</strong>
 
-─────────────────────────────────────────────
-
-<strong>路線 B：UE 快速工作流 ⭐ 推薦（Unreal Engine 用戶）</strong>
-
-<strong>[1. 單鏡頭影片]</strong> → <strong>[2. MetaHuman Markerless Mocap Plugin]</strong> → <strong>[3. 直接驅動 MetaHuman]</strong>
-
-  免 Retarget、免 Foot 修正、免格式轉換
-  一站式完成，全部在 UE 5.8 內處理
-  完全免費、本地離線、全身+臉+手</div>
+免 Retarget、免修正、免轉換
+一站式、免費、本地離線
+全身 + 臉部 + 手指</div>
+</div>
+</div>
 </div>
 <footer>
 <p>MotionLab Research — 遊戲動作研發組 © 2026</p>
