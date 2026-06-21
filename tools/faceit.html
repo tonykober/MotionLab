@@ -186,34 +186,16 @@ iPhone（Face ID）→ 錄製/串流 ARKit 資料
 
 <hr>
 
-<h2>與現有工具的整合可能性</h2>
-
-<h3>與其他工具的整合</h3>
+<h2>七、Pipeline 整合分析</h2>
 
 <table>
-<tr><th>環節</th><th>整合方式</th></tr>
-<tr><td>身體 + 臉部組合</td><td>AI 動作生成工具 生成身體動作 + FaceIt 提供臉部表情 = 完整角色動畫</td></tr>
-<tr><td>AI 動作 + 手動臉部</td><td>AI 無法生成精細臉部動畫，FaceIt 填補此缺口</td></tr>
-<tr><td>動捕全身 + 臉部分離</td><td>身體用 AI 動作生成工具/BVH，臉部用 ARKit + FaceIt</td></tr>
+<tr><th>項目</th><th>內容</th></tr>
+<tr><td><strong>輸入來源</strong></td><td>ARKit .csv/.json（iPhone 動捕）、Audio2Face 資料、Hallway Tile、手動動畫</td></tr>
+<tr><td><strong>輸出格式</strong></td><td>Blender Shape Keys（52 ARKit BS）+ 控制 Rig 動畫 → 隨角色 FBX 匯出</td></tr>
+<tr><td><strong>上游工具</strong></td><td>iPhone ARKit App、NVIDIA Audio2Face、Webcam Motion Capture（VMC→映射）</td></tr>
+<tr><td><strong>下游工具</strong></td><td>ARP Game Export（Shape Keys 隨 FBX 匯出）→ UE Morph Targets / Unity Blend Shapes</td></tr>
+<tr><td><strong>推薦搭配</strong></td><td>iPhone ARKit → FaceIt 映射 → ARP Export（含 Shape Keys）→ 引擎。臉部動畫的標準管線，52 BS 直接對應 UE/Unity。</td></tr>
 </table>
-
-<h3>與 Blender → UE/Unity Pipeline 的整合</h3>
-
-<table>
-<tr><th>流程</th><th>說明</th></tr>
-<tr><td>ARKit Shape Keys → UE</td><td>52 個 ARKit 表情直接對應 UE 的 Morph Target 系統</td></tr>
-<tr><td>FBX 匯出</td><td>FaceIt 的 Shape Keys 可隨角色一起匯出 FBX</td></tr>
-<tr><td>UE Live Link Face</td><td>可搭配 UE Live Link Face App 做即時臉部動捕串流</td></tr>
-</table>
-
-<h3>建議整合流程</h3>
-<pre><code>
-角色建模 → FaceIt 臉部 Rig + 表情 → ARP 身體 Rig
-→ AI 動作生成工具 身體動作 + ARKit 臉部動捕
-→ ARP Game Export（含 Shape Keys）→ UE/Unity
-</code></pre>
-
-<hr>
 
 <h2>對「AI 動作量產工作流」的貢獻定位</h2>
 
@@ -221,13 +203,13 @@ iPhone（Face ID）→ 錄製/串流 ARKit 資料
 
 <pre><code>
 [AI 身體動作]  +  [FaceIt 臉部動畫]  =  [完整角色表演]
-  (AI 動作生成工具)         (ARKit Mocap /        (身體+臉部)
+  (Kimodo)         (ARKit Mocap /        (身體+臉部)
                     手動/Audio2Face)
 </code></pre>
 
 <p><strong>具體貢獻：</strong></p>
 <ol>
-<li><strong>填補 AI 盲區</strong>：AI 動作生成工具 等 AI 工具只生成身體動作，臉部完全空白，FaceIt 完美補充</li>
+<li><strong>填補 AI 盲區</strong>：Kimodo 等 AI 工具只生成身體動作，臉部完全空白，FaceIt 完美補充</li>
 <li><strong>ARKit 動捕低成本</strong>：只需 iPhone 即可獲得高品質臉部動捕</li>
 <li><strong>批次角色表情</strong>：一次建好表情預設，可套用到多個角色</li>
 <li><strong>遊戲引擎直通</strong>：52 ARKit Shape Keys 是業界標準，直接對應 UE/Unity</li>

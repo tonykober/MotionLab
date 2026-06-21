@@ -30,85 +30,20 @@ img{max-width:100%}
 <a href="../index.html" class="back">← 返回首頁</a>
 <h1>Kinetix — 深度調研報告</h1>
 
-<h2>1. 工具概述</h2>
-
-<p>Kinetix 是一家法國 AI 動畫公司，提供 <strong>SDK 讓遊戲開發者在遊戲中嵌入 AI 動畫生成功能</strong>。玩家可透過上傳影片或文字描述，在遊戲內即時生成自訂 3D 表情動作（emotes）。定位為 B2B 遊戲開發平台，專注於玩家 UGC 動畫生態。</p>
-
-<p><strong>核心能力一句話</strong>：讓遊戲玩家在遊戲內用影片/文字即時生成自訂動畫的 B2B SDK 平台。</p>
-
-<p><strong>解決的問題：</strong></p>
-<ul>
-<li>遊戲中的 emote/表情動作選擇有限</li>
-<li>玩家 UGC 內容（用戶生成內容）僅限於文字/圖片，缺乏動畫創作工具</li>
-<li>遊戲開發者缺乏現成的「遊戲內 AI 動畫生成」方案</li>
-<li>跨遊戲動畫資產不相容</li>
-</ul>
-
-<hr>
-
-<h2>2. 功能詳細說明</h2>
-
-<h3>功能矩陣</h3>
+<h2>七、Pipeline 整合分析</h2>
 
 <table>
-<tr><th>功能</th><th>說明</th></tr>
-<tr><td>Video-to-Animation</td><td>玩家上傳影片 → AI 生成 3D 動作</td></tr>
-<tr><td>Text-to-Animation</td><td>文字描述 → 3D 動畫生成</td></tr>
-<tr><td>Unity SDK</td><td>Unity 遊戲原生嵌入</td></tr>
-<tr><td>Unreal SDK</td><td>Unreal Engine 遊戲原生嵌入</td></tr>
-<tr><td>Web SDK</td><td>Web 遊戲支援</td></tr>
-<tr><td>UGC 市場</td><td>玩家可創建、分享、交易動畫</td></tr>
-<tr><td>跨遊戲格式</td><td>統一格式可在不同遊戲中使用</td></tr>
-<tr><td>AI 動畫編輯</td><td>生成後可進一步調整</td></tr>
-<tr><td>即時預覽</td><td>遊戲內即時預覽生成效果</td></tr>
+<tr><th>項目</th><th>說明</th></tr>
+<tr><td><strong>輸入來源</strong></td><td>影片 / AI 生成 / 動作庫</td></tr>
+<tr><td><strong>輸出格式</strong></td><td>FBX、GLB（遊戲引擎相容）</td></tr>
+<tr><td><strong>骨架標準</strong></td><td>遊戲 Humanoid 標準</td></tr>
+<tr><td><strong>上游工具</strong></td><td>影片拍攝 / Kinetix 動作庫</td></tr>
+<tr><td><strong>下游工具</strong></td><td>Unity（SDK）、UE5、Web3 遊戲引擎</td></tr>
 </table>
 
-<h3>技術規格</h3>
-
-<table>
-<tr><th>項目</th><th>規格</th></tr>
-<tr><td>平台</td><td>B2B SDK（非終端用戶工具）</td></tr>
-<tr><td>引擎支援</td><td>Unity / Unreal Engine / Web</td></tr>
-<tr><td>API</td><td>REST API + 原生 SDK</td></tr>
-<tr><td>動畫格式</td><td>FBX / glTF（引擎相容）</td></tr>
-<tr><td>處理方式</td><td>雲端 AI 推理</td></tr>
-<tr><td>延遲</td><td>影片生成 ~30 秒，文字 ~10 秒（估計）</td></tr>
-<tr><td>骨架</td><td>Humanoid 標準（Unity/UE 相容）</td></tr>
-<tr><td>安全性</td><td>內容審核系統</td></tr>
-</table>
+<p><strong>推薦搭配</strong>：Kinetix SDK → Unity/UE5 即時角色 Emote 系統。專為遊戲角色 Emote/表情動作設計，適合需要 UGC 動作系統的多人遊戲。</p>
 
 <hr>
-
-<h2>3. 官方影片/教學連結</h2>
-
-<table>
-<tr><th>主題</th><th>連結</th></tr>
-<tr><td>官方網站</td><td><a href="https://www.kinetix.tech/" target="_blank">https://www.kinetix.tech/</a></td></tr>
-<tr><td>開發者文件</td><td><a href="https://docs.kinetix.tech/" target="_blank">https://docs.kinetix.tech/</a></td></tr>
-<tr><td>YouTube 頻道</td><td><a href="https://www.youtube.com/@kinetix_tech" target="_blank">https://www.youtube.com/@kinetix_tech</a></td></tr>
-<tr><td>LinkedIn</td><td><a href="https://www.linkedin.com/company/kinetix-tech/" target="_blank">https://www.linkedin.com/company/kinetix-tech/</a></td></tr>
-</table>
-
-<hr>
-
-<h2>4. 安裝/使用流程</h2>
-
-<h3>對遊戲開發者（B2B）</h3>
-<ol>
-<li>前往 <a href="https://www.kinetix.tech/" target="_blank">https://www.kinetix.tech/</a> 申請開發者帳號</li>
-<li>取得 API Key 和 SDK 存取權</li>
-<li>下載 Unity SDK 或 Unreal SDK</li>
-<li>整合到遊戲專案中：</li>
-</ol>
-<ul>
-<li>加入 SDK package</li>
-<li>配置 API Key</li>
-<li>呼叫 API 端點</li>
-</ul>
-<ol>
-<li>在遊戲 UI 中設計動畫生成入口</li>
-<li>發佈遊戲——玩家即可使用</li>
-</ol>
 
 <h3>對玩家端（使用流程）</h3>
 <ol>
@@ -167,10 +102,10 @@ img{max-width:100%}
 
 <hr>
 
-<h2>7. 與其他工具的整合可能性</h2>
+<h2>7. 與 Kimodo 的整合可能性</h2>
 
 <table>
-<tr><th>比較項目</th><th>Kinetix</th><th>AI 動作生成工具</th></tr>
+<tr><th>比較項目</th><th>Kinetix</th><th>Kimodo</th></tr>
 <tr><td>定位</td><td>遊戲內 UGC 動畫 SDK</td><td>離線動作量產工具</td></tr>
 <tr><td>使用者</td><td>遊戲玩家</td><td>動畫師/開發者</td></tr>
 <tr><td>輸入</td><td>影片/文字（遊戲內）</td><td>文字 prompt（命令列）</td></tr>
@@ -182,18 +117,18 @@ img{max-width:100%}
 
 <h3>推薦整合方式</h3>
 
-<p>Kinetix 和 AI 動作生成工具 <strong>不是同一賽道</strong>：</p>
+<p>Kinetix 和 Kimodo <strong>不是同一賽道</strong>：</p>
 <ul>
 <li>Kinetix = 遊戲內玩家 UGC</li>
-<li>AI 動作生成工具 = 開發期間的動畫量產</li>
+<li>Kimodo = 開發期間的動畫量產</li>
 </ul>
 
 <pre><code>
-開發階段：[AI 動作生成工具] → [BVH] → [ARP] → [引擎]（角色預設動作庫）
+開發階段：[Kimodo] → [BVH] → [ARP] → [引擎]（角色預設動作庫）
 營運階段：[Kinetix SDK] → [遊戲內玩家 UGC 動畫]（玩家自訂 emotes）
 </code></pre>
 
-<p>兩者可在同一遊戲中共存：AI 動作生成工具 做基礎動作庫，Kinetix 做玩家 UGC 層。</p>
+<p>兩者可在同一遊戲中共存：Kimodo 做基礎動作庫，Kinetix 做玩家 UGC 層。</p>
 
 <hr>
 
@@ -203,7 +138,7 @@ img{max-width:100%}
 
 <pre><code>
 ┌─── 開發期（我們的工作）──────────────────┐
-│ [AI 動作生成工具] → [BVH] → [ARP] → [引擎動作庫]  │
+│ [Kimodo] → [BVH] → [ARP] → [引擎動作庫]  │
 └────────────────────────────────────────────┘
 
 ┌─── 營運期（遊戲上線後）──────────────────┐

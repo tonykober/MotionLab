@@ -160,7 +160,7 @@ retarget_bvh/
 
 <ol>
 <li><strong>完全免費開源</strong> — 無任何費用門檻</li>
-<li><strong>BVH 原生支援</strong> — 專門針對 BVH 格式設計，與我們的 AI Text-to-Motion 工具輸出完美契合</li>
+<li><strong>BVH 原生支援</strong> — 專門針對 BVH 格式設計，與我們的 Kimodo BVH 輸出完美契合</li>
 <li><strong>內建多骨架預設</strong> — Mixamo、Rigify、DAZ、ARP、VRoid、MMD、Unreal 等常見骨架開箱即用</li>
 <li><strong>FBX 額外支援</strong> — 可匯入 Mixamo FBX 格式動畫</li>
 <li><strong>動畫編輯工具整合</strong> — Loop、Simplify、Animation Layers 提供基本的 Mocap clean-up</li>
@@ -182,15 +182,36 @@ retarget_bvh/
 
 <hr>
 
-<h2>Pipeline 整合分析</h2>
+<h2>與 Kimodo BVH 輸出的整合可能性</h2>
+
+<h3>整合評估：⭐⭐⭐⭐⭐（高度適合）</h3>
+
 <table>
-<tr><th>項目</th><th>內容</th></tr>
-<tr><td><strong>輸入來源</strong></td><td>BVH 檔案（任何來源：AI 動作生成工具 / MocapNET / 動捕工作室）</td></tr>
-<tr><td><strong>輸出格式</strong></td><td>BVH（重定向後的新骨架）</td></tr>
-<tr><td><strong>上游工具</strong></td><td>AI 動作生成工具、MocapNET、FreeMoCap、任何 BVH 產出工具</td></tr>
-<tr><td><strong>下游工具</strong></td><td>Blender 匯入 → ARP Game Export → UE/Unity；或直接匯入引擎</td></tr>
-<tr><td><strong>推薦搭配</strong></td><td>AI 動作生成工具 → BVH Retargeter → 目標骨架 BVH → 引擎。輕量 BVH 對 BVH 重定向，不需 Blender。</td></tr>
+<tr><th>面向</th><th>評估</th></tr>
+<tr><td><strong>格式相容性</strong></td><td>✅ Kimodo 輸出 BVH → BVH Retargeter 原生支援</td></tr>
+<tr><td><strong>骨架映射</strong></td><td>⚠️ 需建立 Kimodo 專用的 source rig JSON 映射檔（一次性工作）</td></tr>
+<tr><td><strong>批次處理</strong></td><td>✅ 支援 Python scripting，可寫批次 retarget 腳本</td></tr>
+<tr><td><strong>自動化整合</strong></td><td>✅ 可嵌入我們的 pipeline（Blender headless + Python）</td></tr>
+<tr><td><strong>品質</strong></td><td>⚠️ retarget 品質中上，但缺乏腳部修正（需 Foot Locker/In Placer 補足）</td></tr>
 </table>
+
+<h3>建議整合流程</h3>
+
+<pre><code>
+Kimodo BVH → BVH Retargeter（retarget 到遊戲骨架）
+    → Foot Locker/In Placer（修腳步接地）
+    → Export FBX/GLB（匯入遊戲引擎）
+</code></pre>
+
+<h3>需要的一次性準備工作</h3>
+
+<ol>
+<li>分析 Kimodo 輸出 BVH 的骨架結構與命名</li>
+<li>建立 <code>kimodo_source.json</code> 骨骼映射檔</li>
+<li>建立 Blender Python 批次腳本模板</li>
+<li>測試常見動作類型的 retarget 品質</li>
+</ol>
+
 <hr>
 
 <h2>對「AI 動作量產工作流」的貢獻定位</h2>
@@ -198,7 +219,7 @@ retarget_bvh/
 <h3>定位：<strong>pipeline 第一環 — BVH 轉遊戲骨架</strong></h3>
 
 <pre><code>
-[AI 動作生成工具 AI 生成 BVH]
+[Kimodo AI 生成 BVH]
         ↓
 [BVH Retargeter] ← 本工具定位
   - retarget 到統一遊戲骨架
@@ -224,7 +245,7 @@ retarget_bvh/
 <ul>
 <li>不解決滑步/穿地（交給專用腳步工具）</li>
 <li>不處理 root motion 問題（交給 Root Motion Transfer）</li>
-<li>需要一次性建立 AI 動作生成工具 骨架映射</li>
+<li>需要一次性建立 Kimodo 骨架映射</li>
 </ul>
 
 <hr>
@@ -239,6 +260,18 @@ retarget_bvh/
 <li>FBX 支援說明: <a href="https://diffeomorphic.blogspot.com/2024/03/fbx-files-and-bvh-retargeter.html" target="_blank">https://diffeomorphic.blogspot.com/2024/03/fbx-files-and-bvh-retargeter.html</a></li>
 <li>Animation Layers 功能: <a href="https://diffeomorphic.blogspot.com/2025/07/animation-layers.html" target="_blank">https://diffeomorphic.blogspot.com/2025/07/animation-layers.html</a></li>
 </ul>
+
+
+<h2>七、Pipeline 整合分析</h2>
+
+<table>
+<tr><th>項目</th><th>內容</th></tr>
+<tr><td><strong>輸入來源</strong></td><td>BVH 檔案（任何來源：Kimodo / MocapNET / 動捕工作室）</td></tr>
+<tr><td><strong>輸出格式</strong></td><td>BVH（重定向後的新骨架）</td></tr>
+<tr><td><strong>上游工具</strong></td><td>Kimodo、MocapNET、FreeMoCap、任何 BVH 產出工具</td></tr>
+<tr><td><strong>下游工具</strong></td><td>Blender 匯入 → ARP Game Export → UE/Unity；或直接匯入引擎</td></tr>
+<tr><td><strong>推薦搭配</strong></td><td>Kimodo → BVH Retargeter → 目標骨架 BVH → 引擎。輕量 BVH 對 BVH 重定向，不需 Blender。</td></tr>
+</table>
 
 </body>
 </html>

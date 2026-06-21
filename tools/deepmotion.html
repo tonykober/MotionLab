@@ -154,7 +154,7 @@ img{max-width:100%}
 
 <ol>
 <li><strong>雙模態</strong>：Video-to-Motion + Text-to-Motion 雙賽道都有</li>
-<li><strong>BVH 直接匯出</strong>：與 AI 動作生成工具 格式完全相容</li>
+<li><strong>BVH 直接匯出</strong>：與 Kimodo 格式完全相容</li>
 <li><strong>有 REST API</strong>：支援批次自動化處理</li>
 <li><strong>臉部+手部追蹤</strong>：功能全面</li>
 <li><strong>多人追蹤</strong>：最多 8 人</li>
@@ -179,6 +179,7 @@ img{max-width:100%}
 <hr>
 
 <h2>七、Pipeline 整合分析</h2>
+
 <table>
 <tr><th>項目</th><th>說明</th></tr>
 <tr><td><strong>輸入來源</strong></td><td>影片（Animate 3D）/ 文字描述（SayMotion）</td></tr>
@@ -187,14 +188,16 @@ img{max-width:100%}
 <tr><td><strong>上游工具</strong></td><td>任何影片 / Ready Player Me / Avaturn 角色</td></tr>
 <tr><td><strong>下游工具</strong></td><td>UE5（有 retarget 教學）、Unity、Blender、Maya、iClone、Roblox</td></tr>
 </table>
-<p><strong>推薦搭配</strong>：DeepMotion Animate 3D API 批次處理影片 → BVH/FBX → Blender/UE5。SayMotion 做 text-to-motion 時可與 AI 動作生成工具 做 A/B 品質比較。</p>
+
+<p><strong>推薦搭配</strong>：DeepMotion Animate 3D API 批次處理影片 → BVH/FBX → Blender/UE5。SayMotion 做 text-to-motion 時可與 Kimodo 做 A/B 品質比較。</p>
+
 <hr>
 
 <h2>八、對「AI 動作量產工作流」的貢獻定位</h2>
 
 <pre><code>
 DeepMotion 在工作流中的角色：
-• Text-to-Motion 備選方案（與 AI 動作生成工具 對比）
+• Text-to-Motion 備選方案（與 Kimodo 對比）
 • 影片→動捕的 API 批次處理
 • 臉部+手指動捕的補充工具
 • Rotoscope 校正用於品質不佳的動作修正
@@ -214,7 +217,7 @@ DeepMotion 在工作流中的角色：
 <tr><td>量產化適合度</td><td>⭐⭐⭐⭐</td></tr>
 </table>
 
-<p><strong>推薦等級</strong>：🟡 <strong>值得評測</strong> — 與 AI 動作生成工具 直接可比的 text-to-motion + 額外的 video-to-motion 能力。建議做 SayMotion vs AI 動作生成工具 的品質對比測試。</p>
+<p><strong>推薦等級</strong>：🟡 <strong>值得評測</strong> — 與 Kimodo 直接可比的 text-to-motion + 額外的 video-to-motion 能力。建議做 SayMotion vs Kimodo 的品質對比測試。</p>
 
 </body>
 </html>

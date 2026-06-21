@@ -186,31 +186,16 @@ wget [範例影片 URL]
 
 <hr>
 
-<h2>7. 與其他工具的整合可能性</h2>
+<h2>七、Pipeline 整合分析</h2>
 
 <table>
-<tr><th>比較項目</th><th>MocapNET</th><th>AI 動作生成工具</th></tr>
-<tr><td>輸入</td><td>影片</td><td>文字 prompt</td></tr>
-<tr><td>輸出</td><td>BVH（直接！）</td><td>BVH</td></tr>
-<tr><td>格式相容</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐⭐⭐</td></tr>
-<tr><td>精度</td><td>中</td><td>中高</td></tr>
-<tr><td>手指</td><td>v3 有基礎支援</td><td>❌</td></tr>
-<tr><td>商用</td><td>⚠️ OpenPose 限制</td><td>✅</td></tr>
-<tr><td>即時性</td><td>接近即時</td><td>離線 5-6 分鐘</td></tr>
+<tr><th>項目</th><th>內容</th></tr>
+<tr><td><strong>輸入來源</strong></td><td>影片檔案 / 攝影機即時串流（經 OpenPose 或 MediaPipe 2D 前處理）</td></tr>
+<tr><td><strong>輸出格式</strong></td><td><strong>BVH</strong>（直接輸出，CMU MoCap 相容骨架）</td></tr>
+<tr><td><strong>上游工具</strong></td><td>OpenPose / MediaPipe Holistic（2D 關鍵點偵測）</td></tr>
+<tr><td><strong>下游工具</strong></td><td>Blender 直接匯入 BVH → ARP Remap 重定向 → ARP Game Export → UE/Unity</td></tr>
+<tr><td><strong>推薦搭配</strong></td><td>影片 → MediaPipe → MocapNET → BVH → ARP Remap → 引擎。BVH 直出是最大優勢，零格式轉換。</td></tr>
 </table>
-
-<h3>推薦整合方式</h3>
-<pre><code>
-[MocapNET 從影片提取 BVH]
-        ↓
-[與 AI Text-to-Motion BVH 格式完全相同]
-        ↓
-[ARP Remap 重定向到角色] → [引擎]
-</code></pre>
-
-<p>MocapNET 和 AI 動作生成工具 輸出格式完全一致（BVH），可使用同一套後處理管線（ARP Remap），形成「影片→動作」和「文字→動作」的雙軌並行。</p>
-
-<hr>
 
 <h2>8. 對 AI 動作量產工作流的貢獻定位</h2>
 
@@ -221,7 +206,7 @@ wget [範例影片 URL]
 [參考影片] → [MocapNET] → [BVH] ─┐
                                     ├→ [ARP Remap] → [引擎]
 路線 B（文字源）：                   │
-[Prompt] → [AI 動作生成工具] → [BVH] ──────┘
+[Prompt] → [Kimodo] → [BVH] ──────┘
 </code></pre>
 
 <p><strong>量產流程中的角色：</strong></p>
@@ -253,8 +238,8 @@ wget [範例影片 URL]
 <ol>
 <li><strong>在 WSL/Linux 環境編譯測試</strong>：評估實際輸出品質</li>
 <li><strong>測試 OpenCV DNN 模式</strong>：迴避 OpenPose 商用授權問題</li>
-<li><strong>建立 BVH 品質比較基準</strong>：MocapNET vs AI 動作生成工具 vs 手動製作</li>
-<li><strong>考慮作為備選方案</strong>：當有現成影片素材且 AI 動作生成工具 prompt 難以描述時使用</li>
+<li><strong>建立 BVH 品質比較基準</strong>：MocapNET vs Kimodo vs 手動製作</li>
+<li><strong>考慮作為備選方案</strong>：當有現成影片素材且 Kimodo prompt 難以描述時使用</li>
 <li><strong>關注後續更新</strong>：若 v4 出現可重新評估</li>
 </ol>
 

@@ -173,15 +173,29 @@ img{max-width:100%}
 
 <hr>
 
-<h2>Pipeline 整合分析</h2>
+<h2>與 Kimodo BVH 輸出的整合可能性</h2>
+
+<h3>整合評估：⭐⭐⭐（中等適合，需額外步驟）</h3>
+
 <table>
-<tr><th>項目</th><th>內容</th></tr>
-<tr><td><strong>輸入來源</strong></td><td>Blender 場景中的多個 Armature（不同骨架類型：Rigify / ARP / Mixamo / 自訂）</td></tr>
-<tr><td><strong>輸出格式</strong></td><td>Blender Armature Animation（轉移後的動畫 Action）</td></tr>
-<tr><td><strong>上游工具</strong></td><td>Mixamo FBX、ARP 骨架、Rigify 骨架、任何 Blender 內骨架</td></tr>
-<tr><td><strong>下游工具</strong></td><td>ARP Game Export → 引擎；或 Blender 原生 FBX 匯出</td></tr>
-<tr><td><strong>推薦搭配</strong></td><td>Mixamo 動畫 → Expy Kit 轉移到 Rigify/ARP 骨架 → ARP Export → 引擎。跨骨架類型動畫轉移專家。</td></tr>
+<tr><th>面向</th><th>評估</th></tr>
+<tr><td><strong>格式相容性</strong></td><td>⚠️ Kimodo BVH 需先匯入 Blender 轉為 Action，再用 Expy-Kit 處理</td></tr>
+<tr><td><strong>骨架映射</strong></td><td>⚠️ 需在 bone_mapping.py 新增 Kimodo 骨架定義</td></tr>
+<tr><td><strong>批次處理</strong></td><td>✅ 批次 retarget 是最大優勢</td></tr>
+<tr><td><strong>遊戲匯出</strong></td><td>✅ Make Game Friendly + Convert Bone Names</td></tr>
+<tr><td><strong>品質</strong></td><td>⚠️ FK retarget，腳步品質一般</td></tr>
 </table>
+
+<h3>建議使用場景</h3>
+
+<p>Expy-Kit 最適合的場景是：<strong>已經使用 Rigify 作為角色骨架系統的工作流</strong>。</p>
+
+<pre><code>
+Kimodo BVH → Blender BVH Import → Expy-Kit Batch Retarget to Rigify
+    → Rigify 動畫編輯（利用 IK/FK 控制器）
+    → Make Game Friendly → Export FBX
+</code></pre>
+
 <hr>
 
 <h2>對「AI 動作量產工作流」的貢獻定位</h2>
@@ -189,7 +203,7 @@ img{max-width:100%}
 <h3>定位：<strong>批次骨架轉換與 Rigify 整合的快速橋樑</strong></h3>
 
 <pre><code>
-[AI 動作生成工具 AI 生成 BVH]
+[Kimodo AI 生成 BVH]
         ↓
 [BVH Retargeter 初步映射]
         ↓
@@ -227,6 +241,18 @@ img{max-width:100%}
 <li>BlenderArtists 討論: <a href="https://blenderartists.org/t/expy-kit-character-conversion-for-mixamo-rigify-unreal/1321351" target="_blank">https://blenderartists.org/t/expy-kit-character-conversion-for-mixamo-rigify-unreal/1321351</a></li>
 <li>開發者 YouTube: <a href="https://www.youtube.com/c/BallsAndNinjas" target="_blank">https://www.youtube.com/c/BallsAndNinjas</a></li>
 </ul>
+
+
+<h2>七、Pipeline 整合分析</h2>
+
+<table>
+<tr><th>項目</th><th>內容</th></tr>
+<tr><td><strong>輸入來源</strong></td><td>Blender 場景中的多個 Armature（不同骨架類型：Rigify / ARP / Mixamo / 自訂）</td></tr>
+<tr><td><strong>輸出格式</strong></td><td>Blender Armature Animation（轉移後的動畫 Action）</td></tr>
+<tr><td><strong>上游工具</strong></td><td>Mixamo FBX、ARP 骨架、Rigify 骨架、任何 Blender 內骨架</td></tr>
+<tr><td><strong>下游工具</strong></td><td>ARP Game Export → 引擎；或 Blender 原生 FBX 匯出</td></tr>
+<tr><td><strong>推薦搭配</strong></td><td>Mixamo 動畫 → Expy Kit 轉移到 Rigify/ARP 骨架 → ARP Export → 引擎。跨骨架類型動畫轉移專家。</td></tr>
+</table>
 
 </body>
 </html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MetaHuman Animator Markerless Motion Capture Plugin — UE 5.8 免費 AI 動捕</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#1a1a2e;color:#e0d6c8;font-family:-apple-system,'Noto Sans TC',sans-serif;max-width:900px;margin:0 auto;padding:2rem;line-height:1.7}
+h1{color:#f5a623;margin:1.5rem 0 1rem}
+h2{color:#fff;margin:1.5rem 0 .8rem}
+h3{color:#e0d6c8;margin:1.2rem 0 .6rem}
+a{color:#f5a623}
+strong{color:#f5a623}
+ul,ol{margin:.5rem 0 .5rem 1.5rem}
+li{margin:.3rem 0}
+table{border-collapse:collapse;margin:1rem 0;max-width:100%;overflow-x:auto;display:block}
+th,td{border:1px solid #333;padding:8px 12px;text-align:left}
+th{background:#2a2a3e}
+pre{background:#0d0d1a;padding:1rem;border-radius:8px;overflow-x:auto;margin:1rem 0}
+code{background:#0d0d1a;padding:2px 6px;border-radius:4px;font-size:.9em}
+pre code{padding:0;background:none}
+hr{border:none;border-top:1px solid #333;margin:1.5rem 0}
+p{margin:.6rem 0}
+img{max-width:100%}
+.back{display:inline-block;margin-bottom:1.5rem;text-decoration:none}
+</style>
+</head>
+<body>
+<a href="../index.html" class="back">← 返回首頁</a>
+<h1>MetaHuman Animator Markerless Motion Capture Plugin — UE 5.8 免費 AI 動捕</h1>
+
+<p>&gt; 調研日期：2026-06-21</p>
+<p>&gt; 官方文件：<a href="https://dev.epicgames.com/documentation/metahuman/metahuman-animation-from-mono-video-capture-in-unreal-engine" target="_blank">https://dev.epicgames.com/documentation/metahuman/metahuman-animation-from-mono-video-capture-in-unreal-engine</a></p>
+<p>&gt; Fab 下載：<a href="https://www.fab.com/listings/4095b8e0-3eff-44f1-acb4-cb40b99228b9" target="_blank">https://www.fab.com/listings/4095b8e0-3eff-44f1-acb4-cb40b99228b9</a></p>
+<p>&gt; 版本：UE 5.8 實驗性功能（2026/6 月）</p>
+<p>&gt; 定價：免費</p>
+
+<hr>
+
+<h2>一、工具概述</h2>
+
+<p><strong>MetaHuman Animator Markerless Motion Capture Plugin</strong> 是 Epic Games 在 Unreal Engine 5.8 中推出的實驗性功能，將 Meshcapade/SMPL 技術直接整合到引擎內。從單一攝影機影片生成全身+臉部+手指動畫，直接輸出到 MetaHuman 骨架，無需任何外部工具或 retarget。</p>
+
+<p><strong>核心能力一句話</strong>：單鏡頭影片 → UE5.8 本地處理 → 全身+臉部+手指動畫 → 直接驅動 MetaHuman → 免費。</p>
+
+<p><strong>解決的問題</strong>：</p>
+<ul>
+<li>以往需要購買第三方 AI Mocap 服務（Viggle/DeepMotion/Move.AI）</li>
+<li>動捕結果需要 retarget 到遊戲骨架（額外步驟+可能品質損失）</li>
+<li>臉部和身體需要分別用不同工具追蹤再合併</li>
+<li>本功能免費+內建+無需 retarget = 對第三方 Video-to-Mocap 工具的直接競爭</li>
+</ul>
+
+<hr>
+
+<h2>二、功能詳細說明</h2>
+
+<h3>功能矩陣</h3>
+
+<table>
+<tr><th>功能</th><th>支援</th><th>說明</th></tr>
+<tr><td>全身動捕</td><td>✅</td><td>單鏡頭影片</td></tr>
+<tr><td>臉部動捕</td><td>✅</td><td>與 MetaHuman Animator 臉部追蹤相同管線</td></tr>
+<tr><td>手指動捕</td><td>✅</td><td>含手指</td></tr>
+<tr><td>單鏡頭</td><td>✅</td><td>Webcam/手機/專業攝影機</td></tr>
+<tr><td>雙鏡頭模式</td><td>✅</td><td>分離臉部（頭戴攝影機）+身體（外部攝影機）</td></tr>
+<tr><td>本地處理</td><td>✅</td><td>在本機批次處理（非雲端）</td></tr>
+<tr><td>MetaHuman 直出</td><td>✅</td><td>無需 retarget</td></tr>
+<tr><td>Animation Sequence</td><td>✅</td><td>標準 UE Animation Sequence 輸出</td></tr>
+<tr><td>Live Link Hub</td><td>✅</td><td>透過 Capture Manager 匯入影片</td></tr>
+</table>
+
+<h3>技術規格</h3>
+
+<table>
+<tr><th>項目</th><th>規格</th></tr>
+<tr><td>引擎版本</td><td>Unreal Engine 5.8+</td></tr>
+<tr><td>狀態</td><td>實驗性（Experimental）</td></tr>
+<tr><td>平台</td><td><strong>僅 Windows</strong></td></tr>
+<tr><td>底層技術</td><td>Meshcapade / SMPL</td></tr>
+<tr><td>輸入</td><td>影片檔案 / Live Link Face iOS App（非 TrueDepth 攝影機）</td></tr>
+<tr><td>輸出</td><td>UE Animation Sequence</td></tr>
+<tr><td>骨架</td><td>MetaHuman 骨架（所有 MetaHuman 共用同一骨架）</td></tr>
+<tr><td>處理方式</td><td>本地批次處理（離線，非即時）</td></tr>
+<tr><td>安裝</td><td>Fab 市集免費下載</td></tr>
+<tr><td>授權</td><td>免費（隨 UE5.8）</td></tr>
+</table>
+
+<h3>工作流模式</h3>
+
+<ol>
+<li><strong>Single Camera</strong>：臉部+身體從同一影片同時解算</li>
+<li><strong>Dual Camera</strong>：臉部（頭戴攝影機）和身體（外部攝影機）分別錄製，在 Level Sequence 中合併</li>
+</ol>
+
+<hr>
+
+<h2>三、官方影片 / 教學連結</h2>
+
+<table>
+<tr><th>資源</th><th>連結</th></tr>
+<tr><td>官方文件首頁</td><td><a href="https://dev.epicgames.com/documentation/metahuman/metahuman-animation-from-mono-video-capture-in-unreal-engine" target="_blank">https://dev.epicgames.com/documentation/metahuman/metahuman-animation-from-mono-video-capture-in-unreal-engine</a></td></tr>
+<tr><td>Fab 下載頁</td><td><a href="https://www.fab.com/listings/4095b8e0-3eff-44f1-acb4-cb40b99228b9" target="_blank">https://www.fab.com/listings/4095b8e0-3eff-44f1-acb4-cb40b99228b9</a></td></tr>
+<tr><td>MetaHuman 5.8 公告</td><td><a href="https://www.metahuman.com/news/metahuman-5-8-is-now-available" target="_blank">https://www.metahuman.com/news/metahuman-5-8-is-now-available</a></td></tr>
+<tr><td>80.lv 報導</td><td><a href="https://80.lv/articles/populate-your-ue5-8-worlds-with-metahuman-crowds" target="_blank">https://80.lv/articles/populate-your-ue5-8-worlds-with-metahuman-crowds</a></td></tr>
+<tr><td>匯入影片教學</td><td><a href="https://dev.epicgames.com/documentation/metahuman/metahuman-animator-01-import-your-footage-in-unreal-engine" target="_blank">https://dev.epicgames.com/documentation/metahuman/metahuman-animator-01-import-your-footage-in-unreal-engine</a></td></tr>
+<tr><td>處理+匯出教學</td><td><a href="https://dev.epicgames.com/documentation/metahuman/metahuman-animator-02-process-and-export-your-animation-in-unreal-engine" target="_blank">https://dev.epicgames.com/documentation/metahuman/metahuman-animator-02-process-and-export-your-animation-in-unreal-engine</a></td></tr>
+<tr><td>套用動畫教學</td><td><a href="https://dev.epicgames.com/documentation/metahuman/metahuman-animator-03-apply-your-animation-to-a-metahuman-in-unreal-engine" target="_blank">https://dev.epicgames.com/documentation/metahuman/metahuman-animator-03-apply-your-animation-to-a-metahuman-in-unreal-engine</a></td></tr>
+<tr><td>拍攝指南</td><td><a href="https://dev.epicgames.com/documentation/metahuman/metahuman-animator-performance-capture-guidelines-in-unreal-engine" target="_blank">https://dev.epicgames.com/documentation/metahuman/metahuman-animator-performance-capture-guidelines-in-unreal-engine</a></td></tr>
+<tr><td>硬體需求</td><td><a href="https://dev.epicgames.com/documentation/metahuman/metahuman-hardware-requirements-in-unreal-engine" target="_blank">https://dev.epicgames.com/documentation/metahuman/metahuman-hardware-requirements-in-unreal-engine</a></td></tr>
+<tr><td>MetaHuman Crowds Sample</td><td><a href="https://www.fab.com/listings/5f481d73-afb1-4d94-ba6e-7cabf5d296fa" target="_blank">https://www.fab.com/listings/5f481d73-afb1-4d94-ba6e-7cabf5d296fa</a></td></tr>
+</table>
+
+<hr>
+
+<h2>四、使用流程</h2>
+
+<ol>
+<li><strong>安裝 UE 5.8</strong> + 啟用 MetaHuman Animator Plugin</li>
+<li><strong>從 Fab 安裝</strong> MetaHuman Animator Markerless Motion Capture Plugin</li>
+<li><strong>錄製影片</strong> — 用 Webcam/手機/攝影機拍攝表演（遵循 Performance Capture Guidelines）</li>
+<li><strong>匯入影片</strong> — 透過 Live Link Hub 的 Capture Manager 建立 Capture Data Asset</li>
+<li><strong>設定解算</strong> — 在 MetaHuman Performance Editor 中設定 solve settings（face/body/both）</li>
+<li><strong>執行 Solve</strong> — 本地批次處理影片</li>
+<li><strong>匯出 Animation Sequence</strong> — 標準 UE Animation Sequence</li>
+<li><strong>套用到 MetaHuman</strong> — 在 Level Sequence 中指派動畫到角色（無需 retarget）</li>
+</ol>
+
+<hr>
+
+<h2>五、定價與授權</h2>
+
+<table>
+<tr><th>項目</th><th>說明</th></tr>
+<tr><td><strong>價格</strong></td><td>完全免費</td></tr>
+<tr><td><strong>取得方式</strong></td><td>Fab 市集下載</td></tr>
+<tr><td><strong>授權</strong></td><td>隨 UE5.8，遵循 Unreal Engine EULA</td></tr>
+<tr><td><strong>商用</strong></td><td>✅ 可商用（同 UE 授權條款）</td></tr>
+<tr><td><strong>限制</strong></td><td>僅 Windows、實驗性功能</td></tr>
+</table>
+
+<h3>成本對比</h3>
+
+<table>
+<tr><th>方案</th><th>成本</th><th>限制</th></tr>
+<tr><td><strong>MetaHuman Markerless</strong></td><td>$0</td><td>僅 UE5.8+，僅 Windows</td></tr>
+<tr><td>Viggle PINOC</td><td>$0.03/clip</td><td>雲端，GLB 輸出</td></tr>
+<tr><td>DeepMotion</td><td>$9-39/月</td><td>雲端，Credit 制</td></tr>
+<tr><td>Move.AI</td><td>$18-490/月</td><td>雲端/本地</td></tr>
+<tr><td>Rokoko Vision</td><td>$10/月</td><td>雲端，僅全身</td></tr>
+</table>
+
+<hr>
+
+<h2>六、優缺點分析</h2>
+
+<h3>✅ 優點</h3>
+
+<ol>
+<li><strong>完全免費</strong> — 無訂閱、無按量計費、無限使用</li>
+<li><strong>引擎內建</strong> — 無需外部工具，無需匯入/匯出/retarget</li>
+<li><strong>全身+臉+手一體</strong> — 單一工具解決所有追蹤</li>
+<li><strong>本地處理</strong> — 離線、隱私、不依賴雲端</li>
+<li><strong>MetaHuman 直出</strong> — 所有 MetaHuman 共用骨架，無需 retarget</li>
+<li><strong>基於 Meshcapade/SMPL</strong> — 頂級學術技術背景</li>
+<li><strong>雙鏡頭模式</strong> — 可分離臉部和身體追蹤提高品質</li>
+</ol>
+
+<h3>❌ 缺點</h3>
+
+<ol>
+<li><strong>僅 Windows</strong> — macOS/Linux 不支援</li>
+<li><strong>實驗性</strong> — 可能有 bug、可能未來版本變更</li>
+<li><strong>僅 MetaHuman 骨架</strong> — 不能直接用於非 MetaHuman 角色（但 MetaHuman 骨架可 retarget）</li>
+<li><strong>非即時</strong> — 批次處理（不像 Marionette 可即時串流）</li>
+<li><strong>僅 UE 生態系</strong> — Unity/Godot 用戶無法使用</li>
+<li><strong>品質未知</strong> — 剛發佈，尚無大量用戶品質反饋</li>
+<li><strong>需要 UE 5.8</strong> — 較新版本，現有項目可能還在 5.3/5.4</li>
+</ol>
+
+<hr>
+
+<h2>七、Pipeline 整合分析</h2>
+
+<table>
+<tr><th>項目</th><th>說明</th></tr>
+<tr><td><strong>輸入來源</strong></td><td>影片檔案（Webcam/手機/專業攝影機）/ Live Link Face iOS App</td></tr>
+<tr><td><strong>輸出格式</strong></td><td>UE Animation Sequence（引擎內原生格式）</td></tr>
+<tr><td><strong>骨架標準</strong></td><td>MetaHuman 骨架（所有 MetaHuman 通用，可 retarget 到其他 UE 骨架）</td></tr>
+<tr><td><strong>上游工具</strong></td><td>任何攝影機拍攝的影片</td></tr>
+<tr><td><strong>下游工具</strong></td><td>UE5 Sequencer、Blueprint、Animation Blueprint、MetaHuman Crowds 系統</td></tr>
+</table>
+
+<p><strong>推薦搭配</strong>：影片拍攝 → MetaHuman Markerless Plugin（免費 solve）→ Animation Sequence → 直接用於 MetaHuman 角色或 retarget 到自訂骨架。如果團隊用 UE5.8，這是取代所有第三方 video-to-mocap 工具的首選方案。</p>
+
+<hr>
+
+<h2>八、對「AI 動作量產工作流」的貢獻定位</h2>
+
+<pre><code>
+┌─────────────────────────────────────────────────────────┐
+│   MetaHuman Markerless Mocap 在量產工作流中的定位         │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  ⚡ 顛覆性定位：「免費引擎內建 Video-to-Mocap」          │
+│                                                         │
+│  取代對象：                                              │
+│  • Viggle PINOC（影片→Mocap，$0.03/clip）               │
+│  • DeepMotion Animate 3D（影片→Mocap，$9+/月）          │
+│  • Rokoko Vision（影片→Mocap，$10/月）                  │
+│  • Plask Motion（影片→Mocap，$18+/月）                  │
+│                                                         │
+│  前提條件：                                              │
+│  • 團隊使用 UE5.8+                                      │
+│  • Windows 環境                                         │
+│  • 使用 MetaHuman 角色系統                               │
+│                                                         │
+│  仍需其他工具的場景：                                     │
+│  • Text-to-Motion → Kimodo / Motorica                  │
+│  • Unity 項目 → Viggle / Marionette                    │
+│  • 即時動捕 → Marionette / CyanPuppets                 │
+│  • Motion Matching 資料集 → Motorica                    │
+│                                                         │
+└─────────────────────────────────────────────────────────┘
+</code></pre>
+
+<hr>
+
+<h2>九、總結評分</h2>
+
+<table>
+<tr><th>項目</th><th>評分 (1-5)</th></tr>
+<tr><td>與我們目標的相關性</td><td>⭐⭐⭐⭐⭐</td></tr>
+<tr><td>技術成熟度</td><td>⭐⭐⭐（實驗性）</td></tr>
+<tr><td>易用性</td><td>⭐⭐⭐⭐</td></tr>
+<tr><td>性價比</td><td>⭐⭐⭐⭐⭐</td></tr>
+<tr><td>Pipeline 整合潛力</td><td>⭐⭐⭐⭐⭐</td></tr>
+<tr><td>量產化適合度</td><td>⭐⭐⭐⭐</td></tr>
+</table>
+
+<p><strong>推薦等級</strong>：🟢 <strong>強烈推薦（UE 用戶）</strong> — 如果我們用 UE5.8，這是免費的全身+臉+手動捕，直接取代第三方付費工具。</p>
+
+<hr>
+
+<h2>十、行動建議</h2>
+
+<ol>
+<li><strong>升級到 UE 5.8</strong> — 如果項目允許，優先升級</li>
+<li><strong>從 Fab 安裝 Plugin</strong> — 免費下載 MetaHuman Animator Markerless Motion Capture</li>
+<li><strong>拍攝測試影片</strong> — 遵循 Performance Capture Guidelines</li>
+<li><strong>品質評測</strong> — 與 Viggle/DeepMotion 做 A/B 比較（免費 vs 付費）</li>
+<li><strong>評估替代付費工具</strong> — 如果品質足夠，可停止使用第三方 video-to-mocap 訂閱</li>
+</ol>
+
+<hr>
+
+<h2>附錄：對現有工具鏈的影響</h2>
+
+<table>
+<tr><th>現有工具</th><th>影響</th><th>建議</th></tr>
+<tr><td>Viggle PINOC</td><td>可能被取代（UE 項目）</td><td>保留用於 Unity 項目</td></tr>
+<tr><td>DeepMotion</td><td>可能被取代（UE 項目）</td><td>SayMotion(text-to-motion)仍有價值</td></tr>
+<tr><td>Rokoko Vision</td><td>可能被取代</td><td>Rokoko 硬體套件仍有即時優勢</td></tr>
+<tr><td>Plask Motion</td><td>可能被取代</td><td>手指追蹤+BVH 匯出仍有場景</td></tr>
+<tr><td>Motorica AI</td><td>不受影響</td><td>Locomotion/MM 資料集是不同領域</td></tr>
+<tr><td>Kimodo</td><td>不受影響</td><td>Text-to-motion 是不同輸入方式</td></tr>
+<tr><td>Move.AI Genesis</td><td>部分競爭</td><td>多人+即時+企業級仍有差異化</td></tr>
+</table>
+
+</body>
+</html>

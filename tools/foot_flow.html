@@ -146,15 +146,29 @@ img{max-width:100%}
 
 <hr>
 
-<h2>Pipeline 整合分析</h2>
+<h2>與 Kimodo BVH 輸出的整合可能性</h2>
+
+<h3>整合評估：⭐⭐⭐⭐（適合，定位為後處理修正）</h3>
+
 <table>
-<tr><th>項目</th><th>內容</th></tr>
-<tr><td><strong>輸入來源</strong></td><td>Blender 骨架動畫（腳步有瑕疵的 Action）</td></tr>
-<tr><td><strong>輸出格式</strong></td><td>Blender 骨架動畫（腳步修正後的 Action）</td></tr>
-<tr><td><strong>上游工具</strong></td><td>AI 動作生成工具 BVH、MocapNET、CEB 4D Humans、任何 AI 動捕輸出</td></tr>
-<tr><td><strong>下游工具</strong></td><td>ARP Game Export → 引擎；或接 Foot Locker 做進一步鎖定</td></tr>
-<tr><td><strong>推薦搭配</strong></td><td>AI 動捕 → Foot Flow 腳步修正 → Foot Locker 精確鎖定 → ARP Export。腳步品質雙重保險。</td></tr>
+<tr><th>面向</th><th>評估</th></tr>
+<tr><td><strong>問題對應</strong></td><td>✅ Kimodo 動作的腳步滑動是主要痛點</td></tr>
+<tr><td><strong>工作流位置</strong></td><td>✅ retarget 後的清理環節</td></tr>
+<tr><td><strong>自動化</strong></td><td>⚠️ 比 Foot Locker 好但可能仍需手動操作</td></tr>
+<tr><td><strong>品質</strong></td><td>✅ 專業工具，品質應優於簡單閾值方案</td></tr>
 </table>
+
+<h3>建議整合流程</h3>
+
+<pre><code>
+Kimodo BVH → Retarget（BVH Retargeter / ARP FK mode）
+    → Foot Flow ← 本工具定位
+      - 自動偵測接地幀
+      - 修正滑動
+      - 穩定腳部
+    → Export
+</code></pre>
+
 <hr>
 
 <h2>對「AI 動作量產工作流」的貢獻定位</h2>
@@ -162,7 +176,7 @@ img{max-width:100%}
 <h3>定位：<strong>專業級 Mocap 腳步清理（retarget 後修正）</strong></h3>
 
 <pre><code>
-[AI 動作生成工具 AI 生成 BVH]
+[Kimodo AI 生成 BVH]
         ↓
 [Retarget]
         ↓
@@ -208,6 +222,18 @@ img{max-width:100%}
 <li>Superhive Market: <a href="https://superhivemarket.com/products/foot-flow" target="_blank">https://superhivemarket.com/products/foot-flow</a></li>
 <li>CGDive Mocap Clean-up 分類: <a href="https://addons.cgdive.com/sub-categories/blender-mocap-clean-up" target="_blank">https://addons.cgdive.com/sub-categories/blender-mocap-clean-up</a></li>
 </ul>
+
+
+<h2>七、Pipeline 整合分析</h2>
+
+<table>
+<tr><th>項目</th><th>內容</th></tr>
+<tr><td><strong>輸入來源</strong></td><td>Blender 骨架動畫（腳步有瑕疵的 Action）</td></tr>
+<tr><td><strong>輸出格式</strong></td><td>Blender 骨架動畫（腳步修正後的 Action）</td></tr>
+<tr><td><strong>上游工具</strong></td><td>Kimodo BVH、MocapNET、CEB 4D Humans、任何 AI 動捕輸出</td></tr>
+<tr><td><strong>下游工具</strong></td><td>ARP Game Export → 引擎；或接 Foot Locker 做進一步鎖定</td></tr>
+<tr><td><strong>推薦搭配</strong></td><td>AI 動捕 → Foot Flow 腳步修正 → Foot Locker 精確鎖定 → ARP Export。腳步品質雙重保險。</td></tr>
+</table>
 
 </body>
 </html>

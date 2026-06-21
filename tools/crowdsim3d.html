@@ -176,34 +176,16 @@ img{max-width:100%}
 
 <hr>
 
-<h2>與現有工具的整合可能性</h2>
-
-<h3>與其他工具的整合</h3>
+<h2>七、Pipeline 整合分析</h2>
 
 <table>
-<tr><th>環節</th><th>整合方式</th></tr>
-<tr><td>AI 動作生成工具 動作 → CrowdSim3D 動畫庫</td><td>用 AI 動作生成工具 批次生成 walk/run/idle 等基礎動作，作為 CrowdSim3D 的動畫資產</td></tr>
-<tr><td>AI 生成多樣性</td><td>用 AI 動作生成工具 為同一動作生成多個變體（不同速度/風格），增加群眾多樣性</td></tr>
-<tr><td>戰鬥動作</td><td>AI 動作生成工具 生成攻擊/防禦/倒地動作，CrowdSim3D 在狀態機中觸發</td></tr>
+<tr><th>項目</th><th>內容</th></tr>
+<tr><td><strong>輸入來源</strong></td><td>角色 Mesh + 動畫 Actions（walk/run/idle 等）+ 場景環境</td></tr>
+<tr><td><strong>輸出格式</strong></td><td>Blender 場景動畫（多代理的烘焙動畫）；可轉 FBX 匯出</td></tr>
+<tr><td><strong>上游工具</strong></td><td>Kimodo 動作庫（提供 walk/run/attack 等基礎動畫）、Mixamo 動作庫</td></tr>
+<tr><td><strong>下游工具</strong></td><td>Blender 渲染（過場動畫）；ARP Export → 引擎（個別角色動畫）</td></tr>
+<tr><td><strong>推薦搭配</strong></td><td>Kimodo 批次生成動作庫 → CrowdSim3D 行為編排 → 烘焙 → 渲染/匯出。群眾場景的動作消費者。</td></tr>
 </table>
-
-<h3>與 Blender → UE/Unity Pipeline 的整合</h3>
-
-<table>
-<tr><th>流程</th><th>說明</th></tr>
-<tr><td>CrowdSim3D 模擬 → 烘焙 → FBX 匯出</td><td>將群眾動畫烘焙為骨架動畫後，用 ARP 或原生 FBX 匯出</td></tr>
-<tr><td>引擎內群眾 vs Blender 預渲染</td><td>若為過場動畫/CG，可在 Blender 中完成全部；若為即時群眾，需引擎自己的系統</td></tr>
-<tr><td>陣型/路徑規劃預視</td><td>在 CrowdSim3D 中預視群眾行為，確定邏輯後在引擎中實作</td></tr>
-</table>
-
-<h3>建議整合流程</h3>
-<pre><code>
-AI 動作生成工具 批次生成動作庫（walk/run/attack/idle...）
-→ CrowdSim3D 設定群眾行為（狀態機 + 動畫映射）
-→ 模擬結果烘焙 → ARP 匯出 FBX → 遊戲引擎（過場動畫用）
-</code></pre>
-
-<hr>
 
 <h2>對「AI 動作量產工作流」的貢獻定位</h2>
 
@@ -211,14 +193,14 @@ AI 動作生成工具 批次生成動作庫（walk/run/attack/idle...）
 
 <pre><code>
 [AI 動作生成] → [動作庫] → [CrowdSim3D 行為編排] → [群眾場景]
-  (AI 動作生成工具)      (walk/run/   (狀態機+路徑+         (數百角色同場景)
+  (Kimodo)      (walk/run/   (狀態機+路徑+         (數百角色同場景)
                  attack...)    陣型+迴避)
 </code></pre>
 
 <p><strong>具體貢獻：</strong></p>
 
 <ol>
-<li><strong>動作消費放大</strong>：一個 AI 動作生成工具 動作可被數百個代理同時使用，一個動作的價值被放大 100 倍</li>
+<li><strong>動作消費放大</strong>：一個 Kimodo 動作可被數百個代理同時使用，一個動作的價值被放大 100 倍</li>
 <li><strong>多樣性需求驅動</strong>：群眾場景需要大量動作變體，驅動 AI 生成更多樣化的動作</li>
 <li><strong>戰鬥場景自動化</strong>：設定好行為邏輯後，戰鬥動畫由模擬器自動編排，減少手動 K 幀</li>
 <li><strong>場景預視</strong>：在投入引擎實作前，用 CrowdSim3D 快速驗證群眾行為設計</li>

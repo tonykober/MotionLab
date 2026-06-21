@@ -205,32 +205,16 @@ rhubarb -f json -o output.json my-recording.wav
 
 <hr>
 
-<h2>與現有工具的整合可能性</h2>
-
-<h3>與其他工具的整合</h3>
+<h2>七、Pipeline 整合分析</h2>
 
 <table>
-<tr><th>環節</th><th>整合方式</th></tr>
-<tr><td>身體 + 口型</td><td>AI 動作生成工具 生成身體動作，Rhubarb 處理口型同步</td></tr>
-<tr><td>自動化流程</td><td>兩者都是命令列工具，可寫腳本串接批次處理</td></tr>
+<tr><th>項目</th><th>內容</th></tr>
+<tr><td><strong>輸入來源</strong></td><td>音訊檔案（WAV / OGG）+ 可選文字稿 (.txt)</td></tr>
+<tr><td><strong>輸出格式</strong></td><td>嘴型時間軸（TSV / XML / JSON / DAT）— 6-9 種嘴型的時間標記</td></tr>
+<tr><td><strong>上游工具</strong></td><td>TTS 語音合成、配音錄音、遊戲對話音檔</td></tr>
+<tr><td><strong>下游工具</strong></td><td>Blender 外掛（映射到 FaceIt Shape Keys）→ ARP Export；Spine / After Effects / 遊戲引擎腳本</td></tr>
+<tr><td><strong>推薦搭配</strong></td><td>配音/TTS → Rhubarb → JSON → Blender 外掛映射到 FaceIt Visemes → ARP Export。語音→口型的自動化橋樑。</td></tr>
 </table>
-
-<h3>與 FaceIt 的互補</h3>
-
-<table>
-<tr><th>FaceIt</th><th>Rhubarb</th></tr>
-<tr><td>提供 Shape Keys（含 Visemes）</td><td>產生時間軸資料（哪個嘴型在哪個時間）</td></tr>
-<tr><td>建立嘴型資產</td><td>驅動嘴型動畫</td></tr>
-</table>
-
-<h3>建議整合流程</h3>
-<pre><code>
-語音錄音 → Rhubarb 分析 → 嘴型時間軸（JSON）
-→ Blender 外掛映射到 FaceIt 的 Shape Keys
-→ 合併 AI 動作生成工具 身體動作 → ARP 匯出 → 遊戲引擎
-</code></pre>
-
-<hr>
 
 <h2>對「AI 動作量產工作流」的貢獻定位</h2>
 

@@ -160,37 +160,16 @@ img{max-width:100%}
 
 <hr>
 
-<h2>與現有工具的整合可能性</h2>
-
-<h3>與其他工具的整合</h3>
+<h2>七、Pipeline 整合分析</h2>
 
 <table>
-<tr><th>環節</th><th>整合方式</th></tr>
-<tr><td>AI 動作生成工具 作為動畫來源</td><td>AI 動作生成工具 生成 walk/run/idle/jump → 作為 Third Person Kit 的動作庫</td></tr>
-<tr><td>AI + 即時操控</td><td>AI 生成基礎動作 + 即時操控決定路線和時機</td></tr>
-<tr><td>量產場景動畫</td><td>用 TPK 快速走場，配合 AI 動作，大幅縮短 previs 時間</td></tr>
+<tr><th>項目</th><th>內容</th></tr>
+<tr><td><strong>輸入來源</strong></td><td>帶 Rig 的角色 FBX + 基礎動畫 Actions（Walk/Run/Jump/Idle）</td></tr>
+<tr><td><strong>輸出格式</strong></td><td>Blender Action（錄製的移動路徑 + 攝影機動畫）</td></tr>
+<tr><td><strong>上游工具</strong></td><td>Kimodo BVH（生成 Walk/Run/Jump）、Mixamo 動畫</td></tr>
+<tr><td><strong>下游工具</strong></td><td>NLA Editor 組合 → ARP Game Export → 引擎；攝影機動畫 → 過場動畫</td></tr>
+<tr><td><strong>推薦搭配</strong></td><td>Kimodo 動作庫 → Third Person Kit 即時走位錄製 → NLA 組合 → ARP Export。快速 Previs 和場景走位工具。</td></tr>
 </table>
-
-<h3>與 Blender → UE/Unity Pipeline 的整合</h3>
-
-<table>
-<tr><th>流程</th><th>說明</th></tr>
-<tr><td>TPK 錄製 → ARP 匯出</td><td>錄製的 Action 可直接用 ARP Game Export 匯出</td></tr>
-<tr><td>Previs → 引擎實作</td><td>在 Blender 中用 TPK 驗證動畫流程，確認後在引擎中實作</td></tr>
-<tr><td>攝影機動畫</td><td>TPK 的攝影機動畫可匯出作為過場動畫參考</td></tr>
-</table>
-
-<h3>建議整合流程</h3>
-<pre><code>
-AI 動作生成工具 生成基礎動作（walk/run/idle/jump）
-→ Third Person Kit 設定
-→ 即時操控角色在場景中走位
-→ 錄製路徑和時機為 Action
-→ NLA 組合 + 細節微調
-→ ARP Game Export → 遊戲引擎
-</code></pre>
-
-<hr>
 
 <h2>對「AI 動作量產工作流」的貢獻定位</h2>
 
@@ -198,7 +177,7 @@ AI 動作生成工具 生成基礎動作（walk/run/idle/jump）
 
 <pre><code>
 [AI 動作庫] → [Third Person Kit] → [場景走位動畫] → [完整過場/遊戲動畫]
- (AI 動作生成工具)      (即時操控決定       (何時走、何時跑    
+ (Kimodo)      (即時操控決定       (何時走、何時跑    
                 路線和時機)          何時跳、何時停)
 </code></pre>
 

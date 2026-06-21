@@ -164,15 +164,39 @@ img{max-width:100%}
 
 <hr>
 
-<h2>Pipeline 整合分析</h2>
+<h2>與 Kimodo BVH 輸出的整合可能性</h2>
+
+<h3>整合評估：⭐⭐⭐（中等適合，需額外映射步驟）</h3>
+
 <table>
-<tr><th>項目</th><th>內容</th></tr>
-<tr><td><strong>輸入來源</strong></td><td>Blender 骨架動畫（含位移的 walk/run Action）</td></tr>
-<tr><td><strong>輸出格式</strong></td><td>Blender 骨架動畫（原地化後的 Action，移除水平位移）</td></tr>
-<tr><td><strong>上游工具</strong></td><td>AI 動作生成工具 BVH、MocapNET BVH、CEB 4D Humans、任何含位移的動畫</td></tr>
-<tr><td><strong>下游工具</strong></td><td>ARP Game Export（原地動畫 + Root Motion 設定）→ 引擎 Locomotion 系統</td></tr>
-<tr><td><strong>推薦搭配</strong></td><td>AI 動作生成工具 → BVH 匯入 → In Placer 原地化 → ARP Export (Root Motion) → UE/Unity Locomotion。遊戲 Walk/Run Loop 必備。</td></tr>
+<tr><th>面向</th><th>評估</th></tr>
+<tr><td><strong>需求對應</strong></td><td>✅ Kimodo 生成的 BVH 帶有位移，遊戲引擎需要原地版</td></tr>
+<tr><td><strong>骨架相容</strong></td><td>⚠️ 不直接識別 Kimodo 骨架命名，需先 retarget 到 Mixamo/Unreal 骨架</td></tr>
+<tr><td><strong>工作流</strong></td><td>✅ retarget 後一鍵原地化</td></tr>
+<tr><td><strong>替代方案</strong></td><td>ARP Remap 的 In Place 選項已內建此功能</td></tr>
 </table>
+
+<h3>建議使用場景</h3>
+
+<p>適合 retarget 後（已轉為 Mixamo/Unreal 骨架命名）的原地化：</p>
+
+<pre><code>
+Kimodo BVH → Retarget to Mixamo/Unreal 骨架
+    → In Placer（一鍵原地化）← 本工具
+    → Export to Game Engine
+</code></pre>
+
+<h3>替代方案比較</h3>
+
+<table>
+<tr><th></th><th>In Placer</th><th>ARP In Place</th><th>Mixamo In Place</th><th>Foot-Work</th></tr>
+<tr><td>價格</td><td>免費</td><td>含在 $40</td><td>免費（線上）</td><td>付費</td></tr>
+<tr><td>旋轉處理</td><td>❌</td><td>✅</td><td>✅</td><td>✅</td></tr>
+<tr><td>批次</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td>骨架限制</td><td>Mixamo/Unreal</td><td>任意</td><td>Mixamo</td><td>Rigify</td></tr>
+<tr><td>Root Motion 提取</td><td>❌</td><td>❌</td><td>❌</td><td>✅</td></tr>
+</table>
+
 <hr>
 
 <h2>對「AI 動作量產工作流」的貢獻定位</h2>
@@ -180,7 +204,7 @@ img{max-width:100%}
 <h3>定位：<strong>快速原地化的簡易工具（非核心）</strong></h3>
 
 <pre><code>
-[AI 動作生成工具 AI 生成 BVH]
+[Kimodo AI 生成 BVH]
         ↓
 [Retarget to Mixamo/Unreal 骨架]
         ↓
@@ -202,7 +226,7 @@ img{max-width:100%}
 <p><strong>限制：</strong></p>
 <ul>
 <li>如果已用 ARP Remap，其內建 In Place 功能更強（含旋轉+批次）</li>
-<li>AI 動作生成工具 骨架需先 retarget 才能用</li>
+<li>Kimodo 骨架需先 retarget 才能用</li>
 <li>不處理旋轉（轉圈走路會有問題）</li>
 </ul>
 
@@ -221,6 +245,18 @@ img{max-width:100%}
 <li>Unreal Engine Forum: <a href="https://forums.unrealengine.com/t/in-placer-blender-addon-to-make-your-animation-in-place-easily/259636" target="_blank">https://forums.unrealengine.com/t/in-placer-blender-addon-to-make-your-animation-in-place-easily/259636</a></li>
 <li>同開發者 Animazing（含旋轉支援）: <a href="https://fatihpehlevan.gumroad.com/l/animazing" target="_blank">https://fatihpehlevan.gumroad.com/l/animazing</a></li>
 </ul>
+
+
+<h2>七、Pipeline 整合分析</h2>
+
+<table>
+<tr><th>項目</th><th>內容</th></tr>
+<tr><td><strong>輸入來源</strong></td><td>Blender 骨架動畫（含位移的 walk/run Action）</td></tr>
+<tr><td><strong>輸出格式</strong></td><td>Blender 骨架動畫（原地化後的 Action，移除水平位移）</td></tr>
+<tr><td><strong>上游工具</strong></td><td>Kimodo BVH、MocapNET BVH、CEB 4D Humans、任何含位移的動畫</td></tr>
+<tr><td><strong>下游工具</strong></td><td>ARP Game Export（原地動畫 + Root Motion 設定）→ 引擎 Locomotion 系統</td></tr>
+<tr><td><strong>推薦搭配</strong></td><td>Kimodo → BVH 匯入 → In Placer 原地化 → ARP Export (Root Motion) → UE/Unity Locomotion。遊戲 Walk/Run Loop 必備。</td></tr>
+</table>
 
 </body>
 </html>

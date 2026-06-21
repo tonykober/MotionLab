@@ -191,6 +191,7 @@ img{max-width:100%}
 <hr>
 
 <h2>七、Pipeline 整合分析</h2>
+
 <table>
 <tr><th>項目</th><th>內容</th></tr>
 <tr><td><strong>輸入來源</strong></td><td>影片 / 圖片 / 3D 掃描資料</td></tr>
@@ -199,7 +200,6 @@ img{max-width:100%}
 <tr><td><strong>下游工具</strong></td><td>直接 FBX → UE/Unity；或 ARP Remap 重定向到自訂角色</td></tr>
 <tr><td><strong>推薦搭配</strong></td><td>Meshcapade API → FBX → ARP Remap → 引擎。是 SMPL 商用授權的唯一合法管道。</td></tr>
 </table>
-<hr>
 
 <h2>八、對「AI 動作量產工作流」的貢獻定位</h2>
 
@@ -260,11 +260,60 @@ img{max-width:100%}
 <p>即使平台已關閉，理解 Meshcapade/SMPL 對我們小組仍有價值：</p>
 
 <ol>
-<li><strong>SMPL 是底層標準</strong> — 幾乎所有 AI 動捕工具（包括我們用的 AI 動作生成工具）都在某種程度上基於或受 SMPL 影響</li>
+<li><strong>SMPL 是底層標準</strong> — 幾乎所有 AI 動捕工具（包括我們用的 Kimodo）都在某種程度上基於或受 SMPL 影響</li>
 <li><strong>Epic 收購的意義</strong> — 說明 AI 人體建模+動捕技術正在從學術走向遊戲引擎內建功能</li>
 <li><strong>未來趨勢</strong> — UE5/6 可能原生支援類似 Meshcapade 的 AI 動捕功能，屆時我們的工作流可能大幅簡化</li>
 <li><strong>SMPL 授權問題</strong> — 如果我們的工具鏈中有使用 SMPL 衍生技術的商業工具，需要注意授權合規</li>
 </ol>
+
+<hr>
+
+<h2>十一、後續發展 — 技術已整合進 UE 5.8（2026/6 月更新）</h2>
+
+<h3>從「付費第三方平台」→「引擎免費內建功能」</h3>
+
+<p>2026 年 6 月，Epic Games 在 Unreal Engine 5.8 中正式推出 <strong>MetaHuman Animator Markerless Motion Capture Plugin</strong>，該功能直接基於 Meshcapade/SMPL 技術：</p>
+
+<ul>
+<li><strong>免費</strong>：從 Fab 市集下載，不需任何額外付費</li>
+<li><strong>全身+臉+手</strong>：單鏡頭影片即可完成所有追蹤</li>
+<li><strong>引擎內建</strong>：無需外部工具、無需 retarget，直接輸出到 MetaHuman 骨架</li>
+<li><strong>本地處理</strong>：離線批次處理，不依賴雲端</li>
+</ul>
+
+<p>&gt; 來源確認：80.lv 報導明確指出「This capability comes from integrating Meshcapade's technology」</p>
+<p>&gt; <a href="https://80.lv/articles/populate-your-ue5-8-worlds-with-metahuman-crowds" target="_blank">https://80.lv/articles/populate-your-ue5-8-worlds-with-metahuman-crowds</a></p>
+
+<h3>轉變意義</h3>
+
+<table>
+<tr><th>之前（Meshcapade 獨立平台）</th><th>現在（UE 5.8 內建）</th></tr>
+<tr><td>付費訂閱制</td><td>完全免費</td></tr>
+<tr><td>需要匯出→匯入到引擎</td><td>引擎內直接生成 Animation Sequence</td></tr>
+<tr><td>需要 retarget 到遊戲骨架</td><td>MetaHuman 骨架直接使用</td></tr>
+<tr><td>獨立平台（已關閉）</td><td>隨引擎更新長期維護</td></tr>
+<tr><td>SMPL 商業授權 €5,000+/年</td><td>隨 UE EULA 免費使用</td></tr>
+</table>
+
+<h3>對我們小組的影響</h3>
+
+<p><strong>如果團隊使用 Unreal Engine 5.8</strong>：</p>
+<ol>
+<li>✅ 可以直接免費使用 Meshcapade/SMPL 品質的 Video-to-Mocap</li>
+<li>✅ 無需訂閱 Viggle/DeepMotion/Rokoko 等第三方服務做影片動捕</li>
+<li>✅ 全身+臉+手一體化，不用分工具</li>
+<li>⚠️ 目前為實驗性功能，品質待驗證</li>
+<li>⚠️ 僅 Windows</li>
+</ol>
+
+<p><strong>如果團隊使用 Unity/Godot</strong>：</p>
+<ul>
+<li>此功能不可用，仍需使用 Viggle / Marionette 等第三方方案</li>
+</ul>
+
+<h3>相關報告</h3>
+
+<p>→ 詳見：<a href="./metahuman_markerless_mocap.md" target="_blank">metahuman_markerless_mocap.md</a></p>
 
 </body>
 </html>

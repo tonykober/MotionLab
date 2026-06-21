@@ -151,26 +151,16 @@ img{max-width:100%}
 
 <hr>
 
-<h2>與現有工具的整合可能性</h2>
+<h2>七、Pipeline 整合分析</h2>
 
-<h3>與其他工具的整合</h3>
-<ul>
-<li>AI 動作生成工具 生成身體動作 + Parrot 處理嘴型 = 完整角色動畫</li>
-<li>兩者都在 Blender 內操作，流程無縫</li>
-</ul>
-
-<h3>與 FaceIt 的互補</h3>
-<ul>
-<li>FaceIt 提供 Shape Keys 資產（嘴型）</li>
-<li>Parrot 驅動這些 Shape Keys 的動畫時間</li>
-</ul>
-
-<h3>中文語音支援</h3>
-<ul>
-<li><strong>關鍵優勢</strong>：如果工作流涉及中文語音（如中文遊戲配音），Parrot 比 Rhubarb 更適合</li>
-</ul>
-
-<hr>
+<table>
+<tr><th>項目</th><th>內容</th></tr>
+<tr><td><strong>輸入來源</strong></td><td>音訊檔案（WAV / MP3 / OGG）— 支援多語言含中文</td></tr>
+<tr><td><strong>輸出格式</strong></td><td>Blender Shape Key Keyframes（直接在時間軸上）</td></tr>
+<tr><td><strong>上游工具</strong></td><td>TTS 語音合成、中文配音、遊戲對話音檔</td></tr>
+<tr><td><strong>下游工具</strong></td><td>FaceIt Shape Keys 系統 → ARP Game Export → 引擎</td></tr>
+<tr><td><strong>推薦搭配</strong></td><td>中文配音 → Parrot Lipsync → Shape Key 動畫 → ARP Export。中文語音的 lip sync 首選（Allosaurus 多語言支援）。</td></tr>
+</table>
 
 <h2>對「AI 動作量產工作流」的貢獻定位</h2>
 

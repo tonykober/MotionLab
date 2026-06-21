@@ -160,7 +160,7 @@ img{max-width:100%}
 <h3>❌ 缺點</h3>
 
 <ol>
-<li><strong>無 BVH 匯出</strong> — 只有 FBX（Mixamo），與 AI Text-to-Motion BVH 需轉換</li>
+<li><strong>無 BVH 匯出</strong> — 只有 FBX（Mixamo），與 Kimodo BVH 需轉換</li>
 <li><strong>無 API/批次</strong> — 手動操作，不適合全自動化</li>
 <li><strong>較新工具</strong> — 市場認知度低，獨立品質驗證少</li>
 <li><strong>精度未正式對比</strong> — 未見與 Vicon/OptiTrack 的對照測試</li>
@@ -170,6 +170,7 @@ img{max-width:100%}
 <hr>
 
 <h2>七、Pipeline 整合分析</h2>
+
 <table>
 <tr><th>項目</th><th>說明</th></tr>
 <tr><td><strong>輸入來源</strong></td><td>影片檔案 / Webcam / 手機鏡頭</td></tr>
@@ -178,7 +179,9 @@ img{max-width:100%}
 <tr><td><strong>上游工具</strong></td><td>任何影片/攝影機來源</td></tr>
 <tr><td><strong>下游工具</strong></td><td>Blender（Plugin 即時串流 → Control Rig）、Unity（Plugin 即時）、Maya（Plugin）</td></tr>
 </table>
+
 <p><strong>推薦搭配</strong>：Marionette 即時串流到 Blender Control Rig → 錄製動畫 → FBX 匯出 → 遊戲引擎。無限使用+本地處理適合大量影片轉動捕，搭配 Blender Plugin 省去匯出/匯入步驟。</p>
+
 <hr>
 
 <h2>八、對「AI 動作量產工作流」的貢獻定位</h2>

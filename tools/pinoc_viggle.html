@@ -233,6 +233,7 @@ img{max-width:100%}
 <hr>
 
 <h2>七、Pipeline 整合分析</h2>
+
 <table>
 <tr><th>項目</th><th>說明</th></tr>
 <tr><td><strong>輸入來源</strong></td><td>MP4 影片（手機/攝影機/線上影片）</td></tr>
@@ -241,7 +242,9 @@ img{max-width:100%}
 <tr><td><strong>上游工具</strong></td><td>任何影片來源（手機自拍、YouTube 參考、螢幕錄影）</td></tr>
 <tr><td><strong>下游工具</strong></td><td>Unity（自動 Humanoid）、UE5（Retarget）、Blender（GLB 匯入）、Godot、Maya</td></tr>
 </table>
+
 <p><strong>推薦搭配</strong>：Viggle API 批次處理 → Blender 統一 retarget → UE5/Unity。量產場景最佳的 video-to-mocap 方案，$0.03/clip 成本搭配 Auto-Rig Pro 做 retarget。</p>
+
 <hr>
 
 <h2>八、對「AI 動作量產工作流」的貢獻定位</h2>
@@ -252,7 +255,7 @@ img{max-width:100%}
 ├─────────────────────────────────────────────────────────┤
 │                                                         │
 │  [輸入源]                                               │
-│    ├── Text Prompt ──→ AI 動作生成工具 (離線)                    │
+│    ├── Text Prompt ──→ Kimodo (離線)                    │
 │    ├── 影片參考 ──→ Viggle PINOC (雲端) ← ⭐ 核心價值   │
 │    └── 手動 K 幀 ──→ 傳統 DCC                          │
 │                                                         │
@@ -294,7 +297,7 @@ img{max-width:100%}
 
 <ol>
 <li><strong>立即試用</strong>：<a href="https://viggle.ai/3d-studio/landing（Guest" target="_blank">https://viggle.ai/3d-studio/landing（Guest</a> 免註冊）</li>
-<li><strong>測試比較</strong>：同一動作分別用 AI 動作生成工具 和 Viggle 生成，比較品質</li>
+<li><strong>測試比較</strong>：同一動作分別用 Kimodo 和 Viggle 生成，比較品質</li>
 <li><strong>API 評估</strong>：申請 API Key 測試批次工作流</li>
 <li><strong>格式測試</strong>：GLB → Blender → retarget 到我們的遊戲角色骨架，確認流程暢通</li>
 <li><strong>成本估算</strong>：評估量產 100 個動作的成本（Viggle API ~$3 vs 傳統方式）</li>

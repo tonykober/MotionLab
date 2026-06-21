@@ -135,21 +135,16 @@ img{max-width:100%}
 
 <hr>
 
-<h2>與現有工具的整合可能性</h2>
+<h2>七、Pipeline 整合分析</h2>
 
-<h3>與其他工具的整合</h3>
-<ul>
-<li>AI 動作生成工具 產出的動畫可作為 Agents 的動畫狀態資產</li>
-<li>AI 生成的 walk/run/idle 動作直接映射到代理狀態機</li>
-</ul>
-
-<h3>與 Pipeline 的整合</h3>
-<ul>
-<li>Geometry Nodes 結果可烘焙為 mesh/instance 動畫</li>
-<li>適合快速原型和小規模群眾場景</li>
-</ul>
-
-<hr>
+<table>
+<tr><th>項目</th><th>內容</th></tr>
+<tr><td><strong>輸入來源</strong></td><td>角色 Mesh + 動畫 Actions + Geometry Nodes 參數設定</td></tr>
+<tr><td><strong>輸出格式</strong></td><td>Blender Geometry Nodes 輸出（Instances + 動畫）</td></tr>
+<tr><td><strong>上游工具</strong></td><td>Kimodo 動作庫、Mixamo 動作庫（提供代理動畫狀態）</td></tr>
+<tr><td><strong>下游工具</strong></td><td>Blender 渲染；需烘焙為個別物件動畫才能匯出 FBX</td></tr>
+<tr><td><strong>推薦搭配</strong></td><td>Kimodo 動作庫 → Agents 狀態機編排 → Blender 渲染。輕量群眾原型工具，適合預視和小場景。</td></tr>
+</table>
 
 <h2>對「AI 動作量產工作流」的貢獻定位</h2>
 
