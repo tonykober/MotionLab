@@ -131,7 +131,16 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <section class="slide" id="s8">
 <div class="slide-inner">
 <h2>Pipeline 整合分析</h2>
-<div class="card" style="margin-top:1.5rem"><p class="desc" style="max-width:none">批次環節——AI Text-to-Motion BVH → BVH Retargeter → Expy-Kit 批次轉 Rigify/Unreal → 匯出。</p></div>
+<p class="desc">本工具在 AI 動作量產工作流中的定位與搭配方式。</p>
+<div class="card" style="margin-top:1.5rem">
+<ul class="list-clean">
+<li><strong>輸入來源</strong> — Blender 場景中的多個 Armature（不同骨架類型：Rigify / ARP / Mixamo / 自訂）</li>
+<li><strong>輸出格式</strong> — Blender Armature Animation（轉移後的動畫 Action）</li>
+<li><strong>上游工具</strong> — Mixamo FBX、ARP 骨架、Rigify 骨架、任何 Blender 內骨架</li>
+<li><strong>下游工具</strong> — ARP Game Export → 引擎；或 Blender 原生 FBX 匯出</li>
+<li><strong>推薦搭配</strong> — Mixamo 動畫 → Expy Kit 轉移到 Rigify/ARP 骨架 → ARP Export → 引擎。跨骨架類型動畫轉移專家。</li>
+</ul>
+</div>
 </div>
 </section>
 

@@ -152,27 +152,14 @@ img{max-width:100%}
 <hr>
 
 <h2>Pipeline 整合分析</h2>
-
-<h3>整合評估：⭐⭐⭐（輕度適合，適合手動微調）</h3>
-
 <table>
-<tr><th>面向</th><th>評估</th></tr>
-<tr><td><strong>問題對應</strong></td><td>✅ AI 動作生成工具 動作常有輕微腳步滑動，此工具正好處理</td></tr>
-<tr><td><strong>自動化</strong></td><td>❌ 無法批次自動處理，需手動操作</td></tr>
-<tr><td><strong>品質</strong></td><td>⚠️ 基本閾值鎖定，不如專業 IK 接地方案</td></tr>
-<tr><td><strong>工作流</strong></td><td>✅ 輕量不干擾，retarget 後隨時可用</td></tr>
+<tr><th>項目</th><th>內容</th></tr>
+<tr><td><strong>輸入來源</strong></td><td>Blender 骨架動畫（含腳步滑動問題的 Action）</td></tr>
+<tr><td><strong>輸出格式</strong></td><td>Blender 骨架動畫（修正後的 Action，腳步鎖定）</td></tr>
+<tr><td><strong>上游工具</strong></td><td>AI 動作生成工具 BVH 匯入、CEB 4D Humans、ARP Remap、任何有滑步問題的動畫來源</td></tr>
+<tr><td><strong>下游工具</strong></td><td>ARP Game Export → 引擎；直接渲染</td></tr>
+<tr><td><strong>推薦搭配</strong></td><td>AI 動捕 → BVH 匯入 Blender → Foot Locker 修正滑步 → ARP Export。AI 動作的腳步品質救星。</td></tr>
 </table>
-
-<h3>建議使用場景</h3>
-
-<p>適合作為 retarget 後的<strong>快速手動修復工具</strong>，用於少量需要精修的動畫：</p>
-
-<pre><code>
-AI Text-to-Motion BVH → Retarget（ARP/BVH Retargeter）
-    → Foot Locker（手動修腳步滑動）← 本工具
-    → Export
-</code></pre>
-
 <hr>
 
 <h2>對「AI 動作量產工作流」的貢獻定位</h2>

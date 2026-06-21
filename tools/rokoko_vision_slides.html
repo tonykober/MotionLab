@@ -156,11 +156,15 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <!-- 8: Integration -->
 <section class="slide" id="s8">
 <div class="slide-inner">
-<h2>與其他工具的整合方式</h2>
-<p class="desc">Rokoko Vision 與 AI 動作生成工具 都輸出 BVH，可在 Blender 統一處理。</p>
+<h2>Pipeline 整合分析</h2>
+<p class="desc">本工具在 AI 動作量產工作流中的定位與搭配方式。</p>
 <div class="card" style="margin-top:1.5rem">
 <ul class="list-clean">
-<li><strong>格式</strong> — BVH 直出 — 與 AI 動作生成工具 完全相容</li><li><strong>成本</strong> — $10/月極便宜</li><li><strong>Blender Addon</strong> — retarget 到任何骨架</li><li><strong>量產</strong> — 無 API 但手動操作方便</li>
+<li><strong>輸入來源</strong> — Webcam 即時錄製 / 預錄影片上傳</li>
+<li><strong>輸出格式</strong> — FBX（免費方案）、**BVH**（Basic+）、CSV（Pro+）</li>
+<li><strong>骨架標準</strong> — Mixamo / UE Manny / Human IK / 3ds Max Biped / 自訂</li>
+<li><strong>上游工具</strong> — Webcam / 手機影片</li>
+<li><strong>下游工具</strong> — Rokoko Studio（免費清理/retarget）→ Blender（addon）/ UE5 / Unity / Maya / C4D / MotionBuilder / Houdini</li>
 </ul>
 </div>
 </div>

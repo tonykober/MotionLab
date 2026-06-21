@@ -203,42 +203,16 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <!-- 8: Integration -->
 <section class="slide" id="s8">
 <div class="slide-inner">
-<h2>Pipeline 整合分析方案</h2>
-<p class="desc">AI 動作生成工具 用文字描述生成動作（text-to-motion），Viggle 用影片參考提取動作（video-to-mocap）。兩者輸入方式互補，可組合成靈活的混合工作流，依場景選擇最適合的生成方式。</p>
-<div class="card-grid cols-3" style="margin-top:1.5rem">
-<div class="card">
-<p style="color:var(--accent-cyan);font-weight:700;font-size:1.4rem;margin-bottom:.6rem">方案 A：影片參考</p>
-<p class="card-title">有參考影片時使用</p>
+<h2>Pipeline 整合分析</h2>
+<p class="desc">本工具在 AI 動作量產工作流中的定位與搭配方式。</p>
+<div class="card" style="margin-top:1.5rem">
 <ul class="list-clean">
-<li>1. 拍攝或蒐集動作參考影片</li>
-<li>2. 上傳至 Viggle API</li>
-<li>3. 下載 GLB 骨架動畫</li>
-<li>4. Blender retarget 到遊戲角色</li>
-<li>5. 匯出 FBX 進入引擎</li>
+<li><strong>輸入來源</strong> — MP4 影片（手機/攝影機/線上影片）</li>
+<li><strong>輸出格式</strong> — GLB（主要）、FBX（開發中）</li>
+<li><strong>骨架標準</strong> — Mixamo 65 骨骼命名</li>
+<li><strong>上游工具</strong> — 任何影片來源（手機自拍、YouTube 參考、螢幕錄影）</li>
+<li><strong>下游工具</strong> — Unity（自動 Humanoid）、UE5（Retarget）、Blender（GLB 匯入）、Godot、Maya</li>
 </ul>
-</div>
-<div class="card">
-<p style="color:var(--accent-teal);font-weight:700;font-size:1.4rem;margin-bottom:.6rem">方案 B：混合工作流</p>
-<p class="card-title">依動作複雜度選擇</p>
-<ul class="list-clean">
-<li>簡單/通用動作 → 文字生成動作工具 生成 BVH</li>
-<li>複雜/特定動作 → 拍影片 Viggle 提取 GLB</li>
-<li>兩者在 Blender 統一 retarget</li>
-<li>統一 clean-up（腳步/Root Motion）</li>
-<li>匯出到遊戲引擎</li>
-</ul>
-</div>
-<div class="card">
-<p style="color:var(--accent-link);font-weight:700;font-size:1.4rem;margin-bottom:.6rem">方案 C：批次量產</p>
-<p class="card-title">建置大規模動作庫</p>
-<ul class="list-clean">
-<li>1. 蒐集大量動作參考影片來源</li>
-<li>2. Viggle API 批次處理（$0.03/個）</li>
-<li>3. 自動化腳本統一 retarget</li>
-<li>4. 品質篩選 + 分類標籤</li>
-<li>5. 動作庫建置完成</li>
-</ul>
-</div>
 </div>
 </div>
 </section>

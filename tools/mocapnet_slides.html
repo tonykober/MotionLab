@@ -129,13 +129,21 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 </ul></div>
 </div></section>
 
-<section class="slide" id="s8"><div class="slide-inner">
-<h2>與其他工具的整合可能</h2>
-<div class="card-grid cols-2">
-<div class="card"><div class="card-title">極高相容性</div><p class="desc">MocapNET 直接輸出 BVH 格式，與 AI 動作生成工具 使用完全相同的動作表示。兩者共用整個後處理 pipeline——動作平滑、retarget、品質檢查等步驟可直接套用。</p></div>
-<div class="card"><div class="card-title">整合流程</div><p class="desc">影片 → OpenPose → MocapNET → BVH 輸出 → 直接進入 AI 動作生成工具 後處理 pipeline → 最終產出。無需任何格式轉換步驟。</p></div>
+<section class="slide" id="s8">
+<div class="slide-inner">
+<h2>Pipeline 整合分析</h2>
+<p class="desc">本工具在 AI 動作量產工作流中的定位與搭配方式。</p>
+<div class="card" style="margin-top:1.5rem">
+<ul class="list-clean">
+<li><strong>輸入來源</strong> — 影片檔案 / 攝影機即時串流（經 OpenPose 或 MediaPipe 2D 前處理）</li>
+<li><strong>輸出格式</strong> — BVH**（直接輸出，CMU MoCap 相容骨架）</li>
+<li><strong>上游工具</strong> — OpenPose / MediaPipe Holistic（2D 關鍵點偵測）</li>
+<li><strong>下游工具</strong> — Blender 直接匯入 BVH → ARP Remap 重定向 → ARP Game Export → UE/Unity</li>
+<li><strong>推薦搭配</strong> — 影片 → MediaPipe → MocapNET → BVH → ARP Remap → 引擎。BVH 直出是最大優勢，零格式轉換。</li>
+</ul>
 </div>
-</div></section>
+</div>
+</section>
 
 <section class="slide" id="s9"><div class="slide-inner">
 <h2>適用場景</h2>

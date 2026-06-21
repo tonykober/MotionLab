@@ -130,13 +130,21 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 </ul></div>
 </div></section>
 
-<section class="slide" id="s8"><div class="slide-inner">
-<h2>與其他工具的整合可能</h2>
-<div class="card-grid cols-2">
-<div class="card"><div class="card-title">底層理解</div><p class="desc">許多動作生成研究（包括 AI 動作生成工具 可能使用的模型）內部以 SMPL-X 表示動作。理解此格式有助於整合各種研究工具的輸出。</p></div>
-<div class="card"><div class="card-title">轉換橋樑</div><p class="desc">SMPL-X → BVH 轉換工具已有多個開源實作。當學術工具輸出 SMPL-X 格式時，可透過轉換進入 AI 動作生成工具 pipeline。</p></div>
+<section class="slide" id="s8">
+<div class="slide-inner">
+<h2>Pipeline 整合分析</h2>
+<p class="desc">本工具在 AI 動作量產工作流中的定位與搭配方式。</p>
+<div class="card" style="margin-top:1.5rem">
+<ul class="list-clean">
+<li><strong>輸入來源</strong> — Python API 參數（pose/shape/expression tensors）或推理框架輸出的 .pkl/.npz</li>
+<li><strong>輸出格式</strong> — SMPL-X Mesh（.obj/.ply）+ Joint positions；需轉換為 BVH/FBX</li>
+<li><strong>上游工具</strong> — SMPLer-X、4D-Humans、WHAM、ExPose 等推理框架</li>
+<li><strong>下游工具</strong> — smplx2bvh 轉換腳本 → BVH → ARP Remap → 引擎；或 Blender SMPL-X 外掛直接載入</li>
+<li><strong>推薦搭配</strong> — 推理框架 → SMPL-X .pkl → smplx2bvh → BVH → ARP → 引擎。SMPL-X 是格式標準而非直接工具。</li>
+</ul>
 </div>
-</div></section>
+</div>
+</section>
 
 <section class="slide" id="s9"><div class="slide-inner">
 <h2>基於 SMPL-X 的研究工具</h2>

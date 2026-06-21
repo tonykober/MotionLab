@@ -150,24 +150,15 @@ img{max-width:100%}
 <hr>
 
 <h2>七、Pipeline 整合分析</h2>
-
 <table>
-<tr><th>面向</th><th>評估</th></tr>
-<tr><td><strong>格式</strong></td><td>⭐⭐⭐⭐⭐ BVH 直出</td></tr>
-<tr><td><strong>品質互補</strong></td><td>AGI 的抗遮擋 + 防滑步可能比 AI 動作生成工具 的 raw BVH 更乾淨</td></tr>
-<tr><td><strong>特定場景</strong></td><td>遮擋嚴重的影片（如戰鬥、家具遮擋）可考慮 AGI</td></tr>
+<tr><th>項目</th><th>說明</th></tr>
+<tr><td><strong>輸入來源</strong></td><td>Webcam / 影片檔案（強力抗遮擋）</td></tr>
+<tr><td><strong>輸出格式</strong></td><td><strong>BVH</strong>、FBX、BIP、VMD</td></tr>
+<tr><td><strong>骨架標準</strong></td><td>標準骨架</td></tr>
+<tr><td><strong>上游工具</strong></td><td>任何影片（特別適合遮擋嚴重的影片）</td></tr>
+<tr><td><strong>下游工具</strong></td><td>Blender（BVH 匯入）、3DS Max（BIP）、Maya（FBX）</td></tr>
 </table>
-
-<h3>推薦整合方式</h3>
-
-<pre><code>
-遮擋場景工作流：
-  遮擋嚴重的影片 → AGI Mocap（抗遮擋）→ BVH
-  乾淨的影片 → Viggle（更快更便宜）→ GLB/FBX
-  文字描述 → AI 動作生成工具 → BVH
-  全部 → Blender 統一 retarget
-</code></pre>
-
+<p><strong>推薦搭配</strong>：遮擋嚴重的動作參考影片 → AGI Mocap（抗遮擋演算法）→ BVH → Blender retarget。其他 AI Mocap 追蹤失敗時的備選方案。</p>
 <hr>
 
 <h2>八、對「AI 動作量產工作流」的貢獻定位</h2>

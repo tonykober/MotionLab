@@ -161,31 +161,14 @@ img{max-width:100%}
 <hr>
 
 <h2>Pipeline 整合分析</h2>
-
-<h3>整合評估：⭐⭐⭐⭐（潛力高，但需驗證）</h3>
-
 <table>
-<tr><th>面向</th><th>評估</th></tr>
-<tr><td><strong>問題對應</strong></td><td>✅ AI 動作生成工具 動作最大痛點就是腳步滑動，本工具從源頭解決</td></tr>
-<tr><td><strong>方法論</strong></td><td>✅ Hip alignment 對 AI 生成動畫特別有效（AI 骨架比例可能不精確）</td></tr>
-<tr><td><strong>品質</strong></td><td>✅ 理論上比純旋轉映射品質更高</td></tr>
-<tr><td><strong>批次</strong></td><td>⚠️ 未確認批次處理能力</td></tr>
-<tr><td><strong>驗證</strong></td><td>⚠️ 較新工具，需實際測試</td></tr>
+<tr><th>項目</th><th>內容</th></tr>
+<tr><td><strong>輸入來源</strong></td><td>Blender 骨架動畫（多個 BVH/FBX 匯入的來源動畫）</td></tr>
+<tr><td><strong>輸出格式</strong></td><td>Blender 骨架動畫（批次重定向後的 Actions）</td></tr>
+<tr><td><strong>上游工具</strong></td><td>AI 動作生成工具 BVH 批次輸出、Mixamo 動畫庫、MocapNET 批次輸出</td></tr>
+<tr><td><strong>下游工具</strong></td><td>ARP Game Export 批次匯出 → 引擎動畫庫</td></tr>
+<tr><td><strong>推薦搭配</strong></td><td>AI 動作生成工具 批次生成 100+ BVH → Retargeting Automation System 批次重定向 → ARP 批次匯出。量產管線的批次處理核心。</td></tr>
 </table>
-
-<h3>建議整合流程</h3>
-
-<pre><code>
-AI Text-to-Motion BVH → Blender Import
-    → Retargeting Automation System ← 本工具
-      - 自動分析 AI 動作生成工具 骨架 vs 目標角色比例差異
-      - Hip alignment
-      - Limb proportion matching
-      - Retarget（已含接地優化）
-    → Export FBX
-    → 遊戲引擎
-</code></pre>
-
 <hr>
 
 <h2>對「AI 動作量產工作流」的貢獻定位</h2>

@@ -157,15 +157,15 @@ img{max-width:100%}
 <hr>
 
 <h2>七、Pipeline 整合分析</h2>
-
 <table>
-<tr><th>面向</th><th>評估</th></tr>
-<tr><td><strong>定位</strong></td><td>完全不同賽道 — Flow Studio 是 VFX 合成，AI 動作生成工具 是動畫生成</td></tr>
-<tr><td><strong>動捕匯出</strong></td><td>可以用 AI MoCap 模式提取動作，但文件較少，格式不明確</td></tr>
-<tr><td><strong>適合場景</strong></td><td>遊戲預告片製作、過場動畫 pre-viz</td></tr>
-<tr><td><strong>量產</strong></td><td>❌ Credit 制不經濟</td></tr>
+<tr><th>項目</th><th>說明</th></tr>
+<tr><td><strong>輸入來源</strong></td><td>實拍影片（任何攝影機）+ CG 角色模型</td></tr>
+<tr><td><strong>輸出格式</strong></td><td>合成影片 / AI MoCap 資料（匯出到 DCC）</td></tr>
+<tr><td><strong>骨架標準</strong></td><td>標準骨架（含臉+身+手）</td></tr>
+<tr><td><strong>上游工具</strong></td><td>攝影機拍攝 + 自訂 CG 角色</td></tr>
+<tr><td><strong>下游工具</strong></td><td>Blender（場景匯出編輯）、Maya、After Effects（VFX 合成）</td></tr>
 </table>
-
+<p><strong>推薦搭配</strong>：Wonder Dynamics (Flow Studio) → AI VFX 合成影片（遊戲預告片/行銷影片）。或用 AI MoCap 模式提取動作 → Blender/Maya。核心用途是 VFX 不是純動畫量產。</p>
 <hr>
 
 <h2>八、對「AI 動作量產工作流」的貢獻定位</h2>

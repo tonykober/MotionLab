@@ -183,35 +183,14 @@ retarget_bvh/
 <hr>
 
 <h2>Pipeline 整合分析</h2>
-
-<h3>整合評估：⭐⭐⭐⭐⭐（高度適合）</h3>
-
 <table>
-<tr><th>面向</th><th>評估</th></tr>
-<tr><td><strong>格式相容性</strong></td><td>✅ AI 動作生成工具 輸出 BVH → BVH Retargeter 原生支援</td></tr>
-<tr><td><strong>骨架映射</strong></td><td>⚠️ 需建立 AI 動作生成工具 專用的 source rig JSON 映射檔（一次性工作）</td></tr>
-<tr><td><strong>批次處理</strong></td><td>✅ 支援 Python scripting，可寫批次 retarget 腳本</td></tr>
-<tr><td><strong>自動化整合</strong></td><td>✅ 可嵌入我們的 pipeline（Blender headless + Python）</td></tr>
-<tr><td><strong>品質</strong></td><td>⚠️ retarget 品質中上，但缺乏腳部修正（需 Foot Locker/In Placer 補足）</td></tr>
+<tr><th>項目</th><th>內容</th></tr>
+<tr><td><strong>輸入來源</strong></td><td>BVH 檔案（任何來源：AI 動作生成工具 / MocapNET / 動捕工作室）</td></tr>
+<tr><td><strong>輸出格式</strong></td><td>BVH（重定向後的新骨架）</td></tr>
+<tr><td><strong>上游工具</strong></td><td>AI 動作生成工具、MocapNET、FreeMoCap、任何 BVH 產出工具</td></tr>
+<tr><td><strong>下游工具</strong></td><td>Blender 匯入 → ARP Game Export → UE/Unity；或直接匯入引擎</td></tr>
+<tr><td><strong>推薦搭配</strong></td><td>AI 動作生成工具 → BVH Retargeter → 目標骨架 BVH → 引擎。輕量 BVH 對 BVH 重定向，不需 Blender。</td></tr>
 </table>
-
-<h3>建議整合流程</h3>
-
-<pre><code>
-AI Text-to-Motion BVH → BVH Retargeter（retarget 到遊戲骨架）
-    → Foot Locker/In Placer（修腳步接地）
-    → Export FBX/GLB（匯入遊戲引擎）
-</code></pre>
-
-<h3>需要的一次性準備工作</h3>
-
-<ol>
-<li>分析 AI 動作生成工具 輸出 BVH 的骨架結構與命名</li>
-<li>建立 <code>source_rig.json</code> 骨骼映射檔</li>
-<li>建立 Blender Python 批次腳本模板</li>
-<li>測試常見動作類型的 retarget 品質</li>
-</ol>
-
 <hr>
 
 <h2>對「AI 動作量產工作流」的貢獻定位</h2>

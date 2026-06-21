@@ -133,14 +133,15 @@ img{max-width:100%}
 <hr>
 
 <h2>七、Pipeline 整合分析</h2>
-
 <table>
-<tr><th>面向</th><th>評估</th></tr>
-<tr><td><strong>格式</strong></td><td>❌ 不輸出動畫檔案</td></tr>
-<tr><td><strong>用途</strong></td><td>僅 VTuber 即時串流</td></tr>
-<tr><td><strong>量產</strong></td><td>❌ 完全不適合</td></tr>
+<tr><th>項目</th><th>說明</th></tr>
+<tr><td><strong>輸入來源</strong></td><td>Webcam / iPhone（Face ID Perfect Sync）</td></tr>
+<tr><td><strong>輸出格式</strong></td><td>即時串流（VMC/OSC Protocol，無 FBX/BVH 匯出）</td></tr>
+<tr><td><strong>骨架標準</strong></td><td>臉部 ARKit 52 表情 + 上半身</td></tr>
+<tr><td><strong>上游工具</strong></td><td>標準 Webcam / iPhone</td></tr>
+<tr><td><strong>下游工具</strong></td><td>VSeeFace、VTube Studio 等 VTuber 軟體</td></tr>
 </table>
-
+<p><strong>推薦搭配</strong>：純 VTuber 工具，不產出遊戲動畫格式。如需臉部動捕匯出，改用 FaceIt（Blender addon）或 Marionette。</p>
 <hr>
 
 <h2>八、對「AI 動作量產工作流」的貢獻定位</h2>

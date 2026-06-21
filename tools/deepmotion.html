@@ -179,16 +179,15 @@ img{max-width:100%}
 <hr>
 
 <h2>七、Pipeline 整合分析</h2>
-
 <table>
-<tr><th>面向</th><th>評估</th></tr>
-<tr><td><strong>格式相容</strong></td><td>⭐⭐⭐⭐⭐ BVH 直出，與 AI 動作生成工具 完全同格式</td></tr>
-<tr><td><strong>SayMotion vs AI 動作生成工具</strong></td><td>直接競品！兩者都是 text-to-motion，需對比品質</td></tr>
-<tr><td><strong>Video Mocap</strong></td><td>Animate 3D 補充 AI 動作生成工具 沒有的 video-to-motion 能力</td></tr>
-<tr><td><strong>API 批次處理</strong></td><td>Animate 3D API 可批次處理影片 → 建立動作庫</td></tr>
-<tr><td><strong>臉部/手部</strong></td><td>DeepMotion 可補充 AI 動作生成工具 缺乏的臉部和手指動捕</td></tr>
+<tr><th>項目</th><th>說明</th></tr>
+<tr><td><strong>輸入來源</strong></td><td>影片（Animate 3D）/ 文字描述（SayMotion）</td></tr>
+<tr><td><strong>輸出格式</strong></td><td>FBX、<strong>BVH</strong>、GLB</td></tr>
+<tr><td><strong>骨架標準</strong></td><td>標準 Humanoid（可 auto-retarget 到自訂角色）</td></tr>
+<tr><td><strong>上游工具</strong></td><td>任何影片 / Ready Player Me / Avaturn 角色</td></tr>
+<tr><td><strong>下游工具</strong></td><td>UE5（有 retarget 教學）、Unity、Blender、Maya、iClone、Roblox</td></tr>
 </table>
-
+<p><strong>推薦搭配</strong>：DeepMotion Animate 3D API 批次處理影片 → BVH/FBX → Blender/UE5。SayMotion 做 text-to-motion 時可與 AI 動作生成工具 做 A/B 品質比較。</p>
 <hr>
 
 <h2>八、對「AI 動作量產工作流」的貢獻定位</h2>

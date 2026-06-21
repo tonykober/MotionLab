@@ -209,23 +209,15 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <section class="slide" id="s8">
 <div class="slide-inner">
 <h2>Pipeline 整合分析</h2>
-<p class="desc">DeepMotion 和 AI 動作生成工具 有極高互補性：都支援 BVH 格式、都有文字生成動作能力。DeepMotion 的 Animate 3D 補足了 AI 動作生成工具 沒有的「影片轉動畫」功能，而 SayMotion 則是 text-to-motion 賽道的另一個選擇。</p>
-<div class="card-grid cols-3" style="margin-top:1.5rem">
-<div class="card">
-<p style="color:var(--accent-cyan);font-weight:700;font-size:1.4rem;margin-bottom:.6rem">格式相容</p>
-<p style="color:var(--text-primary);font-weight:600;margin-bottom:.8rem">BVH 直接共用 Pipeline</p>
-<p style="font-size:1rem;line-height:1.7">DeepMotion 直接輸出 BVH，與 AI 動作生成工具 的 BVH 輸出使用完全相同的後處理工具鏈（Retarget → Foot Fix → Root Motion）。</p>
-</div>
-<div class="card">
-<p style="color:var(--accent-teal);font-weight:700;font-size:1.4rem;margin-bottom:.6rem">功能互補</p>
-<p style="color:var(--text-primary);font-weight:600;margin-bottom:.8rem">Text + Video 雙輸入</p>
-<p style="font-size:1rem;line-height:1.7">AI 動作生成工具 = 離線 text-to-motion。DeepMotion = 雲端 video-to-motion + text-to-motion。覆蓋不同場景和品質需求。</p>
-</div>
-<div class="card">
-<p style="color:var(--accent-gold);font-weight:700;font-size:1.4rem;margin-bottom:.6rem">批次自動化</p>
-<p style="color:var(--text-primary);font-weight:600;margin-bottom:.8rem">API 串接量產</p>
-<p style="font-size:1rem;line-height:1.7">Animate 3D REST API 可批次上傳影片自動處理。搭配 AI 動作生成工具 本地生成，雙管齊下建置大規模動作庫。</p>
-</div>
+<p class="desc">本工具在 AI 動作量產工作流中的定位與搭配方式。</p>
+<div class="card" style="margin-top:1.5rem">
+<ul class="list-clean">
+<li><strong>輸入來源</strong> — 影片（Animate 3D）/ 文字描述（SayMotion）</li>
+<li><strong>輸出格式</strong> — FBX、**BVH**、GLB</li>
+<li><strong>骨架標準</strong> — 標準 Humanoid（可 auto-retarget 到自訂角色）</li>
+<li><strong>上游工具</strong> — 任何影片 / Ready Player Me / Avaturn 角色</li>
+<li><strong>下游工具</strong> — UE5（有 retarget 教學）、Unity、Blender、Maya、iClone、Roblox</li>
+</ul>
 </div>
 </div>
 </section>

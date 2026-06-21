@@ -233,36 +233,15 @@ img{max-width:100%}
 <hr>
 
 <h2>七、Pipeline 整合分析</h2>
-
 <table>
-<tr><th>面向</th><th>評估</th></tr>
-<tr><td><strong>格式</strong></td><td>AI 動作生成工具 輸出 BVH，Viggle 輸出 GLB — 都可匯入 Blender 做 retarget。GLB→BVH 轉換容易</td></tr>
-<tr><td><strong>互補場景</strong></td><td>AI 動作生成工具 = text prompt 生成；Viggle = 影片參考轉 mocap。兩者輸入方式不同，覆蓋不同創作場景</td></tr>
-<tr><td><strong>量產化</strong></td><td>Viggle API 支援批次 + $0.03/animation → 大量參考影片可批次轉換</td></tr>
-<tr><td><strong>品質比較</strong></td><td>需要實測比較：AI 動作生成工具 vs Viggle 在相同動作的品質差異</td></tr>
-<tr><td><strong>Pipeline 整合</strong></td><td>可以設計：拍攝參考影片 → Viggle API 批次處理 → GLB → Blender retarget → 遊戲引擎</td></tr>
-<tr><td><strong>Root Motion</strong></td><td>Viggle 內建 Root Motion，AI 動作生成工具 需要額外處理（--no-postprocess 的限制）</td></tr>
-<tr><td><strong>腳部修正</strong></td><td>Viggle 內建 foot contact correction vs AI 動作生成工具 目前無後處理</td></tr>
+<tr><th>項目</th><th>說明</th></tr>
+<tr><td><strong>輸入來源</strong></td><td>MP4 影片（手機/攝影機/線上影片）</td></tr>
+<tr><td><strong>輸出格式</strong></td><td>GLB（主要）、FBX（開發中）</td></tr>
+<tr><td><strong>骨架標準</strong></td><td>Mixamo 65 骨骼命名</td></tr>
+<tr><td><strong>上游工具</strong></td><td>任何影片來源（手機自拍、YouTube 參考、螢幕錄影）</td></tr>
+<tr><td><strong>下游工具</strong></td><td>Unity（自動 Humanoid）、UE5（Retarget）、Blender（GLB 匯入）、Godot、Maya</td></tr>
 </table>
-
-<h3>推薦整合方式</h3>
-
-<pre><code>
-方案 A：影片參考工作流
-  拍攝動作參考影片 → Viggle API → GLB → Blender retarget → UE5/Unity
-
-方案 B：混合工作流
-  簡單動作 → 文字生成動作工具 → BVH
-  複雜/特定動作 → 拍攝影片 → Viggle → GLB
-  兩者統一在 Blender 做 retarget + clean-up → 遊戲引擎
-
-方案 C：量產工作流
-  蒐集大量動作參考影片（YouTube/自拍/素材庫）
-  → Viggle API 批次處理（$0.03/個）
-  → 統一 retarget 到遊戲角色骨架
-  → 動作庫建置
-</code></pre>
-
+<p><strong>推薦搭配</strong>：Viggle API 批次處理 → Blender 統一 retarget → UE5/Unity。量產場景最佳的 video-to-mocap 方案，$0.03/clip 成本搭配 Auto-Rig Pro 做 retarget。</p>
 <hr>
 
 <h2>八、對「AI 動作量產工作流」的貢獻定位</h2>

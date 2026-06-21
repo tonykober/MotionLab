@@ -130,13 +130,21 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 </ul></div>
 </div></section>
 
-<section class="slide" id="s8"><div class="slide-inner">
-<h2>與其他工具的整合可能</h2>
-<div class="card-grid cols-2">
-<div class="card"><div class="card-title">直接相容</div><p class="desc">ReMoCapp 輸出 BVH 格式，可直接進入 AI 動作生成工具 後處理 pipeline。無需任何格式轉換，BVH 動作資料直接用於動作平滑、retarget、品質檢查等步驟。</p></div>
-<div class="card"><div class="card-title">互補角色</div><p class="desc">ReMoCapp 提供即時高精度動捕，AI 動作生成工具 提供 text-to-motion 生成。兩者結合覆蓋「真實動作捕捉」與「AI 動作生成」兩大需求面向。</p></div>
+<section class="slide" id="s8">
+<div class="slide-inner">
+<h2>Pipeline 整合分析</h2>
+<p class="desc">本工具在 AI 動作量產工作流中的定位與搭配方式。</p>
+<div class="card" style="margin-top:1.5rem">
+<ul class="list-clean">
+<li><strong>輸入來源</strong> — 多攝影機同步影片</li>
+<li><strong>輸出格式</strong> — FBX、BVH</li>
+<li><strong>骨架標準</strong> — 標準 Humanoid</li>
+<li><strong>上游工具</strong> — 多台攝影機（手機/Webcam）</li>
+<li><strong>下游工具</strong> — Blender、Maya、UE5、Unity</li>
+</ul>
 </div>
-</div></section>
+</div>
+</section>
 
 <section class="slide" id="s9"><div class="slide-inner">
 <h2>適用場景</h2>

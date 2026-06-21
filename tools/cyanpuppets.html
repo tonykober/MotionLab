@@ -156,27 +156,15 @@ img{max-width:100%}
 <hr>
 
 <h2>七、Pipeline 整合分析</h2>
-
 <table>
-<tr><th>面向</th><th>評估</th></tr>
-<tr><td><strong>互補性</strong></td><td>CyanPuppets 提供高精度臉/手（AI 動作生成工具 沒有的）</td></tr>
-<tr><td><strong>格式</strong></td><td>透過 Blender 插件可匯出各種格式</td></tr>
-<tr><td><strong>即時性</strong></td><td>CyanPuppets 即時預覽，AI 動作生成工具 是離線生成</td></tr>
-<tr><td><strong>成本</strong></td><td>$50/月 vs AI 動作生成工具 免費 — 成本差異大</td></tr>
+<tr><th>項目</th><th>說明</th></tr>
+<tr><td><strong>輸入來源</strong></td><td>Webcam / 影片（208 關鍵點即時追蹤）</td></tr>
+<tr><td><strong>輸出格式</strong></td><td>透過 Blender/UE Plugin 即時串流 → 錄製到 timeline</td></tr>
+<tr><td><strong>骨架標準</strong></td><td>208 關鍵點（臉 140 + 手 21 + 肢體 30）</td></tr>
+<tr><td><strong>上游工具</strong></td><td>Webcam / 影片</td></tr>
+<tr><td><strong>下游工具</strong></td><td>Blender（Plugin 即時串流+錄製）、Unreal Engine（Plugin）</td></tr>
 </table>
-
-<h3>推薦整合方式</h3>
-
-<pre><code>
-高精度場景：
-  臉部+手指表演 → CyanPuppets(208點) → Blender 錄製 → FBX
-  全身表演動作 → AI 動作生成工具/Viggle → BVH/GLB
-  統一在 Blender 合併
-
-等免費版發佈後：
-  CyanPuppets 免費版 → 替代臉部追蹤付費工具
-</code></pre>
-
+<p><strong>推薦搭配</strong>：CyanPuppets Blender Plugin → 即時追蹤 208 點 → 錄製到 Blender timeline → FBX 匯出。適合需要極精細臉部(140 點)+手指(21 點)的角色表演場景。</p>
 <hr>
 
 <h2>八、對「AI 動作量產工作流」的貢獻定位</h2>

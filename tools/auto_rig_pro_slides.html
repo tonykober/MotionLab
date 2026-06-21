@@ -132,7 +132,16 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <section class="slide" id="s8">
 <div class="slide-inner">
 <h2>Pipeline 整合分析</h2>
-<div class="card" style="margin-top:1.5rem"><p class="desc" style="max-width:none">核心整合——AI Text-to-Motion BVH → ARP Remap（IK mode）→ FBX 匯出。IK Retarget 是對抗 AI 動作滑步的最有力工具。</p></div>
+<p class="desc">本工具在 AI 動作量產工作流中的定位與搭配方式。</p>
+<div class="card" style="margin-top:1.5rem">
+<ul class="list-clean">
+<li><strong>輸入來源</strong> — Blender 場景中的 Armature + Mesh（含動畫 Actions）；BVH/FBX 匯入（Remap 模組）</li>
+<li><strong>輸出格式</strong> — FBX / GLTF（含 UE/Unity/Godot 專屬預設）</li>
+<li><strong>上游工具</strong> — AI 動作生成工具（BVH）、CEB 4D Humans、MocapNET、FreeMoCap — 任何產出 BVH/Blender 動畫的工具</li>
+<li><strong>下游工具</strong> — Unreal Engine、Unity、Godot（直接匯入 FBX/GLTF）</li>
+<li><strong>推薦搭配</strong> — [任何動捕/AI] → BVH → ARP Remap 重定向 → ARP Game Export → 引擎。ARP 是 Blender→引擎的標準橋樑。</li>
+</ul>
+</div>
 </div>
 </section>
 

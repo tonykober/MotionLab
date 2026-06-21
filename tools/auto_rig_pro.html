@@ -175,36 +175,14 @@ img{max-width:100%}
 <hr>
 
 <h2>Pipeline 整合分析</h2>
-
-<h3>整合評估：⭐⭐⭐⭐（高度適合，需少量前置工作）</h3>
-
 <table>
-<tr><th>面向</th><th>評估</th></tr>
-<tr><td><strong>格式相容性</strong></td><td>✅ 直接匯入 BVH</td></tr>
-<tr><td><strong>骨架映射</strong></td><td>⚠️ 需建立 AI 動作生成工具 → ARP 的 Preset（一次性，可匯出重複使用）</td></tr>
-<tr><td><strong>IK Retarget</strong></td><td>✅ 最大優勢：IK 模式有效減少 AI 動作生成工具 輸出的腳步滑動</td></tr>
-<tr><td><strong>批次處理</strong></td><td>⚠️ Multiple Animations 支援多動畫，但 headless 批次需社群方案</td></tr>
-<tr><td><strong>遊戲引擎匯出</strong></td><td>✅ 直接匯出 FBX 到 Unity/Unreal</td></tr>
-<tr><td><strong>品質</strong></td><td>⭐⭐⭐⭐⭐ IK retarget 品質業界頂級</td></tr>
+<tr><th>項目</th><th>內容</th></tr>
+<tr><td><strong>輸入來源</strong></td><td>Blender 場景中的 Armature + Mesh（含動畫 Actions）；BVH/FBX 匯入（Remap 模組）</td></tr>
+<tr><td><strong>輸出格式</strong></td><td>FBX / GLTF（含 UE/Unity/Godot 專屬預設）</td></tr>
+<tr><td><strong>上游工具</strong></td><td>AI 動作生成工具（BVH）、CEB 4D Humans、MocapNET、FreeMoCap — 任何產出 BVH/Blender 動畫的工具</td></tr>
+<tr><td><strong>下游工具</strong></td><td>Unreal Engine、Unity、Godot（直接匯入 FBX/GLTF）</td></tr>
+<tr><td><strong>推薦搭配</strong></td><td>[任何動捕/AI] → BVH → ARP Remap 重定向 → ARP Game Export → 引擎。ARP 是 Blender→引擎的標準橋樑。</td></tr>
 </table>
-
-<h3>社群批次方案</h3>
-
-<p>GitHub 上有 <code>Shimingyi/ARP-Batch-Retargeting</code>（個人 pipeline），展示了如何用 ARP 批次 retarget BVH：</p>
-<ul>
-<li><a href="https://github.com/Shimingyi/ARP-Batch-Retargeting" target="_blank">https://github.com/Shimingyi/ARP-Batch-Retargeting</a></li>
-</ul>
-
-<h3>建議整合流程</h3>
-
-<pre><code>
-AI Text-to-Motion BVH → Blender 匯入
-    → ARP Remap（IK mode, 自建 AI 動作生成工具 Preset）
-    → Interactive Tweaks 微調
-    → ARP Game Engine Export → FBX
-    → Unity / Unreal 匯入
-</code></pre>
-
 <hr>
 
 <h2>對「AI 動作量產工作流」的貢獻定位</h2>

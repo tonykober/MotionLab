@@ -153,11 +153,15 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <!-- 8: Integration -->
 <section class="slide" id="s8">
 <div class="slide-inner">
-<h2>與其他工具的整合方式</h2>
-<p class="desc">Cartwheel 與 AI 動作生成工具 互補：AI 動作生成工具 離線 text-to-motion，Cartwheel 雲端多模態。</p>
+<h2>Pipeline 整合分析</h2>
+<p class="desc">本工具在 AI 動作量產工作流中的定位與搭配方式。</p>
 <div class="card" style="margin-top:1.5rem">
 <ul class="list-clean">
-<li><strong>格式</strong> — AI 動作生成工具=BVH, Cartwheel=GLB/FBX — 都是標準格式可在 Blender 統一處理</li><li><strong>互補</strong> — AI 動作生成工具 離線本地 vs Cartwheel 雲端多模態</li><li><strong>Video Ref</strong> — Cartwheel 的 Video-to-Motion 補充 AI 動作生成工具 沒有的能力</li><li><strong>API</strong> — Cartwheel API 開發中，未來可自動化</li>
+<li><strong>輸入來源</strong> — 文字描述 / 參考影片 / Pose Mode 擺姿勢 / Motion Library 搜尋</li>
+<li><strong>輸出格式</strong> — GLB、FBX</li>
+<li><strong>骨架標準</strong> — 已清理 Spline 曲線（非逐幀 key）</li>
+<li><strong>上游工具</strong> — 無特別需求（文字/影片/互動式輸入）</li>
+<li><strong>下游工具</strong> — Maya（Pro 方案擴展 Rig）、Blender、Unreal Engine、Unity</li>
 </ul>
 </div>
 </div>

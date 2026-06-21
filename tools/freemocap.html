@@ -191,17 +191,15 @@ pip install freemocap
 <hr>
 
 <h2>七、Pipeline 整合分析</h2>
-
 <table>
-<tr><th>面向</th><th>評估</th></tr>
-<tr><td><strong>格式</strong></td><td>BVH 可匯出（透過 Blender addon）</td></tr>
-<tr><td><strong>互補性</strong></td><td>FreeMoCap = 本地離線影片 mocap；AI 動作生成工具 = text-to-motion</td></tr>
-<tr><td><strong>成本</strong></td><td>兩者都免費/極低成本</td></tr>
-<tr><td><strong>量產化</strong></td><td>❌ 都不太適合大規模自動化</td></tr>
-<tr><td><strong>適合場景</strong></td><td>團隊內部自拍參考動作 → FreeMoCap 3D 重建 → 作為 AI 動作生成工具 的補充</td></tr>
-<tr><td><strong>品質</strong></td><td>FreeMoCap 的多鏡頭 3D 重建理論上比單鏡頭 AI 估算更準確（但需要更多設備）</td></tr>
+<tr><th>項目</th><th>說明</th></tr>
+<tr><td><strong>輸入來源</strong></td><td>3+ 台 USB Webcam 同步錄製（多角度拍攝）</td></tr>
+<tr><td><strong>輸出格式</strong></td><td>CSV、NumPy .npy、Blender .blend、BVH（via addon）</td></tr>
+<tr><td><strong>骨架標準</strong></td><td>MediaPipe 33 關鍵點 → Blender armature</td></tr>
+<tr><td><strong>上游工具</strong></td><td>需自備 3+ 台 webcam + CharuCo 校準板</td></tr>
+<tr><td><strong>下游工具</strong></td><td>Blender（原生 .blend）→ 手動匯出 FBX → UE5/Unity（需手動 retarget）</td></tr>
 </table>
-
+<p><strong>推薦搭配</strong>：FreeMoCap 多鏡頭 3D 重建 → Blender addon 加 rig → 匯出 BVH/FBX。適合零預算團隊的內部動作參考拍攝，但進入遊戲引擎的 retarget 流程不如商業方案順暢。</p>
 <hr>
 
 <h2>八、對「AI 動作量產工作流」的貢獻定位</h2>

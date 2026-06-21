@@ -131,7 +131,16 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <section class="slide" id="s8">
 <div class="slide-inner">
 <h2>Pipeline 整合分析</h2>
-<div class="card" style="margin-top:1.5rem"><p class="desc" style="max-width:none">互補——AI 動作生成工具 做身體動作，FaceIt 做臉部表情。兩者合併才是完整的角色動畫。</p></div>
+<p class="desc">本工具在 AI 動作量產工作流中的定位與搭配方式。</p>
+<div class="card" style="margin-top:1.5rem">
+<ul class="list-clean">
+<li><strong>輸入來源</strong> — ARKit .csv/.json（iPhone 動捕）、Audio2Face 資料、Hallway Tile、手動動畫</li>
+<li><strong>輸出格式</strong> — Blender Shape Keys（52 ARKit BS）+ 控制 Rig 動畫 → 隨角色 FBX 匯出</li>
+<li><strong>上游工具</strong> — iPhone ARKit App、NVIDIA Audio2Face、Webcam Motion Capture（VMC→映射）</li>
+<li><strong>下游工具</strong> — ARP Game Export（Shape Keys 隨 FBX 匯出）→ UE Morph Targets / Unity Blend Shapes</li>
+<li><strong>推薦搭配</strong> — iPhone ARKit → FaceIt 映射 → ARP Export（含 Shape Keys）→ 引擎。臉部動畫的標準管線，52 BS 直接對應 UE/Unity。</li>
+</ul>
+</div>
 </div>
 </section>
 

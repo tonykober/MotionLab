@@ -131,7 +131,16 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <section class="slide" id="s8">
 <div class="slide-inner">
 <h2>Pipeline 整合分析</h2>
-<div class="card" style="margin-top:1.5rem"><p class="desc" style="max-width:none">品質優先——AI Text-to-Motion BVH → 本工具（比例匹配 retarget）→ 減少後處理需求。</p></div>
+<p class="desc">本工具在 AI 動作量產工作流中的定位與搭配方式。</p>
+<div class="card" style="margin-top:1.5rem">
+<ul class="list-clean">
+<li><strong>輸入來源</strong> — Blender 骨架動畫（多個 BVH/FBX 匯入的來源動畫）</li>
+<li><strong>輸出格式</strong> — Blender 骨架動畫（批次重定向後的 Actions）</li>
+<li><strong>上游工具</strong> — AI 動作生成工具 BVH 批次輸出、Mixamo 動畫庫、MocapNET 批次輸出</li>
+<li><strong>下游工具</strong> — ARP Game Export 批次匯出 → 引擎動畫庫</li>
+<li><strong>推薦搭配</strong> — AI 動作生成工具 批次生成 100+ BVH → Retargeting Automation System 批次重定向 → ARP 批次匯出。量產管線的批次處理核心。</li>
+</ul>
+</div>
 </div>
 </section>
 

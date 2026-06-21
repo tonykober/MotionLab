@@ -183,32 +183,15 @@ img{max-width:100%}
 <hr>
 
 <h2>七、Pipeline 整合分析</h2>
-
 <table>
-<tr><th>面向</th><th>評估</th></tr>
-<tr><td><strong>格式相容</strong></td><td>⭐⭐⭐⭐⭐ 直接輸出 BVH！與 AI 動作生成工具 完全同格式</td></tr>
-<tr><td><strong>互補場景</strong></td><td>Plask = 影片參考→BVH；AI 動作生成工具 = text prompt→BVH</td></tr>
-<tr><td><strong>品質比較</strong></td><td>需實測；Plask V2 有 foot correction，AI 動作生成工具 目前 no-postprocess</td></tr>
-<tr><td><strong>量產適合度</strong></td><td>一般 — 無 API、額度有限</td></tr>
-<tr><td><strong>Pipeline 整合</strong></td><td>兩者 BVH 可直接在 Blender 合併處理</td></tr>
-<tr><td><strong>手指動捕</strong></td><td>Plask 獨特優勢 — AI 動作生成工具 不做手指</td></tr>
+<tr><th>項目</th><th>說明</th></tr>
+<tr><td><strong>輸入來源</strong></td><td>MP4 影片（手機/webcam/線上影片）</td></tr>
+<tr><td><strong>輸出格式</strong></td><td>FBX、GLB、<strong>BVH</strong></td></tr>
+<tr><td><strong>骨架標準</strong></td><td>標準骨架（含手指追蹤）</td></tr>
+<tr><td><strong>上游工具</strong></td><td>任何影片來源</td></tr>
+<tr><td><strong>下游工具</strong></td><td>Blender（BVH/FBX 匯入）、Maya、UE5、Unity</td></tr>
 </table>
-
-<h3>最佳使用場景</h3>
-
-<pre><code>
-Plask 適合：
-• 需要手指動捕的精細表演
-• 有具體參考影片的動作
-• 需要快速出影片渲染結果
-• VTuber/MMD 角色動畫
-
-AI 動作生成工具 適合：
-• 只有文字描述的動作
-• 批次量產
-• 離線處理
-</code></pre>
-
+<p><strong>推薦搭配</strong>：Plask V2（含腳部修正）→ BVH 匯出 → Blender retarget 到遊戲角色。BVH 直出是亮點，適合需要手指動捕的精細表演場景。</p>
 <hr>
 
 <h2>八、對「AI 動作量產工作流」的貢獻定位</h2>

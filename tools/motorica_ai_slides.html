@@ -153,11 +153,15 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <!-- 8: Integration -->
 <section class="slide" id="s8">
 <div class="slide-inner">
-<h2>與其他工具的整合方式</h2>
-<p class="desc">Motorica 與 AI 動作生成工具 形成完美互補：移動 vs 表演。</p>
+<h2>Pipeline 整合分析</h2>
+<p class="desc">本工具在 AI 動作量產工作流中的定位與搭配方式。</p>
 <div class="card" style="margin-top:1.5rem">
 <ul class="list-clean">
-<li><strong>互補性</strong> — ⭐⭐⭐⭐⭐ 極佳 — AI 動作生成工具 做表演，Motorica 做移動</li><li><strong>格式</strong> — 標準骨架格式，Blender 可統一處理</li><li><strong>Motion Matching</strong> — Motorica 生成完整 MM 資料集，AI 動作生成工具 補充特殊動作</li><li><strong>風格統一</strong> — Style Clone 可幫助統一不同來源動作風格</li>
+<li><strong>輸入來源</strong> — 移動參數（速度/加速/轉向）、路徑繪製、風格選擇/混合、Style Clone（10 分鐘 Mocap）</li>
+<li><strong>輸出格式</strong> — FBX（標準動畫格式）、UE5 Plugin 直入</li>
+<li><strong>骨架標準</strong> — Motion Matching 相容資料集</li>
+<li><strong>上游工具</strong> — 自有 Mocap（用於 Style Clone）</li>
+<li><strong>下游工具</strong> — UE5（Plugin 自動 Retarget + Pose Search Database）、Unity、Maya、Blender、Godot</li>
 </ul>
 </div>
 </div>

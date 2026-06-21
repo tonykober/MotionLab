@@ -170,11 +170,15 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <section class="slide" id="s8">
 <div class="slide-inner">
 <h2>Pipeline 整合分析</h2>
-<p class="desc">Meshcapade 平台已關閉，無法直接整合。但 SMPL 技術將透過 Epic/UE5 回歸，未來可能成為我們 UE5 Pipeline 的免費內建功能。</p>
-<div class="card-grid cols-3" style="margin-top:1.5rem">
-<div class="card"><p style="color:var(--accent-red);font-weight:700;font-size:1.4rem;margin-bottom:.6rem">現況</p><p style="font-size:1rem">❌ 無法使用（已關閉）</p></div>
-<div class="card"><p style="color:var(--accent-teal);font-weight:700;font-size:1.4rem;margin-bottom:.6rem">未來</p><p style="font-size:1rem">追蹤 UE5/MetaHuman 更新，SMPL 技術可能免費整合</p></div>
-<div class="card"><p style="color:var(--accent-cyan);font-weight:700;font-size:1.4rem;margin-bottom:.6rem">替代</p><p style="font-size:1rem">動捕→Viggle/Move.AI；Avatar→Ready Player Me</p></div>
+<p class="desc">本工具在 AI 動作量產工作流中的定位與搭配方式。</p>
+<div class="card" style="margin-top:1.5rem">
+<ul class="list-clean">
+<li><strong>輸入來源</strong> — 影片 / 圖片 / 3D 掃描資料</li>
+<li><strong>輸出格式</strong> — SMPL/SMPL-X 參數、FBX、glTF（商業授權版）</li>
+<li><strong>上游工具</strong> — 任何影片/圖片來源；或 3D Body Scanner</li>
+<li><strong>下游工具</strong> — 直接 FBX → UE/Unity；或 ARP Remap 重定向到自訂角色</li>
+<li><strong>推薦搭配</strong> — Meshcapade API → FBX → ARP Remap → 引擎。是 SMPL 商用授權的唯一合法管道。</li>
+</ul>
 </div>
 </div>
 </section>

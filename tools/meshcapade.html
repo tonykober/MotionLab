@@ -191,31 +191,14 @@ img{max-width:100%}
 <hr>
 
 <h2>七、Pipeline 整合分析</h2>
-
 <table>
-<tr><th>面向</th><th>評估</th></tr>
-<tr><td><strong>現況</strong></td><td>❌ 平台已關閉，無法直接使用</td></tr>
-<tr><td><strong>SMPL 模型</strong></td><td>AI 動作生成工具 內部可能已使用 SMPL 相關技術（學術界通用）</td></tr>
-<tr><td><strong>未來</strong></td><td>如果 Epic 將 Meshcapade 整合到 UE5/MetaHuman，可能成為 UE5 Pipeline 的一部分</td></tr>
-<tr><td><strong>替代方案</strong></td><td>動捕功能 → Viggle / Move.AI；Avatar 生成 → Ready Player Me</td></tr>
+<tr><th>項目</th><th>內容</th></tr>
+<tr><td><strong>輸入來源</strong></td><td>影片 / 圖片 / 3D 掃描資料</td></tr>
+<tr><td><strong>輸出格式</strong></td><td>SMPL/SMPL-X 參數、FBX、glTF（商業授權版）</td></tr>
+<tr><td><strong>上游工具</strong></td><td>任何影片/圖片來源；或 3D Body Scanner</td></tr>
+<tr><td><strong>下游工具</strong></td><td>直接 FBX → UE/Unity；或 ARP Remap 重定向到自訂角色</td></tr>
+<tr><td><strong>推薦搭配</strong></td><td>Meshcapade API → FBX → ARP Remap → 引擎。是 SMPL 商用授權的唯一合法管道。</td></tr>
 </table>
-
-<h3>推薦整合方式</h3>
-
-<pre><code>
-現況：無法整合（已關閉）
-
-未來追蹤：
-  Epic Games / Unreal Engine 更新 → 
-  如果 SMPL 技術整合到 MetaHuman/UE5 →
-  可能成為我們 UE5 工作流的一部分
-
-替代方案（現在）：
-  動捕 → Viggle PINOC / Move.AI
-  Avatar → Ready Player Me / Character Creator
-  人體模型 → SMPL 開源研究版（學術授權免費）
-</code></pre>
-
 <hr>
 
 <h2>八、對「AI 動作量產工作流」的貢獻定位</h2>

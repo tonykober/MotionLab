@@ -130,13 +130,21 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 </ul></div>
 </div></section>
 
-<section class="slide" id="s8"><div class="slide-inner">
-<h2>與其他工具的整合可能</h2>
-<div class="card-grid cols-2">
-<div class="card"><div class="card-title">互補定位</div><p class="desc">mimem AI 提供高精度的影片動捕能力，可補足 AI 動作生成工具 text-to-motion 無法覆蓋的場景——當需要精確重現真實人體動作時，使用 mimem 捕捉。</p></div>
-<div class="card"><div class="card-title">工作流程</div><p class="desc">多攝影機拍攝 → mimem AI 雲端處理 → FBX/BVH 輸出 → AI 動作生成工具 後處理 pipeline → 動作修改/混合 → 最終產出。</p></div>
+<section class="slide" id="s8">
+<div class="slide-inner">
+<h2>Pipeline 整合分析</h2>
+<p class="desc">本工具在 AI 動作量產工作流中的定位與搭配方式。</p>
+<div class="card" style="margin-top:1.5rem">
+<ul class="list-clean">
+<li><strong>輸入來源</strong> — 多攝影機同步影片（multi-camera 方案）</li>
+<li><strong>輸出格式</strong> — FBX、BVH（推測標準格式）</li>
+<li><strong>骨架標準</strong> — 標準骨架</li>
+<li><strong>上游工具</strong> — 多台同步攝影機</li>
+<li><strong>下游工具</strong> — Blender、Maya、UE5、Unity</li>
+</ul>
 </div>
-</div></section>
+</div>
+</section>
 
 <section class="slide" id="s9"><div class="slide-inner">
 <h2>適用場景</h2>

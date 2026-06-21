@@ -216,40 +216,15 @@ img{max-width:100%}
 <hr>
 
 <h2>七、Pipeline 整合分析</h2>
-
 <table>
-<tr><th>面向</th><th>評估</th></tr>
-<tr><td><strong>技術互補性</strong></td><td>⭐⭐⭐⭐⭐ 極佳 — AI 動作生成工具 做表演動作(combat/gesture)，Motorica 做 locomotion</td></tr>
-<tr><td><strong>格式相容</strong></td><td>兩者都輸出標準骨架動畫格式，可在 Blender 統一處理</td></tr>
-<tr><td><strong>品質層級</strong></td><td>Motorica = AAA 級 locomotion；AI 動作生成工具 = 研究級 text-to-motion</td></tr>
-<tr><td><strong>覆蓋面互補</strong></td><td>AI 動作生成工具 擅長：表演/手勢/戰鬥特效；Motorica 擅長：移動/轉向/NPC 行為</td></tr>
-<tr><td><strong>Motion Matching</strong></td><td>Motorica 可為遊戲角色生成完整 MM 資料集，AI 動作生成工具 補充特殊動作</td></tr>
-<tr><td><strong>風格統一</strong></td><td>Motorica 的 Style Clone 可能幫助統一來自不同來源的動作風格</td></tr>
+<tr><th>項目</th><th>說明</th></tr>
+<tr><td><strong>輸入來源</strong></td><td>移動參數（速度/加速/轉向）、路徑繪製、風格選擇/混合、Style Clone（10 分鐘 Mocap）</td></tr>
+<tr><td><strong>輸出格式</strong></td><td>FBX（標準動畫格式）、UE5 Plugin 直入</td></tr>
+<tr><td><strong>骨架標準</strong></td><td>Motion Matching 相容資料集</td></tr>
+<tr><td><strong>上游工具</strong></td><td>自有 Mocap（用於 Style Clone）</td></tr>
+<tr><td><strong>下游工具</strong></td><td>UE5（Plugin 自動 Retarget + Pose Search Database）、Unity、Maya、Blender、Godot</td></tr>
 </table>
-
-<h3>推薦整合架構</h3>
-
-<pre><code>
-遊戲角色動作系統：
-
-[Locomotion 層] ← Motorica AI
-  • 走/跑/轉向/加速/減速
-  • Motion Matching 完整資料集
-  • NPC 巡邏/移動行為
-
-[表演動作層] ← AI 動作生成工具 + Viggle
-  • 戰鬥招式
-  • 特殊動作（跳躍/翻滾/施法）
-  • 情緒表演
-  • 互動動畫
-
-[混合/清理層] ← Blender + Retarget Tools
-  • 統一骨架
-  • foot contact 修正
-  • 風格一致化
-  • 匯出到遊戲引擎
-</code></pre>
-
+<p><strong>推薦搭配</strong>：Motorica Motion Factory 生成 locomotion MM 資料集 → UE5 Plugin 一鍵匯入 → Motion Matching 系統。專責遊戲角色移動層動畫，與表演動作工具（Viggle/AI 動作生成工具）互補。</p>
 <hr>
 
 <h2>八、對「AI 動作量產工作流」的貢獻定位</h2>

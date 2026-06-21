@@ -132,7 +132,16 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <section class="slide" id="s8">
 <div class="slide-inner">
 <h2>Pipeline 整合分析</h2>
-<div class="card" style="margin-top:1.5rem"><p class="desc" style="max-width:none">Pipeline 第一環——AI Text-to-Motion BVH → BVH Retargeter → 遊戲骨架。免費+批次+BVH 原生，量產首選。</p></div>
+<p class="desc">本工具在 AI 動作量產工作流中的定位與搭配方式。</p>
+<div class="card" style="margin-top:1.5rem">
+<ul class="list-clean">
+<li><strong>輸入來源</strong> — BVH 檔案（任何來源：AI 動作生成工具 / MocapNET / 動捕工作室）</li>
+<li><strong>輸出格式</strong> — BVH（重定向後的新骨架）</li>
+<li><strong>上游工具</strong> — AI 動作生成工具、MocapNET、FreeMoCap、任何 BVH 產出工具</li>
+<li><strong>下游工具</strong> — Blender 匯入 → ARP Game Export → UE/Unity；或直接匯入引擎</li>
+<li><strong>推薦搭配</strong> — AI 動作生成工具 → BVH Retargeter → 目標骨架 BVH → 引擎。輕量 BVH 對 BVH 重定向，不需 Blender。</li>
+</ul>
+</div>
 </div>
 </section>
 

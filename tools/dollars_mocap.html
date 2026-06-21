@@ -162,25 +162,15 @@ img{max-width:100%}
 <hr>
 
 <h2>七、Pipeline 整合分析</h2>
-
 <table>
-<tr><th>面向</th><th>評估</th></tr>
-<tr><td><strong>格式</strong></td><td>⭐⭐⭐⭐⭐ BVH 直出！與 AI 動作生成工具 完全同格式</td></tr>
-<tr><td><strong>成本</strong></td><td>一次 $119-$139，之後永久免費使用</td></tr>
-<tr><td><strong>互補</strong></td><td>Dollars MONO = 影片動捕 BVH；AI 動作生成工具 = text-to-motion BVH</td></tr>
-<tr><td><strong>VIVA</strong></td><td>如果有 VR 追蹤器，品質比 AI 動捕更好</td></tr>
-<tr><td><strong>量產</strong></td><td>無限使用但手動操作</td></tr>
+<tr><th>項目</th><th>說明</th></tr>
+<tr><td><strong>輸入來源</strong></td><td>Webcam（MONO/SOMA）/ HTC Vive 追蹤器 ×6（VIVA）/ iPhone（NVIS）</td></tr>
+<tr><td><strong>輸出格式</strong></td><td><strong>BVH</strong>、FBX、BIP（3DS Max）、VMD</td></tr>
+<tr><td><strong>骨架標準</strong></td><td>標準骨架</td></tr>
+<tr><td><strong>上游工具</strong></td><td>Webcam / VR 追蹤器 / iPhone</td></tr>
+<tr><td><strong>下游工具</strong></td><td>Blender（BVH 匯入）、3DS Max（BIP 直入）、Maya（FBX）、MikuMikuDance（VMD）</td></tr>
 </table>
-
-<h3>推薦整合方式</h3>
-
-<pre><code>
-低預算本地動捕方案：
-  Dollars MONO ($119 一次) → BVH → Blender retarget
-  + AI 動作生成工具 (免費) → BVH → Blender retarget
-  = $119 一次性投資 → 永久雙管道動捕能力
-</code></pre>
-
+<p><strong>推薦搭配</strong>：Dollars VIVA（VR 追蹤器）→ BVH → Blender retarget → 遊戲引擎。$139 一次買斷+BVH 永久匯出，適合有 VR 追蹤器的團隊做本地離線動捕。</p>
 <hr>
 
 <h2>八、對「AI 動作量產工作流」的貢獻定位</h2>

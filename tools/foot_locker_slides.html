@@ -130,7 +130,16 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <section class="slide" id="s8">
 <div class="slide-inner">
 <h2>Pipeline 整合分析</h2>
-<div class="card" style="margin-top:1.5rem"><p class="desc" style="max-width:none">最後修復——retarget 後殘留的微小滑步用 Foot Locker 快速手動清除。</p></div>
+<p class="desc">本工具在 AI 動作量產工作流中的定位與搭配方式。</p>
+<div class="card" style="margin-top:1.5rem">
+<ul class="list-clean">
+<li><strong>輸入來源</strong> — Blender 骨架動畫（含腳步滑動問題的 Action）</li>
+<li><strong>輸出格式</strong> — Blender 骨架動畫（修正後的 Action，腳步鎖定）</li>
+<li><strong>上游工具</strong> — AI 動作生成工具 BVH 匯入、CEB 4D Humans、ARP Remap、任何有滑步問題的動畫來源</li>
+<li><strong>下游工具</strong> — ARP Game Export → 引擎；直接渲染</li>
+<li><strong>推薦搭配</strong> — AI 動捕 → BVH 匯入 Blender → Foot Locker 修正滑步 → ARP Export。AI 動作的腳步品質救星。</li>
+</ul>
+</div>
 </div>
 </section>
 

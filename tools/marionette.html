@@ -170,25 +170,15 @@ img{max-width:100%}
 <hr>
 
 <h2>七、Pipeline 整合分析</h2>
-
 <table>
-<tr><th>面向</th><th>評估</th></tr>
-<tr><td><strong>格式</strong></td><td>AI 動作生成工具=BVH，Marionette=FBX(Mixamo) — 需在 Blender 轉換但 Mixamo 標準很好處理</td></tr>
-<tr><td><strong>互補場景</strong></td><td>AI 動作生成工具=text-to-motion；Marionette=video-to-motion(含臉手)</td></tr>
-<tr><td><strong>量產化</strong></td><td>Marionette 無限但手動；AI 動作生成工具 離線可腳本化</td></tr>
-<tr><td><strong>臉/手</strong></td><td>Marionette 補充 AI 動作生成工具 沒有的臉部和手指</td></tr>
-<tr><td><strong>成本</strong></td><td>兩者都極低（$12.50/月 vs AI 動作生成工具 本地免費）</td></tr>
+<tr><th>項目</th><th>說明</th></tr>
+<tr><td><strong>輸入來源</strong></td><td>影片檔案 / Webcam / 手機鏡頭</td></tr>
+<tr><td><strong>輸出格式</strong></td><td>FBX（Mixamo 標準）+ 即時串流到 DCC</td></tr>
+<tr><td><strong>骨架標準</strong></td><td>Mixamo 命名標準</td></tr>
+<tr><td><strong>上游工具</strong></td><td>任何影片/攝影機來源</td></tr>
+<tr><td><strong>下游工具</strong></td><td>Blender（Plugin 即時串流 → Control Rig）、Unity（Plugin 即時）、Maya（Plugin）</td></tr>
 </table>
-
-<h3>推薦整合方式</h3>
-
-<pre><code>
-方案：混合工作流
-  全身表演動作 → Marionette (含臉+手) → FBX → Blender retarget
-  文字描述動作 → AI 動作生成工具 → BVH → Blender retarget
-  統一在 Blender 合併 → 匯出到遊戲引擎
-</code></pre>
-
+<p><strong>推薦搭配</strong>：Marionette 即時串流到 Blender Control Rig → 錄製動畫 → FBX 匯出 → 遊戲引擎。無限使用+本地處理適合大量影片轉動捕，搭配 Blender Plugin 省去匯出/匯入步驟。</p>
 <hr>
 
 <h2>八、對「AI 動作量產工作流」的貢獻定位</h2>

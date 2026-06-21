@@ -131,7 +131,16 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <section class="slide" id="s8">
 <div class="slide-inner">
 <h2>Pipeline 整合分析</h2>
-<div class="card" style="margin-top:1.5rem"><p class="desc" style="max-width:none">互補——AI 動作生成工具 生成 NPC 動作庫（走/跑/idle），CrowdSim3D 用這些動作驅動群眾。</p></div>
+<p class="desc">本工具在 AI 動作量產工作流中的定位與搭配方式。</p>
+<div class="card" style="margin-top:1.5rem">
+<ul class="list-clean">
+<li><strong>輸入來源</strong> — 角色 Mesh + 動畫 Actions（walk/run/idle 等）+ 場景環境</li>
+<li><strong>輸出格式</strong> — Blender 場景動畫（多代理的烘焙動畫）；可轉 FBX 匯出</li>
+<li><strong>上游工具</strong> — AI 動作生成工具 動作庫（提供 walk/run/attack 等基礎動畫）、Mixamo 動作庫</li>
+<li><strong>下游工具</strong> — Blender 渲染（過場動畫）；ARP Export → 引擎（個別角色動畫）</li>
+<li><strong>推薦搭配</strong> — AI 動作生成工具 批次生成動作庫 → CrowdSim3D 行為編排 → 烘焙 → 渲染/匯出。群眾場景的動作消費者。</li>
+</ul>
+</div>
 </div>
 </section>
 

@@ -131,7 +131,16 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <section class="slide" id="s8">
 <div class="slide-inner">
 <h2>Pipeline 整合分析</h2>
-<div class="card" style="margin-top:1.5rem"><p class="desc" style="max-width:none">Root Motion 環節——retarget + foot fix 後 → 本工具批次轉移 Root Motion → 匯出 game-ready FBX。</p></div>
+<p class="desc">本工具在 AI 動作量產工作流中的定位與搭配方式。</p>
+<div class="card" style="margin-top:1.5rem">
+<ul class="list-clean">
+<li><strong>輸入來源</strong> — Blender 骨架動畫（需要提取或套用 Root Motion 的 Actions）</li>
+<li><strong>輸出格式</strong> — Blender 骨架動畫（含正確 Root Motion 的 Action）</li>
+<li><strong>上游工具</strong> — AI 動作生成工具 BVH、In Placer 輸出、任何需要 Root Motion 處理的動畫</li>
+<li><strong>下游工具</strong> — ARP Game Export（Root Motion 設定）→ UE/Unity Root Motion 系統</li>
+<li><strong>推薦搭配</strong> — AI 動捕 → 匯入 Blender → Root Motion Batch Transfer 批次處理 → ARP Export → 引擎。批次設定 Root Motion 的效率工具。</li>
+</ul>
+</div>
 </div>
 </section>
 

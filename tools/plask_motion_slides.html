@@ -153,11 +153,15 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <!-- 8: Integration -->
 <section class="slide" id="s8">
 <div class="slide-inner">
-<h2>與其他工具的整合方式</h2>
-<p class="desc">Plask 的 BVH 直出與 AI 動作生成工具 格式完全相容，適合精細動作+快速視覺驗證。</p>
+<h2>Pipeline 整合分析</h2>
+<p class="desc">本工具在 AI 動作量產工作流中的定位與搭配方式。</p>
 <div class="card" style="margin-top:1.5rem">
 <ul class="list-clean">
-<li><strong>格式</strong> — ⭐⭐⭐⭐⭐ BVH 直出！與 AI 動作生成工具 完全同格式</li><li><strong>手指</strong> — Plask 補充 AI 動作生成工具 沒有的手指動捕</li><li><strong>視覺化</strong> — 平台內直接渲染影片快速驗證</li><li><strong>量產</strong> — 無 API + 額度有限，不適合大規模</li>
+<li><strong>輸入來源</strong> — MP4 影片（手機/webcam/線上影片）</li>
+<li><strong>輸出格式</strong> — FBX、GLB、**BVH</li>
+<li><strong>骨架標準</strong> — 標準骨架（含手指追蹤）</li>
+<li><strong>上游工具</strong> — 任何影片來源</li>
+<li><strong>下游工具</strong> — Blender（BVH/FBX 匯入）、Maya、UE5、Unity</li>
 </ul>
 </div>
 </div>

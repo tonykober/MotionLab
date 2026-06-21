@@ -156,26 +156,15 @@ img{max-width:100%}
 <hr>
 
 <h2>七、Pipeline 整合分析</h2>
-
 <table>
-<tr><th>面向</th><th>評估</th></tr>
-<tr><td><strong>格式</strong></td><td>無 BVH — 需要 FBX→BVH 轉換（Blender 可做）</td></tr>
-<tr><td><strong>互補性</strong></td><td>QuickMagic 的 BIP/UE 格式適合直接入引擎，AI 動作生成工具 的 BVH 需 retarget</td></tr>
-<tr><td><strong>品質</strong></td><td>QuickMagic 適合快速 blocking，AI 動作生成工具 適合特定動作生成</td></tr>
-<tr><td><strong>3DS Max 場景</strong></td><td>如果團隊用 3DS Max，QuickMagic 的 BIP 格式很有價值</td></tr>
+<tr><th>項目</th><th>說明</th></tr>
+<tr><td><strong>輸入來源</strong></td><td>MP4 影片（瀏覽器上傳）</td></tr>
+<tr><td><strong>輸出格式</strong></td><td>FBX、Mixamo、BIP（3DS Max）、UE 格式、VMD</td></tr>
+<tr><td><strong>骨架標準</strong></td><td>多種（依匯出選擇）</td></tr>
+<tr><td><strong>上游工具</strong></td><td>任何影片來源</td></tr>
+<tr><td><strong>下游工具</strong></td><td>3DS Max（BIP 直入）、Maya、MotionBuilder、UE5（UE 格式直入）、Blender（FBX + Auto-Rig Pro retarget）、iClone</td></tr>
 </table>
-
-<h3>推薦整合方式</h3>
-
-<pre><code>
-如果用 3DS Max Pipeline：
-  影片參考 → QuickMagic → BIP → 3DS Max 直接使用
-
-如果用 Blender Pipeline：
-  影片參考 → QuickMagic → FBX → Blender → Auto-Rig Pro retarget
-  文字描述 → AI 動作生成工具 → BVH → Blender → retarget
-</code></pre>
-
+<p><strong>推薦搭配</strong>：QuickMagic → BIP 格式 → 3DS Max 直接使用。或 FBX → Blender + Auto-Rig Pro retarget（有社群教學）。多格式匯出是核心優勢，特別適合 3DS Max 和 iClone 用戶。</p>
 <hr>
 
 <h2>八、對「AI 動作量產工作流」的貢獻定位</h2>

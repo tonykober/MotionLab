@@ -130,13 +130,21 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 </ul></div>
 </div></section>
 
-<section class="slide" id="s8"><div class="slide-inner">
-<h2>與其他工具的整合可能</h2>
-<div class="card-grid cols-2">
-<div class="card"><div class="card-title">定位</div><p class="desc">作為即時預覽工具，在動作設計初期快速驗證想法。精度不足作為正式產出，主要用於概念驗證與動作方向確認。</p></div>
-<div class="card"><div class="card-title">整合路徑</div><p class="desc">TDPT → VMC Protocol → Blender 即時預覽 → 確認動作方向後 → 使用 AI 動作生成工具 生成正式 BVH 動畫檔案。</p></div>
+<section class="slide" id="s8">
+<div class="slide-inner">
+<h2>Pipeline 整合分析</h2>
+<p class="desc">本工具在 AI 動作量產工作流中的定位與搭配方式。</p>
+<div class="card" style="margin-top:1.5rem">
+<ul class="list-clean">
+<li><strong>輸入來源</strong> — 攝影機即時串流 / 影片檔案（MP4/AVI）</li>
+<li><strong>輸出格式</strong> — VMC Protocol（OSC 即時串流），無直接檔案輸出</li>
+<li><strong>上游工具</strong> — 無（TDPT 是管線起點，直接從攝影機取得）</li>
+<li><strong>下游工具</strong> — Blender（VMC4B 外掛）→ ARP Remap → FBX/BVH 匯出；VSeeFace/VMagicMirror</li>
+<li><strong>推薦搭配</strong> — TDPT → VMC4B(Blender) → ARP Remap 重定向 → Game Export。適合快速參考錄製，非精密動捕。</li>
+</ul>
 </div>
-</div></section>
+</div>
+</section>
 
 <section class="slide" id="s9"><div class="slide-inner">
 <h2>適用場景</h2>

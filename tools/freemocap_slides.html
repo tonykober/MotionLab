@@ -153,11 +153,15 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <!-- 8: Integration -->
 <section class="slide" id="s8">
 <div class="slide-inner">
-<h2>與其他工具的整合方式</h2>
-<p class="desc">FreeMoCap 適合作為團隊內部零成本動作參考拍攝工具。</p>
+<h2>Pipeline 整合分析</h2>
+<p class="desc">本工具在 AI 動作量產工作流中的定位與搭配方式。</p>
 <div class="card" style="margin-top:1.5rem">
 <ul class="list-clean">
-<li><strong>格式</strong> — BVH 可匯出（透過 Blender addon）</li><li><strong>互補</strong> — FreeMoCap = 本地多鏡頭 3D；AI 動作生成工具 = text-to-motion</li><li><strong>成本</strong> — 兩者都免費/極低</li><li><strong>適合</strong> — 團隊內部自拍參考動作</li>
+<li><strong>輸入來源</strong> — 3+ 台 USB Webcam 同步錄製（多角度拍攝）</li>
+<li><strong>輸出格式</strong> — CSV、NumPy .npy、Blender .blend、BVH（via addon）</li>
+<li><strong>骨架標準</strong> — MediaPipe 33 關鍵點 → Blender armature</li>
+<li><strong>上游工具</strong> — 需自備 3+ 台 webcam + CharuCo 校準板</li>
+<li><strong>下游工具</strong> — Blender（原生 .blend）→ 手動匯出 FBX → UE5/Unity（需手動 retarget）</li>
 </ul>
 </div>
 </div>

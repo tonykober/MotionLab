@@ -131,7 +131,16 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <section class="slide" id="s8">
 <div class="slide-inner">
 <h2>Pipeline 整合分析</h2>
-<div class="card" style="margin-top:1.5rem"><p class="desc" style="max-width:none">互補——AI 動作生成工具 生成單一角色動作庫，Agents 用這些動作庫驅動大量 NPC 群眾行為。</p></div>
+<p class="desc">本工具在 AI 動作量產工作流中的定位與搭配方式。</p>
+<div class="card" style="margin-top:1.5rem">
+<ul class="list-clean">
+<li><strong>輸入來源</strong> — 角色 Mesh + 動畫 Actions + Geometry Nodes 參數設定</li>
+<li><strong>輸出格式</strong> — Blender Geometry Nodes 輸出（Instances + 動畫）</li>
+<li><strong>上游工具</strong> — AI 動作生成工具 動作庫、Mixamo 動作庫（提供代理動畫狀態）</li>
+<li><strong>下游工具</strong> — Blender 渲染；需烘焙為個別物件動畫才能匯出 FBX</li>
+<li><strong>推薦搭配</strong> — AI 動作生成工具 動作庫 → Agents 狀態機編排 → Blender 渲染。輕量群眾原型工具，適合預視和小場景。</li>
+</ul>
+</div>
 </div>
 </section>
 

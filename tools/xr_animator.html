@@ -148,14 +148,15 @@ img{max-width:100%}
 <hr>
 
 <h2>七、Pipeline 整合分析</h2>
-
 <table>
-<tr><th>面向</th><th>評估</th></tr>
-<tr><td><strong>格式</strong></td><td>❌ 不輸出 BVH/FBX — 基本不相容</td></tr>
-<tr><td><strong>用途</strong></td><td>快速動作參考預覽（看著動一下確認動作可行性）</td></tr>
-<tr><td><strong>量產</strong></td><td>❌ 不適合</td></tr>
+<tr><th>項目</th><th>說明</th></tr>
+<tr><td><strong>輸入來源</strong></td><td>Webcam 即時影像 / 預錄影片</td></tr>
+<tr><td><strong>輸出格式</strong></td><td>VMC Protocol 串流（無 FBX/BVH 匯出）</td></tr>
+<tr><td><strong>骨架標準</strong></td><td>VRM 模型驅動</td></tr>
+<tr><td><strong>上游工具</strong></td><td>任何 webcam</td></tr>
+<tr><td><strong>下游工具</strong></td><td>VSeeFace、VROOM 等 VTuber 軟體（透過 VMC Protocol）</td></tr>
 </table>
-
+<p><strong>推薦搭配</strong>：僅適合 VTuber 即時表演串流，不產出遊戲可用的動畫檔案。如需匯出動畫資料，改用 Viggle 或 Marionette。</p>
 <hr>
 
 <h2>八、對「AI 動作量產工作流」的貢獻定位</h2>

@@ -131,7 +131,16 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <section class="slide" id="s8">
 <div class="slide-inner">
 <h2>Pipeline 整合分析</h2>
-<div class="card" style="margin-top:1.5rem"><p class="desc" style="max-width:none">補充——AI 動作生成工具 做身體動作，FaceIt 做表情，Parrot 做口型。三者組合=完整角色動畫。</p></div>
+<p class="desc">本工具在 AI 動作量產工作流中的定位與搭配方式。</p>
+<div class="card" style="margin-top:1.5rem">
+<ul class="list-clean">
+<li><strong>輸入來源</strong> — 音訊檔案（WAV / MP3 / OGG）— 支援多語言含中文</li>
+<li><strong>輸出格式</strong> — Blender Shape Key Keyframes（直接在時間軸上）</li>
+<li><strong>上游工具</strong> — TTS 語音合成、中文配音、遊戲對話音檔</li>
+<li><strong>下游工具</strong> — FaceIt Shape Keys 系統 → ARP Game Export → 引擎</li>
+<li><strong>推薦搭配</strong> — 中文配音 → Parrot Lipsync → Shape Key 動畫 → ARP Export。中文語音的 lip sync 首選（Allosaurus 多語言支援）。</li>
+</ul>
+</div>
 </div>
 </section>
 

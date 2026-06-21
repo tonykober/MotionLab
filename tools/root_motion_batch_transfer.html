@@ -159,29 +159,14 @@ img{max-width:100%}
 <hr>
 
 <h2>Pipeline 整合分析</h2>
-
-<h3>整合評估：⭐⭐⭐⭐（高度適合）</h3>
-
 <table>
-<tr><th>面向</th><th>評估</th></tr>
-<tr><td><strong>問題對應</strong></td><td>✅ AI 動作生成工具 動畫位移在 Hips 上，遊戲引擎需要在 Root Bone</td></tr>
-<tr><td><strong>格式</strong></td><td>✅ Retarget 到任何 rig 後直接使用</td></tr>
-<tr><td><strong>批次處理</strong></td><td>✅ 批次轉移所有動作的 Root Motion</td></tr>
-<tr><td><strong>遊戲引擎</strong></td><td>✅ 專為 game-ready 設計</td></tr>
-<tr><td><strong>自動化</strong></td><td>⚠️ 首次需手動設定控制器，之後可批次</td></tr>
+<tr><th>項目</th><th>內容</th></tr>
+<tr><td><strong>輸入來源</strong></td><td>Blender 骨架動畫（需要提取或套用 Root Motion 的 Actions）</td></tr>
+<tr><td><strong>輸出格式</strong></td><td>Blender 骨架動畫（含正確 Root Motion 的 Action）</td></tr>
+<tr><td><strong>上游工具</strong></td><td>AI 動作生成工具 BVH、In Placer 輸出、任何需要 Root Motion 處理的動畫</td></tr>
+<tr><td><strong>下游工具</strong></td><td>ARP Game Export（Root Motion 設定）→ UE/Unity Root Motion 系統</td></tr>
+<tr><td><strong>推薦搭配</strong></td><td>AI 動捕 → 匯入 Blender → Root Motion Batch Transfer 批次處理 → ARP Export → 引擎。批次設定 Root Motion 的效率工具。</td></tr>
 </table>
-
-<h3>建議整合流程</h3>
-
-<pre><code>
-AI Text-to-Motion BVH → Retarget to Game Rig（ARP/BVH Retargeter）
-    → Root Motion Batch Transfer ← 本工具
-      - 指定控制器（Hips/COG + IK Feet + IK Hands）
-      - Batch Transfer → 所有動作 Root Motion 轉移完成
-    → Export FBX（含 Root Motion）
-    → 遊戲引擎（啟用 Root Motion 模式）
-</code></pre>
-
 <hr>
 
 <h2>對「AI 動作量產工作流」的貢獻定位</h2>

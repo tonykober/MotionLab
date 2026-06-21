@@ -131,7 +131,16 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <section class="slide" id="s8">
 <div class="slide-inner">
 <h2>Pipeline 整合分析</h2>
-<div class="card" style="margin-top:1.5rem"><p class="desc" style="max-width:none">後處理——AI 動作生成工具 生成基礎動作 → Ragdoll 添加物理細節（衣物擺動、碰撞反應、overlapping）。</p></div>
+<p class="desc">本工具在 AI 動作量產工作流中的定位與搭配方式。</p>
+<div class="card" style="margin-top:1.5rem">
+<ul class="list-clean">
+<li><strong>輸入來源</strong> — Blender/Maya 骨架動畫（已有的基礎動畫 Action）</li>
+<li><strong>輸出格式</strong> — Blender/Maya 骨架動畫（疊加物理後的 Keyframes，Record Simulation）</li>
+<li><strong>上游工具</strong> — AI 動作生成工具 BVH、ARP Remap 輸出、任何基礎動畫</li>
+<li><strong>下游工具</strong> — ARP Game Export → 引擎；或 Maya FBX 匯出 → 引擎</li>
+<li><strong>推薦搭配</strong> — AI 動作生成工具 → BVH 匯入 → Ragdoll 疊加次級動態（頭髮/衣物/碰撞）→ Record → ARP Export。AI 動作的物理後處理層。</li>
+</ul>
+</div>
 </div>
 </section>
 

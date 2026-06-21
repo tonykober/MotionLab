@@ -130,7 +130,16 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <section class="slide" id="s8">
 <div class="slide-inner">
 <h2>Pipeline 整合分析</h2>
-<div class="card" style="margin-top:1.5rem"><p class="desc" style="max-width:none">互補——CyanPuppets 提供高密度影片動捕（208 點含手臉），AI 動作生成工具 提供文字生成。CyanPuppets 的 BVH 輸出可直接進入相同 pipeline。</p></div>
+<p class="desc">本工具在 AI 動作量產工作流中的定位與搭配方式。</p>
+<div class="card" style="margin-top:1.5rem">
+<ul class="list-clean">
+<li><strong>輸入來源</strong> — Webcam / 影片（208 關鍵點即時追蹤）</li>
+<li><strong>輸出格式</strong> — 透過 Blender/UE Plugin 即時串流 → 錄製到 timeline</li>
+<li><strong>骨架標準</strong> — 208 關鍵點（臉 140 + 手 21 + 肢體 30）</li>
+<li><strong>上游工具</strong> — Webcam / 影片</li>
+<li><strong>下游工具</strong> — Blender（Plugin 即時串流+錄製）、Unreal Engine（Plugin）</li>
+</ul>
+</div>
 </div>
 </section>
 <section class="slide" id="s9">

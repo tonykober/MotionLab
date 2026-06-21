@@ -169,19 +169,15 @@ img{max-width:100%}
 <hr>
 
 <h2>七、Pipeline 整合分析</h2>
-
 <table>
-<tr><th>面向</th><th>評估</th></tr>
-<tr><td><strong>格式相容</strong></td><td>AI 動作生成工具 輸出 BVH，Cartwheel 輸出 GLB/FBX — 可能需要格式轉換，但都是標準骨架動畫格式</td></tr>
-<tr><td><strong>互補定位</strong></td><td>AI 動作生成工具 = 離線/本地 Text-to-Motion；Cartwheel = 雲端/多模態生成 + 編輯</td></tr>
-<tr><td><strong>Pipeline 整合</strong></td><td>可以考慮：AI 動作生成工具 生成 BVH → 匯入 Blender 做 Retarget → Cartwheel 做額外動作混合/補充</td></tr>
-<tr><td><strong>Video Reference</strong></td><td>Cartwheel 的 Video-to-Motion 功能可作為 AI 動作生成工具 的替代/對照方案</td></tr>
-<tr><td><strong>量產化</strong></td><td>Cartwheel 的 API（開發中）未來可用於批次自動化</td></tr>
-<tr><td><strong>風格遷移</strong></td><td>Cartwheel 的 Custom Style Model 功能可能有助於統一不同來源動作的風格</td></tr>
+<tr><th>項目</th><th>說明</th></tr>
+<tr><td><strong>輸入來源</strong></td><td>文字描述 / 參考影片 / Pose Mode 擺姿勢 / Motion Library 搜尋</td></tr>
+<tr><td><strong>輸出格式</strong></td><td>GLB、FBX</td></tr>
+<tr><td><strong>骨架標準</strong></td><td>已清理 Spline 曲線（非逐幀 key）</td></tr>
+<tr><td><strong>上游工具</strong></td><td>無特別需求（文字/影片/互動式輸入）</td></tr>
+<tr><td><strong>下游工具</strong></td><td>Maya（Pro 方案擴展 Rig）、Blender、Unreal Engine、Unity</td></tr>
 </table>
-
-<p><strong>結論</strong>：Cartwheel 適合作為 AI 動作生成工具 的<strong>互補工具</strong>，特別在「影片參考轉 3D」和「動作混合/編輯」場景。但目前不適合完全替代 AI 動作生成工具 的離線量產角色。</p>
-
+<p><strong>推薦搭配</strong>：Cartwheel 做快速動作原型/影片參考轉 3D → 匯出 GLB/FBX → Blender 微調 → 遊戲引擎。適合前期創意發想和多模態動作探索。</p>
 <hr>
 
 <h2>八、對「AI 動作量產工作流」的貢獻定位</h2>

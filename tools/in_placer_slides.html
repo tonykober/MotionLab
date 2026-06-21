@@ -131,7 +131,16 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <section class="slide" id="s8">
 <div class="slide-inner">
 <h2>Pipeline 整合分析</h2>
-<div class="card" style="margin-top:1.5rem"><p class="desc" style="max-width:none">原地化環節——retarget 到 Mixamo 骨架後 → In Placer 一鍵原地化 → 遊戲引擎。</p></div>
+<p class="desc">本工具在 AI 動作量產工作流中的定位與搭配方式。</p>
+<div class="card" style="margin-top:1.5rem">
+<ul class="list-clean">
+<li><strong>輸入來源</strong> — Blender 骨架動畫（含位移的 walk/run Action）</li>
+<li><strong>輸出格式</strong> — Blender 骨架動畫（原地化後的 Action，移除水平位移）</li>
+<li><strong>上游工具</strong> — AI 動作生成工具 BVH、MocapNET BVH、CEB 4D Humans、任何含位移的動畫</li>
+<li><strong>下游工具</strong> — ARP Game Export（原地動畫 + Root Motion 設定）→ 引擎 Locomotion 系統</li>
+<li><strong>推薦搭配</strong> — AI 動作生成工具 → BVH 匯入 → In Placer 原地化 → ARP Export (Root Motion) → UE/Unity Locomotion。遊戲 Walk/Run Loop 必備。</li>
+</ul>
+</div>
 </div>
 </section>
 

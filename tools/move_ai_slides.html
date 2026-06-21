@@ -180,20 +180,15 @@ h2{font-size:2.6rem;font-weight:800;color:var(--text-primary);margin-bottom:.8re
 <section class="slide" id="s8">
 <div class="slide-inner">
 <h2>Pipeline 整合分析</h2>
-<p class="desc">Move.AI 和 AI 動作生成工具 的整合空間在於：Move.AI 處理「需要真人動作參考」的高品質動捕場景，AI 動作生成工具 處理「純文字描述生成」的快速量產場景。兩者的 BVH 輸出可共用同一套後處理 pipeline。</p>
-<div class="card-grid cols-3" style="margin-top:1.5rem">
-<div class="card">
-<p style="color:var(--accent-cyan);font-weight:700;font-size:1.4rem;margin-bottom:.6rem">格式相容</p>
-<p style="font-size:1rem;line-height:1.7">Move.AI 直接輸出 BVH，與 AI Text-to-Motion BVH 使用相同的 Retarget → Foot Fix → Root Motion pipeline。</p>
-</div>
-<div class="card">
-<p style="color:var(--accent-teal);font-weight:700;font-size:1.4rem;margin-bottom:.6rem">場景互補</p>
-<p style="font-size:1rem;line-height:1.7">主角/Boss 動作 → Move.AI（高品質）。NPC 通用動作 → AI Text-to-Motion 工具。</p>
-</div>
-<div class="card">
-<p style="color:var(--accent-gold);font-weight:700;font-size:1.4rem;margin-bottom:.6rem">API 串接</p>
-<p style="font-size:1rem;line-height:1.7">Move.AI REST API 可Pipeline 整合分析到同一自動化工作流。</p>
-</div>
+<p class="desc">本工具在 AI 動作量產工作流中的定位與搭配方式。</p>
+<div class="card" style="margin-top:1.5rem">
+<ul class="list-clean">
+<li><strong>輸入來源</strong> — iPhone 影片（Move One）/ 多攝影機同步錄製（Genesis 6-12 台 Z-Cam）</li>
+<li><strong>輸出格式</strong> — FBX、**BVH**、GLB、USDZ、USDC、Blend、C3D、JSON</li>
+<li><strong>骨架標準</strong> — 標準骨架（含 Dex 手指追蹤 s2/m2 模型）</li>
+<li><strong>上游工具</strong> — iPhone App / Z-Cam 多攝影機 / 任何影片（API）</li>
+<li><strong>下游工具</strong> — Maya、Blender（原生 .blend 匯出）、UE5、Unity、MotionBuilder、Houdini</li>
+</ul>
 </div>
 </div>
 </section>
