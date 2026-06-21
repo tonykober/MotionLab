@@ -13,8 +13,8 @@ h1{color:var(--gold);font-size:2.4rem;font-weight:800;text-align:center;margin-b
 .subtitle{text-align:center;color:var(--dim);margin-bottom:2.5rem;font-size:.95rem}
 .category{margin-bottom:2.5rem}
 .category h2{color:var(--white);font-size:1.5rem;font-weight:700;margin-bottom:1rem;padding-left:1rem;border-left:4px solid;border-image:linear-gradient(180deg,var(--teal),var(--cyan)) 1}
-.tool-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.6rem}
-.tool-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.8rem;display:flex;flex-direction:column;transition:.2s}
+.tool-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem}
+.tool-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.2rem;display:flex;flex-direction:column;transition:.2s}
 .tool-card:hover{border-color:rgba(77,184,212,0.3);transform:translateY(-2px)}
 .tool-card .top{display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem}
 .tool-card .badge{font-size:1rem}
@@ -26,7 +26,7 @@ h1{color:var(--gold);font-size:2.4rem;font-weight:800;text-align:center;margin-b
 .btn-slides{background:rgba(45,212,168,0.12);border:1px solid rgba(45,212,168,0.3);color:var(--teal)}
 .workflow{margin-top:2rem;background:rgba(13,13,26,0.6);border-radius:12px;padding:2rem;border:1px solid var(--border)}
 .workflow h2{color:var(--gold);font-size:1.3rem;margin-bottom:1rem}
-.flow-diagram{font-family:monospace;color:var(--text);font-size:.9rem;line-height:2;white-space:pre-wrap;background:var(--bg);padding:.8rem;border-radius:8px;margin-top:.8rem}
+.flow-diagram{font-family:monospace;color:var(--text);font-size:.9rem;line-height:2;white-space:pre-wrap;background:var(--bg);padding:1.2rem;border-radius:8px;margin-top:.8rem}
 .flow-diagram strong{color:var(--gold)}
 footer{text-align:center;margin-top:3rem;color:var(--dim);font-size:.8rem}
 @media(max-width:600px){body{padding:1rem}h1{font-size:1.8rem}}
@@ -35,7 +35,7 @@ footer{text-align:center;margin-top:3rem;color:var(--dim);font-size:.8rem}
 <body>
 <div class="container">
 <h1>🎬 MotionLab — AI 動作工具調研</h1>
-<p class="subtitle">Kimodo AI 動作量產工作流 — 工具鏈完整調研 (40 tools)</p>
+<p class="subtitle">Kimodo AI 動作量產工作流 — 工具鏈完整調研 (41 tools)</p>
 
 <div class="category">
 <h2>🤖 AI Mocap / 動作生成</h2>
@@ -44,13 +44,6 @@ footer{text-align:center;margin-top:3rem;color:var(--dim);font-size:.8rem}
 <div class="top"><span class="badge">🟢</span><span class="name">PINOC (Viggle.ai)</span></div>
 <p class="desc">AI 影片轉動捕/遊戲動畫，BVH 輸出</p>
 <div class="btns"><a href="tools/pinoc_viggle.html" class="btn btn-detail">📄 詳細</a><a href="tools/pinoc_viggle_slides.html" class="btn btn-slides">📊 簡報</a></div>
-</div>
-<div class="tool-card">
-<div class="top"><span class="badge">🔵</span><span class="name">Meshcapade ⚠️</span></div>
-<p class="desc">SMPL 人體模型商業化平台（已被 Epic Games 收購關閉）</p>
-<div class="btns"><a href="tools/meshcapade.html" class="btn btn-detail">📄 詳細</a><a href="tools/meshcapade_slides.html" class="btn btn-slides">📊 簡報</a></div>
-</div>
-</div>
 </div>
 <div class="tool-card">
 <div class="top"><span class="badge">🟢</span><span class="name">DeepMotion</span></div>
@@ -129,7 +122,7 @@ footer{text-align:center;margin-top:3rem;color:var(--dim);font-size:.8rem}
 </div>
 <div class="tool-card">
 <div class="top"><span class="badge">🟡</span><span class="name">CyanPuppets</span></div>
-<p class="desc">AI 即時臉部+身體動捕</p>
+<p class="desc">十億參數 AI 動捕大模型（208 關鍵點）</p>
 <div class="btns"><a href="tools/cyanpuppets.html" class="btn btn-detail">📄 詳細</a><a href="tools/cyanpuppets_slides.html" class="btn btn-slides">📊 簡報</a></div>
 </div>
 <div class="tool-card">
@@ -171,6 +164,11 @@ footer{text-align:center;margin-top:3rem;color:var(--dim);font-size:.8rem}
 <div class="top"><span class="badge">🟡</span><span class="name">ReMoCapp</span></div>
 <p class="desc">即時全身+臉部動捕（2-8 Webcam）</p>
 <div class="btns"><a href="tools/remocapp.html" class="btn btn-detail">📄 詳細</a><a href="tools/remocapp_slides.html" class="btn btn-slides">📊 簡報</a></div>
+</div>
+<div class="tool-card">
+<div class="top"><span class="badge">🔵</span><span class="name">Meshcapade ⚠️</span></div>
+<p class="desc">SMPL 商業化平台（已被 Epic Games 收購關閉）</p>
+<div class="btns"><a href="tools/meshcapade.html" class="btn btn-detail">📄 詳細</a><a href="tools/meshcapade_slides.html" class="btn btn-slides">📊 簡報</a></div>
 </div>
 </div>
 </div>
@@ -262,12 +260,6 @@ footer{text-align:center;margin-top:3rem;color:var(--dim);font-size:.8rem}
 </div>
 </div>
 
-<div class="category">
-<h2>🔧 推薦工作流架構</h2>
-<div class="tool-grid">
-</div>
-</div>
-
 <div class="workflow">
 <h2>🔧 推薦工作流架構</h2>
 <p style="color:var(--dim);margin-bottom:.8rem">Kimodo AI 動作量產 → 遊戲引擎的完整處理鏈路：</p>
@@ -293,7 +285,6 @@ footer{text-align:center;margin-top:3rem;color:var(--dim);font-size:.8rem}
   ARP Game Export / FBX
   → Unity / Unreal Engine / Godot</div>
 </div>
-
 <footer>
 <p>MotionLab Research — 遊戲動作研發組 © 2026</p>
 <p style="margin-top:.3rem">推薦等級：🟢 強烈推薦 🟡 值得關注 🔵 特殊用途 ❌ 已關閉</p>
