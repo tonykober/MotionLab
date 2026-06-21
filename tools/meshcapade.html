@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meshcapade — SMPL 人體模型商業化平台 ⚠️ 已被 Epic Games 收購</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#1a1a2e;color:#e0d6c8;font-family:-apple-system,'Noto Sans TC',sans-serif;max-width:900px;margin:0 auto;padding:2rem;line-height:1.7}
+h1{color:#f5a623;margin:1.5rem 0 1rem}
+h2{color:#fff;margin:1.5rem 0 .8rem}
+h3{color:#e0d6c8;margin:1.2rem 0 .6rem}
+a{color:#f5a623}
+strong{color:#f5a623}
+ul,ol{margin:.5rem 0 .5rem 1.5rem}
+li{margin:.3rem 0}
+table{border-collapse:collapse;margin:1rem 0;max-width:100%;overflow-x:auto;display:block}
+th,td{border:1px solid #333;padding:8px 12px;text-align:left}
+th{background:#2a2a3e}
+pre{background:#0d0d1a;padding:1rem;border-radius:8px;overflow-x:auto;margin:1rem 0}
+code{background:#0d0d1a;padding:2px 6px;border-radius:4px;font-size:.9em}
+pre code{padding:0;background:none}
+hr{border:none;border-top:1px solid #333;margin:1.5rem 0}
+p{margin:.6rem 0}
+img{max-width:100%}
+.back{display:inline-block;margin-bottom:1.5rem;text-decoration:none}
+</style>
+</head>
+<body>
+<a href="../index.html" class="back">← 返回首頁</a>
+<h1>Meshcapade — SMPL 人體模型商業化平台 ⚠️ 已被 Epic Games 收購</h1>
+
+<p>&gt; 調研日期：2026-06-21</p>
+<p>&gt; 官網：<a href="https://meshcapade.com（平台已於" target="_blank">https://meshcapade.com（平台已於</a> 2026/4/18 關閉）</p>
+<p>&gt; 公司：Meshcapade GmbH（德國 Tübingen）</p>
+<p>&gt; 狀態：⚠️ 2026 年 2 月被 Epic Games 收購，4 月 18 日平台關閉</p>
+<p>&gt; SMPL 授權：<a href="https://meshcapade.notion.site/The-SMPL-Model-Licenses" target="_blank">https://meshcapade.notion.site/The-SMPL-Model-Licenses</a></p>
+
+<hr>
+
+<h2>一、工具概述</h2>
+
+<p><strong>Meshcapade</strong> 是 Max Planck Institute for Intelligent Systems 的衍生公司（2018 年成立），將學術界的 <strong>SMPL</strong>（Skinned Multi-Person Linear Model）人體模型商業化。提供 AI 動作捕捉、3D 人體建模、動作生成的完整 Toolkit。</p>
+
+<p><strong>核心能力一句話</strong>：基於 SMPL 的 AI 無標記動捕 + 3D 人體生成 + 動作分析 — 從照片/影片/文字/量測值生成精確 3D 人體和動畫。</p>
+
+<p>⚠️ <strong>重要：2026 年 2 月被 Epic Games 收購，4 月 18 日線上平台已關閉。</strong> 技術將整合至 Unreal Engine / Epic 數位人類生態系。</p>
+
+<p><strong>解決的問題（歷史）</strong>：</p>
+<ul>
+<li>學術 SMPL 模型缺乏商業授權通道</li>
+<li>從影片提取精確 3D 人體形態+動作</li>
+<li>數位人類/Avatar 生成需要統一標準</li>
+</ul>
+
+<hr>
+
+<h2>二、功能詳細說明</h2>
+
+<h3>功能矩陣（關閉前）</h3>
+
+<table>
+<tr><th>功能</th><th>說明</th></tr>
+<tr><td><strong>MoCapade</strong></td><td>無標記動捕（單攝影機，含全身+手指）</td></tr>
+<tr><td><strong>ME 平台</strong></td><td>從照片/影片/量測值生成 3D Avatar</td></tr>
+<tr><td><strong>SMPL 模型</strong></td><td>參數化人體模型（業界標準）</td></tr>
+<tr><td><strong>攝影機追蹤</strong></td><td>動態攝影機的演員+攝影機同時追蹤</td></tr>
+<tr><td><strong>Avatar from Image</strong></td><td>單張照片→3D 人體</td></tr>
+<tr><td><strong>Avatar from Measurements</strong></td><td>身體量測值→3D 人體</td></tr>
+<tr><td><strong>Motion Generation</strong></td><td>動作生成</td></tr>
+<tr><td><strong>API</strong></td><td>RESTful API（JSON:API 規範）</td></tr>
+<tr><td><strong>匯出</strong></td><td>FBX, GLB, MP4, SMPL 格式</td></tr>
+<tr><td><strong>Hair Capture</strong></td><td>3D 頭髮估算（Coming Soon，未及發佈）</td></tr>
+</table>
+
+<h3>技術規格</h3>
+
+<table>
+<tr><th>項目</th><th>規格</th></tr>
+<tr><td>核心模型</td><td>SMPL / SMPL-X（含手指+臉部）</td></tr>
+<tr><td>訓練資料</td><td>數千筆 3D 人體掃描</td></tr>
+<tr><td>輸入</td><td>照片 / 影片 / 量測值 / 3D 掃描 / 文字</td></tr>
+<tr><td>輸出格式</td><td>FBX, GLB, MP4, SMPL</td></tr>
+<tr><td>追蹤</td><td>全身 + 手指，靜態或動態攝影機</td></tr>
+<tr><td>部署</td><td>雲端 / 本地 / 混合</td></tr>
+<tr><td>合規</td><td>EU GDPR 合規，SOC2 認證</td></tr>
+<tr><td>創辦人</td><td>Michael J. Black 教授（SMPL 發明者）</td></tr>
+<tr><td>學術基礎</td><td>Max Planck Institute for Intelligent Systems</td></tr>
+</table>
+
+<hr>
+
+<h2>三、官方影片 / 教學連結</h2>
+
+<table>
+<tr><th>資源</th><th>連結</th><th>狀態</th></tr>
+<tr><td>官網</td><td><a href="https://meshcapade.com" target="_blank">https://meshcapade.com</a></td><td>⚠️ 僅保留靜態頁面</td></tr>
+<tr><td>GitHub</td><td><a href="https://github.com/Meshcapade" target="_blank">https://github.com/Meshcapade</a></td><td>仍可存取</td></tr>
+<tr><td>Medium Blog</td><td><a href="https://medium.com/meshcapade/" target="_blank">https://medium.com/meshcapade/</a></td><td>仍可存取</td></tr>
+<tr><td>MoCapade 3.0 介紹</td><td><a href="https://medium.com/meshcapade/introducing-mocapade-3-0-1f9d8af42098" target="_blank">https://medium.com/meshcapade/introducing-mocapade-3-0-1f9d8af42098</a></td><td>✅</td></tr>
+<tr><td>SMPL Wiki</td><td><a href="https://meshcapade.wiki/SMPL.html" target="_blank">https://meshcapade.wiki/SMPL.html</a></td><td>✅</td></tr>
+<tr><td>Epic Games 收購報導</td><td><a href="https://80.lv/articles/ai-motion-capture-startup-meshcapade-now-part-of-epic-games" target="_blank">https://80.lv/articles/ai-motion-capture-startup-meshcapade-now-part-of-epic-games</a></td><td>✅</td></tr>
+<tr><td>Max Planck 報導</td><td><a href="https://www.mpg.de/26082348/max-planck-spin-off-meshcapade-draws-epic-games-to-tuebingen" target="_blank">https://www.mpg.de/26082348/max-planck-spin-off-meshcapade-draws-epic-games-to-tuebingen</a></td><td>✅</td></tr>
+<tr><td>X (Twitter)</td><td><a href="https://x.com/meshcapade" target="_blank">https://x.com/meshcapade</a></td><td>✅</td></tr>
+</table>
+
+<hr>
+
+<h2>四、使用流程</h2>
+
+<p>⚠️ <strong>平台已於 2026/4/18 關閉。以下為歷史記錄。</strong></p>
+
+<h3>MoCapade（動捕）</h3>
+<ol>
+<li>上傳影片（任何攝影機：手機/webcam/專業）</li>
+<li>AI 提取全身+手指動作</li>
+<li>攝影機追蹤（靜態或移動）</li>
+<li>匯出 FBX/GLB</li>
+</ol>
+
+<h3>ME 平台（Avatar 生成）</h3>
+<ol>
+<li>上傳照片/影片/量測值</li>
+<li>AI 估算 3D 人體形態</li>
+<li>自訂調整</li>
+<li>匯出 FBX/GLB/SMPL</li>
+</ol>
+
+<h3>API</h3>
+<ol>
+<li>取得 API Key</li>
+<li>RESTful 呼叫（JSON:API）</li>
+<li>建立/編輯 Avatar</li>
+<li>下載 3D 資產</li>
+</ol>
+
+<hr>
+
+<h2>五、定價與授權</h2>
+
+<h3>SMPL 模型授權（仍有效 — 由 Max Planck 管理）</h3>
+
+<table>
+<tr><th>類型</th><th>條件</th><th>研究用（年費）</th><th>商業用（年費）</th></tr>
+<tr><td><strong>Micro</strong></td><td>≤10 員工、≤€2M 營收</td><td>€1,500</td><td>€5,000</td></tr>
+<tr><td><strong>SME</strong></td><td>≤250 員工、≤€50M 營收</td><td>€32,500</td><td>聯繫</td></tr>
+<tr><td><strong>Enterprise</strong></td><td>限 1 團隊 &lt;15 人</td><td>—</td><td>聯繫</td></tr>
+</table>
+
+<h3>Meshcapade 平台（已關閉）</h3>
+
+<table>
+<tr><th>方案</th><th>費用</th><th>狀態</th></tr>
+<tr><td>Free</td><td>$0</td><td>❌ 已關閉</td></tr>
+<tr><td>Premium</td><td>推測 $15-50/月</td><td>❌ 已關閉</td></tr>
+<tr><td>Enterprise API</td><td>聯繫</td><td>❌ 已關閉</td></tr>
+</table>
+
+<h3>未來展望</h3>
+<ul>
+<li>SMPL 技術將整合至 <strong>Unreal Engine / MetaHuman</strong></li>
+<li>追蹤 unrealengine.com 取得後續消息</li>
+</ul>
+
+<hr>
+
+<h2>六、優缺點分析</h2>
+
+<h3>✅ 優點（歷史評價）</h3>
+
+<ol>
+<li><strong>SMPL 發明者</strong> — 學術根基最深，模型是業界標準（被 100+ 公司/大學使用）</li>
+<li><strong>全身+手指+攝影機追蹤</strong> — 功能完整</li>
+<li><strong>多輸入模態</strong> — 照片/影片/量測/掃描/文字都能生成 3D 人體</li>
+<li><strong>企業級合規</strong> — GDPR + SOC2，適合大型企業</li>
+<li><strong>API 可自動化</strong> — RESTful API 支援批次處理</li>
+<li><strong>Epic Games 收購</strong> — 證明技術價值（估計收購價數千萬至億級）</li>
+<li><strong>匯出格式完整</strong> — FBX/GLB/SMPL</li>
+</ol>
+
+<h3>❌ 缺點</h3>
+
+<ol>
+<li><strong>⚠️ 平台已關閉</strong> — 2026/4/18 起無法使用</li>
+<li><strong>SMPL 授權昂貴</strong> — 商業用 €5,000+/年</li>
+<li><strong>技術被 Epic 鎖定</strong> — 未來可能只在 Unreal 生態系使用</li>
+<li><strong>學術導向</strong> — UI/UX 曾不如商業工具友善</li>
+<li><strong>不再獨立服務</strong> — 無法單獨購買/使用</li>
+</ol>
+
+<hr>
+
+<h2>七、與 Kimodo BVH 工作流的整合可能性</h2>
+
+<table>
+<tr><th>面向</th><th>評估</th></tr>
+<tr><td><strong>現況</strong></td><td>❌ 平台已關閉，無法直接使用</td></tr>
+<tr><td><strong>SMPL 模型</strong></td><td>Kimodo 內部可能已使用 SMPL 相關技術（學術界通用）</td></tr>
+<tr><td><strong>未來</strong></td><td>如果 Epic 將 Meshcapade 整合到 UE5/MetaHuman，可能成為 UE5 Pipeline 的一部分</td></tr>
+<tr><td><strong>替代方案</strong></td><td>動捕功能 → Viggle / Move.AI；Avatar 生成 → Ready Player Me</td></tr>
+</table>
+
+<h3>推薦整合方式</h3>
+
+<pre><code>
+現況：無法整合（已關閉）
+
+未來追蹤：
+  Epic Games / Unreal Engine 更新 → 
+  如果 SMPL 技術整合到 MetaHuman/UE5 →
+  可能成為我們 UE5 工作流的一部分
+
+替代方案（現在）：
+  動捕 → Viggle PINOC / Move.AI
+  Avatar → Ready Player Me / Character Creator
+  人體模型 → SMPL 開源研究版（學術授權免費）
+</code></pre>
+
+<hr>
+
+<h2>八、對「AI 動作量產工作流」的貢獻定位</h2>
+
+<pre><code>
+┌─────────────────────────────────────────────────────────┐
+│         Meshcapade 在工作流中的定位                        │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  現況：❌ 已關閉，無法直接使用                            │
+│                                                         │
+│  歷史價值：                                              │
+│  • SMPL 是幾乎所有 AI Mocap 工具的底層模型               │
+│  • Viggle、DeepMotion、Plask 等都受 SMPL 技術影響       │
+│  • Meshcapade 是 SMPL 的商業授權管道                     │
+│                                                         │
+│  未來可能：                                              │
+│  • Epic 將 SMPL 整合到 UE5/MetaHuman                    │
+│  • 可能變成 UE5 內建的動捕/人體估算功能                   │
+│  • 屆時我們的 UE5 Pipeline 可能免費獲得此能力             │
+│                                                         │
+│  行動：追蹤 unrealengine.com 更新                        │
+│                                                         │
+└─────────────────────────────────────────────────────────┘
+</code></pre>
+
+<hr>
+
+<h2>九、總結評分</h2>
+
+<table>
+<tr><th>項目</th><th>評分 (1-5)</th><th>說明</th></tr>
+<tr><td>與我們目標的相關性</td><td>⭐⭐（已關閉）</td><td>技術相關但無法使用</td></tr>
+<tr><td>技術成熟度</td><td>⭐⭐⭐⭐⭐</td><td>SMPL 是業界標準</td></tr>
+<tr><td>易用性</td><td>N/A</td><td>平台已關閉</td></tr>
+<tr><td>性價比</td><td>N/A</td><td>無法購買</td></tr>
+<tr><td>Pipeline 整合潛力</td><td>⭐⭐⭐（未來）</td><td>等 Epic/UE5 整合</td></tr>
+<tr><td>量產化適合度</td><td>⭐（現況）</td><td>無法使用</td></tr>
+</table>
+
+<p><strong>推薦等級</strong>：🔵 <strong>記錄存檔 + 追蹤未來</strong> — 平台已關閉但技術將進入 Epic/UE5 生態系，值得持續追蹤。</p>
+
+<hr>
+
+<h2>十、行動建議</h2>
+
+<ol>
+<li><strong>不需要任何立即行動</strong> — 平台已關閉</li>
+<li><strong>追蹤 Unreal Engine 更新</strong> — unrealengine.com，看 SMPL/Meshcapade 技術何時整合</li>
+<li><strong>了解 SMPL 學術授權</strong> — 如需研究用途，SMPL 學術版仍可從 smpl.is.tue.mpg.de 取得</li>
+<li><strong>替代方案</strong> — 動捕用 Viggle/Move.AI、Avatar 用 Ready Player Me</li>
+<li><strong>記錄歷史</strong> — Meshcapade 的收購證明 AI Mocap + 3D 人體技術的商業價值極高（被遊戲引擎巨頭收購）</li>
+</ol>
+
+<hr>
+
+<h2>附錄：為什麼 Meshcapade 重要？</h2>
+
+<p>即使平台已關閉，理解 Meshcapade/SMPL 對我們小組仍有價值：</p>
+
+<ol>
+<li><strong>SMPL 是底層標準</strong> — 幾乎所有 AI 動捕工具（包括我們用的 Kimodo）都在某種程度上基於或受 SMPL 影響</li>
+<li><strong>Epic 收購的意義</strong> — 說明 AI 人體建模+動捕技術正在從學術走向遊戲引擎內建功能</li>
+<li><strong>未來趨勢</strong> — UE5/6 可能原生支援類似 Meshcapade 的 AI 動捕功能，屆時我們的工作流可能大幅簡化</li>
+<li><strong>SMPL 授權問題</strong> — 如果我們的工具鏈中有使用 SMPL 衍生技術的商業工具，需要注意授權合規</li>
+</ol>
+
+</body>
+</html>

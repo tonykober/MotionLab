@@ -34,9 +34,9 @@ img{max-width:100%}
 
 <p>Kinetix 是一家法國 AI 動畫公司，提供 <strong>SDK 讓遊戲開發者在遊戲中嵌入 AI 動畫生成功能</strong>。玩家可透過上傳影片或文字描述，在遊戲內即時生成自訂 3D 表情動作（emotes）。定位為 B2B 遊戲開發平台，專注於玩家 UGC 動畫生態。</p>
 
-<strong>核心能力一句話</strong>：讓遊戲玩家在遊戲內用影片/文字即時生成自訂動畫的 B2B SDK 平台。
+<p><strong>核心能力一句話</strong>：讓遊戲玩家在遊戲內用影片/文字即時生成自訂動畫的 B2B SDK 平台。</p>
 
-<strong>解決的問題：</strong>
+<p><strong>解決的問題：</strong></p>
 <ul>
 <li>遊戲中的 emote/表情動作選擇有限</li>
 <li>玩家 UGC 內容（用戶生成內容）僅限於文字/圖片，缺乏動畫創作工具</li>
@@ -44,15 +44,14 @@ img{max-width:100%}
 <li>跨遊戲動畫資產不相容</li>
 </ul>
 
-<div style="margin:1.2rem 0;text-align:center"></div>
 <hr>
-<img src="../images/kinetix.png" alt="kinetix" style="max-height:35vh;width:auto;border-radius:12px;margin-top:1rem;border:1px solid rgba(255,255,255,0.08)">
 
 <h2>2. 功能詳細說明</h2>
 
 <h3>功能矩陣</h3>
 
-<table><tr><th><th>功能</th><th>說明</th></tr>
+<table>
+<tr><th>功能</th><th>說明</th></tr>
 <tr><td>Video-to-Animation</td><td>玩家上傳影片 → AI 生成 3D 動作</td></tr>
 <tr><td>Text-to-Animation</td><td>文字描述 → 3D 動畫生成</td></tr>
 <tr><td>Unity SDK</td><td>Unity 遊戲原生嵌入</td></tr>
@@ -66,7 +65,8 @@ img{max-width:100%}
 
 <h3>技術規格</h3>
 
-<table><tr><th><th>項目</th><th>規格</th></tr>
+<table>
+<tr><th>項目</th><th>規格</th></tr>
 <tr><td>平台</td><td>B2B SDK（非終端用戶工具）</td></tr>
 <tr><td>引擎支援</td><td>Unity / Unreal Engine / Web</td></tr>
 <tr><td>API</td><td>REST API + 原生 SDK</td></tr>
@@ -81,11 +81,12 @@ img{max-width:100%}
 
 <h2>3. 官方影片/教學連結</h2>
 
-<table><tr><th><th>主題</th><th>連結</th></tr>
-<tr><td>官方網站</td><td>https://www.kinetix.tech/</td></tr>
-<tr><td>開發者文件</td><td>https://docs.kinetix.tech/</td></tr>
-<tr><td>YouTube 頻道</td><td>https://www.youtube.com/@kinetix_tech</td></tr>
-<tr><td>LinkedIn</td><td>https://www.linkedin.com/company/kinetix-tech/</td></tr>
+<table>
+<tr><th>主題</th><th>連結</th></tr>
+<tr><td>官方網站</td><td><a href="https://www.kinetix.tech/" target="_blank">https://www.kinetix.tech/</a></td></tr>
+<tr><td>開發者文件</td><td><a href="https://docs.kinetix.tech/" target="_blank">https://docs.kinetix.tech/</a></td></tr>
+<tr><td>YouTube 頻道</td><td><a href="https://www.youtube.com/@kinetix_tech" target="_blank">https://www.youtube.com/@kinetix_tech</a></td></tr>
+<tr><td>LinkedIn</td><td><a href="https://www.linkedin.com/company/kinetix-tech/" target="_blank">https://www.linkedin.com/company/kinetix-tech/</a></td></tr>
 </table>
 
 <hr>
@@ -93,42 +94,45 @@ img{max-width:100%}
 <h2>4. 安裝/使用流程</h2>
 
 <h3>對遊戲開發者（B2B）</h3>
-<ul>
-<li>前往 https://www.kinetix.tech/ 申請開發者帳號</li>
+<ol>
+<li>前往 <a href="https://www.kinetix.tech/" target="_blank">https://www.kinetix.tech/</a> 申請開發者帳號</li>
 <li>取得 API Key 和 SDK 存取權</li>
 <li>下載 Unity SDK 或 Unreal SDK</li>
 <li>整合到遊戲專案中：</li>
-</ul>
-<p>   - 加入 SDK package</p>
-<p>   - 配置 API Key</p>
-<p>   - 呼叫 API 端點</p>
+</ol>
 <ul>
+<li>加入 SDK package</li>
+<li>配置 API Key</li>
+<li>呼叫 API 端點</li>
+</ul>
+<ol>
 <li>在遊戲 UI 中設計動畫生成入口</li>
 <li>發佈遊戲——玩家即可使用</li>
-</ul>
+</ol>
 
 <h3>對玩家端（使用流程）</h3>
-<ul>
+<ol>
 <li>在支援 Kinetix 的遊戲中找到「創建動作」入口</li>
 <li>選擇輸入方式：上傳影片 / 輸入文字描述</li>
 <li>AI 雲端處理生成動畫</li>
 <li>在遊戲內預覽效果</li>
 <li>確認後套用到角色</li>
-</ul>
+</ol>
 
-<strong>注意：此為 B2B 工具，個人動畫師/開發者無法直接當作動捕工具使用。</strong>
+<p><strong>注意：此為 B2B 工具，個人動畫師/開發者無法直接當作動捕工具使用。</strong></p>
 
 <hr>
 
 <h2>5. 定價與授權</h2>
 
-<table><tr><th><th>方案</th><th>價格</th><th>說明</th></tr>
+<table>
+<tr><th>方案</th><th>價格</th><th>說明</th></tr>
 <tr><td>Free Tier</td><td>免費</td><td>有限 API 呼叫次數</td></tr>
 <tr><td>Pro</td><td>未公開（需洽談）</td><td>大量 API 呼叫 + 進階功能</td></tr>
 <tr><td>Enterprise</td><td>客製報價</td><td>完整功能 + 專屬支援</td></tr>
 </table>
 
-<strong>商用授權說明：</strong>
+<p><strong>商用授權說明：</strong></p>
 <ul>
 <li>明確為商業 B2B 平台</li>
 <li>遊戲中使用的 AI 生成動畫歸遊戲開發者/玩家所有</li>
@@ -165,7 +169,8 @@ img{max-width:100%}
 
 <h2>7. 與 Kimodo 的整合可能性</h2>
 
-<table><tr><th><th>比較項目</th><th>Kinetix</th><th>Kimodo</th></tr>
+<table>
+<tr><th>比較項目</th><th>Kinetix</th><th>Kimodo</th></tr>
 <tr><td>定位</td><td>遊戲內 UGC 動畫 SDK</td><td>離線動作量產工具</td></tr>
 <tr><td>使用者</td><td>遊戲玩家</td><td>動畫師/開發者</td></tr>
 <tr><td>輸入</td><td>影片/文字（遊戲內）</td><td>文字 prompt（命令列）</td></tr>
@@ -183,8 +188,10 @@ img{max-width:100%}
 <li>Kimodo = 開發期間的動畫量產</li>
 </ul>
 
-<pre><code>開發階段：[Kimodo] → [BVH] → [ARP] → [引擎]（角色預設動作庫）
-營運階段：[Kinetix SDK] → [遊戲內玩家 UGC 動畫]（玩家自訂 emotes）</code></pre>
+<pre><code>
+開發階段：[Kimodo] → [BVH] → [ARP] → [引擎]（角色預設動作庫）
+營運階段：[Kinetix SDK] → [遊戲內玩家 UGC 動畫]（玩家自訂 emotes）
+</code></pre>
 
 <p>兩者可在同一遊戲中共存：Kimodo 做基礎動作庫，Kinetix 做玩家 UGC 層。</p>
 
@@ -194,15 +201,17 @@ img{max-width:100%}
 
 <h3>定位：<strong>遊戲營運期的玩家 UGC 動畫平台（非開發期工具）</strong></h3>
 
-<pre><code>┌─── 開發期（我們的工作）──────────────────┐
+<pre><code>
+┌─── 開發期（我們的工作）──────────────────┐
 │ [Kimodo] → [BVH] → [ARP] → [引擎動作庫]  │
 └────────────────────────────────────────────┘
 
 ┌─── 營運期（遊戲上線後）──────────────────┐
 │ [Kinetix SDK] → [玩家 UGC 動畫生態]       │
-└────────────────────────────────────────────┘</code></pre>
+└────────────────────────────────────────────┘
+</code></pre>
 
-<strong>量產流程中的角色：</strong>
+<p><strong>量產流程中的角色：</strong></p>
 <ul>
 <li>不在「動作設計師」的核心工作流中</li>
 <li>是給「遊戲設計師/製作人」的營運工具建議</li>
@@ -213,7 +222,8 @@ img{max-width:100%}
 
 <h2>9. 總結評分</h2>
 
-<table><tr><th><th>項目</th><th>評分</th><th>說明</th></tr>
+<table>
+<tr><th>項目</th><th>評分</th><th>說明</th></tr>
 <tr><td>技術能力</td><td>⭐⭐⭐⭐</td><td>多引擎 SDK + AI 動畫</td></tr>
 <tr><td>對我們的適用性</td><td>⭐⭐</td><td>B2B 營運工具，非製作工具</td></tr>
 <tr><td>性價比</td><td>⭐⭐⭐</td><td>價格不透明</td></tr>
@@ -226,22 +236,22 @@ img{max-width:100%}
 
 <h2>10. 行動建議</h2>
 
-<ul>
+<ol>
 <li><strong>列為營運期參考</strong>：若遊戲上線後需要玩家 UGC 動畫，再深入評估</li>
 <li><strong>不納入當前工具鏈</strong>：不是動作設計師的日常工具</li>
 <li><strong>關注其 Text-to-Animation 品質進展</strong>：若品質大幅提升可重新評估</li>
 <li><strong>提供給企劃/製作人參考</strong>：讓負責遊戲設計的人了解此選項</li>
 <li><strong>評估競品</strong>：Ready Player Me、Genies 等也在做類似事情</li>
-</ul>
+</ol>
 
 <hr>
 
 <h2>參考資料</h2>
 
 <ul>
-<li>官方網站：https://www.kinetix.tech/</li>
-<li>開發者文件：https://docs.kinetix.tech/</li>
-<li>LinkedIn：https://www.linkedin.com/company/kinetix-tech/</li>
+<li>官方網站：<a href="https://www.kinetix.tech/" target="_blank">https://www.kinetix.tech/</a></li>
+<li>開發者文件：<a href="https://docs.kinetix.tech/" target="_blank">https://docs.kinetix.tech/</a></li>
+<li>LinkedIn：<a href="https://www.linkedin.com/company/kinetix-tech/" target="_blank">https://www.linkedin.com/company/kinetix-tech/</a></li>
 </ul>
 
 </body>

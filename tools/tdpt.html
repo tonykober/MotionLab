@@ -34,9 +34,9 @@ img{max-width:100%}
 
 <p>TDPT（ThreeD Pose Tracker）是由日本 Digital Standard 公司開發的<strong>即時 3D 姿態追蹤系統</strong>。透過普通攝影機即時偵測 24 個身體關鍵點並輸出 3D 座標，讓使用者無需專業動捕設備即可進行基礎動作捕捉。</p>
 
-<strong>核心能力一句話</strong>：用一台攝影機即時追蹤全身 3D 姿態，透過 VMC Protocol 即時串流到 Blender/Unity。
+<p><strong>核心能力一句話</strong>：用一台攝影機即時追蹤全身 3D 姿態，透過 VMC Protocol 即時串流到 Blender/Unity。</p>
 
-<strong>解決的問題：</strong>
+<p><strong>解決的問題：</strong></p>
 <ul>
 <li>專業動捕設備昂貴（數十萬台幣起）</li>
 <li>VTuber/獨立開發者需要低成本即時動捕方案</li>
@@ -44,15 +44,14 @@ img{max-width:100%}
 <li>動捕資料需即時傳入 DCC 軟體</li>
 </ul>
 
-<div style="margin:1.2rem 0;text-align:center"></div>
 <hr>
-<img src="../images/tdpt.png" alt="tdpt" style="max-height:35vh;width:auto;border-radius:12px;margin-top:1rem;border:1px solid rgba(255,255,255,0.08)">
 
 <h2>2. 功能詳細說明</h2>
 
 <h3>功能矩陣</h3>
 
-<table><tr><th><th>功能</th><th>說明</th><th>可用平台</th></tr>
+<table>
+<tr><th>功能</th><th>說明</th><th>可用平台</th></tr>
 <tr><td>即時 3D 姿態追蹤</td><td>單攝影機即時偵測人體 24 關節</td><td>全平台</td></tr>
 <tr><td>VMC Protocol 輸出</td><td>即時串流 3D 座標到外部軟體</td><td>Windows/iOS</td></tr>
 <tr><td>影片回放追蹤</td><td>從預錄影片提取動作</td><td>全平台</td></tr>
@@ -65,7 +64,8 @@ img{max-width:100%}
 
 <h3>技術規格</h3>
 
-<table><tr><th><th>項目</th><th>規格</th></tr>
+<table>
+<tr><th>項目</th><th>規格</th></tr>
 <tr><td>關鍵點數量</td><td>24 個身體關節</td></tr>
 <tr><td>推理引擎</td><td>深度學習（CNN）</td></tr>
 <tr><td>輸出協議</td><td>VMC Protocol（OSC）</td></tr>
@@ -80,15 +80,16 @@ img{max-width:100%}
 
 <h2>3. 官方影片/教學連結</h2>
 
-<table><tr><th><th>主題</th><th>連結</th></tr>
-<tr><td>官方網站</td><td>https://digital-standard.com/tdpt/</td></tr>
-<tr><td>iOS 版介紹</td><td>https://digital-standard.com/tdptios_en/</td></tr>
-<tr><td>GitHub（Windows 版）</td><td>https://github.com/digital-standard/ThreeDPoseTracker</td></tr>
-<tr><td>Unity Barracuda 版</td><td>https://github.com/digital-standard/ThreeDPoseUnityBarracuda</td></tr>
-<tr><td>App Store</td><td>https://apps.apple.com/app/tdpt/id1561086509</td></tr>
-<tr><td>BOOTH（Windows 版下載）</td><td>https://booth.pm/ja/items/3757272</td></tr>
-<tr><td>VMC Protocol 說明</td><td>https://protocol.vmc.info/english</td></tr>
-<tr><td>CGDive 介紹</td><td>https://addons.cgdive.com/tools/tdpt-three-d-pose-tracker</td></tr>
+<table>
+<tr><th>主題</th><th>連結</th></tr>
+<tr><td>官方網站</td><td><a href="https://digital-standard.com/tdpt/" target="_blank">https://digital-standard.com/tdpt/</a></td></tr>
+<tr><td>iOS 版介紹</td><td><a href="https://digital-standard.com/tdptios_en/" target="_blank">https://digital-standard.com/tdptios_en/</a></td></tr>
+<tr><td>GitHub（Windows 版）</td><td><a href="https://github.com/digital-standard/ThreeDPoseTracker" target="_blank">https://github.com/digital-standard/ThreeDPoseTracker</a></td></tr>
+<tr><td>Unity Barracuda 版</td><td><a href="https://github.com/digital-standard/ThreeDPoseUnityBarracuda" target="_blank">https://github.com/digital-standard/ThreeDPoseUnityBarracuda</a></td></tr>
+<tr><td>App Store</td><td><a href="https://apps.apple.com/app/tdpt/id1561086509" target="_blank">https://apps.apple.com/app/tdpt/id1561086509</a></td></tr>
+<tr><td>BOOTH（Windows 版下載）</td><td><a href="https://booth.pm/ja/items/3757272" target="_blank">https://booth.pm/ja/items/3757272</a></td></tr>
+<tr><td>VMC Protocol 說明</td><td><a href="https://protocol.vmc.info/english" target="_blank">https://protocol.vmc.info/english</a></td></tr>
+<tr><td>CGDive 介紹</td><td><a href="https://addons.cgdive.com/tools/tdpt-three-d-pose-tracker" target="_blank">https://addons.cgdive.com/tools/tdpt-three-d-pose-tracker</a></td></tr>
 </table>
 
 <hr>
@@ -96,7 +97,7 @@ img{max-width:100%}
 <h2>4. 安裝/使用流程</h2>
 
 <h3>Windows 版</h3>
-<ul>
+<ol>
 <li>從 BOOTH 下載免費 Windows 版本</li>
 <li>解壓到任意資料夾</li>
 <li>連接攝影機或準備影片檔案</li>
@@ -105,35 +106,38 @@ img{max-width:100%}
 <li>即時追蹤開始，可在視窗中看到 3D 骨架</li>
 <li>啟用 VMC Protocol 輸出（Settings → VMC → Enable）</li>
 <li>在 Blender 安裝 VMC4B 外掛接收資料</li>
-</ul>
+</ol>
 
 <h3>iOS 版</h3>
-<ul>
+<ol>
 <li>從 App Store 下載 TDPT（免費）</li>
 <li>開啟 App，允許攝影機權限</li>
 <li>將全身拍入畫面即開始追蹤</li>
 <li>Premium 功能需一次性內購解鎖（約 650 JPY）</li>
 <li>啟用 VMC Protocol 輸出（需同一 Wi-Fi 網路）</li>
-</ul>
+</ol>
 
 <h3>VMC Protocol 接收端（Blender）</h3>
-<pre><code>1. 安裝 VMC4B 外掛
-<li>設定 IP 和 Port（對應 TDPT 輸出設定）</li>
-<li>點擊 Start Receiving</li>
-<li>骨架即時跟隨 TDPT 追蹤結果</code></pre></li>
+<pre><code>
+1. 安裝 VMC4B 外掛
+2. 設定 IP 和 Port（對應 TDPT 輸出設定）
+3. 點擊 Start Receiving
+4. 骨架即時跟隨 TDPT 追蹤結果
+</code></pre>
 
 <hr>
 
 <h2>5. 定價與授權</h2>
 
-<table><tr><th><th>版本</th><th>價格</th><th>說明</th></tr>
+<table>
+<tr><th>版本</th><th>價格</th><th>說明</th></tr>
 <tr><td>Windows 版</td><td>免費</td><td>基礎追蹤功能，BOOTH 下載</td></tr>
 <tr><td>iOS 版（基礎）</td><td>免費</td><td>基礎追蹤 + VRM 驅動</td></tr>
 <tr><td>iOS Premium 功能</td><td>約 650 JPY（~$5 USD）一次性</td><td>VMC 輸出、直播、VRoidHub、動作匯出</td></tr>
 <tr><td>Unity Barracuda</td><td>免費開源</td><td>MIT License</td></tr>
 </table>
 
-<strong>商用授權說明：</strong>
+<p><strong>商用授權說明：</strong></p>
 <ul>
 <li>Windows 版為免費軟體（freeware），商用需確認條款</li>
 <li>iOS 版商用需解鎖 Premium</li>
@@ -169,7 +173,8 @@ img{max-width:100%}
 
 <h2>7. 與 Kimodo 的整合可能性</h2>
 
-<table><tr><th><th>比較項目</th><th>TDPT</th><th>Kimodo</th></tr>
+<table>
+<tr><th>比較項目</th><th>TDPT</th><th>Kimodo</th></tr>
 <tr><td>輸入方式</td><td>攝影機/影片</td><td>文字 prompt</td></tr>
 <tr><td>輸出格式</td><td>VMC Protocol（即時）</td><td>BVH 檔案</td></tr>
 <tr><td>精度</td><td>中低（24 joints）</td><td>中高（AI 生成）</td></tr>
@@ -179,9 +184,11 @@ img{max-width:100%}
 </table>
 
 <h3>推薦整合方式</h3>
-<pre><code>[TDPT 即時動捕] → [快速錄製參考動作]
+<pre><code>
+[TDPT 即時動捕] → [快速錄製參考動作]
 → [人工描述動作] → [Kimodo 文字生成高品質版]
-→ [ARP Retarget] → [引擎]</code></pre>
+→ [ARP Retarget] → [引擎]
+</code></pre>
 
 <p>TDPT 的最佳角色是<strong>快速參考錄製工具</strong>——用來錄製大致動作作為 Kimodo prompt 的視覺參考，或直接用於低品質需求（如 VTuber 驅動）。</p>
 
@@ -191,15 +198,17 @@ img{max-width:100%}
 
 <h3>定位：<strong>低成本即時預視 + 動作參考錄製器</strong></h3>
 
-<pre><code>[動作設計構思] → [TDPT 快速即時錄製] → [動作參考]
+<pre><code>
+[動作設計構思] → [TDPT 快速即時錄製] → [動作參考]
                                               ↓
                                     [轉為 Kimodo Prompt]
                                               ↓
                                     [Kimodo 高品質生成]
                                               ↓
-                                    [ARP → 遊戲引擎]</code></pre>
+                                    [ARP → 遊戲引擎]
+</code></pre>
 
-<strong>量產流程中的角色：</strong>
+<p><strong>量產流程中的角色：</strong></p>
 <ul>
 <li>不是主力動作生成工具</li>
 <li>是「動作構思→文字描述」的視覺化輔助</li>
@@ -211,7 +220,8 @@ img{max-width:100%}
 
 <h2>9. 總結評分</h2>
 
-<table><tr><th><th>項目</th><th>評分</th><th>說明</th></tr>
+<table>
+<tr><th>項目</th><th>評分</th><th>說明</th></tr>
 <tr><td>動作品質</td><td>⭐⭐</td><td>24 joints，精度有限</td></tr>
 <tr><td>易用性</td><td>⭐⭐⭐⭐⭐</td><td>開箱即用，零設定</td></tr>
 <tr><td>性價比</td><td>⭐⭐⭐⭐⭐</td><td>免費/極低成本</td></tr>
@@ -224,24 +234,24 @@ img{max-width:100%}
 
 <h2>10. 行動建議</h2>
 
-<ul>
+<ol>
 <li><strong>下載試用 Windows 版</strong>：免費，立即可用，評估追蹤品質是否符合預視需求</li>
 <li><strong>測試 VMC → Blender 串流</strong>：安裝 VMC4B 確認即時串流穩定性</li>
 <li><strong>定位為動作參考工具</strong>：不替代 Kimodo，而是輔助 prompt 構思</li>
 <li><strong>評估 iOS 版 Premium</strong>：如需行動端錄製，650 JPY 解鎖非常划算</li>
 <li><strong>探索 Unity Barracuda 版</strong>：若有即時遊戲內動捕需求可直接嵌入</li>
-</ul>
+</ol>
 
 <hr>
 
 <h2>參考資料</h2>
 
 <ul>
-<li>官方網站：https://digital-standard.com/tdpt/</li>
-<li>GitHub：https://github.com/digital-standard/ThreeDPoseTracker</li>
-<li>CGDive：https://addons.cgdive.com/tools/tdpt-three-d-pose-tracker</li>
-<li>VMC Protocol：https://protocol.vmc.info/english</li>
-<li>BOOTH：https://booth.pm/ja/items/3757272</li>
+<li>官方網站：<a href="https://digital-standard.com/tdpt/" target="_blank">https://digital-standard.com/tdpt/</a></li>
+<li>GitHub：<a href="https://github.com/digital-standard/ThreeDPoseTracker" target="_blank">https://github.com/digital-standard/ThreeDPoseTracker</a></li>
+<li>CGDive：<a href="https://addons.cgdive.com/tools/tdpt-three-d-pose-tracker" target="_blank">https://addons.cgdive.com/tools/tdpt-three-d-pose-tracker</a></li>
+<li>VMC Protocol：<a href="https://protocol.vmc.info/english" target="_blank">https://protocol.vmc.info/english</a></li>
+<li>BOOTH：<a href="https://booth.pm/ja/items/3757272" target="_blank">https://booth.pm/ja/items/3757272</a></li>
 </ul>
 
 </body>

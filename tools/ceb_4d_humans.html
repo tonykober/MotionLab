@@ -34,9 +34,9 @@ img{max-width:100%}
 
 <p>CEB 4D Humans 是由 Carlos Eduardo Barreto 開發的 <strong>Blender 外掛</strong>，整合了 4D-Humans、WHAM、SLAHMR 等頂級學術人體重建項目，讓使用者在 Blender 中直接將影片轉為 3D 骨架動畫。</p>
 
-<strong>核心能力一句話</strong>：在 Blender 內一鍵將影片轉為 3D 骨架動畫，整合多個 SOTA 學術模型 + SmoothNet 後處理。
+<p><strong>核心能力一句話</strong>：在 Blender 內一鍵將影片轉為 3D 骨架動畫，整合多個 SOTA 學術模型 + SmoothNet 後處理。</p>
 
-<strong>解決的問題：</strong>
+<p><strong>解決的問題：</strong></p>
 <ul>
 <li>學術 AI 動捕工具（4D-Humans/WHAM）需要複雜的 Python/CUDA 環境設定</li>
 <li>研究程式碼的輸出難以直接在 DCC 軟體中使用</li>
@@ -44,15 +44,14 @@ img{max-width:100%}
 <li>動捕結果抖動需要後處理平滑</li>
 </ul>
 
-<div style="margin:1.2rem 0;text-align:center"></div>
 <hr>
-<img src="../images/ceb_4d_humans.png" alt="ceb_4d_humans" style="max-height:35vh;width:auto;border-radius:12px;margin-top:1rem;border:1px solid rgba(255,255,255,0.08)">
 
 <h2>2. 功能詳細說明</h2>
 
 <h3>功能矩陣</h3>
 
-<table><tr><th><th>功能</th><th>說明</th></tr>
+<table>
+<tr><th>功能</th><th>說明</th></tr>
 <tr><td>4D-Humans 推理</td><td>從影片重建 3D 人體（HMR2.0）</td></tr>
 <tr><td>WHAM 推理</td><td>含全域軌跡的人體重建（World-grounded）</td></tr>
 <tr><td>SLAHMR 推理</td><td>SLAM + 人體重建整合</td></tr>
@@ -65,7 +64,8 @@ img{max-width:100%}
 
 <h3>技術規格</h3>
 
-<table><tr><th><th>項目</th><th>規格</th></tr>
+<table>
+<tr><th>項目</th><th>規格</th></tr>
 <tr><td>推理後端</td><td>4D-Humans (HMR2.0) / WHAM / SLAHMR</td></tr>
 <tr><td>人體模型</td><td>SMPL / SMPL-X</td></tr>
 <tr><td>輸入</td><td>影片檔案（MP4/AVI 等）</td></tr>
@@ -81,15 +81,16 @@ img{max-width:100%}
 
 <h2>3. 官方影片/教學連結</h2>
 
-<table><tr><th><th>主題</th><th>連結</th></tr>
-<tr><td>GitHub</td><td>https://github.com/carlosedubarreto/CEB_4d_Humans</td></tr>
-<tr><td>Patreon（含教學）</td><td>https://www.patreon.com/posts/88955474</td></tr>
-<tr><td>Gumroad</td><td>https://carlosedubarreto.gumroad.com/</td></tr>
-<tr><td>Blender Market</td><td>https://blendermarket.com/products/ceb-4d-humans</td></tr>
-<tr><td>4D-Humans 論文</td><td>https://github.com/shubham-goel/4D-Humans</td></tr>
-<tr><td>CGDive 介紹</td><td>https://addons.cgdive.com/tools/ceb-4d-humans</td></tr>
-<tr><td>SmoothNet 展示</td><td>https://www.patreon.com/posts/ceb-4d-humans-0-87599519</td></tr>
-<tr><td>教學影片（4D Humans 匯入 Blender）</td><td>https://youtu.be/WYdO0fOxEWU</td></tr>
+<table>
+<tr><th>主題</th><th>連結</th></tr>
+<tr><td>GitHub</td><td><a href="https://github.com/carlosedubarreto/CEB_4d_Humans" target="_blank">https://github.com/carlosedubarreto/CEB_4d_Humans</a></td></tr>
+<tr><td>Patreon（含教學）</td><td><a href="https://www.patreon.com/posts/88955474" target="_blank">https://www.patreon.com/posts/88955474</a></td></tr>
+<tr><td>Gumroad</td><td><a href="https://carlosedubarreto.gumroad.com/" target="_blank">https://carlosedubarreto.gumroad.com/</a></td></tr>
+<tr><td>Blender Market</td><td><a href="https://blendermarket.com/products/ceb-4d-humans" target="_blank">https://blendermarket.com/products/ceb-4d-humans</a></td></tr>
+<tr><td>4D-Humans 論文</td><td><a href="https://github.com/shubham-goel/4D-Humans" target="_blank">https://github.com/shubham-goel/4D-Humans</a></td></tr>
+<tr><td>CGDive 介紹</td><td><a href="https://addons.cgdive.com/tools/ceb-4d-humans" target="_blank">https://addons.cgdive.com/tools/ceb-4d-humans</a></td></tr>
+<tr><td>SmoothNet 展示</td><td><a href="https://www.patreon.com/posts/ceb-4d-humans-0-87599519" target="_blank">https://www.patreon.com/posts/ceb-4d-humans-0-87599519</a></td></tr>
+<tr><td>教學影片（4D Humans 匯入 Blender）</td><td><a href="https://youtu.be/WYdO0fOxEWU" target="_blank">https://youtu.be/WYdO0fOxEWU</a></td></tr>
 </table>
 
 <hr>
@@ -105,42 +106,47 @@ img{max-width:100%}
 </ul>
 
 <h3>安裝步驟</h3>
-<ul>
+<ol>
 <li>從 GitHub/Gumroad/Blender Market 下載外掛 zip</li>
 <li>Blender → Edit → Preferences → Add-ons → Install</li>
 <li>啟用 CEB 4D Humans</li>
 <li>首次使用時，外掛會提示安裝 Python 依賴：</li>
-</ul>
-<p>   - PyTorch (CUDA 版)</p>
-<p>   - 4D-Humans / WHAM 模型權重</p>
-<p>   - 其他依賴套件</p>
+</ol>
 <ul>
+<li>PyTorch (CUDA 版)</li>
+<li>4D-Humans / WHAM 模型權重</li>
+<li>其他依賴套件</li>
+</ul>
+<ol>
 <li>下載 SMPL 模型檔案（需到官網註冊同意條款）</li>
 <li>設定模型路徑</li>
-</ul>
+</ol>
 
 <h3>使用流程</h3>
-<pre><code>1. 在 Blender 中開啟 CEB 4D Humans 面板
-<li>匯入影片檔案</li>
-<li>選擇推理後端（4D-Humans / WHAM / SLAHMR）</li>
-<li>設定參數（解析度、幀範圍等）</li>
-<li>點擊 "Run" 開始推理（GPU 處理）</li>
-<li>推理完成後，3D 骨架動畫自動載入場景</li>
-<li>（可選）啟用 SmoothNet 後處理平滑</li>
-<li>微調結果 → 匯出 FBX/BVH</code></pre></li>
+<pre><code>
+1. 在 Blender 中開啟 CEB 4D Humans 面板
+2. 匯入影片檔案
+3. 選擇推理後端（4D-Humans / WHAM / SLAHMR）
+4. 設定參數（解析度、幀範圍等）
+5. 點擊 "Run" 開始推理（GPU 處理）
+6. 推理完成後，3D 骨架動畫自動載入場景
+7. （可選）啟用 SmoothNet 後處理平滑
+8. 微調結果 → 匯出 FBX/BVH
+</code></pre>
 
 <hr>
 
 <h2>5. 定價與授權</h2>
 
-<table><tr><th><th>版本</th><th>價格</th><th>說明</th></tr>
+<table>
+<tr><th>版本</th><th>價格</th><th>說明</th></tr>
 <tr><td>Free 版</td><td>免費</td><td>基礎功能，Patreon 下載</td></tr>
 <tr><td>Patreon 支持版</td><td>$1+/月</td><td>最新版本 + 進階功能</td></tr>
 <tr><td>Blender Market 版</td><td>~$15-25 USD</td><td>一次性購買</td></tr>
 <tr><td>Gumroad 版</td><td>自由定價</td><td>支持開發者</td></tr>
 </table>
 
-<strong>商用授權說明：</strong>
+<p><strong>商用授權說明：</strong></p>
 <ul>
 <li>外掛本身：開發者允許商用</li>
 <li><strong>注意</strong>：底層 SMPL/SMPL-X 模型為<strong>非商業研究用途</strong>授權（MPI License）</li>
@@ -177,7 +183,8 @@ img{max-width:100%}
 
 <h2>7. 與 Kimodo 的整合可能性</h2>
 
-<table><tr><th><th>比較項目</th><th>CEB 4D Humans</th><th>Kimodo</th></tr>
+<table>
+<tr><th>比較項目</th><th>CEB 4D Humans</th><th>Kimodo</th></tr>
 <tr><td>輸入方式</td><td>影片</td><td>文字 prompt</td></tr>
 <tr><td>輸出格式</td><td>Blender Armature</td><td>BVH</td></tr>
 <tr><td>品質</td><td>中高（依影片品質）</td><td>中高（AI 生成）</td></tr>
@@ -188,13 +195,15 @@ img{max-width:100%}
 </table>
 
 <h3>推薦整合方式</h3>
-<pre><code>方案 A：互補使用
+<pre><code>
+方案 A：互補使用
 [參考影片] → [CEB 4D Humans 提取動作] → [觀察動作特徵]
 → [撰寫 Kimodo Prompt] → [Kimodo 生成商用版本]
 
 方案 B：CEB 作為品質參考
 [CEB 產出] vs [Kimodo 產出] → 比較選擇較佳者
-→ [ARP Retarget] → [引擎]</code></pre>
+→ [ARP Retarget] → [引擎]
+</code></pre>
 
 <p>CEB 4D Humans 最適合作為<strong>影片參考動作的提取工具</strong>，但因 SMPL 商用限制，正式產出建議用 Kimodo。</p>
 
@@ -204,7 +213,8 @@ img{max-width:100%}
 
 <h3>定位：<strong>影片→動作的學術級提取器（非商用限定）</strong></h3>
 
-<pre><code>[參考影片/實拍素材]
+<pre><code>
+[參考影片/實拍素材]
         ↓
 [CEB 4D Humans（Blender 內）]
         ↓
@@ -212,9 +222,10 @@ img{max-width:100%}
                                                     ↓
                                           [Kimodo 生成（可商用）]
                                                     ↓
-                                          [ARP → 引擎]</code></pre>
+                                          [ARP → 引擎]
+</code></pre>
 
-<strong>量產流程中的角色：</strong>
+<p><strong>量產流程中的角色：</strong></p>
 <ul>
 <li>研究/原型階段的快速動作提取</li>
 <li>「看影片→提取→分析→描述」的輔助工具</li>
@@ -225,7 +236,8 @@ img{max-width:100%}
 
 <h2>9. 總結評分</h2>
 
-<table><tr><th><th>項目</th><th>評分</th><th>說明</th></tr>
+<table>
+<tr><th>項目</th><th>評分</th><th>說明</th></tr>
 <tr><td>動作品質</td><td>⭐⭐⭐⭐</td><td>SOTA 模型品質好，SmoothNet 加分</td></tr>
 <tr><td>易用性</td><td>⭐⭐⭐</td><td>Blender 整合好，但安裝環境複雜</td></tr>
 <tr><td>性價比</td><td>⭐⭐⭐⭐</td><td>免費/極低成本</td></tr>
@@ -238,24 +250,24 @@ img{max-width:100%}
 
 <h2>10. 行動建議</h2>
 
-<ul>
+<ol>
 <li><strong>安裝試用</strong>：確認團隊 GPU 環境可正常運行，評估實際品質</li>
 <li><strong>定位為研究工具</strong>：用於分析參考影片中的動作，而非直接商用產出</li>
 <li><strong>建立 CEB→Kimodo 工作流</strong>：CEB 提取動作特徵 → 撰寫精確 Kimodo prompt</li>
 <li><strong>關注 SMPL 商用授權</strong>：若未來 Meshcapade 開放合理商用授權可重新評估</li>
 <li><strong>測試 WHAM 後端</strong>：含全域軌跡，對 Root Motion 提取特別有幫助</li>
-</ul>
+</ol>
 
 <hr>
 
 <h2>參考資料</h2>
 
 <ul>
-<li>GitHub：https://github.com/carlosedubarreto/CEB_4d_Humans</li>
-<li>Patreon：https://www.patreon.com/posts/88955474</li>
-<li>4D-Humans：https://github.com/shubham-goel/4D-Humans</li>
-<li>SMPL-X 授權：https://smpl-x.is.tuebingen.mpg.de/modellicense.html</li>
-<li>CGDive：https://addons.cgdive.com/tools/ceb-4d-humans</li>
+<li>GitHub：<a href="https://github.com/carlosedubarreto/CEB_4d_Humans" target="_blank">https://github.com/carlosedubarreto/CEB_4d_Humans</a></li>
+<li>Patreon：<a href="https://www.patreon.com/posts/88955474" target="_blank">https://www.patreon.com/posts/88955474</a></li>
+<li>4D-Humans：<a href="https://github.com/shubham-goel/4D-Humans" target="_blank">https://github.com/shubham-goel/4D-Humans</a></li>
+<li>SMPL-X 授權：<a href="https://smpl-x.is.tuebingen.mpg.de/modellicense.html" target="_blank">https://smpl-x.is.tuebingen.mpg.de/modellicense.html</a></li>
+<li>CGDive：<a href="https://addons.cgdive.com/tools/ceb-4d-humans" target="_blank">https://addons.cgdive.com/tools/ceb-4d-humans</a></li>
 </ul>
 
 </body>

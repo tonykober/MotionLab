@@ -34,9 +34,9 @@ img{max-width:100%}
 
 <p>MocapNET 是由希臘 FORTH（Foundation for Research and Technology）研究院開發的<strong>即時神經網路 3D 姿態估計系統</strong>。最大特色是直接輸出 BVH 格式動畫，無需額外格式轉換。系統基於 OpenPose 2D 偵測結果進行 3D 提升，支援上下半身分離估計與 IK 求解器精修。</p>
 
-<strong>核心能力一句話</strong>：從影片直接輸出 BVH 動畫檔——唯一原生 BVH 輸出的開源 AI 動捕工具。
+<p><strong>核心能力一句話</strong>：從影片直接輸出 BVH 動畫檔——唯一原生 BVH 輸出的開源 AI 動捕工具。</p>
 
-<strong>解決的問題：</strong>
+<p><strong>解決的問題：</strong></p>
 <ul>
 <li>其他 AI 動捕工具輸出 SMPL/pkl 格式，需額外轉換</li>
 <li>BVH 是遊戲動畫業界標準格式，直接輸出免去中間步驟</li>
@@ -44,14 +44,14 @@ img{max-width:100%}
 <li>上下半身分離追蹤適用於桌面半身畫面</li>
 </ul>
 
-<div style="margin:1.2rem 0;text-align:center"><img src="https://raw.githubusercontent.com/FORTH-ModelBasedTracker/MocapNET/master/doc/shuffle.gif" alt="MocapNET — 即時 3D 姿態估計直接輸出 BVH" style="max-width:100%;border-radius:8px;border:1px solid #333" onerror="this.src='https://raw.githubusercontent.com/FORTH-ModelBasedTracker/MocapNET/mnet2/doc/show3.jpg'"></div>
 <hr>
 
 <h2>2. 功能詳細說明</h2>
 
 <h3>功能矩陣</h3>
 
-<table><tr><th><th>功能</th><th>說明</th></tr>
+<table>
+<tr><th>功能</th><th>說明</th></tr>
 <tr><td>直接 BVH 輸出</td><td>無需格式轉換，直接產生業界標準 BVH</td></tr>
 <tr><td>即時推理</td><td>接近即時的處理速度</td></tr>
 <tr><td>上下半身分離</td><td>可獨立追蹤上半身或下半身</td></tr>
@@ -64,7 +64,8 @@ img{max-width:100%}
 
 <h3>技術規格</h3>
 
-<table><tr><th><th>項目</th><th>規格</th></tr>
+<table>
+<tr><th>項目</th><th>規格</th></tr>
 <tr><td>輸入</td><td>影片/攝影機（經 OpenPose 2D 前處理）</td></tr>
 <tr><td>輸出</td><td><strong>BVH</strong>（直接，不需轉換）</td></tr>
 <tr><td>骨架</td><td>CMU MoCap 相容骨架</td></tr>
@@ -81,11 +82,12 @@ img{max-width:100%}
 
 <h2>3. 官方影片/教學連結</h2>
 
-<table><tr><th><th>主題</th><th>連結</th></tr>
-<tr><td>GitHub</td><td>https://github.com/FORTH-ModelBasedTracker/MocapNET</td></tr>
+<table>
+<tr><th>主題</th><th>連結</th></tr>
+<tr><td>GitHub</td><td><a href="https://github.com/FORTH-ModelBasedTracker/MocapNET" target="_blank">https://github.com/FORTH-ModelBasedTracker/MocapNET</a></td></tr>
 <tr><td>論文 v1 (BMVC 2019)</td><td>"Single Shot Multi-Person 3D Pose Estimation From Monocular RGB"</td></tr>
 <tr><td>論文 v2</td><td>"MocapNET 2.0: Real Time Estimation of 3D Body Pose and Shape"</td></tr>
-<tr><td>FORTH 研究頁面</td><td>http://amlab.ics.forth.gr/</td></tr>
+<tr><td>FORTH 研究頁面</td><td><a href="http://amlab.ics.forth.gr/" target="_blank">http://amlab.ics.forth.gr/</a></td></tr>
 </table>
 
 <hr>
@@ -102,48 +104,55 @@ img{max-width:100%}
 </ul>
 
 <h3>安裝步驟</h3>
-<pre><code>&lt;h1&gt;Clone&lt;/h1&gt;
+<pre><code>
+# Clone
 git clone https://github.com/FORTH-ModelBasedTracker/MocapNET
 cd MocapNET
 
-&lt;h1&gt;下載模型與依賴&lt;/h1&gt;
+# 下載模型與依賴
 ./initialize.sh
 
-&lt;h1&gt;編譯&lt;/h1&gt;
-mkdir build && cd build
+# 編譯
+mkdir build &amp;&amp; cd build
 cmake ..
 make -j$(nproc)
 
-&lt;h1&gt;下載範例影片&lt;/h1&gt;
-wget [範例影片 URL]</code></pre>
+# 下載範例影片
+wget [範例影片 URL]
+</code></pre>
 
 <h3>使用</h3>
-<pre><code>&lt;h1&gt;從影片生成 BVH&lt;/h1&gt;
+<pre><code>
+# 從影片生成 BVH
 ./MocapNET2 --from video.mp4 --openpose
 
-&lt;h1&gt;即時攝影機&lt;/h1&gt;
+# 即時攝影機
 ./MocapNET2 --from /dev/video0
 
-&lt;h1&gt;僅上半身&lt;/h1&gt;
+# 僅上半身
 ./MocapNET2 --from video.mp4 --upperbody
 
-&lt;h1&gt;指定輸出&lt;/h1&gt;
-./MocapNET2 --from video.mp4 --bvh output.bvh</code></pre>
+# 指定輸出
+./MocapNET2 --from video.mp4 --bvh output.bvh
+</code></pre>
 
 <h3>輸出流程</h3>
-<pre><code>影片 → OpenPose 2D → MocapNET 3D 推理 → IK 精修 → BVH 輸出</code></pre>
+<pre><code>
+影片 → OpenPose 2D → MocapNET 3D 推理 → IK 精修 → BVH 輸出
+</code></pre>
 
 <hr>
 
 <h2>5. 定價與授權</h2>
 
-<table><tr><th><th>項目</th><th>價格</th><th>授權</th></tr>
+<table>
+<tr><th>項目</th><th>價格</th><th>授權</th></tr>
 <tr><td>MocapNET 程式碼</td><td>免費</td><td>GPL v3（開源）</td></tr>
 <tr><td>模型權重</td><td>免費</td><td>隨程式碼下載</td></tr>
 <tr><td>OpenPose（依賴）</td><td>免費</td><td>非商業 / 商業需另購</td></tr>
 </table>
 
-<strong>商用授權說明：</strong>
+<p><strong>商用授權說明：</strong></p>
 <ul>
 <li>MocapNET 本身 GPL v3：開源可商用（但衍生作品需開源）</li>
 <li><strong>OpenPose 授權問題</strong>：OpenPose 的商業使用需向 CMU 購買授權</li>
@@ -179,7 +188,8 @@ wget [範例影片 URL]</code></pre>
 
 <h2>7. 與 Kimodo 的整合可能性</h2>
 
-<table><tr><th><th>比較項目</th><th>MocapNET</th><th>Kimodo</th></tr>
+<table>
+<tr><th>比較項目</th><th>MocapNET</th><th>Kimodo</th></tr>
 <tr><td>輸入</td><td>影片</td><td>文字 prompt</td></tr>
 <tr><td>輸出</td><td>BVH（直接！）</td><td>BVH</td></tr>
 <tr><td>格式相容</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐⭐⭐</td></tr>
@@ -190,11 +200,13 @@ wget [範例影片 URL]</code></pre>
 </table>
 
 <h3>推薦整合方式</h3>
-<pre><code>[MocapNET 從影片提取 BVH]
+<pre><code>
+[MocapNET 從影片提取 BVH]
         ↓
 [與 Kimodo BVH 格式完全相同]
         ↓
-[ARP Remap 重定向到角色] → [引擎]</code></pre>
+[ARP Remap 重定向到角色] → [引擎]
+</code></pre>
 
 <p>MocapNET 和 Kimodo 輸出格式完全一致（BVH），可使用同一套後處理管線（ARP Remap），形成「影片→動作」和「文字→動作」的雙軌並行。</p>
 
@@ -204,13 +216,15 @@ wget [範例影片 URL]</code></pre>
 
 <h3>定位：<strong>影片→BVH 的直通管線（免格式轉換）</strong></h3>
 
-<pre><code>路線 A（影片源）：
+<pre><code>
+路線 A（影片源）：
 [參考影片] → [MocapNET] → [BVH] ─┐
                                     ├→ [ARP Remap] → [引擎]
 路線 B（文字源）：                   │
-[Prompt] → [Kimodo] → [BVH] ──────┘</code></pre>
+[Prompt] → [Kimodo] → [BVH] ──────┘
+</code></pre>
 
-<strong>量產流程中的角色：</strong>
+<p><strong>量產流程中的角色：</strong></p>
 <ul>
 <li>影片→動作的「免轉換」備選方案</li>
 <li>精度不如最新方案但格式最友好</li>
@@ -222,7 +236,8 @@ wget [範例影片 URL]</code></pre>
 
 <h2>9. 總結評分</h2>
 
-<table><tr><th><th>項目</th><th>評分</th><th>說明</th></tr>
+<table>
+<tr><th>項目</th><th>評分</th><th>說明</th></tr>
 <tr><td>動作品質</td><td>⭐⭐⭐</td><td>可用但不如 SOTA</td></tr>
 <tr><td>易用性</td><td>⭐⭐</td><td>Linux only + 編譯安裝</td></tr>
 <tr><td>性價比</td><td>⭐⭐⭐⭐</td><td>免費開源</td></tr>
@@ -235,22 +250,22 @@ wget [範例影片 URL]</code></pre>
 
 <h2>10. 行動建議</h2>
 
-<ul>
+<ol>
 <li><strong>在 WSL/Linux 環境編譯測試</strong>：評估實際輸出品質</li>
 <li><strong>測試 OpenCV DNN 模式</strong>：迴避 OpenPose 商用授權問題</li>
 <li><strong>建立 BVH 品質比較基準</strong>：MocapNET vs Kimodo vs 手動製作</li>
 <li><strong>考慮作為備選方案</strong>：當有現成影片素材且 Kimodo prompt 難以描述時使用</li>
 <li><strong>關注後續更新</strong>：若 v4 出現可重新評估</li>
-</ul>
+</ol>
 
 <hr>
 
 <h2>參考資料</h2>
 
 <ul>
-<li>GitHub：https://github.com/FORTH-ModelBasedTracker/MocapNET</li>
-<li>FORTH 實驗室：http://amlab.ics.forth.gr/</li>
-<li>OpenPose 授權：https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/LICENSE</li>
+<li>GitHub：<a href="https://github.com/FORTH-ModelBasedTracker/MocapNET" target="_blank">https://github.com/FORTH-ModelBasedTracker/MocapNET</a></li>
+<li>FORTH 實驗室：<a href="http://amlab.ics.forth.gr/" target="_blank">http://amlab.ics.forth.gr/</a></li>
+<li>OpenPose 授權：<a href="https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/LICENSE" target="_blank">https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/LICENSE</a></li>
 </ul>
 
 </body>

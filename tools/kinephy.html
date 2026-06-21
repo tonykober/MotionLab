@@ -34,9 +34,9 @@ img{max-width:100%}
 
 <p>Kinephy 是一個 <strong>AI 物理驅動動畫生成平台</strong>，結合生成式 AI 與物理模擬技術，產生具有物理感知能力的全身動作。其核心差異化在於生成的動畫考慮重力、慣性、碰撞等物理規則，動作不會「漂浮」或「穿模」。</p>
 
-<strong>核心能力一句話</strong>：物理感知的 AI 動畫生成——動作自動遵守重力、慣性和碰撞規則。
+<p><strong>核心能力一句話</strong>：物理感知的 AI 動畫生成——動作自動遵守重力、慣性和碰撞規則。</p>
 
-<strong>解決的問題：</strong>
+<p><strong>解決的問題：</strong></p>
 <ul>
 <li>一般 AI 動作生成器（如 MDM、Kimodo）不考慮物理，動作可能不自然</li>
 <li>手動加入物理感需要 Ragdoll Dynamics 等後處理工具</li>
@@ -44,15 +44,14 @@ img{max-width:100%}
 <li>場景互動（角色與環境碰撞）需要額外處理</li>
 </ul>
 
-<div style="margin:1.2rem 0;text-align:center"></div>
 <hr>
-<img src="../images/kinephy.png" alt="kinephy" style="max-height:35vh;width:auto;border-radius:12px;margin-top:1rem;border:1px solid rgba(255,255,255,0.08)">
 
 <h2>2. 功能詳細說明</h2>
 
 <h3>功能矩陣</h3>
 
-<table><tr><th><th>功能</th><th>說明</th></tr>
+<table>
+<tr><th>功能</th><th>說明</th></tr>
 <tr><td>物理感知動畫生成</td><td>AI 動作考慮重力/慣性/碰撞</td></tr>
 <tr><td>場景互動</td><td>根據場景環境生成互動動作</td></tr>
 <tr><td>全身動作</td><td>涵蓋全身關節的完整動畫</td></tr>
@@ -63,7 +62,8 @@ img{max-width:100%}
 
 <h3>技術規格</h3>
 
-<table><tr><th><th>項目</th><th>規格</th></tr>
+<table>
+<tr><th>項目</th><th>規格</th></tr>
 <tr><td>平台</td><td>雲端 Web 應用</td></tr>
 <tr><td>AI 架構</td><td>物理模擬 + 生成式 AI（推測為 RL + Diffusion）</td></tr>
 <tr><td>輸入</td><td>文字描述 / 場景參數</td></tr>
@@ -77,32 +77,35 @@ img{max-width:100%}
 
 <h2>3. 官方影片/教學連結</h2>
 
-<table><tr><th><th>主題</th><th>連結</th></tr>
-<tr><td>官方網站</td><td>https://kinephy.ai/</td></tr>
+<table>
+<tr><th>主題</th><th>連結</th></tr>
+<tr><td>官方網站</td><td><a href="https://kinephy.ai/" target="_blank">https://kinephy.ai/</a></td></tr>
 <tr><td>產品 Demo（推測有）</td><td>官網內嵌</td></tr>
 </table>
 
-<strong>注意</strong>：Kinephy 仍在相對早期階段，公開教學資源有限。
+<p><strong>注意</strong>：Kinephy 仍在相對早期階段，公開教學資源有限。</p>
 
 <hr>
 
 <h2>4. 安裝/使用流程</h2>
 
 <h3>使用步驟</h3>
-<ul>
-<li>前往 https://kinephy.ai/ 註冊帳號</li>
+<ol>
+<li>前往 <a href="https://kinephy.ai/" target="_blank">https://kinephy.ai/</a> 註冊帳號</li>
 <li>選擇訂閱方案</li>
 <li>在 Web 介面中描述動作需求：</li>
-</ul>
-<p>   - 文字描述動作內容</p>
-<p>   - 指定場景環境（可選）</p>
-<p>   - 設定物理參數（重力、摩擦等）</p>
+</ol>
 <ul>
+<li>文字描述動作內容</li>
+<li>指定場景環境（可選）</li>
+<li>設定物理參數（重力、摩擦等）</li>
+</ul>
+<ol>
 <li>AI 雲端生成動畫</li>
 <li>在平台內 3D 預覽</li>
 <li>編輯微調（如需要）</li>
 <li>匯出動畫檔案至本地</li>
-</ul>
+</ol>
 
 <h3>無需安裝</h3>
 <ul>
@@ -114,13 +117,14 @@ img{max-width:100%}
 
 <h2>5. 定價與授權</h2>
 
-<table><tr><th><th>方案</th><th>價格</th><th>說明</th></tr>
+<table>
+<tr><th>方案</th><th>價格</th><th>說明</th></tr>
 <tr><td>基礎方案</td><td>~$15/月 起</td><td>有限生成次數</td></tr>
 <tr><td>Pro 方案</td><td>估計 $30-50/月</td><td>更多次數 + 進階功能</td></tr>
 <tr><td>Enterprise</td><td>客製</td><td>大量使用 + API 存取</td></tr>
 </table>
 
-<strong>商用授權說明：</strong>
+<p><strong>商用授權說明：</strong></p>
 <ul>
 <li>付費即可商用（推測，需確認 ToS）</li>
 <li>雲端 SaaS 模式，按用量計費</li>
@@ -155,7 +159,8 @@ img{max-width:100%}
 
 <h2>7. 與 Kimodo 的整合可能性</h2>
 
-<table><tr><th><th>比較項目</th><th>Kinephy</th><th>Kimodo</th></tr>
+<table>
+<tr><th>比較項目</th><th>Kinephy</th><th>Kimodo</th></tr>
 <tr><td>AI 架構</td><td>物理+生成式</td><td>純生成式（Diffusion）</td></tr>
 <tr><td>物理感知</td><td>✅ 核心賣點</td><td>❌ 需後處理</td></tr>
 <tr><td>輸入</td><td>文字+場景</td><td>文字 prompt</td></tr>
@@ -167,12 +172,14 @@ img{max-width:100%}
 
 <h3>推薦整合方式</h3>
 
-<pre><code>場景互動動作（爬/跳/靠牆）→ 考慮 Kinephy
+<pre><code>
+場景互動動作（爬/跳/靠牆）→ 考慮 Kinephy
 一般移動/戰鬥/日常動作    → Kimodo
 
 或：
 [Kimodo 生成基礎動作] → [Ragdoll Dynamics 加物理感] → [引擎]
-（不使用 Kinephy，用現有工具達成類似效果）</code></pre>
+（不使用 Kinephy，用現有工具達成類似效果）
+</code></pre>
 
 <p>目前 Kinephy 成熟度不足，建議<strong>觀望</strong>為主。</p>
 
@@ -182,14 +189,16 @@ img{max-width:100%}
 
 <h3>定位：<strong>觀望中的未來工具——物理感知 AI 動畫的新方向</strong></h3>
 
-<pre><code>當前路線（成熟）：
+<pre><code>
+當前路線（成熟）：
 [Kimodo] → [BVH] → [Ragdoll 物理後處理] → [ARP] → [引擎]
 
 未來可能路線（待 Kinephy 成熟）：
 [Kinephy] → [含物理感的動畫] → [直接可用] → [引擎]
-（省去 Ragdoll 步驟）</code></pre>
+（省去 Ragdoll 步驟）
+</code></pre>
 
-<strong>量產流程中的角色：</strong>
+<p><strong>量產流程中的角色：</strong></p>
 <ul>
 <li>目前：純觀望，不納入工具鏈</li>
 <li>未來：若品質和格式支援到位，可能取代 Kimodo + Ragdoll 的組合</li>
@@ -200,7 +209,8 @@ img{max-width:100%}
 
 <h2>9. 總結評分</h2>
 
-<table><tr><th><th>項目</th><th>評分</th><th>說明</th></tr>
+<table>
+<tr><th>項目</th><th>評分</th><th>說明</th></tr>
 <tr><td>技術願景</td><td>⭐⭐⭐⭐⭐</td><td>物理+AI 整合是正確方向</td></tr>
 <tr><td>當前可用性</td><td>⭐⭐</td><td>早期階段，不穩定</td></tr>
 <tr><td>性價比</td><td>⭐⭐⭐</td><td>訂閱制，待確認</td></tr>
@@ -213,20 +223,20 @@ img{max-width:100%}
 
 <h2>10. 行動建議</h2>
 
-<ul>
+<ol>
 <li><strong>純觀望</strong>：目前不投入時間整合</li>
 <li><strong>每季度關注一次</strong>：觀察產品更新和品質進展</li>
 <li><strong>等待輸出格式確認</strong>：BVH 支援是否完善</li>
 <li><strong>比較效益</strong>：Kimodo + Ragdoll 已能達成類似效果</li>
 <li><strong>記錄為「未來潛力工具」</strong>：待成熟後重新評估</li>
-</ul>
+</ol>
 
 <hr>
 
 <h2>參考資料</h2>
 
 <ul>
-<li>官方網站：https://kinephy.ai/</li>
+<li>官方網站：<a href="https://kinephy.ai/" target="_blank">https://kinephy.ai/</a></li>
 </ul>
 
 </body>
