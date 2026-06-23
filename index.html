@@ -18,12 +18,9 @@ h1{color:var(--white);font-size:2.6rem;font-weight:800;text-align:center;margin-
 .card .icon{font-size:1.5rem}
 .card .title{color:var(--white);font-size:1.1rem;font-weight:700}
 .card .desc{color:#a0b0c4;font-size:.82rem;line-height:1.5}
-.card .tag{display:inline-block;margin-top:.5rem;padding:3px 10px;border-radius:4px;font-size:.75rem;background:rgba(139,92,246,0.18);color:#c4b5fd;border:1px solid rgba(139,92,246,0.35)}
-
 .add-card{background:transparent;border:2px dashed rgba(255,255,255,0.2);border-radius:12px;padding:1.4rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .25s;min-height:120px}
 .add-card:hover{border-color:rgba(139,92,246,0.5);background:rgba(139,92,246,0.08)}
 .add-card span{color:#8899b0;font-size:1.5rem}
-
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);display:none;align-items:center;justify-content:center;z-index:1000;backdrop-filter:blur(4px)}
 .modal-overlay.visible{display:flex}
 .modal{background:#1a2030;border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:2rem;width:90%;max-width:450px}
@@ -38,10 +35,8 @@ h1{color:var(--white);font-size:2.6rem;font-weight:800;text-align:center;margin-
 .btn-save:disabled{opacity:.5;cursor:not-allowed}
 .modal .msg{font-size:.8rem;margin-top:.8rem;color:#f87171}
 .modal .msg.ok{color:#4ade80}
-
 .token-section{margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,0.05)}
 .token-section summary{color:#6b7a8d;font-size:.8rem;cursor:pointer}
-
 footer{text-align:center;margin-top:4rem;color:#4a5568;font-size:.8rem}
 @media(max-width:600px){body{padding:2rem 1rem}.cards{grid-template-columns:1fr}h1{font-size:2rem}}
 </style>
@@ -53,7 +48,6 @@ footer{text-align:center;margin-top:4rem;color:#4a5568;font-size:.8rem}
 <div class="cards" id="cardsGrid"></div>
 <footer>MotionLab — AI Motion Research & Production</footer>
 </div>
-
 <div class="modal-overlay" id="modal">
 <div class="modal">
 <h2>新增卡片</h2>
@@ -65,8 +59,6 @@ footer{text-align:center;margin-top:4rem;color:#4a5568;font-size:.8rem}
 <input id="fUrl" placeholder="page.html 或 https://...">
 <label>描述</label>
 <textarea id="fDesc" placeholder="簡短說明"></textarea>
-<label>標籤</label>
-<input id="fTag" placeholder="分類標籤">
 <details class="token-section" style="display:none">
 <summary>GitHub Token</summary>
 <input id="fToken" type="password" style="margin-top:.5rem">
@@ -78,16 +70,13 @@ footer{text-align:center;margin-top:4rem;color:#4a5568;font-size:.8rem}
 </div>
 </div>
 </div>
-
 <script>
 const REPO = 'tonykober/MotionLab';
 const FILE = 'cards.json';
 const BRANCH = 'main';
 const TOKEN = ['github_pat_11AUOOSNQ0','GRg4bFQ6nwPI_ElIKca4mF3C','cq96JT0NgOIueNzgWcD3LSfn2v85xd5e','KZV33BA5yi3aceph'].join('');
-
 let cards = [];
 let fileSha = '';
-
 async function loadCards() {
   try {
     const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE}?ref=${BRANCH}&t=${Date.now()}`, {
@@ -101,7 +90,6 @@ async function loadCards() {
   }
   render();
 }
-
 function render() {
   const grid = document.getElementById('cardsGrid');
   grid.innerHTML = cards.map((c,i) => `
@@ -109,14 +97,12 @@ function render() {
       <a href="${c.url}" style="text-decoration:none;display:flex;flex-direction:column;gap:.6rem;flex:1">
         <div class="top"><span class="icon">${c.icon}</span><span class="title">${c.title}</span></div>
         <span class="desc">${c.desc}</span>
-        <span class="tag">${c.tag}</span>
       </a>
       <button onclick="event.preventDefault();event.stopPropagation();editCard(${i})" style="position:absolute;top:4px;right:28px;background:none;border:none;color:#8899b0;cursor:pointer;font-size:14px;padding:2px 4px;z-index:2" title="編輯">✎</button>
       <button onclick="event.preventDefault();event.stopPropagation();deleteCard(${i})" style="position:absolute;top:4px;right:4px;background:none;border:none;color:#8899b0;cursor:pointer;font-size:14px;padding:2px 4px;z-index:2" title="刪除">✕</button>
     </div>
   `).join('') + `<div class="add-card" onclick="openModal()"><span>＋</span></div>`;
 }
-
 async function deleteCard(idx) {
   if (!confirm(`確定刪除「${cards[idx].title}」？`)) return;
   const token = TOKEN;
@@ -127,36 +113,29 @@ async function deleteCard(idx) {
     const getData = await getRes.json();
     fileSha = getData.sha;
     const remoteCards = JSON.parse(decodeURIComponent(escape(atob(getData.content.replace(/\n/g,'')))));
-
     const titleToDelete = cards[idx].title;
     const newCards = remoteCards.filter(c => c.title !== titleToDelete);
     const content = btoa(unescape(encodeURIComponent(JSON.stringify(newCards, null, 2) + '\n')));
-
     const putRes = await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE}`, {
       method: 'PUT',
       headers: { Authorization: `token ${token}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({ message: `remove: 刪除卡片「${cards[idx].title}」`, content, sha: fileSha, branch: BRANCH })
     });
     if (!putRes.ok) throw new Error((await putRes.json()).message);
-
     cards = newCards;
     render();
   } catch(e) { alert('刪除失敗：' + e.message); }
 }
-
 let editIdx = -1;
-
 function openModal() {
   editIdx = -1;
   document.getElementById('fIcon').value = '';
   document.getElementById('fTitle').value = '';
   document.getElementById('fUrl').value = '';
   document.getElementById('fDesc').value = '';
-  document.getElementById('fTag').value = '';
   document.getElementById('msg').textContent = '';
   document.getElementById('modal').classList.add('visible');
 }
-
 function editCard(idx) {
   editIdx = idx;
   const c = cards[idx];
@@ -164,30 +143,24 @@ function editCard(idx) {
   document.getElementById('fTitle').value = c.title;
   document.getElementById('fUrl').value = c.url;
   document.getElementById('fDesc').value = c.desc;
-  document.getElementById('fTag').value = c.tag;
   document.getElementById('msg').textContent = '';
   document.getElementById('modal').classList.add('visible');
 }
-
 function closeModal() {
   document.getElementById('modal').classList.remove('visible');
   document.getElementById('msg').textContent = '';
   editIdx = -1;
 }
-
 async function saveCard() {
   const icon = document.getElementById('fIcon').value.trim() || '📄';
   const title = document.getElementById('fTitle').value.trim();
   const url = document.getElementById('fUrl').value.trim();
   const desc = document.getElementById('fDesc').value.trim();
-  const tag = document.getElementById('fTag').value.trim() || '頁面';
   const token = TOKEN;
   const msg = document.getElementById('msg');
-
   if (!title || !url) { msg.textContent = '標題和連結為必填'; msg.className='msg'; return; }
   document.getElementById('saveBtn').disabled = true;
   msg.textContent = '儲存中...'; msg.className = 'msg ok';
-
   try {
     // Get current file content and SHA from GitHub
     const getRes = await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE}?ref=${BRANCH}&t=${Date.now()}`, {
@@ -197,27 +170,23 @@ async function saveCard() {
     fileSha = getData.sha;
     // Decode current cards from GitHub (source of truth)
     const remoteCards = JSON.parse(decodeURIComponent(escape(atob(getData.content.replace(/\n/g,'')))));
-
     // Add or update card
     let newCards;
     if (editIdx >= 0) {
       newCards = [...remoteCards];
-      newCards[editIdx] = {icon, title, desc, url, tag};
+      newCards[editIdx] = {icon, title, desc, url};
     } else {
-      newCards = [...remoteCards, {icon, title, desc, url, tag}];
+      newCards = [...remoteCards, {icon, title, desc, url}];
     }
     const commitMsg = editIdx >= 0 ? `edit: 修改卡片「${title}」` : `feat: 新增卡片「${title}」`;
     const content = btoa(unescape(encodeURIComponent(JSON.stringify(newCards, null, 2) + '\n')));
-
     // Update file
     const putRes = await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE}`, {
       method: 'PUT',
       headers: { Authorization: `token ${token}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({ message: commitMsg, content, sha: fileSha, branch: BRANCH })
     });
-
     if (!putRes.ok) throw new Error((await putRes.json()).message);
-
     msg.textContent = '✅ 已儲存！'; msg.className = 'msg ok';
     cards = newCards;
     render();
@@ -227,7 +196,6 @@ async function saveCard() {
   }
   document.getElementById('saveBtn').disabled = false;
 }
-
 loadCards();
 </script>
 </body>
