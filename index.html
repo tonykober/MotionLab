@@ -11,12 +11,12 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans TC','Inter',-
 .container{max-width:900px;margin:0 auto}
 h1{color:var(--white);font-size:2.6rem;font-weight:800;text-align:center;margin-bottom:.5rem}
 .subtitle{text-align:center;color:#6b7a8d;margin-bottom:3rem;font-size:1rem}
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:1.5rem}
-.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2rem;text-decoration:none;transition:all .25s;display:flex;flex-direction:column;gap:.8rem}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.4rem;text-decoration:none;transition:all .25s;display:flex;flex-direction:column;gap:.6rem}
 .card:hover{border-color:rgba(139,92,246,0.4);transform:translateY(-4px);box-shadow:0 12px 40px rgba(99,102,241,0.1)}
-.card .icon{font-size:2.2rem}
-.card .title{color:var(--white);font-size:1.3rem;font-weight:700}
-.card .desc{color:#8090a8;font-size:.9rem;line-height:1.6}
+.card .icon{font-size:1.8rem}
+.card .title{color:var(--white);font-size:1.1rem;font-weight:700}
+.card .desc{color:#8090a8;font-size:.82rem;line-height:1.5}
 .card .tag{display:inline-block;margin-top:.5rem;padding:3px 10px;border-radius:4px;font-size:.75rem;background:rgba(139,92,246,0.12);color:#a78bfa;border:1px solid rgba(139,92,246,0.2)}
 footer{text-align:center;margin-top:4rem;color:#4a5568;font-size:.8rem}
 @media(max-width:600px){body{padding:2rem 1rem}.cards{grid-template-columns:1fr}h1{font-size:2rem}}
