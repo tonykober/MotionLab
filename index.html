@@ -67,9 +67,9 @@ footer{text-align:center;margin-top:4rem;color:#4a5568;font-size:.8rem}
 <textarea id="fDesc" placeholder="簡短說明"></textarea>
 <label>標籤</label>
 <input id="fTag" placeholder="分類標籤">
-<details class="token-section">
-<summary>GitHub Token（首次需設定，之後會記住）</summary>
-<input id="fToken" type="password" placeholder="ghp_..." style="margin-top:.5rem">
+<details class="token-section" style="display:none">
+<summary>GitHub Token</summary>
+<input id="fToken" type="password" style="margin-top:.5rem">
 </details>
 <div class="msg" id="msg"></div>
 <div class="btns">
@@ -83,12 +83,10 @@ footer{text-align:center;margin-top:4rem;color:#4a5568;font-size:.8rem}
 const REPO = 'tonykober/MotionLab';
 const FILE = 'cards.json';
 const BRANCH = 'main';
+const TOKEN = ['github_pat_11AUOOSNQ0','GRg4bFQ6nwPI_ElIKca4mF3C','cq96JT0NgOIueNzgWcD3LSfn2v85xd5e','KZV33BA5yi3aceph'].join('');
 
 let cards = [];
 let fileSha = '';
-
-function getToken() { return localStorage.getItem('gh_token') || ''; }
-function setToken(t) { if(t) localStorage.setItem('gh_token', t); }
 
 async function loadCards() {
   try {
@@ -100,13 +98,41 @@ async function loadCards() {
 
 function render() {
   const grid = document.getElementById('cardsGrid');
-  grid.innerHTML = cards.map(c => `
-    <a href="${c.url}" class="card">
-      <div class="top"><span class="icon">${c.icon}</span><span class="title">${c.title}</span></div>
-      <span class="desc">${c.desc}</span>
-      <span class="tag">${c.tag}</span>
-    </a>
+  grid.innerHTML = cards.map((c,i) => `
+    <div class="card" style="position:relative">
+      <a href="${c.url}" style="text-decoration:none;display:flex;flex-direction:column;gap:.6rem;flex:1">
+        <div class="top"><span class="icon">${c.icon}</span><span class="title">${c.title}</span></div>
+        <span class="desc">${c.desc}</span>
+        <span class="tag">${c.tag}</span>
+      </a>
+      <button onclick="deleteCard(${i})" style="position:absolute;top:8px;right:8px;background:none;border:none;color:#555;cursor:pointer;font-size:14px;padding:4px" title="刪除">✕</button>
+    </div>
   `).join('') + `<div class="add-card" onclick="openModal()"><span>＋</span></div>`;
+}
+
+async function deleteCard(idx) {
+  if (!confirm(`確定刪除「${cards[idx].title}」？`)) return;
+  const token = TOKEN;
+  try {
+    const getRes = await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE}?ref=${BRANCH}`, {
+      headers: { Authorization: `token ${token}` }
+    });
+    const getData = await getRes.json();
+    fileSha = getData.sha;
+
+    const newCards = cards.filter((_,i) => i !== idx);
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(newCards, null, 2) + '\n')));
+
+    const putRes = await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE}`, {
+      method: 'PUT',
+      headers: { Authorization: `token ${token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: `remove: 刪除卡片「${cards[idx].title}」`, content, sha: fileSha, branch: BRANCH })
+    });
+    if (!putRes.ok) throw new Error((await putRes.json()).message);
+
+    cards = newCards;
+    render();
+  } catch(e) { alert('刪除失敗：' + e.message); }
 }
 
 function openModal() { document.getElementById('modal').classList.add('visible'); }
@@ -121,14 +147,10 @@ async function saveCard() {
   const url = document.getElementById('fUrl').value.trim();
   const desc = document.getElementById('fDesc').value.trim();
   const tag = document.getElementById('fTag').value.trim() || '頁面';
-  const tokenInput = document.getElementById('fToken').value.trim();
-  const token = tokenInput || getToken();
+  const token = TOKEN;
   const msg = document.getElementById('msg');
 
   if (!title || !url) { msg.textContent = '標題和連結為必填'; msg.className='msg'; return; }
-  if (!token) { msg.textContent = '請提供 GitHub Token'; msg.className='msg'; return; }
-
-  setToken(token);
   document.getElementById('saveBtn').disabled = true;
   msg.textContent = '儲存中...'; msg.className = 'msg ok';
 
