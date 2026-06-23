@@ -111,8 +111,8 @@ function render() {
         <span class="desc">${c.desc}</span>
         <span class="tag">${c.tag}</span>
       </a>
-      <button onclick="event.preventDefault();event.stopPropagation();editCard(${i})" style="position:absolute;top:8px;right:32px;background:none;border:none;color:#8899b0;cursor:pointer;font-size:14px;padding:4px;z-index:2" title="編輯">✎</button>
-      <button onclick="event.preventDefault();event.stopPropagation();deleteCard(${i})" style="position:absolute;top:8px;right:8px;background:none;border:none;color:#8899b0;cursor:pointer;font-size:14px;padding:4px;z-index:2" title="刪除">✕</button>
+      <button onclick="event.preventDefault();event.stopPropagation();editCard(${i})" style="position:absolute;top:4px;right:28px;background:none;border:none;color:#8899b0;cursor:pointer;font-size:14px;padding:2px 4px;z-index:2" title="編輯">✎</button>
+      <button onclick="event.preventDefault();event.stopPropagation();deleteCard(${i})" style="position:absolute;top:4px;right:4px;background:none;border:none;color:#8899b0;cursor:pointer;font-size:14px;padding:2px 4px;z-index:2" title="刪除">✕</button>
     </div>
   `).join('') + `<div class="add-card" onclick="openModal()"><span>＋</span></div>`;
 }
