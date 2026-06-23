@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>動作資料庫 — 專案說明</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; overflow: hidden; background: #0a0a0f; color: #e0e0e0; font-family: -apple-system, 'Noto Sans TC', sans-serif; }
+
+.presentation { width: 100%; height: 100%; display: flex; flex-direction: column; }
+
+.slide-container { flex: 1; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+
+.slide { position: absolute; opacity: 0; transition: opacity 0.4s ease; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+.slide.active { opacity: 1; }
+.slide img { max-width: 95%; max-height: 90%; object-fit: contain; border-radius: 4px; box-shadow: 0 8px 40px rgba(0,0,0,0.6); }
+
+.notes-toggle { position: fixed; bottom: 60px; right: 20px; z-index: 100; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 14px; border-radius: 6px; cursor: pointer; font-size: 13px; backdrop-filter: blur(8px); }
+.notes-toggle:hover { background: rgba(255,255,255,0.2); }
+
+.notes-panel { position: fixed; bottom: 60px; left: 50%; transform: translateX(-50%); max-width: 700px; width: 90%; max-height: 30vh; overflow-y: auto; background: rgba(20,20,30,0.95); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 20px; font-size: 14px; line-height: 1.7; backdrop-filter: blur(12px); display: none; z-index: 99; }
+.notes-panel.visible { display: block; }
+
+.controls { height: 50px; display: flex; align-items: center; justify-content: center; gap: 16px; background: rgba(15,15,25,0.9); border-top: 1px solid rgba(255,255,255,0.05); }
+.controls button { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #ccc; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+.controls button:hover { background: rgba(255,255,255,0.15); color: #fff; }
+.page-indicator { font-size: 13px; color: #888; min-width: 60px; text-align: center; }
+
+.progress { height: 3px; background: rgba(255,255,255,0.05); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, #6366f1, #8b5cf6); transition: width 0.3s ease; }
+
+.back-btn { position: fixed; top: 16px; left: 16px; z-index: 100; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #aaa; padding: 6px 12px; border-radius: 6px; text-decoration: none; font-size: 13px; }
+.back-btn:hover { background: rgba(255,255,255,0.15); color: #fff; }
+</style>
+</head>
+<body>
+<a href="index.html" class="back-btn">← MotionLab</a>
+<div class="presentation">
+  <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+  <div class="slide-container" id="slideContainer"></div>
+  <div class="controls">
+    <button id="prevBtn">◀</button>
+    <span class="page-indicator" id="pageIndicator"></span>
+    <button id="nextBtn">▶</button>
+  </div>
+</div>
+<button class="notes-toggle" id="notesToggle">📝 講者備註</button>
+<div class="notes-panel" id="notesPanel"></div>
+
+<script>
+const slidesData = [
+  {image:"images/action-db/slide_1.webp",notes:"這個專案的核心，是把競品卡片立繪中的角色動作提取出來，轉成 AI 產圖可以使用的參考庫。它要解決的是卡片立繪常見的動作單一化問題，讓後續角色產出不只是換造型，而是能在姿勢、動態和角色氣質上有更多差異。"},
+  {image:"images/action-db/slide_2.webp",notes:"目前 AI 產出的卡片立繪容易出現姿勢相似、動作變化不足的問題。解法是建立一個動作參考資料庫，讓 AI 在產圖前能先匹配合適的動作依據。這樣可以提升動作多樣性，也能降低後續反覆修改的成本。"},
+  {image:"images/action-db/slide_3.webp",notes:"整體流程分成兩層。上層是資料庫建置，從 953 張素材開始，經過 AI 篩選、Pose 和 Depth 提取、分類標注，最後形成語意索引。下層是實際使用流程，輸入角色介紹文字後，系統做語意匹配，再交給 GPT Image 2 產出更精準且多樣的卡片立繪。"},
+  {image:"images/action-db/slide_4.webp",notes:"資料庫不是單純存圖片，而是把動作、武器、性格和語意描述一起結構化。每筆資料會包含 Pose Map、Depth Map、自然語言描述和分類標籤，之後就能透過語意搜尋找到適合角色設定的動作參考。"},
+  {image:"images/action-db/slide_5.webp",notes:"目前規劃的資料量級包括 953 張原始素材，預估 300 張以上可入庫，並整理成 12 類武器分類和 7 種性格氣質。主要產出物包含 Pose Map、Depth Map、索引總表和使用 SOP，這些會構成後續批量產圖的基礎資產。"},
+  {image:"images/action-db/slide_6.webp",notes:"執行上會盡量由 AI Agent 自動完成。前六個階段涵蓋資料篩選、動作分級、姿態提取、深度生成、畫面補全、標註與索引建置；最後一階段保留人工品質確認，確保資料能真正服務後續立繪生產。"}
+];
+
+let current = 0, notesVisible = false;
+const container = document.getElementById('slideContainer');
+
+slidesData.forEach((s, i) => {
+  const div = document.createElement('div');
+  div.className = 'slide' + (i === 0 ? ' active' : '');
+  div.innerHTML = `<img src="${s.image}" alt="Slide ${i+1}">`;
+  container.appendChild(div);
+});
+
+function goTo(n) {
+  if (n < 0 || n >= slidesData.length) return;
+  document.querySelectorAll('.slide')[current].classList.remove('active');
+  current = n;
+  document.querySelectorAll('.slide')[current].classList.add('active');
+  document.getElementById('pageIndicator').textContent = `${current+1} / ${slidesData.length}`;
+  document.getElementById('progressBar').style.width = `${((current+1)/slidesData.length)*100}%`;
+  document.getElementById('notesPanel').textContent = slidesData[current].notes;
+}
+
+document.getElementById('prevBtn').onclick = () => goTo(current - 1);
+document.getElementById('nextBtn').onclick = () => goTo(current + 1);
+document.getElementById('notesToggle').onclick = () => {
+  notesVisible = !notesVisible;
+  document.getElementById('notesPanel').classList.toggle('visible', notesVisible);
+};
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); goTo(current + 1); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1); }
+  if (e.key === 'n') document.getElementById('notesToggle').click();
+});
+
+let touchX = 0;
+container.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; });
+container.addEventListener('touchend', e => {
+  const diff = e.changedTouches[0].clientX - touchX;
+  if (Math.abs(diff) > 50) diff > 0 ? goTo(current-1) : goTo(current+1);
+});
+
+goTo(0);
+</script>
+</body>
+</html>
