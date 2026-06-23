@@ -5,24 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MotionLab</title>
 <style>
-:root{--bg:#0f1219;--card:rgba(25,32,48,0.7);--border:rgba(255,255,255,0.08);--text:#c0cad8;--white:#f0f4f8;--accent:#8b5cf6;--accent2:#6366f1;--gold:#f5a623}
+:root{--bg:#0f1219;--card:rgba(35,45,65,0.85);--border:rgba(255,255,255,0.15);--text:#d8e0ea;--white:#ffffff;--accent:#8b5cf6;--accent2:#6366f1;--gold:#f5a623}
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--text);font-family:'Noto Sans TC','Inter',-apple-system,sans-serif;min-height:100vh;padding:3rem 2rem}
 .container{max-width:900px;margin:0 auto}
 h1{color:var(--white);font-size:2.6rem;font-weight:800;text-align:center;margin-bottom:.5rem}
 .subtitle{text-align:center;color:#6b7a8d;margin-bottom:3rem;font-size:1rem}
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
-.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.4rem;text-decoration:none;transition:all .25s;display:flex;flex-direction:column;gap:.6rem}
-.card:hover{border-color:rgba(139,92,246,0.4);transform:translateY(-4px);box-shadow:0 12px 40px rgba(99,102,241,0.1)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.4rem;text-decoration:none;transition:all .25s;display:flex;flex-direction:column;gap:.6rem;box-shadow:0 4px 16px rgba(0,0,0,0.3)}
+.card:hover{border-color:rgba(139,92,246,0.5);transform:translateY(-4px);box-shadow:0 12px 40px rgba(99,102,241,0.15)}
 .card .top{display:flex;align-items:center;gap:.5rem}
 .card .icon{font-size:1.5rem}
 .card .title{color:var(--white);font-size:1.1rem;font-weight:700}
-.card .desc{color:#8090a8;font-size:.82rem;line-height:1.5}
-.card .tag{display:inline-block;margin-top:.5rem;padding:3px 10px;border-radius:4px;font-size:.75rem;background:rgba(139,92,246,0.12);color:#a78bfa;border:1px solid rgba(139,92,246,0.2)}
+.card .desc{color:#a0b0c4;font-size:.82rem;line-height:1.5}
+.card .tag{display:inline-block;margin-top:.5rem;padding:3px 10px;border-radius:4px;font-size:.75rem;background:rgba(139,92,246,0.18);color:#c4b5fd;border:1px solid rgba(139,92,246,0.35)}
 
-.add-card{background:transparent;border:2px dashed rgba(255,255,255,0.1);border-radius:12px;padding:1.4rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .25s;min-height:120px}
-.add-card:hover{border-color:rgba(139,92,246,0.4);background:rgba(139,92,246,0.05)}
-.add-card span{color:#6b7a8d;font-size:1.5rem}
+.add-card{background:transparent;border:2px dashed rgba(255,255,255,0.2);border-radius:12px;padding:1.4rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .25s;min-height:120px}
+.add-card:hover{border-color:rgba(139,92,246,0.5);background:rgba(139,92,246,0.08)}
+.add-card span{color:#8899b0;font-size:1.5rem}
 
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);display:none;align-items:center;justify-content:center;z-index:1000;backdrop-filter:blur(4px)}
 .modal-overlay.visible{display:flex}
@@ -111,8 +111,8 @@ function render() {
         <span class="desc">${c.desc}</span>
         <span class="tag">${c.tag}</span>
       </a>
-      <button onclick="event.preventDefault();event.stopPropagation();editCard(${i})" style="position:absolute;top:8px;right:32px;background:none;border:none;color:#555;cursor:pointer;font-size:13px;padding:4px;z-index:2" title="編輯">✎</button>
-      <button onclick="event.preventDefault();event.stopPropagation();deleteCard(${i})" style="position:absolute;top:8px;right:8px;background:none;border:none;color:#555;cursor:pointer;font-size:14px;padding:4px;z-index:2" title="刪除">✕</button>
+      <button onclick="event.preventDefault();event.stopPropagation();editCard(${i})" style="position:absolute;top:8px;right:32px;background:none;border:none;color:#8899b0;cursor:pointer;font-size:14px;padding:4px;z-index:2" title="編輯">✎</button>
+      <button onclick="event.preventDefault();event.stopPropagation();deleteCard(${i})" style="position:absolute;top:8px;right:8px;background:none;border:none;color:#8899b0;cursor:pointer;font-size:14px;padding:4px;z-index:2" title="刪除">✕</button>
     </div>
   `).join('') + `<div class="add-card" onclick="openModal()"><span>＋</span></div>`;
 }
