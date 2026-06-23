@@ -105,7 +105,7 @@ function render() {
         <span class="desc">${c.desc}</span>
         <span class="tag">${c.tag}</span>
       </a>
-      <button onclick="deleteCard(${i})" style="position:absolute;top:8px;right:8px;background:none;border:none;color:#555;cursor:pointer;font-size:14px;padding:4px" title="刪除">✕</button>
+      <button onclick="event.preventDefault();event.stopPropagation();deleteCard(${i})" style="position:absolute;top:8px;right:8px;background:none;border:none;color:#555;cursor:pointer;font-size:14px;padding:4px;z-index:2" title="刪除">✕</button>
     </div>
   `).join('') + `<div class="add-card" onclick="openModal()"><span>＋</span></div>`;
 }
@@ -137,7 +137,15 @@ async function deleteCard(idx) {
   } catch(e) { alert('刪除失敗：' + e.message); }
 }
 
-function openModal() { document.getElementById('modal').classList.add('visible'); }
+function openModal() {
+  document.getElementById('fIcon').value = '';
+  document.getElementById('fTitle').value = '';
+  document.getElementById('fUrl').value = '';
+  document.getElementById('fDesc').value = '';
+  document.getElementById('fTag').value = '';
+  document.getElementById('msg').textContent = '';
+  document.getElementById('modal').classList.add('visible');
+}
 function closeModal() {
   document.getElementById('modal').classList.remove('visible');
   document.getElementById('msg').textContent = '';
