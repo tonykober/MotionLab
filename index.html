@@ -90,9 +90,15 @@ let fileSha = '';
 
 async function loadCards() {
   try {
-    const res = await fetch(`cards.json?t=${Date.now()}`);
-    cards = await res.json();
-  } catch(e) { cards = []; }
+    const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE}?ref=${BRANCH}`, {
+      headers: { Authorization: `token ${TOKEN}` }
+    });
+    const data = await res.json();
+    fileSha = data.sha;
+    cards = JSON.parse(decodeURIComponent(escape(atob(data.content.replace(/\n/g,'')))));
+  } catch(e) {
+    try { const r = await fetch(`cards.json?t=${Date.now()}`); cards = await r.json(); } catch(e2) { cards = []; }
+  }
   render();
 }
 
