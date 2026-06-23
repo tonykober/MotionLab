@@ -19,6 +19,29 @@ h1{color:var(--white);font-size:2.6rem;font-weight:800;text-align:center;margin-
 .card .title{color:var(--white);font-size:1.1rem;font-weight:700}
 .card .desc{color:#8090a8;font-size:.82rem;line-height:1.5}
 .card .tag{display:inline-block;margin-top:.5rem;padding:3px 10px;border-radius:4px;font-size:.75rem;background:rgba(139,92,246,0.12);color:#a78bfa;border:1px solid rgba(139,92,246,0.2)}
+
+.add-card{background:transparent;border:2px dashed rgba(255,255,255,0.1);border-radius:12px;padding:1.4rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .25s;min-height:120px}
+.add-card:hover{border-color:rgba(139,92,246,0.4);background:rgba(139,92,246,0.05)}
+.add-card span{color:#6b7a8d;font-size:1.5rem}
+
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);display:none;align-items:center;justify-content:center;z-index:1000;backdrop-filter:blur(4px)}
+.modal-overlay.visible{display:flex}
+.modal{background:#1a2030;border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:2rem;width:90%;max-width:450px}
+.modal h2{color:var(--white);font-size:1.3rem;margin-bottom:1.2rem}
+.modal label{display:block;color:#8090a8;font-size:.8rem;margin-bottom:.3rem;margin-top:.8rem}
+.modal input,.modal textarea{width:100%;padding:8px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);background:rgba(0,0,0,0.3);color:var(--white);font-size:.9rem;font-family:inherit}
+.modal textarea{height:60px;resize:vertical}
+.modal .btns{display:flex;gap:.8rem;margin-top:1.5rem;justify-content:flex-end}
+.modal .btn{padding:8px 18px;border-radius:6px;border:none;cursor:pointer;font-size:.85rem;font-weight:600}
+.btn-cancel{background:rgba(255,255,255,0.08);color:#aaa}
+.btn-save{background:var(--accent);color:#fff}
+.btn-save:disabled{opacity:.5;cursor:not-allowed}
+.modal .msg{font-size:.8rem;margin-top:.8rem;color:#f87171}
+.modal .msg.ok{color:#4ade80}
+
+.token-section{margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,0.05)}
+.token-section summary{color:#6b7a8d;font-size:.8rem;cursor:pointer}
+
 footer{text-align:center;margin-top:4rem;color:#4a5568;font-size:.8rem}
 @media(max-width:600px){body{padding:2rem 1rem}.cards{grid-template-columns:1fr}h1{font-size:2rem}}
 </style>
@@ -27,30 +50,120 @@ footer{text-align:center;margin-top:4rem;color:#4a5568;font-size:.8rem}
 <div class="container">
 <h1>⚡ MotionLab</h1>
 <p class="subtitle">AI 動作研究與生產工具集</p>
-
-<div class="cards">
-
-<a href="ai-motion-tools.html" class="card">
-<div class="top"><span class="icon">🎬</span><span class="title">AI 動作工具調研</span></div>
-<span class="desc">42 款 AI 動作相關工具完整調研 — 涵蓋 AI Mocap、動作生成、重定向、物理模擬等類別</span>
-<span class="tag">調研報告</span>
-</a>
-
-<a href="action-db.html" class="card">
-<div class="top"><span class="icon">🗂️</span><span class="title">動作資料庫：專案說明</span></div>
-<span class="desc">從競品卡片立繪提取角色動作，建立 AI 產圖可用的 Pose/Depth 參考資料庫</span>
-<span class="tag">專案簡報</span>
-</a>
-
-<a href="action-plan.html" class="card">
-<div class="top"><span class="icon">⚔️</span><span class="title">卡片立繪動作提取計畫</span></div>
-<span class="desc">Project ARES — AI 角色立繪動作語義資料庫，從骨架提取、AI 標註到雙控制導引出圖的完整計畫</span>
-<span class="tag">專案計畫</span>
-</a>
-
-</div>
-
+<div class="cards" id="cardsGrid"></div>
 <footer>MotionLab — AI Motion Research & Production</footer>
 </div>
+
+<div class="modal-overlay" id="modal">
+<div class="modal">
+<h2>新增卡片</h2>
+<label>圖示 (Emoji)</label>
+<input id="fIcon" placeholder="📄" maxlength="4">
+<label>標題</label>
+<input id="fTitle" placeholder="頁面名稱">
+<label>連結 URL</label>
+<input id="fUrl" placeholder="page.html 或 https://...">
+<label>描述</label>
+<textarea id="fDesc" placeholder="簡短說明"></textarea>
+<label>標籤</label>
+<input id="fTag" placeholder="分類標籤">
+<details class="token-section">
+<summary>GitHub Token（首次需設定，之後會記住）</summary>
+<input id="fToken" type="password" placeholder="ghp_..." style="margin-top:.5rem">
+</details>
+<div class="msg" id="msg"></div>
+<div class="btns">
+<button class="btn btn-cancel" onclick="closeModal()">取消</button>
+<button class="btn btn-save" id="saveBtn" onclick="saveCard()">儲存</button>
+</div>
+</div>
+</div>
+
+<script>
+const REPO = 'tonykober/MotionLab';
+const FILE = 'cards.json';
+const BRANCH = 'main';
+
+let cards = [];
+let fileSha = '';
+
+function getToken() { return localStorage.getItem('gh_token') || ''; }
+function setToken(t) { if(t) localStorage.setItem('gh_token', t); }
+
+async function loadCards() {
+  try {
+    const res = await fetch(`cards.json?t=${Date.now()}`);
+    cards = await res.json();
+  } catch(e) { cards = []; }
+  render();
+}
+
+function render() {
+  const grid = document.getElementById('cardsGrid');
+  grid.innerHTML = cards.map(c => `
+    <a href="${c.url}" class="card">
+      <div class="top"><span class="icon">${c.icon}</span><span class="title">${c.title}</span></div>
+      <span class="desc">${c.desc}</span>
+      <span class="tag">${c.tag}</span>
+    </a>
+  `).join('') + `<div class="add-card" onclick="openModal()"><span>＋</span></div>`;
+}
+
+function openModal() { document.getElementById('modal').classList.add('visible'); }
+function closeModal() {
+  document.getElementById('modal').classList.remove('visible');
+  document.getElementById('msg').textContent = '';
+}
+
+async function saveCard() {
+  const icon = document.getElementById('fIcon').value.trim() || '📄';
+  const title = document.getElementById('fTitle').value.trim();
+  const url = document.getElementById('fUrl').value.trim();
+  const desc = document.getElementById('fDesc').value.trim();
+  const tag = document.getElementById('fTag').value.trim() || '頁面';
+  const tokenInput = document.getElementById('fToken').value.trim();
+  const token = tokenInput || getToken();
+  const msg = document.getElementById('msg');
+
+  if (!title || !url) { msg.textContent = '標題和連結為必填'; msg.className='msg'; return; }
+  if (!token) { msg.textContent = '請提供 GitHub Token'; msg.className='msg'; return; }
+
+  setToken(token);
+  document.getElementById('saveBtn').disabled = true;
+  msg.textContent = '儲存中...'; msg.className = 'msg ok';
+
+  try {
+    // Get current file SHA
+    const getRes = await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE}?ref=${BRANCH}`, {
+      headers: { Authorization: `token ${token}` }
+    });
+    const getData = await getRes.json();
+    fileSha = getData.sha;
+
+    // Add new card
+    const newCards = [...cards, {icon, title, desc, url, tag}];
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(newCards, null, 2) + '\n')));
+
+    // Update file
+    const putRes = await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE}`, {
+      method: 'PUT',
+      headers: { Authorization: `token ${token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: `feat: 新增卡片「${title}」`, content, sha: fileSha, branch: BRANCH })
+    });
+
+    if (!putRes.ok) throw new Error((await putRes.json()).message);
+
+    msg.textContent = '✅ 已儲存！'; msg.className = 'msg ok';
+    cards = newCards;
+    render();
+    setTimeout(closeModal, 1000);
+  } catch(e) {
+    msg.textContent = '❌ ' + e.message; msg.className = 'msg';
+  }
+  document.getElementById('saveBtn').disabled = false;
+}
+
+loadCards();
+</script>
 </body>
 </html>
