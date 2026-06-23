@@ -111,6 +111,7 @@ function render() {
         <span class="desc">${c.desc}</span>
         <span class="tag">${c.tag}</span>
       </a>
+      <button onclick="event.preventDefault();event.stopPropagation();editCard(${i})" style="position:absolute;top:8px;right:32px;background:none;border:none;color:#555;cursor:pointer;font-size:13px;padding:4px;z-index:2" title="編輯">✎</button>
       <button onclick="event.preventDefault();event.stopPropagation();deleteCard(${i})" style="position:absolute;top:8px;right:8px;background:none;border:none;color:#555;cursor:pointer;font-size:14px;padding:4px;z-index:2" title="刪除">✕</button>
     </div>
   `).join('') + `<div class="add-card" onclick="openModal()"><span>＋</span></div>`;
@@ -143,7 +144,10 @@ async function deleteCard(idx) {
   } catch(e) { alert('刪除失敗：' + e.message); }
 }
 
+let editIdx = -1;
+
 function openModal() {
+  editIdx = -1;
   document.getElementById('fIcon').value = '';
   document.getElementById('fTitle').value = '';
   document.getElementById('fUrl').value = '';
@@ -152,9 +156,23 @@ function openModal() {
   document.getElementById('msg').textContent = '';
   document.getElementById('modal').classList.add('visible');
 }
+
+function editCard(idx) {
+  editIdx = idx;
+  const c = cards[idx];
+  document.getElementById('fIcon').value = c.icon;
+  document.getElementById('fTitle').value = c.title;
+  document.getElementById('fUrl').value = c.url;
+  document.getElementById('fDesc').value = c.desc;
+  document.getElementById('fTag').value = c.tag;
+  document.getElementById('msg').textContent = '';
+  document.getElementById('modal').classList.add('visible');
+}
+
 function closeModal() {
   document.getElementById('modal').classList.remove('visible');
   document.getElementById('msg').textContent = '';
+  editIdx = -1;
 }
 
 async function saveCard() {
@@ -180,15 +198,22 @@ async function saveCard() {
     // Decode current cards from GitHub (source of truth)
     const remoteCards = JSON.parse(decodeURIComponent(escape(atob(getData.content.replace(/\n/g,'')))));
 
-    // Add new card
-    const newCards = [...remoteCards, {icon, title, desc, url, tag}];
+    // Add or update card
+    let newCards;
+    if (editIdx >= 0) {
+      newCards = [...remoteCards];
+      newCards[editIdx] = {icon, title, desc, url, tag};
+    } else {
+      newCards = [...remoteCards, {icon, title, desc, url, tag}];
+    }
+    const commitMsg = editIdx >= 0 ? `edit: 修改卡片「${title}」` : `feat: 新增卡片「${title}」`;
     const content = btoa(unescape(encodeURIComponent(JSON.stringify(newCards, null, 2) + '\n')));
 
     // Update file
     const putRes = await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE}`, {
       method: 'PUT',
       headers: { Authorization: `token ${token}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: `feat: 新增卡片「${title}」`, content, sha: fileSha, branch: BRANCH })
+      body: JSON.stringify({ message: commitMsg, content, sha: fileSha, branch: BRANCH })
     });
 
     if (!putRes.ok) throw new Error((await putRes.json()).message);
