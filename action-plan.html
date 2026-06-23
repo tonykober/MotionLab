@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>卡片立繪動作提取計畫</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; overflow: hidden; background: #0a0a0f; color: #e0e0e0; font-family: -apple-system, 'Noto Sans TC', sans-serif; }
+
+.presentation { width: 100%; height: 100%; display: flex; flex-direction: column; }
+.slide-container { flex: 1; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+.slide { position: absolute; opacity: 0; transition: opacity 0.4s ease; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+.slide.active { opacity: 1; }
+.slide img { max-width: 95%; max-height: 90%; object-fit: contain; border-radius: 4px; box-shadow: 0 8px 40px rgba(0,0,0,0.6); }
+
+.notes-toggle { position: fixed; bottom: 60px; right: 20px; z-index: 100; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 14px; border-radius: 6px; cursor: pointer; font-size: 13px; backdrop-filter: blur(8px); }
+.notes-toggle:hover { background: rgba(255,255,255,0.2); }
+.notes-panel { position: fixed; bottom: 60px; left: 50%; transform: translateX(-50%); max-width: 700px; width: 90%; max-height: 30vh; overflow-y: auto; background: rgba(20,20,30,0.95); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 20px; font-size: 14px; line-height: 1.7; backdrop-filter: blur(12px); display: none; z-index: 99; }
+.notes-panel.visible { display: block; }
+
+.controls { height: 50px; display: flex; align-items: center; justify-content: center; gap: 16px; background: rgba(15,15,25,0.9); border-top: 1px solid rgba(255,255,255,0.05); }
+.controls button { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #ccc; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+.controls button:hover { background: rgba(255,255,255,0.15); color: #fff; }
+.page-indicator { font-size: 13px; color: #888; min-width: 60px; text-align: center; }
+
+.progress { height: 3px; background: rgba(255,255,255,0.05); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, #6366f1, #8b5cf6); transition: width 0.3s ease; }
+
+.back-btn { position: fixed; top: 16px; left: 16px; z-index: 100; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #aaa; padding: 6px 12px; border-radius: 6px; text-decoration: none; font-size: 13px; }
+.back-btn:hover { background: rgba(255,255,255,0.15); color: #fff; }
+</style>
+</head>
+<body>
+<a href="index.html" class="back-btn">← MotionLab</a>
+<div class="presentation">
+  <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+  <div class="slide-container" id="slideContainer"></div>
+  <div class="controls">
+    <button id="prevBtn">◀</button>
+    <span class="page-indicator" id="pageIndicator"></span>
+    <button id="nextBtn">▶</button>
+  </div>
+</div>
+<button class="notes-toggle" id="notesToggle">📝 頁面摘要</button>
+<div class="notes-panel" id="notesPanel"></div>
+
+<script>
+const slidesData = [
+  {image:"images/action-plan/page_1.webp",notes:"Project ARES — AI 角色立繪動作語義資料庫計畫。目標是借鑑全球頂尖戰鬥卡牌立繪，提煉高品質人體動態與空間深度，建立「動作語義檢索」與「雙控制導引」的生產管線。"},
+  {image:"images/action-plan/page_2.webp",notes:"傳統立繪三大痛點：動作僵硬重複、溝通調整耗時、性格與動作割裂。ARES 三大核心願景：動態自由化（精選 100 款高透視戰鬥姿勢）、製程標準化（文字檢索→骨架導引→穩定產圖）、資產數位化（永久保留高價值動作庫）。"},
+  {image:"images/action-plan/page_3.webp",notes:"ARES 三步驟工作流：(1) 提取骨架與立體深度 — Python 批次轉換參考圖為骨架線條與深度圖；(2) AI 貼標籤 — GPT 解析為性格、武器、動態感標籤，實現語義檢索；(3) 雙重控制極速出圖 — ComfyUI 拼合骨架與深度圖，AI 上色與細節生成。"},
+  {image:"images/action-plan/page_4.webp",notes:"計畫預期成效：首批精選 100+ 戰鬥姿勢庫。核心價值包括充分借鑑外部優秀作品提取高難度骨骼與透視深度、DWPose + Depth 雙重物理級鎖定提升 AI 產圖成功率、豐富卡牌角色動作多樣性。"},
+  {image:"images/action-plan/page_5.webp",notes:"Image Sources — 簡報中使用的外部圖片素材來源列表。"}
+];
+
+let current = 0, notesVisible = false;
+const container = document.getElementById('slideContainer');
+
+slidesData.forEach((s, i) => {
+  const div = document.createElement('div');
+  div.className = 'slide' + (i === 0 ? ' active' : '');
+  div.innerHTML = `<img src="${s.image}" alt="Page ${i+1}">`;
+  container.appendChild(div);
+});
+
+function goTo(n) {
+  if (n < 0 || n >= slidesData.length) return;
+  document.querySelectorAll('.slide')[current].classList.remove('active');
+  current = n;
+  document.querySelectorAll('.slide')[current].classList.add('active');
+  document.getElementById('pageIndicator').textContent = `${current+1} / ${slidesData.length}`;
+  document.getElementById('progressBar').style.width = `${((current+1)/slidesData.length)*100}%`;
+  document.getElementById('notesPanel').textContent = slidesData[current].notes;
+}
+
+document.getElementById('prevBtn').onclick = () => goTo(current - 1);
+document.getElementById('nextBtn').onclick = () => goTo(current + 1);
+document.getElementById('notesToggle').onclick = () => {
+  notesVisible = !notesVisible;
+  document.getElementById('notesPanel').classList.toggle('visible', notesVisible);
+};
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); goTo(current + 1); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1); }
+  if (e.key === 'n') document.getElementById('notesToggle').click();
+});
+
+let touchX = 0;
+container.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; });
+container.addEventListener('touchend', e => {
+  const diff = e.changedTouches[0].clientX - touchX;
+  if (Math.abs(diff) > 50) diff > 0 ? goTo(current-1) : goTo(current+1);
+});
+
+goTo(0);
+</script>
+</body>
+</html>
