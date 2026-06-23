@@ -90,8 +90,8 @@ let fileSha = '';
 
 async function loadCards() {
   try {
-    const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE}?ref=${BRANCH}`, {
-      headers: { Authorization: `token ${TOKEN}` }
+    const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE}?ref=${BRANCH}&t=${Date.now()}`, {
+      headers: { Authorization: `token ${TOKEN}`, 'If-None-Match': '' }
     });
     const data = await res.json();
     fileSha = data.sha;
@@ -120,8 +120,8 @@ async function deleteCard(idx) {
   if (!confirm(`確定刪除「${cards[idx].title}」？`)) return;
   const token = TOKEN;
   try {
-    const getRes = await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE}?ref=${BRANCH}`, {
-      headers: { Authorization: `token ${token}` }
+    const getRes = await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE}?ref=${BRANCH}&t=${Date.now()}`, {
+      headers: { Authorization: `token ${token}`, 'If-None-Match': '' }
     });
     const getData = await getRes.json();
     fileSha = getData.sha;
@@ -172,8 +172,8 @@ async function saveCard() {
 
   try {
     // Get current file content and SHA from GitHub
-    const getRes = await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE}?ref=${BRANCH}`, {
-      headers: { Authorization: `token ${token}` }
+    const getRes = await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE}?ref=${BRANCH}&t=${Date.now()}`, {
+      headers: { Authorization: `token ${token}`, 'If-None-Match': '' }
     });
     const getData = await getRes.json();
     fileSha = getData.sha;
