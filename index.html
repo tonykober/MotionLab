@@ -59,6 +59,8 @@ footer{text-align:center;margin-top:4rem;color:#4a5568;font-size:.8rem}
 <input id="fUrl" placeholder="page.html 或 https://...">
 <label>描述</label>
 <textarea id="fDesc" placeholder="簡短說明"></textarea>
+<label>日期</label>
+<input id="fDate" type="date">
 <details class="token-section" style="display:none">
 <summary>GitHub Token</summary>
 <input id="fToken" type="password" style="margin-top:.5rem">
@@ -97,6 +99,7 @@ function render() {
       <a href="${c.url}" style="text-decoration:none;display:flex;flex-direction:column;gap:.6rem;flex:1">
         <div class="top"><span class="icon">${c.icon}</span><span class="title">${c.title}</span></div>
         <span class="desc">${c.desc}</span>
+        ${c.date ? `<span style="font-size:.75rem;color:#6b7a8d;margin-top:auto">${c.date}</span>` : ''}
       </a>
       <button onclick="event.preventDefault();event.stopPropagation();editCard(${i})" style="position:absolute;top:4px;right:28px;background:none;border:none;color:#8899b0;cursor:pointer;font-size:14px;padding:2px 4px;z-index:2" title="編輯">✎</button>
       <button onclick="event.preventDefault();event.stopPropagation();deleteCard(${i})" style="position:absolute;top:4px;right:4px;background:none;border:none;color:#8899b0;cursor:pointer;font-size:14px;padding:2px 4px;z-index:2" title="刪除">✕</button>
@@ -133,6 +136,7 @@ function openModal() {
   document.getElementById('fTitle').value = '';
   document.getElementById('fUrl').value = '';
   document.getElementById('fDesc').value = '';
+  document.getElementById('fDate').value = new Date().toISOString().slice(0,10);
   document.getElementById('msg').textContent = '';
   document.getElementById('modal').classList.add('visible');
 }
@@ -143,6 +147,7 @@ function editCard(idx) {
   document.getElementById('fTitle').value = c.title;
   document.getElementById('fUrl').value = c.url;
   document.getElementById('fDesc').value = c.desc;
+  document.getElementById('fDate').value = c.date || '';
   document.getElementById('msg').textContent = '';
   document.getElementById('modal').classList.add('visible');
 }
@@ -156,6 +161,7 @@ async function saveCard() {
   const title = document.getElementById('fTitle').value.trim();
   const url = document.getElementById('fUrl').value.trim();
   const desc = document.getElementById('fDesc').value.trim();
+  const date = document.getElementById('fDate').value;
   const token = TOKEN;
   const msg = document.getElementById('msg');
   if (!title || !url) { msg.textContent = '標題和連結為必填'; msg.className='msg'; return; }
@@ -174,9 +180,9 @@ async function saveCard() {
     let newCards;
     if (editIdx >= 0) {
       newCards = [...remoteCards];
-      newCards[editIdx] = {icon, title, desc, url};
+      newCards[editIdx] = {icon, title, desc, url, date};
     } else {
-      newCards = [...remoteCards, {icon, title, desc, url}];
+      newCards = [...remoteCards, {icon, title, desc, url, date}];
     }
     const commitMsg = editIdx >= 0 ? `edit: 修改卡片「${title}」` : `feat: 新增卡片「${title}」`;
     const content = btoa(unescape(encodeURIComponent(JSON.stringify(newCards, null, 2) + '\n')));
