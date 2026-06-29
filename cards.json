@@ -4,27 +4,27 @@
     "title": "AI 動作工具調研",
     "desc": "42 款 AI 動作相關工具完整調研 — 涵蓋 AI Mocap、動作生成、重定向、物理模擬等類別",
     "url": "ai-motion-tools.html",
-    "tag": "調研報告"
+    "date": "2026-06-22"
   },
   {
     "icon": "🗂️",
     "title": "動作資料庫：專案說明",
     "desc": "從競品卡片立繪提取角色動作，建立 AI 產圖可用的 Pose/Depth 參考資料庫",
     "url": "action-db.html",
-    "tag": "專案簡報"
+    "date": "2026-06-23"
   },
   {
     "icon": "⚔️",
     "title": "卡片立繪動作提取計畫",
     "desc": "Project ARES — AI 角色立繪動作語義資料庫，從骨架提取、AI 標註到雙控制導引出圖的完整計畫",
     "url": "action-plan.html",
-    "tag": "專案計畫"
+    "date": "2026-06-23"
   },
   {
     "icon": "📄",
     "title": "111543433",
     "desc": "22235543543543",
     "url": "https://mp.weixin.qq.com/s/9HvIpy0mfHL2vAaUAvwu9Q",
-    "tag": "頁面"
+    "date": "2026-06-24"
   }
 ]
